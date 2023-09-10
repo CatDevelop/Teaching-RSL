@@ -1,11 +1,12 @@
-import s from "./Pages.module.css";
 import React from "react";
-import Logo from '../assets/images/Logo.svg'
+import s from "./Pages.module.css";
 import {Button} from "@nextui-org/react";
 import {useNavigate} from "react-router-dom";
+import Logo from "../assets/images/Logo.svg";
 
 export const HomePage = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    
     return (
         <div>
             <div className={s.centeredContainer}>
@@ -25,7 +26,7 @@ export const HomePage = () => {
                     >
                         Тренировки
                     </Button>
-                    <Button color="primary" variant="solid" fullWidth={true}>
+                    <Button color="primary" variant="solid" fullWidth={true}  onClick={() => navigate("admin/testing-component")}>
                         Тестирование компонентов
                     </Button>
                 </div>

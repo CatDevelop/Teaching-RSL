@@ -1,0 +1,7 @@
+.button {
+    font-weight: var(--font-weight-l);
+}
+
+.button_faded {
+    background-color: var(--on-surface-color);
+}
