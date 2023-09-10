@@ -7,8 +7,7 @@ import store from "./store";
 import {ToastContainer} from "react-toastify";
 import {NextUIProvider} from "@nextui-org/react";
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
     <Provider store={store}>
         <NextUIProvider>

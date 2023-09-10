@@ -1,9 +1,9 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import s from "./Pages.module.css";
-import Logo from "../assets/images/Logo.svg";
 import {Button} from "@nextui-org/react";
 
+const Logo = require('../assets/images/Logo.svg');
 
 export const NotFoundPage = () => {
     const navigate = useNavigate()

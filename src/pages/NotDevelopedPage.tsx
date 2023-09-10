@@ -1,10 +1,11 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import Logo from "../assets/images/Logo.svg";
 import s from './Pages.module.css'
 import {Button} from "@nextui-org/react";
 
-export const NotDevelopedPage = (props) => {
+const Logo = require('../assets/images/Logo.svg');
+
+export const NotDevelopedPage = () => {
     const navigate = useNavigate()
     return (
         <div className={s.centeredContainer}>
