@@ -5,6 +5,7 @@ import { HomePage } from '../pages/HomePage';
 import { learningRoutes } from '../pages/learning/routes';
 import { testingRoutes } from '../pages/testing/routes';
 import { NotFoundPage } from '../pages/NotFoundPage';
+import { adminRoutes } from '../pages/admin/routes';
 
 const routes: RouteObject[] = [
     {
@@ -22,6 +23,7 @@ const routes: RouteObject[] = [
 
            ...learningRoutes,
            ...testingRoutes,
+           ...adminRoutes,
         ]
     }
 ];
