@@ -1,0 +1,32 @@
+.taskContinue {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-l);
+    gap: var(--space-xl);
+    background-color: var(--light-primary-color);
+}
+
+.taskContinue_incorrectly {
+    background-color: var(--light-danger-color);
+}
+
+.taskContinue__result {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+}
+
+.taskContinue__title {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-l);
+}
+
+.taskContinue__textBlock {
+    color: var(--primary-color);
+}
+
+.taskContinue_incorrectly .taskContinue__textBlock{
+    color: var(--danger-color);
+}
