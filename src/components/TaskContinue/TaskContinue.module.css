@@ -1,4 +1,4 @@
-.task-continue {
+.taskContinue {
     width: 100%;
     display: flex;
     align-items: center;
@@ -8,25 +8,25 @@
     background-color: var(--light-primary-color);
 }
 
-.task-continue_incorrectly {
+.taskContinue_incorrectly {
     background-color: var(--light-danger-color);
 }
 
-.task-continue__result {
+.taskContinue__result {
     display: flex;
     align-items: center;
     gap: var(--space-s);
 }
 
-.task-continue__title {
+.taskContinue__title {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-l);
 }
 
-.task-continue__text-block {
+.taskContinue__textBlock {
     color: var(--primary-color);
 }
 
-.task-continue_incorrectly .task-continue__text-block{
+.taskContinue_incorrectly .taskContinue__textBlock{
     color: var(--danger-color);
 }

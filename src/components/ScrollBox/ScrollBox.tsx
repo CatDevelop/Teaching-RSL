@@ -7,7 +7,7 @@ type Props = PropsWithChildren;
 /** Scroll box.  */
 export const ScrollBox: FC<Props> = typedMemo(function ScrollBox(props){
     return (
-        <div className={styles['scroll-box']}>
+        <div className={styles.scrollBox}>
             {props.children}
         </div>
     )

@@ -1,4 +1,4 @@
-.scroll-box {
+.scrollBox {
     max-height: 100%;
     max-width: 100%;
     width: 100%;
@@ -12,19 +12,19 @@
     padding: var(--space-m);
 }
 
-.scroll-box::-webkit-scrollbar {
+.scrollBox::-webkit-scrollbar {
     --scrollbar-width: 5px;
 
     width: calc(var(--scrollbar-width) + 2 * var(--space-s));
 }
   
-.scroll-box::-webkit-scrollbar-track {
+.scrollBox::-webkit-scrollbar-track {
     background: var(--dark-on-surface-color);
     background-clip: content-box;
     border: var(--space-s) solid transparent;
 }
   
-.scroll-box::-webkit-scrollbar-thumb {
+.scrollBox::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
     background-clip: content-box;
     border: var(--space-s) solid transparent;

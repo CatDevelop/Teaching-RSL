@@ -4,7 +4,7 @@ import styles from "./TestingComponentPage.module.css";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
     return (
-        <div className={styles['centered-container']}>
+        <div className={styles.centeredContainer}>
         </div>
     )
 });

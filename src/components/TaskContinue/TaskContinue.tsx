@@ -15,21 +15,21 @@ type Props = Readonly<{
 /** Task continue panel. */
 export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
     return (
-        <div className={clsx(styles['task-continue'],  !props.isRightAnswer && styles['task-continue_incorrectly'])}>
+        <div className={clsx(styles.taskContinue,  !props.isRightAnswer && styles.taskContinue_incorrectly)}>
             {props.isRightAnswer ?
                 <>
-                    <div className={styles['task-continue__result']}>
-                        <img src={TickCircle} alt="You answered correctly" className={styles['task-continue__icon']} />
-                        <p className={clsx(styles['task-continue__title'], styles['task-continue__text-block'])}>Вы отлично справились!</p> 
+                    <div className={styles.taskContinue__result}>
+                        <img src={TickCircle} alt="You answered correctly" className={styles.taskContinue__icon} />
+                        <p className={clsx(styles.taskContinue__title, styles.taskContinue__textBlock)}>Вы отлично справились!</p> 
                     </div>
                     <Button color="primary" onClick={props.continue}>Далее</Button>
                 </> :
                 <>
-                    <div className={styles['task-continue__result']}>
-                        <img src={CloseCircle} alt="You answered incorrectly" className={styles['task-continue__icon']} />
-                        <div className={styles['task-continue__text-block']}>
-                            <p className={styles['task-continue__title']}>Правильный ответ:</p> 
-                            <p className={styles['task-continue__description']}>{props.rightAnswer}</p> 
+                    <div className={styles.taskContinue__result}>
+                        <img src={CloseCircle} alt="You answered incorrectly" className={styles.taskContinue__icon} />
+                        <div className={styles.taskContinue__textBlock}>
+                            <p className={styles.taskContinue__title}>Правильный ответ:</p> 
+                            <p className={styles.taskContinue__description}>{props.rightAnswer}</p> 
                         </div>
                     </div>
                     <Button color="danger" onClick={props.continue}>Далее</Button>
