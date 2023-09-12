@@ -7,8 +7,7 @@
     --light-primary-color: rgba(82, 133, 242, 0.2);
     --danger-color: rgba(255, 75, 75, 1);
     --light-danger-color: rgba(242, 82, 82, 0.2);
-
-
+    --text-color: rgba(39, 39, 42, 1);
 
     /* Font */
     --font-weight-l: 700;
@@ -29,5 +28,4 @@
                     0px 2px 30px 0px rgba(0, 0, 0, 0.08), 
                     0px 0px 15px 0px rgba(0, 0, 0, 0.03);
     --border-radius: 16px;
-    
 }
