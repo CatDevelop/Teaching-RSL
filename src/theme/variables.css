@@ -1,25 +1,28 @@
 :root{
 
     /* Colors */
-    --on-surface-color: rgba(255,255,255,1);
+    --on-surface-color: rgba(255, 255, 255, 1);
+    --on-surface-opacity-color: rgba(255, 255, 255, 0.85);
     --dark-on-surface-color: rgba(228, 228, 231, 1);
     --primary-color: rgba(51, 142, 247, 1);
     --light-primary-color: rgba(82, 133, 242, 0.2);
     --danger-color: rgba(255, 75, 75, 1);
     --light-danger-color: rgba(242, 82, 82, 0.2);
-
-
+    --text-color: rgba(39, 39, 42, 1);
 
     /* Font */
     --font-weight-l: 700;
+    --font-weight-m: 500;
 
     --font-size-m: 20px;
+    --font-size-xs: calc(var(--font-size-m) * 0.6);
     --font-size-s: calc(var(--font-size-m) * 0.8);
     --font-size-l: calc(var(--font-size-m) * 1.2);
     --font-size-xl: calc(var(--font-size-m) * 1.6);
 
     /* Spaces */
     --space-m: 20px;
+    --space-xs: calc(var(--space-m) * 0.25);
     --space-s: calc(var(--space-m) * 0.5);
     --space-l: calc(var(--space-m) * 1.6);
     --space-xl: calc(var(--space-m) * 3);
@@ -28,6 +31,7 @@
     --box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3), 
                     0px 2px 30px 0px rgba(0, 0, 0, 0.08), 
                     0px 0px 15px 0px rgba(0, 0, 0, 0.03);
-    --border-radius: 16px;
-    
+
+    --border-radius-s: calc(var(--border-radius-m) / 2);
+    --border-radius-m: 16px;
 }

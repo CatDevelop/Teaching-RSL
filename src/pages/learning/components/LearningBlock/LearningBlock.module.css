@@ -1,0 +1,25 @@
+.learningBlock {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+.learningBlock__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-s);
+}
+
+.learningBlock__icon {
+    --icon-size: 32px;
+
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+.learningBlock__title {
+    font-weight: var(--font-weight-l);
+    font-size: var(--font-size-m);
+    color: var(--text-color);
+}
