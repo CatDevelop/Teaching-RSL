@@ -6,7 +6,7 @@
     justify-content: space-between;
     gap: var(--space-m);
     cursor: pointer;
-
+    width: 100%;
 }
 
 .systemTestPreview:hover {
@@ -17,21 +17,23 @@
     transform: translateX(10px);
 }
 
-.systemTestPreview__name {
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight-l);
-    color: var(--on-surface-color);
-}
-
 .systemTestPreview__info {
     display: flex;
     align-items: center;
     gap: var(--space-s);
 }
 
+.systemTestPreview__name {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-l);
+    color: var(--on-surface-color);
+    margin-bottom: var(--space-s);
+}
+
 .systemTestPreview__description {
     font-size: var(--font-size-xs);
     color: var(--on-surface-opacity-color);
+    font-weight: var(--font-weight-m);
 }
 
 .systemTestPreview__separator {
@@ -41,8 +43,4 @@
     height: var(--separator-size);
     border-radius: 100%;
     background-color: var(--on-surface-opacity-color);
-}
-
-.systemTestPreview__start {
-    height: 100%;
 }

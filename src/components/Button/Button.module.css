@@ -5,3 +5,9 @@
 .button_faded {
     background-color: var(--on-surface-color);
 }
+
+.button_link {
+    height: auto;
+    font-weight: var(--font-weight-m);
+    padding: 0 var(--space-xs);
+}
