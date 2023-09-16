@@ -9,7 +9,7 @@ type Props = Readonly<{
     allWordsCount: number;
 }>
 
-/** Плашка с описанием пользовательского теста. */
+/** User test preview. */
 export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(props){
     return (
         <div className={styles.userTestPreview} onClick={() => {}}>

@@ -13,5 +13,5 @@ export const Card: FC<Props> = typedMemo(function Card(props){
         <div className={clsx(styles.card, props.className)}>
             {props.children}
         </div>
-    )
-})
+    );
+});

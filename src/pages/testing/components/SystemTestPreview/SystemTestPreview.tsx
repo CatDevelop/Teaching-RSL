@@ -11,7 +11,7 @@ type Props = Readonly<{
     className?: string;
 }>
 
-/** Плашка с описанием системного теста. */
+/** System test preview. */
 export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview(props){
     return (
         <div className={clsx(styles.systemTestPreview, props.className)} onClick={() => {}}>
