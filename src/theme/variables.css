@@ -1,7 +1,8 @@
 :root{
 
     /* Colors */
-    --on-surface-color: rgba(255,255,255,1);
+    --on-surface-color: rgba(255, 255, 255, 1);
+    --on-surface-opacity-color: rgba(255, 255, 255, 0.85);
     --dark-on-surface-color: rgba(228, 228, 231, 1);
     --primary-color: rgba(51, 142, 247, 1);
     --light-primary-color: rgba(82, 133, 242, 0.2);
@@ -13,6 +14,7 @@
     --font-weight-l: 700;
 
     --font-size-m: 20px;
+    --font-size-xs: calc(var(--font-size-m) * 0.6);
     --font-size-s: calc(var(--font-size-m) * 0.8);
     --font-size-l: calc(var(--font-size-m) * 1.2);
     --font-size-xl: calc(var(--font-size-m) * 1.6);
@@ -27,5 +29,7 @@
     --box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3), 
                     0px 2px 30px 0px rgba(0, 0, 0, 0.08), 
                     0px 0px 15px 0px rgba(0, 0, 0, 0.03);
-    --border-radius: 16px;
+
+    --border-radius-s: calc(var(--border-radius-m) / 2);
+    --border-radius-m: 16px;
 }
