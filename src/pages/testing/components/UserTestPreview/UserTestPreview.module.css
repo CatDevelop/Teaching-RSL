@@ -48,3 +48,11 @@
 .userTestPreview__button {
     font-size: var(--font-size-xs);
 }
+
+.userTestPreview__startIcon{
+    transition: all 0.8s ease;
+}
+
+.userTestPreview__startIcon:hover{
+    transform: rotate(100deg);
+}
