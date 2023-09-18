@@ -9,6 +9,9 @@
     --danger-color: rgba(255, 75, 75, 1);
     --light-danger-color: rgba(242, 82, 82, 0.2);
     --text-color: rgba(39, 39, 42, 1);
+    --secondary-text-color: rgba(82, 82, 91, 1);
+
+
 
     /* Font */
     --font-weight-l: 700;
@@ -19,6 +22,7 @@
     --font-size-s: calc(var(--font-size-m) * 0.8);
     --font-size-l: calc(var(--font-size-m) * 1.2);
     --font-size-xl: calc(var(--font-size-m) * 1.6);
+    --font-size-xxl: calc(var(--font-size-m) * 2.4);
 
     /* Spaces */
     --space-m: 20px;

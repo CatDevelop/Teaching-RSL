@@ -24,8 +24,6 @@
 }
 
 .systemTestPreview__name {
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight-l);
     color: var(--on-surface-color);
     margin-bottom: var(--space-s);
 }

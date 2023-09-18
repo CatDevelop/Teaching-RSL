@@ -3,6 +3,7 @@ import { FC } from "react";
 import styles from "./SystemTestPreview.module.css";
 import Arrow from "../../../../assets/images/Arrow.svg";
 import clsx from "clsx";
+import { Typography } from "../../../../components/Typography";
 
 type Props = Readonly<{
     name: string;
@@ -16,11 +17,15 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
     return (
         <div className={clsx(styles.systemTestPreview, props.className)} onClick={() => {}}>
             <div className={styles.systemTestPreview__content}>
-                <p className={styles.systemTestPreview__name}>{props.name}</p>
+                <Typography
+                    variant="h3"
+                    className={styles.systemTestPreview__name}>
+                    {props.name}
+                </Typography>
                 <div className={styles.systemTestPreview__info}>
-                    <p className={styles.systemTestPreview__description}>Тест к разделу</p>
+                    <Typography className={styles.systemTestPreview__description}>Тест к разделу</Typography>
                     <div className={styles.systemTestPreview__separator}></div>
-                    <p className={styles.systemTestPreview__description}>{props.passedWordsCount} из {props.allWordsCount} слов пройдено</p>
+                    <Typography className={styles.systemTestPreview__description}>{props.passedWordsCount} из {props.allWordsCount} слов пройдено</Typography>
                 </div>
             </div>
             <button className={styles.systemTestPreview__start} onClick={() => {}} type="button">

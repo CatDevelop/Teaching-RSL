@@ -3,6 +3,7 @@ import { FC } from "react";
 import styles from "./UserTestPreview.module.css";
 import Setting from "../../../../assets/images/Settings.svg";
 import { Button } from "../../../../components/Button";
+import { Typography } from "../../../../components/Typography";
 
 type Props = Readonly<{
     name: string;
@@ -14,9 +15,13 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
     return (
         <div className={styles.userTestPreview} onClick={() => {}}>
             <div className={styles.userTestPreview__content}>
-                <p className={styles.userTestPreview__name}>{props.name}</p>
+                <Typography
+                    variant="h3"
+                    className={styles.userTestPreview__name}>
+                    {props.name}
+                </Typography>
                 <div className={styles.userTestPreview__info}>
-                    <p className={styles.userTestPreview__description}>{props.allWordsCount}</p>
+                    <Typography className={styles.userTestPreview__description}>{props.allWordsCount}{props.name}</Typography>
                     <div className={styles.userTestPreview__separator}></div>
                     <Button color="primary" variant="light" className={styles.userTestPreview__button} onClick={() => {}}>
                         Скопировать ссылку
