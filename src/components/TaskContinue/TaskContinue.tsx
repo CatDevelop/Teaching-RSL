@@ -6,8 +6,9 @@ import CloseCircle from '../../assets/images/CloseCircle.svg'
 import styles from "./TaskContinue.module.css";
 import { Button } from "../Button";
 import { Typography } from "../../components/Typography";
+import { ComponentProps } from "../../core/models/ComponentProps";
 
-type Props = Readonly<{
+type Props = ComponentProps & Readonly<{
     continue: () => void;
     isRightAnswer: boolean;
     rightAnswer: string;
@@ -16,7 +17,7 @@ type Props = Readonly<{
 /** Task continue panel. */
 export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
     return (
-        <div className={clsx(styles.taskContinue,  !props.isRightAnswer && styles.taskContinue_incorrectly)}>
+        <div className={clsx(styles.taskContinue,  !props.isRightAnswer && styles.taskContinue_incorrectly, props.className)}>
             {props.isRightAnswer ?
                 <>
                     <div className={styles.taskContinue__result}>

@@ -1,21 +1,23 @@
-import { typedMemo } from "../../../../core/utils/typedMemo";
+import { typedMemo } from "../../../../../../core/utils/typedMemo";
 import { FC } from "react";
 import styles from "./SystemTestPreview.module.css";
-import Arrow from "../../../../assets/images/Arrow.svg";
+import Arrow from "../../../../../../assets/images/Arrow.svg";
 import clsx from "clsx";
-import { Typography } from "../../../../components/Typography";
+import { Typography } from "../../../../../../components/Typography";
+import { ComponentProps } from "../../../../../../core/models/ComponentProps";
 
-type Props = Readonly<{
+type Props = ComponentProps & Readonly<{
+    id: number;
     name: string;
     allWordsCount: number;
     passedWordsCount: number;
-    className?: string;
+    color: string;
 }>
 
 /** System test preview. */
 export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview(props){
     return (
-        <div className={clsx(styles.systemTestPreview, props.className)} onClick={() => {}}>
+        <div className={clsx(styles.systemTestPreview, props.className)} onClick={() => {}} style={{backgroundColor: props.color}}>
             <div className={styles.systemTestPreview__content}>
                 <Typography
                     variant="h3"

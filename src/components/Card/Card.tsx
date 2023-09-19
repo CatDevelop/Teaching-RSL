@@ -2,10 +2,9 @@ import { FC, PropsWithChildren } from "react";
 import {clsx} from "clsx"
 import { typedMemo } from "../../core/utils/typedMemo";
 import styles from "./Card.module.css"
+import { ComponentProps } from "../../core/models/ComponentProps";
 
-type Props = PropsWithChildren & Readonly<{
-    className?: string;
-}>
+type Props = PropsWithChildren & ComponentProps;
 
 /** Card. */
 export const Card: FC<Props> = typedMemo(function Card(props){

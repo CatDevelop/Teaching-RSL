@@ -1,8 +1,9 @@
 import { FC, useCallback, useMemo } from "react";
 import { Progress } from "@nextui-org/react";
 import { typedMemo } from "../../core/utils/typedMemo";
+import { ComponentProps } from "../../core/models/ComponentProps";
 
-type Props = Readonly<{
+type Props = ComponentProps & Readonly<{
     currentTaskId: number;
 
     // TODO: заменить нормальным типом
@@ -21,5 +22,5 @@ export const TaskProgress: FC<Props> = typedMemo(function TaskProgress(props){
 
     const progress = useMemo(getProgress, [props.tasks, props.currentTaskId, getProgress]);
 
-    return <Progress aria-label="Task progress" value={progress} />
+    return <Progress aria-label="Task progress" value={progress} className={props.className}/>
 });

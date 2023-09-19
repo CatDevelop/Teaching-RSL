@@ -1,11 +1,13 @@
-import { typedMemo } from "../../../../core/utils/typedMemo";
+import { typedMemo } from "../../../../../../core/utils/typedMemo";
 import { FC } from "react";
 import styles from "./UserTestPreview.module.css";
 import Setting from "../../../../assets/images/Settings.svg";
-import { Button } from "../../../../components/Button";
-import { Typography } from "../../../../components/Typography";
+import { Button } from "../../../../../../components/Button";
+import { Typography } from "../../../../../../components/Typography";
+import { ComponentProps } from "../../../../../../core/models/ComponentProps";
+import clsx from "clsx";
 
-type Props = Readonly<{
+type Props = ComponentProps & Readonly<{
     name: string;
     allWordsCount: number;
 }>
@@ -13,7 +15,7 @@ type Props = Readonly<{
 /** User test preview. */
 export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(props){
     return (
-        <div className={styles.userTestPreview} onClick={() => {}}>
+        <div className={clsx(styles.userTestPreview, props.className)} onClick={() => {}}>
             <div className={styles.userTestPreview__content}>
                 <Typography
                     variant="h3"
