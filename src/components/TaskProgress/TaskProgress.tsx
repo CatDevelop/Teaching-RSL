@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import { Progress } from "@nextui-org/react";
 import { typedMemo } from "../../core/utils/typedMemo";
 

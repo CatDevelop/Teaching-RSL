@@ -1,5 +1,5 @@
 import { typedMemo } from "../../../../core/utils/typedMemo";
-import { FC } from "react";
+import React, { FC } from "react";
 import styles from "./SystemTestPreview.module.css";
 import Arrow from "../../../../assets/images/Arrow.svg";
 import clsx from "clsx";

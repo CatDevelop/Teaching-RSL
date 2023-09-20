@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import {clsx} from "clsx"
 import { typedMemo } from "../../core/utils/typedMemo";
 import styles from "./Card.module.css"

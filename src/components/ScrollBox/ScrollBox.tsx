@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { typedMemo } from "../../core/utils/typedMemo";
 import styles from "./ScrollBox.module.css";
 import { Card } from "../Card";
