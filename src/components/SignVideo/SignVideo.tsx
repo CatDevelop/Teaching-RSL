@@ -11,7 +11,7 @@ type Props = ComponentProps & Readonly<{
 export const SignVideo: FC<Props> = typedMemo(function SignVideo(props){
     return (
         <div className={styles.signVideo}>
-            <video className={styles.signVideo__video} src={props.src} controls={false} autoPlay loop/>
+            <video className={styles.signVideo__video} src={props.src} controls={true} autoPlay loop/>
         </div>
     )
 });
