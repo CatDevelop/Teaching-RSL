@@ -4,8 +4,6 @@ import styles from "./TrainingCatalogPage.module.css";
 import { Typography } from "../../../../components/Typography";
 import { WorkOnMistakes } from "./components/WorkOnMistakes";
 import { Page } from "../../../../components/Page";
-import { SystemTests } from "./components/SystemTests";
-import { themes } from "../../data";
 
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
     return (
@@ -18,9 +16,7 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
 
             <WorkOnMistakes missingWordsCount={15} className={styles.trainingCatalog__workOnMistakes}/>
 
-            <div className={styles.trainingCatalog__tests}>
-                <SystemTests themes={themes} className={styles.trainingCatalog__tests}/>
-            </div>
+            <div className={styles.trainingCatalog__tests}></div>
         </Page>
     )
 })
