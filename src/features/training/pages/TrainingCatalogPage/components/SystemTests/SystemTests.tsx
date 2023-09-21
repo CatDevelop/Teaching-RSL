@@ -14,7 +14,7 @@ type TempTest = {
     tests: {
         name: string,
         allWordsCount: number;
-        passedWordsCount: number;
+        passedWordsCount: number; // TODO изменить название, passed - это пропущенный, а мы отображаем пройденные
         id: number;
     }[];
 }
@@ -30,11 +30,11 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props){
                 <div className={styles.systemTests__theme} key={theme.id}>
                     <Typography variant="h3">{theme.name}</Typography>
                     {theme.tests.map(test => (
-                        <SystemTestPreview 
+                        <SystemTestPreview
                             color={theme.color}
-                            name={test.name} 
-                            allWordsCount={test.allWordsCount} 
-                            passedWordsCount={test.passedWordsCount} 
+                            name={test.name}
+                            allWordsCount={test.allWordsCount}
+                            passedWordsCount={test.passedWordsCount}
                             id={test.id}/>
                     ))}
                 </div>

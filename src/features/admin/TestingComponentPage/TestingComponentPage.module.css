@@ -1,8 +1,30 @@
-.centeredContainer {
+.container {
+    background: var(--service-backround-color);
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     padding: 20px 70px;
     justify-content: center;
+}
+
+.componentRow {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    /*justify-content: center;*/
     align-items: center;
 }
+
+.componentTitle {
+    font-family: OpenSans, serif;
+    font-size: var(--font-size-l);
+    margin: 0;
+    padding: 0;
+    text-align: start;
+}
+
+.large {
+    font-size: var(--font-size-xl);
+    margin-top: 50px;
+}
+
