@@ -1,0 +1,45 @@
+.theoryCard {
+    max-width: 1080px;
+    /*max-height: 530px;*/
+    box-sizing: border-box;
+}
+
+.theoryCard__contentContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+.theoryCard__titleContainer {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-s);
+    align-items: center;
+    /*justify-content: center;*/
+}
+
+.theoryCard__title {
+    font-family: var(--main-font);
+    font-weight: var(--font-weight-l);
+    font-size: 18px;
+}
+
+.theoryCard__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-m);
+}
+
+.theoryCard__image {
+    border: 3px var(--dark-on-surface-color) solid;
+    border-radius: var(--border-radius-s);
+    height: 100%;
+}
+
+.theoryCard__word {
+    font-family: var(--main-font);
+    font-weight: var(--font-weight-s);
+    font-size: var(--font-size-xxl);
+    text-align: center;
+}

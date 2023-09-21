@@ -12,6 +12,7 @@ import SettingsSVG from '../../../assets/images/Settings.svg'
 import {SystemTests} from "../../training/pages/TrainingCatalogPage/components/SystemTests";
 import clsx from "clsx";
 import {WorkOnMistakes} from "../../training/pages/TrainingCatalogPage/components/WorkOnMistakes";
+import {TheoryCard} from "../../learning/pages/LearningCatalogPage/components/TheoryCard";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
     return (
@@ -129,6 +130,12 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
 
             <h2 className={styles.componentTitle}>Окно с работой над ошибками</h2>
             <WorkOnMistakes missingWordsCount={5}/>
+
+            <h1 className={clsx(styles.componentTitle, styles.large)}>Раздел обучение</h1>
+
+            <h2 className={styles.componentTitle}>Окно с теорией</h2>
+            <TheoryCard gifSource={"https://media.spreadthesign.com/video/mp4/12/5776.mp4"} imageSource={"https://media.spreadthesign.com/image/200/585.jpg"} word={"Жёлтый"}/>
+            <TheoryCard gifSource={"https://media.spreadthesign.com/video/mp4/12/5776.mp4"} word={"Жёлтый"}/>
         </div>
     )
 });
