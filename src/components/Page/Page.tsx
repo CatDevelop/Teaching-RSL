@@ -1,5 +1,5 @@
 import { typedMemo } from "../../core/utils/typedMemo";
-import { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import styles from "./Page.module.css";
 import clsx from "clsx";
 import { ComponentProps } from "../../core/models/ComponentProps";

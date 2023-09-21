@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import clsx from "clsx";
 import { typedMemo } from "../../core/utils/typedMemo";
 import TickCircle from '../../assets/images/TickCircle.svg'
@@ -39,7 +39,7 @@ export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
                         </div>
                     </div>
                     <Button color="danger" onClick={props.continue}>Далее</Button>
-                </>   
+                </>
         }
         </div>
     )

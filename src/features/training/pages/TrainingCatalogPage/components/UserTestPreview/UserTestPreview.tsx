@@ -1,5 +1,5 @@
 import { typedMemo } from "../../../../../../core/utils/typedMemo";
-import { FC } from "react";
+import React, { FC } from "react";
 import styles from "./UserTestPreview.module.css";
 import Setting from "../../../../assets/images/Settings.svg";
 import { Button } from "../../../../../../components/Button";
@@ -27,7 +27,7 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
                     <div className={styles.userTestPreview__separator}></div>
                     <Button color="primary" variant="light" className={styles.userTestPreview__button} onClick={() => {}}>
                         Скопировать ссылку
-                    </Button>  
+                    </Button>
                 </div>
             </div>
             <button className={styles.userTestPreview__settings} onClick={() => {}} type="button">

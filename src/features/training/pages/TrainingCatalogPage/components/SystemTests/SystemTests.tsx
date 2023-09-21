@@ -1,5 +1,5 @@
 import { typedMemo } from "../../../../../../core/utils/typedMemo";
-import { FC } from "react";
+import React, { FC } from "react";
 import styles from "./SystemTests.module.css";
 import { Typography } from "../../../../../../components/Typography";
 import { SystemTestPreview } from "../SystemTestPreview";

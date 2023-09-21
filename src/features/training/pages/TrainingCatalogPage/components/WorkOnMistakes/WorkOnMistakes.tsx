@@ -1,6 +1,6 @@
 import { Card } from "../../../../../../components/Card";
 import { typedMemo } from "../../../../../../core/utils/typedMemo";
-import { FC } from "react";
+import React, { FC } from "react";
 import styles from "./WorkOnMistakes.module.css";
 import { Typography } from "../../../../../../components/Typography";
 import { Button } from "../../../../../../components/Button";
