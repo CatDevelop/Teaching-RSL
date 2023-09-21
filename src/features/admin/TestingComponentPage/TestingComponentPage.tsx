@@ -6,8 +6,8 @@ import {Card} from "../../../components/Card";
 import {ScrollBox} from "../../../components/ScrollBox";
 import {TaskContinue} from "../../../components/TaskContinue";
 import {TaskProgress} from "../../../components/TaskProgress";
-import {SystemTestPreview} from "../../testing/components/SystemTestPreview";
-import {UserTestPreview} from "../../testing/components/UserTestPreview";
+import { SystemTestPreview } from "../../training/pages/TrainingCatalogPage/components/SystemTestPreview";
+import {UserTestPreview} from "../../training/pages/TrainingCatalogPage/components/UserTestPreview";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
     return (

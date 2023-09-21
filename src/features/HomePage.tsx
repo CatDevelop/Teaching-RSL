@@ -22,7 +22,7 @@ export const HomePage = () => {
                     <Button color="primary"
                             variant="solid"
                             fullWidth={true}
-                            onClick={() => navigate("testing")}
+                            onClick={() => navigate("training")}
                     >
                         Тренировки
                     </Button>

@@ -2,6 +2,7 @@ import { Card } from "../../../../components/Card";
 import { typedMemo } from "../../../../core/utils/typedMemo";
 import React, {FC, PropsWithChildren} from "react";
 import styles from "./LearningBlock.module.css"
+import { Typography } from "../../../../components/Typography";
 
 type Props = PropsWithChildren & Readonly<{
     iconUrl: string;
@@ -14,7 +15,11 @@ export const LearningBlock: FC<Props> = typedMemo(function LearningBlock(props){
         <Card className={styles.learningBlock}>
             <div className={styles.learningBlock__header}>
                 <img src={props.iconUrl} alt={`${props.title} icon`} className={styles.learningBlock__icon} />
-                <p className={styles.learningBlock__title}>{props.title}</p>
+                <Typography
+                    variant="h3"
+                    className={styles.taskContinue__textBlock}>
+                    {props.title}
+                </Typography>
             </div>
             {props.children}
         </Card>

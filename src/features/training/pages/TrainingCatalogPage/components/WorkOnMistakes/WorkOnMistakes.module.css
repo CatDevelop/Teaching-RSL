@@ -1,0 +1,29 @@
+.workOnMistakes {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    width: auto;
+    height: auto;
+}
+
+.workOnMistakes__words {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.workOnMistakes__wordsCount {
+    font-size: var(--font-size-xxl);
+    font-weight: var(--font-weight-l);
+    line-height: var(--font-size-xxl);
+}
+
+.workOnMistakes__wordsName {
+    font-size: var(--font-size-s);
+    color: var(--secondary-text-color);
+}
+
+.workOnMistakes__beginButton {
+    color: var(--primary-color);
+}

@@ -16,8 +16,6 @@
 }
 
 .userTestPreview__name {
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight-l);
     color: var(--text-color);
     margin-bottom: var(--space-s);
 }
@@ -30,9 +28,8 @@
 
 .userTestPreview__description {
     font-size: var(--font-size-xs);
-    color: var(--text-color);
+    color: var(--secondary-text-color);
     font-weight: var(--font-weight-m);
-    opacity: 0.85;
 }
 
 .userTestPreview__separator {

@@ -1,0 +1,7 @@
+.trainingCatalog {
+    gap: var(--space-m);
+}
+
+.trainingCatalog__title {
+    margin-bottom: var(--space-l);
+}
