@@ -18,10 +18,14 @@ import TheoryIconSVG from "../../../assets/images/TheoryIcon.svg"
 import {SelectButton} from "../../learning/components/SelectButton";
 import {Word} from "../../../core/models/Word";
 import {SelectGIF} from "../../learning/components/SelectGIF";
+import {SelectImage} from "../../learning/components/SelectImage";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
     const [selectWord, setSelectWord] = useState<Word | null>(null)
     const [selectGIF, setSelectGIF] = useState<Word | null>(null)
+    const [selectImage, setSelectImage] = useState<Word | null>(null)
+
+    const [progressBar, setProgressBar] = useState(1);
 
     const testWords: Word[] = [
         {
@@ -103,8 +107,30 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             <TaskContinue continue={() => console.log(123213)} isRightAnswer={false} rightAnswer={"awdawd"}/>
 
             <h2 className={styles.componentTitle}>Прогресс уровня</h2>
-            <TaskProgress currentTaskId={3} tasks={[{id: 1}, {id: 2}, {id: 3}, {id: 4}]}/>
-
+            <TaskProgress currentTaskId={progressBar} tasks={[{id: 1}, {id: 2}, {id: 3}, {id: 4}]}/>
+            <div className={styles.componentRow}>
+                <Button startContent={
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 12H9M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                } isIconOnly={true} variant={"faded"}
+                        onClick={() => {
+                            if(progressBar > 0) setProgressBar(progressBar-1)
+                        }}
+                />
+                <Button startContent={
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 9V12M12 12V15M12 12H15M12 12H9M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                            stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                } isIconOnly={true} variant={"faded"}
+                        onClick={() => {
+                            if(progressBar < 4) setProgressBar(progressBar+1)
+                        }}
+                />
+            </div>
 
             <h1 className={clsx(styles.componentTitle, styles.large)}>Раздел тренировки</h1>
 
@@ -202,6 +228,26 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                            setState={setSelectGIF}
                            success
                            number={3}
+                />
+            </div>
+
+            <h2 className={styles.componentTitle}>Изображение с выбором</h2>
+            <div className={styles.componentRow}>
+                <SelectImage checked={selectImage?.id === testWords[0].id}
+                             wordObject={testWords[0]}
+                             setState={setSelectImage}
+                             number={1}
+                />
+                <SelectImage checked={selectImage?.id === testWords[1].id}
+                             wordObject={testWords[1]}
+                             setState={setSelectImage}
+                             number={2}
+                />
+                <SelectImage checked={selectImage?.id === testWords[2].id}
+                             wordObject={testWords[2]}
+                             setState={setSelectImage}
+                             success
+                             number={3}
                 />
             </div>
         </div>
