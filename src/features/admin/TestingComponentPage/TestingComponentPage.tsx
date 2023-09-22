@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useEffect, useState} from "react";
 import {typedMemo} from "../../../core/utils/typedMemo";
 import styles from "./TestingComponentPage.module.css";
 import {Button} from "../../../components/Button";
@@ -13,8 +13,36 @@ import {SystemTests} from "../../training/pages/TrainingCatalogPage/components/S
 import clsx from "clsx";
 import {WorkOnMistakes} from "../../training/pages/TrainingCatalogPage/components/WorkOnMistakes";
 import {TheoryCard} from "../../learning/pages/LearningCatalogPage/components/TheoryCard";
+import {LearningBlock} from "../../learning/components/LearningBlock";
+import TheoryIconSVG from "../../../assets/images/TheoryIcon.svg"
+import {SelectButton} from "../../learning/components/SelectButton";
+import {Word} from "../../../core/models/Word";
+import {SelectGIF} from "../../learning/components/SelectGIF";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
+    const [selectWord, setSelectWord] = useState<Word | null>(null)
+    const [selectGIF, setSelectGIF] = useState<Word | null>(null)
+
+    const testWords: Word[] = [
+        {
+            id: 0,
+            text: "Жёлтый",
+            gifSource: "https://media.spreadthesign.com/video/mp4/12/5776.mp4",
+            imageSource: "https://media.spreadthesign.com/image/200/585.jpg",
+        },
+        {
+            id: 1,
+            text: "Зелёный",
+            gifSource: "https://media.spreadthesign.com/video/mp4/12/5717.mp4",
+        },
+        {
+            id: 2,
+            text: "Белый",
+            gifSource: "https://media.spreadthesign.com/video/mp4/12/4425.mp4",
+            imageSource: "https://media.spreadthesign.com/image/200/682.jpg",
+        }
+    ]
+
     return (
         <div className={styles.container}>
             <h1 className={clsx(styles.componentTitle, styles.large)}>Общие компоненты</h1>
@@ -90,7 +118,7 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             <SystemTests themes={[
                 {
                     name: "Тестовая тема",
-                    id: 1,
+                    id: 0,
                     color: "#AE7EDE",
                     tests: [
                         {
@@ -133,9 +161,49 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
 
             <h1 className={clsx(styles.componentTitle, styles.large)}>Раздел обучение</h1>
 
+            <h2 className={styles.componentTitle}>Основа окон для обучения</h2>
+            <LearningBlock iconUrl={TheoryIconSVG} title={"Заголовок окна"}/>
+
             <h2 className={styles.componentTitle}>Окно с теорией</h2>
-            <TheoryCard gifSource={"https://media.spreadthesign.com/video/mp4/12/5776.mp4"} imageSource={"https://media.spreadthesign.com/image/200/585.jpg"} word={"Жёлтый"}/>
-            <TheoryCard gifSource={"https://media.spreadthesign.com/video/mp4/12/5776.mp4"} word={"Жёлтый"}/>
+            <TheoryCard wordObject={testWords[0]}/>
+            <TheoryCard wordObject={testWords[1]}/>
+
+            <h2 className={styles.componentTitle}>Кнопка выбора</h2>
+            <div className={styles.componentRow}>
+                <SelectButton checked={selectWord?.id === testWords[0].id}
+                              setState={setSelectWord}
+                              wordObject={testWords[0]}
+                />
+                <SelectButton success
+                              checked={selectWord?.id === testWords[1].id}
+                              setState={setSelectWord}
+                              wordObject={testWords[1]}
+                />
+                <SelectButton checked={selectWord?.id === testWords[2].id}
+                              setState={setSelectWord}
+                              wordObject={testWords[2]}
+                />
+            </div>
+
+            <h2 className={styles.componentTitle}>GIF с выбором</h2>
+            <div className={styles.componentRow}>
+                <SelectGIF checked={selectGIF?.id === testWords[0].id}
+                           wordObject={testWords[0]}
+                           setState={setSelectGIF}
+                           number={1}
+                />
+                <SelectGIF checked={selectGIF?.id === testWords[1].id}
+                           wordObject={testWords[1]}
+                           setState={setSelectGIF}
+                           number={2}
+                />
+                <SelectGIF checked={selectGIF?.id === testWords[2].id}
+                           wordObject={testWords[2]}
+                           setState={setSelectGIF}
+                           success
+                           number={3}
+                />
+            </div>
         </div>
     )
 });
