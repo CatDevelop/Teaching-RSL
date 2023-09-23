@@ -6,6 +6,9 @@ import { WorkOnMistakes } from "./components/WorkOnMistakes";
 import { Page } from "../../../../components/Page";
 import { SystemTests } from "./components/SystemTests";
 import { UserTests } from "./components/UserTests";
+import { Button } from "../../../../components/Button";
+import RandomIcon from "../../../../assets/images/Random.svg";
+import { Tooltip } from "react-tooltip";
 
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
     return (
@@ -23,6 +26,15 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
                 <div className={styles.trainingCatalog__tests}>
                     <SystemTests />
                     <UserTests />
+                    
+                    <Tooltip anchorSelect={`.${styles.trainingCatalog__randomTest}`}>
+                        Создать рандомный тест
+                    </Tooltip>
+                    <Button
+                            className={styles.trainingCatalog__randomTest}
+                            variant="faded"
+                            endContent={<img src={RandomIcon} alt="Create random test" />}
+                        />
                 </div>
             </div>
         </Page>
