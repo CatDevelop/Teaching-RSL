@@ -5,3 +5,18 @@
 .trainingCatalog__title {
     margin-bottom: var(--space-l);
 }
+
+.trainingCatalog__testsOverflow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.trainingCatalog__tests {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    position: absolute;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: var(--space-m);
+}

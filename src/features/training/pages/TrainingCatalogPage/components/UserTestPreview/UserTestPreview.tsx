@@ -1,7 +1,7 @@
 import { typedMemo } from "../../../../../../core/utils/typedMemo";
 import React, { FC } from "react";
 import styles from "./UserTestPreview.module.css";
-import Setting from "../../../../assets/images/Settings.svg";
+import Setting from "../../../../../../assets/images/Settings.svg";
 import { Button } from "../../../../../../components/Button";
 import { Typography } from "../../../../../../components/Typography";
 import { ComponentProps } from "../../../../../../core/models/ComponentProps";
