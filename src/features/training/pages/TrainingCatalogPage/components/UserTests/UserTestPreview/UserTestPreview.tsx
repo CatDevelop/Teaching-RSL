@@ -1,15 +1,16 @@
-import { typedMemo } from "../../../../../../core/utils/typedMemo";
+import { typedMemo } from "../../../../../../../core/utils/typedMemo";
 import React, { FC } from "react";
 import styles from "./UserTestPreview.module.css";
-import Setting from "../../../../../../assets/images/Settings.svg";
-import { Button } from "../../../../../../components/Button";
-import { Typography } from "../../../../../../components/Typography";
-import { ComponentProps } from "../../../../../../core/models/ComponentProps";
+import Setting from "../../../../../../../assets/images/Settings.svg";
+import { Button } from "../../../../../../../components/Button";
+import { Typography } from "../../../../../../../components/Typography";
+import { ComponentProps } from "../../../../../../../core/models/ComponentProps";
 import clsx from "clsx";
 
 type Props = ComponentProps & Readonly<{
     name: string;
-    allWordsCount: number;
+    wordsCount: number;
+    id: number;
 }>
 
 /** User test preview. */
@@ -23,7 +24,7 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
                     {props.name}
                 </Typography>
                 <div className={styles.userTestPreview__info}>
-                    <Typography className={styles.userTestPreview__description}>{props.allWordsCount}{props.name}</Typography>
+                    <Typography className={styles.userTestPreview__description}>{props.wordsCount} слов</Typography>
                     <div className={styles.userTestPreview__separator}></div>
                     <Button color="primary" variant="light" className={styles.userTestPreview__button} onClick={() => {}}>
                         Скопировать ссылку

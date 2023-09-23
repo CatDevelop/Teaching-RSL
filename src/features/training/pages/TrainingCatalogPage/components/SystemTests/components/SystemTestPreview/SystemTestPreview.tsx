@@ -1,10 +1,10 @@
-import { typedMemo } from "../../../../../../core/utils/typedMemo";
 import React, { FC } from "react";
-import styles from "./SystemTestPreview.module.css";
-import Arrow from "../../../../../../assets/images/Arrow.svg";
 import clsx from "clsx";
-import { Typography } from "../../../../../../components/Typography";
-import { ComponentProps } from "../../../../../../core/models/ComponentProps";
+import { typedMemo } from "../../../../../../../../core/utils/typedMemo";
+import Arrow from "../../../../../../../../assets/images/Arrow.svg";
+import { Typography } from "../../../../../../../../components/Typography";
+import { ComponentProps } from "../../../../../../../../core/models/ComponentProps";
+import styles from "./SystemTestPreview.module.css";
 
 type Props = ComponentProps & Readonly<{
     id: number;

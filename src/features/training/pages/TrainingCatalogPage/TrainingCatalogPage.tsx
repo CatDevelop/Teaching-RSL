@@ -1,18 +1,19 @@
-import { typedMemo } from "../../../../core/utils/typedMemo";
 import React, { FC } from "react";
+import { typedMemo } from "../../../../core/utils/typedMemo";
 import styles from "./TrainingCatalogPage.module.css";
 import { Typography } from "../../../../components/Typography";
 import { WorkOnMistakes } from "./components/WorkOnMistakes";
 import { Page } from "../../../../components/Page";
 import { SystemTests } from "./components/SystemTests";
-import { themes } from "../../data";
+import { UserTests } from "./components/UserTests";
 
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
     return (
         <Page className={styles.trainingCatalog}>
             <Typography 
                 variant="h1"
-                className={styles.trainingCatalog__title}>
+                className={styles.trainingCatalog__title}
+            >
                 Тренировки
             </Typography>
 
@@ -20,7 +21,8 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
 
             <div className={styles.trainingCatalog__testsOverflow}>
                 <div className={styles.trainingCatalog__tests}>
-                    <SystemTests themes={themes} />
+                    <SystemTests />
+                    <UserTests />
                 </div>
             </div>
         </Page>
