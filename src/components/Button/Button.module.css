@@ -1,9 +1,10 @@
 .button {
-    font-weight: var(--font-weight-l);
+    font-weight: var(--font-weight-m);
 }
 
 .button_faded {
     background-color: var(--on-surface-color);
+    color: var(--secondary-text-color)
 }
 
 .button_link {
