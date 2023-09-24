@@ -22,6 +22,7 @@ import {SelectImage} from "../../learning/components/SelectEntity/SelectImage";
 import {words} from "./data";
 import {PracticeSelectWord} from "../../learning/components/PracticeCards/PracticeSelectWord";
 import {PracticeSelectGIF} from "../../learning/components/PracticeCards/PracticeSelectGIF";
+import { Range } from "../../../components/Range";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
     const [selectWord, setSelectWord] = useState<Word | null>()
@@ -308,6 +309,8 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                             setPracticeSelectGIFChecked(!practiceSelectGIFChecked)
                         }}>{practiceSelectGIFChecked ? "Сбросить" : "Проверить"}</Button>
             </div>
+
+            <Range />
         </div>
     )
 });

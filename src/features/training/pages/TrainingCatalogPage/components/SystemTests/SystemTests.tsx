@@ -1,11 +1,12 @@
+import React, { FC, useState } from "react";
+import clsx from "clsx";
 import { typedMemo } from "../../../../../../core/utils/typedMemo";
-import React, { FC } from "react";
-import styles from "./SystemTests.module.css";
 import { Typography } from "../../../../../../components/Typography";
-import { SystemTestPreview } from "../SystemTestPreview";
+import { SystemTestPreview } from "./components/SystemTestPreview";
 import { ScrollBox } from "../../../../../../components/ScrollBox";
 import { ComponentProps } from "../../../../../../core/models/ComponentProps";
-import clsx from "clsx";
+import styles from "./SystemTests.module.css";
+import { themes as themesTemp } from "../../../../data";
 
 type TempTest = {
     name: string;
@@ -19,14 +20,15 @@ type TempTest = {
     }[];
 }
 
-type Props = ComponentProps & Readonly<{
-    themes: TempTest[];
-}>
+type Props = ComponentProps
 
+/** System tests. */
 export const SystemTests: FC<Props> = typedMemo(function SystemTests(props){
+    const [themes, setThemes] = useState<TempTest[]>(themesTemp);
+
     return (
         <ScrollBox className={clsx(styles.systemTests, props.className)}>
-            {props.themes.map(theme => (
+            {themes.map(theme => (
                 <div className={styles.systemTests__theme} key={theme.id}>
                     <Typography variant="h3">{theme.name}</Typography>
                     {theme.tests.map(test => (

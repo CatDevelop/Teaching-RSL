@@ -1,3 +1,7 @@
+.typography {
+    color: var(--text-color);
+}
+
 .p {
     font-size: var(--font-size-s);
 }

@@ -11,7 +11,7 @@ type Props = PropsWithChildren & ComponentProps;
 /** Scroll box.  */
 export const ScrollBox: FC<Props> = typedMemo(function ScrollBox(props){
     return (
-        <Card className={clsx(styles.container)}>
+        <Card className={styles.container}>
             <ScrollShadow size={20} className={clsx(styles.scrollBox, props.className)}>
                 {props.children}
             </ScrollShadow>

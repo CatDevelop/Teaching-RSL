@@ -56,4 +56,32 @@ export const themes = [
             }
         ]
     }
-]
+];
+
+export const userTests = [
+    {
+        id:0,
+        name: 'Section 1',
+        wordsCount: 10,
+    },
+    {
+        id:1,
+        name: 'Section 1',
+        wordsCount: 10,
+    },
+    {
+        id:2,
+        name: 'Section 1',
+        wordsCount: 10,
+    },
+    {
+        id:3,
+        name: 'Section 1',
+        wordsCount: 10,
+    },
+    {
+        id:4,
+        name: 'Section 1',
+        wordsCount: 10,
+    },
+];
