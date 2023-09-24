@@ -16,8 +16,8 @@ type Props = ComponentProps & Readonly<{
 export const Range: FC<Props> = typedMemo(function Range({
                                                              onChange,
                                                              value,
-                                                             min = 0,
-                                                             max = 100,
+                                                             min = 10,
+                                                             max = 50,
                                                          }) {
     const rangeRef = useRef<HTMLInputElement | null>(null);
 
@@ -58,12 +58,12 @@ export const Range: FC<Props> = typedMemo(function Range({
         <div className={styles.range}>
             <Slider
                 color="blue"
-                min={10}
-                max={45}
+                min={min}
+                max={max}
                 marks={[
-                    {value: 10, label: '10'},
-                    {value: 27, label: '27'},
-                    {value: 45, label: '45'},
+                    {value: min, label: min},
+                    {value: Math.round((min+max)/2), label: Math.round((min+max)/2)},
+                    {value: max, label: max},
                 ]}
             />
         </div>

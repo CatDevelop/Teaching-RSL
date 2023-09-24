@@ -24,6 +24,9 @@ import {UserTestPreview} from "../../training/pages/TrainingCatalogPage/componen
 import {
     SystemTestPreview
 } from "../../training/pages/TrainingCatalogPage/components/SystemTests/components/SystemTestPreview";
+import {SystemTests} from "../../training/pages/TrainingCatalogPage/components/SystemTests";
+import {UserTests} from "../../training/pages/TrainingCatalogPage/components/UserTests";
+import {RecognitionBlock} from "../../training/pages/TrainingPage/components/RecognitionBlock";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
     const [selectWord, setSelectWord] = useState<Word | null>()
@@ -141,7 +144,15 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                 />
             </div>
 
+
+
             <h1 className={clsx(styles.componentTitle, styles.large)}>Раздел тренировки</h1>
+
+            <h2 className={styles.componentTitle}>Диапазон</h2>
+            <Range />
+
+            {/*<h2 className={styles.componentTitle}>Блок распознавания жестов</h2>*/}
+            {/*<RecognitionBlock text={"123"}/>*/}
 
             <h2 className={styles.componentTitle}>Карточка пользовательского теста</h2>
             <UserTestPreview name={"ДЗ №12 от 31.08.2023"} wordsCount={12} id={1}/>
@@ -149,49 +160,16 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             <h2 className={styles.componentTitle}>Карточка системного теста</h2>
             <SystemTestPreview id={1} name={"Название"} allWordsCount={10} passedWordsCount={1} color={"#AE7EDE"}/>
 
-            {/*<h2 className={styles.componentTitle}>Окно с системными тестами</h2>*/}
-            {/*<SystemTests tests={[*/}
-            {/*    {*/}
-            {/*        name: "Тестовая тема",*/}
-            {/*        id: 0,*/}
-            {/*        tests: [*/}
-            {/*            {*/}
-            {/*                name: "Приветствие",*/}
-            {/*                allWordsCount: 46,*/}
-            {/*                passedWordsCount: 12,*/}
-            {/*                id: 10*/}
-            {/*            },*/}
-            {/*            {*/}
-            {/*                name: "Теология",*/}
-            {/*                allWordsCount: 34,*/}
-            {/*                passedWordsCount: 10,*/}
-            {/*                id: 11*/}
-            {/*            }*/}
-            {/*        ]*/}
-            {/*    },*/}
-            {/*    {*/}
-            {/*        name: "Искусство и развлечения",*/}
-            {/*        id: 1,*/}
-            {/*        color: "#66AAF9",*/}
-            {/*        tests: [*/}
-            {/*            {*/}
-            {/*                name: "Музыка",*/}
-            {/*                allWordsCount: 27,*/}
-            {/*                passedWordsCount: 12,*/}
-            {/*                id: 10*/}
-            {/*            },*/}
-            {/*            {*/}
-            {/*                name: "Изобразительные искусства",*/}
-            {/*                allWordsCount: 39,*/}
-            {/*                passedWordsCount: 29,*/}
-            {/*                id: 11*/}
-            {/*            }*/}
-            {/*        ]*/}
-            {/*    }*/}
-            {/*]}/>*/}
+            <h2 className={styles.componentTitle}>Окно с системными тестами</h2>
+            <SystemTests />
+
+            <h2 className={styles.componentTitle}>Окно с пользовательскими тестами</h2>
+            <UserTests />
 
             <h2 className={styles.componentTitle}>Окно с работой над ошибками</h2>
             <WorkOnMistakes missingWordsCount={5}/>
+
+
 
             <h1 className={clsx(styles.componentTitle, styles.large)}>Раздел обучение</h1>
 
@@ -310,7 +288,6 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                         }}>{practiceSelectGIFChecked ? "Сбросить" : "Проверить"}</Button>
             </div>
 
-            <Range />
         </div>
     )
 });
