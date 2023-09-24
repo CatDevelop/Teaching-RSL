@@ -11,7 +11,7 @@ export type SelectContainerProps = PropsWithChildren & Readonly<{
     number: number;
 
     wordObject: Word;
-    setState: React.Dispatch<React.SetStateAction<Word | null>>;
+    setState: React.Dispatch<React.SetStateAction<Word | null | undefined>>;
 }>
 
 /** Контейнер для объектов, которые можно выбрать. */

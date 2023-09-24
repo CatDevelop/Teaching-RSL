@@ -20,13 +20,21 @@ import {Word} from "../../../core/models/Word";
 import {SelectGIF} from "../../learning/components/SelectEntity/SelectGIF";
 import {SelectImage} from "../../learning/components/SelectEntity/SelectImage";
 import {words} from "./data";
+import {PracticeSelectWord} from "../../learning/components/PracticeCards/PracticeSelectWord";
+import {PracticeSelectGIF} from "../../learning/components/PracticeCards/PracticeSelectGIF";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
-    const [selectWord, setSelectWord] = useState<Word | null>(null)
-    const [selectGIF, setSelectGIF] = useState<Word | null>(null)
-    const [selectImage, setSelectImage] = useState<Word | null>(null)
+    const [selectWord, setSelectWord] = useState<Word | null>()
+    const [selectGIF, setSelectGIF] = useState<Word | null>()
+    const [selectImage, setSelectImage] = useState<Word | null>()
 
     const [progressBar, setProgressBar] = useState(1);
+
+    const [practiceSelectWord, setPracticeSelectWord] = useState<Word | null>()
+    const [practiceSelectWordChecked, setPracticeSelectWordChecked] = useState<boolean>(false)
+
+    const [practiceSelectGIF, setPracticeSelectGIF] = useState<Word | null>()
+    const [practiceSelectGIFChecked, setPracticeSelectGIFChecked] = useState<boolean>(false)
 
 
     return (
@@ -256,12 +264,35 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                 />
             </div>
 
-            {/*<h2 className={styles.componentTitle}>Карточки практики</h2>*/}
-            {/*<div className={styles.componentRow}>*/}
-            {/*    <PracticeSelectWord wordObject={words[0]} variants={words}/>*/}
-            {/*    <PracticeSelectWord wordObject={words[0]} variants={words} isRightAnswer={true}/>*/}
-            {/*</div>*/}
-            {/*<PracticeSelectGIF wordObject={words[0]} variants={words}/>*/}
+            <h2 className={styles.componentTitle}>Карточки практики</h2>
+            <div className={styles.componentRow}>
+                <PracticeSelectWord wordObject={words[0]}
+                                    variants={words}
+                                    selectWord={practiceSelectWord}
+                                    setSelectWord={setPracticeSelectWord}
+                                    checked={practiceSelectWordChecked}
+                />
+                <Button variant={'faded'}
+                        color={practiceSelectWord === null ? "default" : "primary"}
+                        disabled={practiceSelectWord === null}
+                        onClick={() => {
+                            setPracticeSelectWordChecked(!practiceSelectWordChecked)
+                        }}>{practiceSelectWordChecked ? "Сбросить" : "Проверить"}</Button>
+            </div>
+            <div className={styles.componentRow}>
+                <PracticeSelectGIF wordObject={words[0]}
+                                   variants={words}
+                                   selectGIF={practiceSelectGIF}
+                                   checked={practiceSelectGIFChecked}
+                                   setSelectGIF={setPracticeSelectGIF}
+                />
+                <Button variant={'faded'}
+                        color={practiceSelectGIF === null ? "default" : "primary"}
+                        disabled={practiceSelectGIF === null}
+                        onClick={() => {
+                            setPracticeSelectGIFChecked(!practiceSelectGIFChecked)
+                        }}>{practiceSelectGIFChecked ? "Сбросить" : "Проверить"}</Button>
+            </div>
             {/*<PracticeSelectPairForWord variants={words}/>*/}
 
         </div>

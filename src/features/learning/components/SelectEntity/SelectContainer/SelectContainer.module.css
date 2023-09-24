@@ -33,13 +33,11 @@
 }
 
 .selectContainer__success {
-    opacity: 0.5;
     outline: 4px solid var(--success-color);
     border: 1px solid var(--success-color);
 }
 
 .selectContainer__danger {
-    opacity: 0.5;
     outline: 4px solid var(--danger-color);
     border: 1px solid var(--danger-color);
 }

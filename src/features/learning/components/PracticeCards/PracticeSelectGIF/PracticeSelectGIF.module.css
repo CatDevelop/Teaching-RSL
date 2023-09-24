@@ -1,0 +1,38 @@
+.practiceSelectGif {
+    max-width: 680px;
+    box-sizing: border-box;
+}
+
+
+.practiceSelectGif__contentContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+.practiceSelectGif__titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+.practiceSelectGif__title {
+    font-family: var(--main-font);
+    font-weight: var(--font-weight-l);
+    font-size: var(--font-size-s);
+    text-align: center;
+}
+
+.practiceSelectGif__titleSignText {
+   color: var(--primary-color);
+}
+
+.practiceSelectGif__gifsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: end;
+    gap: var(--space-m);
+}
+

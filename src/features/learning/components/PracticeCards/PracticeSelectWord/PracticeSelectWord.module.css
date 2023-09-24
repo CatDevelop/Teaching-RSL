@@ -1,0 +1,28 @@
+.practiceSelectWord {
+    max-width: 680px;
+    box-sizing: border-box;
+}
+
+.practiceSelectWord__contentContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: var(--space-m);
+}
+
+.practiceSelectWord__title {
+    font-family: var(--main-font);
+    font-weight: var(--font-weight-l);
+    font-size: var(--font-size-s);
+    text-align: center;
+}
+
+.practiceSelectWord__gifContainer video {
+   height: 237px;
+}
+
+.practiceSelectWord__buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
