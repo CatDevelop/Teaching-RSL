@@ -1,13 +1,13 @@
-import {typedMemo} from "../../../../core/utils/typedMemo";
+import {typedMemo} from "../../../../../core/utils/typedMemo";
 import React, {FC, PropsWithChildren} from "react";
 import styles from "./SelectContainer.module.css";
 import clsx from "clsx";
-import {Word} from "../../../../core/models/Word";
+import {Word} from "../../../../../core/models/Word";
 import {motion} from "framer-motion"
+import {SelectState} from "../../../../../core/models/SelectState";
 
 export type SelectContainerProps = PropsWithChildren & Readonly<{
-    checked: boolean;
-    success?: boolean;
+    state: SelectState;
     number: number;
 
     wordObject: Word;
@@ -18,11 +18,17 @@ export type SelectContainerProps = PropsWithChildren & Readonly<{
 export const SelectContainer: FC<SelectContainerProps> = typedMemo(function SelectContainer(props) {
     return (
         <motion.div
-            className={clsx(styles.selectContainer, props.success && styles.selectContainer__success, props.checked && styles.selectContainer__selected)}
+            className={clsx(
+                styles.selectContainer,
+                props.state === "success" && styles.selectContainer__success,
+                props.state === "checked" && styles.selectContainer__selected,
+                props.state === "error" && styles.selectContainer__danger,
+                props.state === "disabled" && styles.selectContainer__disabled,
+            )}
             onClick={
-                props.success ?
+                (props.state !== "default" && props.state !== "checked") ?
                     undefined :
-                    () => props.setState(props.checked ? null : props.wordObject)
+                    () => props.setState(props.state === "checked" ? null : props.wordObject)
             }
         >
             {props.children}

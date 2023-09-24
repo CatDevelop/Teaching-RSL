@@ -17,7 +17,7 @@
     cursor: pointer;
 }
 
-.selectContainer:not(.selectContainer__selected):not(.selectContainer__success):hover {
+.selectContainer:not(.selectContainer__selected):not(.selectContainer__success):not(.selectContainer__danger):not(.selectContainer__disabled):hover {
     scale: 0.98;
 }
 
@@ -33,9 +33,19 @@
 }
 
 .selectContainer__success {
-    opacity: 0.2;
+    opacity: 0.5;
     outline: 4px solid var(--success-color);
     border: 1px solid var(--success-color);
+}
+
+.selectContainer__danger {
+    opacity: 0.5;
+    outline: 4px solid var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+.selectContainer__disabled {
+    opacity: 0.5;
 }
 
 .selectContainer__number {

@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useState} from "react";
 import {typedMemo} from "../../../core/utils/typedMemo";
 import styles from "./TestingComponentPage.module.css";
 import {Button} from "../../../components/Button";
@@ -12,13 +12,14 @@ import SettingsSVG from '../../../assets/images/Settings.svg'
 import {SystemTests} from "../../training/pages/TrainingCatalogPage/components/SystemTests";
 import clsx from "clsx";
 import {WorkOnMistakes} from "../../training/pages/TrainingCatalogPage/components/WorkOnMistakes";
-import {TheoryCard} from "../../learning/pages/LearningCatalogPage/components/TheoryCard";
+import {TheoryCard} from "../../learning/components/TheoryCard";
 import {LearningBlock} from "../../learning/components/LearningBlock";
 import TheoryIconSVG from "../../../assets/images/TheoryIcon.svg"
-import {SelectButton} from "../../learning/components/SelectButton";
+import {SelectButton} from "../../learning/components/SelectEntity/SelectButton";
 import {Word} from "../../../core/models/Word";
-import {SelectGIF} from "../../learning/components/SelectGIF";
-import {SelectImage} from "../../learning/components/SelectImage";
+import {SelectGIF} from "../../learning/components/SelectEntity/SelectGIF";
+import {SelectImage} from "../../learning/components/SelectEntity/SelectImage";
+import {words} from "./data";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
     const [selectWord, setSelectWord] = useState<Word | null>(null)
@@ -27,25 +28,6 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
 
     const [progressBar, setProgressBar] = useState(1);
 
-    const testWords: Word[] = [
-        {
-            id: 0,
-            text: "Жёлтый",
-            gifSource: "https://media.spreadthesign.com/video/mp4/12/5776.mp4",
-            imageSource: "https://media.spreadthesign.com/image/200/585.jpg",
-        },
-        {
-            id: 1,
-            text: "Зелёный",
-            gifSource: "https://media.spreadthesign.com/video/mp4/12/5717.mp4",
-        },
-        {
-            id: 2,
-            text: "Белый",
-            gifSource: "https://media.spreadthesign.com/video/mp4/12/4425.mp4",
-            imageSource: "https://media.spreadthesign.com/image/200/682.jpg",
-        }
-    ]
 
     return (
         <div className={styles.container}>
@@ -111,11 +93,13 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             <div className={styles.componentRow}>
                 <Button startContent={
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 12H9M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                        <path
+                            d="M15 12H9M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                            stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                 } isIconOnly={true} variant={"faded"}
                         onClick={() => {
-                            if(progressBar > 0) setProgressBar(progressBar-1)
+                            if (progressBar > 0) setProgressBar(progressBar - 1)
                         }}
                 />
                 <Button startContent={
@@ -127,7 +111,7 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                     </svg>
                 } isIconOnly={true} variant={"faded"}
                         onClick={() => {
-                            if(progressBar < 4) setProgressBar(progressBar+1)
+                            if (progressBar < 4) setProgressBar(progressBar + 1)
                         }}
                 />
             </div>
@@ -191,65 +175,95 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             <LearningBlock iconUrl={TheoryIconSVG} title={"Заголовок окна"}/>
 
             <h2 className={styles.componentTitle}>Окно с теорией</h2>
-            <TheoryCard wordObject={testWords[0]}/>
-            <TheoryCard wordObject={testWords[1]}/>
+            <TheoryCard wordObject={words[0]}/>
+            <TheoryCard wordObject={words[1]}/>
 
             <h2 className={styles.componentTitle}>Кнопка выбора</h2>
             <div className={styles.componentRow}>
-                <SelectButton checked={selectWord?.id === testWords[0].id}
+                <SelectButton state={selectWord?.id === words[0].id ? "checked" : "default"}
                               setState={setSelectWord}
-                              wordObject={testWords[0]}
+                              wordObject={words[0]}
+
                 />
-                <SelectButton success
-                              checked={selectWord?.id === testWords[1].id}
+                <SelectButton state={"success"}
                               setState={setSelectWord}
-                              wordObject={testWords[1]}
+                              wordObject={words[1]}
                 />
-                <SelectButton checked={selectWord?.id === testWords[2].id}
+                <SelectButton state={"disabled"}
                               setState={setSelectWord}
-                              wordObject={testWords[2]}
+                              wordObject={words[2]}
+
+                />
+                <SelectButton state={"error"}
+                              setState={setSelectWord}
+                              wordObject={words[3]}
                 />
             </div>
 
             <h2 className={styles.componentTitle}>GIF с выбором</h2>
             <div className={styles.componentRow}>
-                <SelectGIF checked={selectGIF?.id === testWords[0].id}
-                           wordObject={testWords[0]}
+                <SelectGIF state={selectGIF?.id === words[0].id ? "checked" : "default"}
+                           wordObject={words[0]}
                            setState={setSelectGIF}
                            number={1}
+                           key={"selectGIF1"}
                 />
-                <SelectGIF checked={selectGIF?.id === testWords[1].id}
-                           wordObject={testWords[1]}
+                <SelectGIF state={"success"}
+                           wordObject={words[1]}
                            setState={setSelectGIF}
                            number={2}
+                           key={"selectGIF2"}
                 />
-                <SelectGIF checked={selectGIF?.id === testWords[2].id}
-                           wordObject={testWords[2]}
+                <SelectGIF state={"disabled"}
+                           wordObject={words[2]}
                            setState={setSelectGIF}
-                           success
                            number={3}
+                           key={"selectGIF3"}
+                />
+                <SelectGIF state={"error"}
+                           wordObject={words[3]}
+                           setState={setSelectGIF}
+                           number={4}
+                           key={"selectGIF4"}
                 />
             </div>
 
             <h2 className={styles.componentTitle}>Изображение с выбором</h2>
             <div className={styles.componentRow}>
-                <SelectImage checked={selectImage?.id === testWords[0].id}
-                             wordObject={testWords[0]}
+                <SelectImage state={selectImage?.id === words[0].id ? "checked" : "default"}
+                             wordObject={words[0]}
                              setState={setSelectImage}
                              number={1}
+                             key={"selectImage1"}
                 />
-                <SelectImage checked={selectImage?.id === testWords[1].id}
-                             wordObject={testWords[1]}
+                <SelectImage state={"success"}
+                             wordObject={words[1]}
                              setState={setSelectImage}
                              number={2}
+                             key={"selectImage2"}
                 />
-                <SelectImage checked={selectImage?.id === testWords[2].id}
-                             wordObject={testWords[2]}
+                <SelectImage state={"disabled"}
+                             wordObject={words[2]}
                              setState={setSelectImage}
-                             success
                              number={3}
+                             key={"selectImage3"}
+                />
+                <SelectImage state={"error"}
+                             wordObject={words[3]}
+                             setState={setSelectImage}
+                             number={3}
+                             key={"selectImage4"}
                 />
             </div>
+
+            {/*<h2 className={styles.componentTitle}>Карточки практики</h2>*/}
+            {/*<div className={styles.componentRow}>*/}
+            {/*    <PracticeSelectWord wordObject={words[0]} variants={words}/>*/}
+            {/*    <PracticeSelectWord wordObject={words[0]} variants={words} isRightAnswer={true}/>*/}
+            {/*</div>*/}
+            {/*<PracticeSelectGIF wordObject={words[0]} variants={words}/>*/}
+            {/*<PracticeSelectPairForWord variants={words}/>*/}
+
         </div>
     )
 });

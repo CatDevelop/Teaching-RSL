@@ -1,8 +1,8 @@
-import {typedMemo} from "../../../../core/utils/typedMemo";
+import {typedMemo} from "../../../../../core/utils/typedMemo";
 import React, {FC} from "react";
 import {SelectContainer, SelectContainerProps} from "../SelectContainer";
 import {Image} from "@nextui-org/react";
-import {Typography} from "../../../../components/Typography";
+import {Typography} from "../../../../../components/Typography";
 import styles from './SelectImage.module.css'
 
 /** Изображение, которое можно выбрать. */

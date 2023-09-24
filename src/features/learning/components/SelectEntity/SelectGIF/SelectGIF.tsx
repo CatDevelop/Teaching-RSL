@@ -1,6 +1,6 @@
-import {typedMemo} from "../../../../core/utils/typedMemo";
+import {typedMemo} from "../../../../../core/utils/typedMemo";
 import React, {FC} from "react";
-import {SignVideo} from "../../../../components/SignVideo";
+import {SignVideo} from "../../../../../components/SignVideo";
 import {SelectContainer, SelectContainerProps} from "../SelectContainer";
 
 /** GIF, которое можно выбрать. */
