@@ -30,7 +30,7 @@
     background-color: var(--dark-on-surface-color);
     border-radius: var(--border-radius-s);
     background-image: linear-gradient(var(--primary-color), var(--primary-color));
-    background-size: 50% 100%;
+    background-size: 0% 100%;
     background-repeat: no-repeat;
 }
 
