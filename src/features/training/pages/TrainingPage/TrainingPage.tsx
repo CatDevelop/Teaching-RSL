@@ -1,8 +1,9 @@
 import { typedMemo } from "../../../../core/utils/typedMemo";
-import { FC } from "react";
+import React, { FC } from "react";
+import { RecognitionBlock } from "./components/RecognitionBlock";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage(props){
     return (
-        null
+        <RecognitionBlock text="dawdaw" />
     );
 })

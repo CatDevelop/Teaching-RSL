@@ -14,6 +14,7 @@
     /* Font */
     --font-weight-l: 700;
     --font-weight-m: 500;
+    --font-weight-s: 400;
 
     --font-size-m: 20px;
     --font-size-xs: calc(var(--font-size-m) * 0.6);
