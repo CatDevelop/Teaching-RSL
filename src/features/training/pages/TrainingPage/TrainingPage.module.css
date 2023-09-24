@@ -24,6 +24,13 @@
     height: var(--logo-height);
 }
 
+.trainingPage__info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+}
+
 .trainingPage__name {
     display: flex;
     justify-content: center;
@@ -35,6 +42,18 @@
     --icon-size: 18px;
     height: var(--icon-size);
     width: var(--icon-size);
+}
+
+.trainingPage__progress {
+    display: flex;
+    gap: var(--space-m);
+    align-items: center;
+    width: 100%;
+}
+
+.trainingPage__closeTraining {
+    min-width: 0;
+    padding: var(--space-xs)
 }
 
 .trainingPage__recognition {

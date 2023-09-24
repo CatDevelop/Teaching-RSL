@@ -5,9 +5,11 @@ import { RecognitionBlock } from "./components/RecognitionBlock";
 import { Button } from "../../../../components/Button";
 import Logo from "../../../../assets/images/Logo.svg";
 import User from "../../../../assets/images/User.svg";
+import Close from "../../../../assets/images/Close.svg";
 import { Typography } from "../../../../components/Typography";
 import { Page } from "../../../../components/Page";
 import { TaskFeedback } from "../../../../components/TaskFeedback";
+import { TaskProgress } from "../../../../components/TaskProgress";
 import styles from "./TrainingPage.module.css";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage(props){
@@ -23,6 +25,15 @@ export const TrainingPage: FC = typedMemo(function TrainingPage(props){
                             Тест от пользователя Крашенинникова Любовь
                         </Tooltip>
                         <img src={User} alt="Test's author" className={styles.trainingPage__author} />
+                    </div>
+
+                    <div className={styles.trainingPage__progress}>
+                        <Button 
+                            className={styles.trainingPage__closeTraining}
+                            variant="light" 
+                            endContent={<img src={Close} alt="Close training"/>}
+                        />
+                        <TaskProgress currentTaskId={0} tasks={[{id: 0}, {id:1}]}/>
                     </div>
                 </div>
 

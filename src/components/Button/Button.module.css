@@ -1,5 +1,12 @@
 .button {
+    --icon-size: 16px;
+
     font-weight: var(--font-weight-m);
+}
+
+.button img {
+    width: var(--icon-size);
+    height: var(--icon-size);
 }
 
 .button_faded {
