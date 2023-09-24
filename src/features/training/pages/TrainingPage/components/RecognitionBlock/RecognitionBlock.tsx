@@ -3,16 +3,19 @@ import { typedMemo } from "../../../../../../core/utils/typedMemo";
 import React, { FC } from "react";
 import styles from "./RecognitionBlock.module.css";
 import { Typography } from "../../../../../../components/Typography";
+import { ComponentProps } from "../../../../../../core/models/ComponentProps";
+import clsx from "clsx";
 
-type Props = Readonly<{
+type Props = ComponentProps & Readonly<{
     text: string
 }>
 
 export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock({
     text,
+    className,
 }){
     return (
-        <Card className={styles.recognitionBlock}>
+        <Card className={clsx(styles.recognitionBlock, className)}>
             <Typography variant="span" className={styles.recognitionBlock__title}>
                 Покажите жест в камеру
             </Typography>
