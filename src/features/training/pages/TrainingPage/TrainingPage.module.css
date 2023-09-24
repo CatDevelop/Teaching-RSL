@@ -1,0 +1,62 @@
+.trainingPage {
+    --max-training-width: 700px;
+    --logo-height: 42px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-l);
+}
+
+.trainingPage__header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr var(--max-training-width) 1fr;
+    grid-gap: var(--space-m);
+    justify-items: center;
+}
+
+.trainingPage__feedback {
+    justify-self: flex-end;
+}
+
+.trainingPage__logo {
+    height: var(--logo-height);
+}
+
+.trainingPage__info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+}
+
+.trainingPage__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-s)
+}
+
+.trainingPage__author {
+    --icon-size: 18px;
+    height: var(--icon-size);
+    width: var(--icon-size);
+}
+
+.trainingPage__progress {
+    display: flex;
+    gap: var(--space-m);
+    align-items: center;
+    width: 100%;
+}
+
+.trainingPage__closeTraining {
+    min-width: 0;
+    padding: var(--space-xs)
+}
+
+.trainingPage__recognition {
+    max-width: var(--max-training-width);
+    width: 100%;
+}

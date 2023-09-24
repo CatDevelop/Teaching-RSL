@@ -1,9 +1,17 @@
 .button {
-    font-weight: var(--font-weight-l);
+    --icon-size: 16px;
+
+    font-weight: var(--font-weight-m);
+}
+
+.button img {
+    width: var(--icon-size);
+    height: var(--icon-size);
 }
 
 .button_faded {
     background-color: var(--on-surface-color);
+    color: var(--secondary-text-color)
 }
 
 .button_link {

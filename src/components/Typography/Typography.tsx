@@ -11,7 +11,7 @@ type Props = PropsWithChildren & HtmlHTMLAttributes<HTMLParagraphElement> & Read
 export const Typography = typedMemo(forwardRef<HTMLParagraphElement, Props>(function Typography(props, ref){
     const Component: ElementType = useMemo(() => props.variant ?? 'span',[props.variant]);
 
-    return <Component {...props} ref={ref} className={clsx(styles[Component], props.className)}>
+    return <Component {...props} ref={ref} className={clsx(styles.typography, styles[Component], props.className)}>
         {props.children}
     </Component>
-}))
+}));

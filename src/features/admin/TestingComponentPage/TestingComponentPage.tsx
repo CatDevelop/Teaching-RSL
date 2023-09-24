@@ -6,6 +6,7 @@ import {Card} from "../../../components/Card";
 import {ScrollBox} from "../../../components/ScrollBox";
 import {TaskContinue} from "../../../components/TaskContinue";
 import {TaskProgress} from "../../../components/TaskProgress";
+import { Range } from "../../../components/Range";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
     return (
@@ -24,6 +25,7 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             <TaskContinue continue={()=>console.log(123213)} isRightAnswer={true} rightAnswer={"awdawd"}/>
             <TaskContinue continue={()=>console.log(123213)} isRightAnswer={false} rightAnswer={"awdawd"}/>
             <TaskProgress currentTaskId={3} tasks={[{id: 1}, {id: 2}, {id: 3}, {id: 4}]}/>
+            <Range />
         </div>
     )
 });
