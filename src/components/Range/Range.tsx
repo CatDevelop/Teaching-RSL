@@ -2,6 +2,7 @@ import React, { FC, useCallback, useEffect, useRef } from "react";
 import { typedMemo } from "../../core/utils/typedMemo";
 import { ComponentProps } from "../../core/models/ComponentProps";
 import styles from "./Range.module.css";
+import clsx from "clsx";
 
 type Props = ComponentProps & Readonly<{
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -35,15 +36,23 @@ export const Range: FC<Props> = typedMemo(function Range({
     }, [rangeRef, handleRangeChange]);
 
     return (
-        <input
-            ref={rangeRef}
-            type="range"
-            min={min}
-            max={max}
-            value={value}
-            step="1"
-            className={styles.range}
-            onChange={onChange}
-        />
+        <div className={styles.range}>
+            <span className={clsx(styles.range__limit, styles.range__min)}>
+                {min}
+            </span>
+            <input
+                ref={rangeRef}
+                type="range"
+                min={min}
+                max={max}
+                value={value}
+                step="1"
+                className={styles.range__input}
+                onChange={onChange}
+            />
+            <span className={clsx(styles.range__limit, styles.range__max)}>
+                {max}
+            </span>
+        </div>
     );
 });

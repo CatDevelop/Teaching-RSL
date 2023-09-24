@@ -1,4 +1,25 @@
 .range {
+    position: relative;
+    width: 100%;
+    margin-bottom: calc(var(--font-size-s) + var(--space-s));
+}
+
+.range__limit {
+    position: absolute;
+    top: 100%;
+    color: var(--secondary-text-color);
+    font-size: var(--font-size-s);
+}
+
+.range__min {
+    left: 0;
+}
+
+.range__max {
+    right: 0;
+}
+
+.range__input {
     --range-height: 8px;
     --controller-size: 14px;
 
@@ -14,7 +35,7 @@
 }
 
 /* Input Thumb */
-.range::-webkit-slider-thumb {
+.range__input::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: var(--controller-size);
     width: var(--controller-size);
@@ -24,7 +45,7 @@
     cursor: ew-resize;
 }
 
-.range::-moz-range-thumb {
+.range__input::-moz-range-thumb {
     -webkit-appearance: none;
     height: var(--controller-size);
     width: var(--controller-size);
@@ -34,7 +55,7 @@
     cursor: ew-resize;
 }
 
-.range::-ms-thumb {
+.range__input::-ms-thumb {
     -webkit-appearance: none;
     height: var(--controller-size);
     width: var(--controller-size);
@@ -45,21 +66,21 @@
 }
 
 /* Input Track */
-.range::-webkit-slider-runnable-track  {
+.range__input::-webkit-slider-runnable-track  {
     -webkit-appearance: none;
     box-shadow: none;
     border: none;
     background: transparent;
 }
 
-.range::-moz-range-track {
+.range__input::-moz-range-track {
     -webkit-appearance: none;
     box-shadow: none;
     border: none;
     background: transparent;
 }
 
-.range::-ms-track {
+.range__input::-ms-track {
     -webkit-appearance: none;
     box-shadow: none;
     border: none;
