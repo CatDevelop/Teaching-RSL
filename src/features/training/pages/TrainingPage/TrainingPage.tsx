@@ -1,13 +1,14 @@
-import { typedMemo } from "../../../../core/utils/typedMemo";
 import React, { FC } from "react";
+import { Tooltip } from "react-tooltip";
+import { typedMemo } from "../../../../core/utils/typedMemo";
 import { RecognitionBlock } from "./components/RecognitionBlock";
-import styles from "./TrainingPage.module.css";
 import { Button } from "../../../../components/Button";
 import Logo from "../../../../assets/images/Logo.svg";
 import User from "../../../../assets/images/User.svg";
 import { Typography } from "../../../../components/Typography";
-import { Tooltip } from "react-tooltip";
 import { Page } from "../../../../components/Page";
+import { TaskFeedback } from "../../../../components/TaskFeedback";
+import styles from "./TrainingPage.module.css";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage(props){
     return (
@@ -24,6 +25,8 @@ export const TrainingPage: FC = typedMemo(function TrainingPage(props){
                         <img src={User} alt="Test's author" className={styles.trainingPage__author} />
                     </div>
                 </div>
+
+                <TaskFeedback items={[{id:"0", label:"Хочу пиццу"}]} className={styles.trainingPage__feedback} />
             </div>
             <RecognitionBlock text="bugaga" className={styles.trainingPage__recognition}/>
 

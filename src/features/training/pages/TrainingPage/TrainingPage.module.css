@@ -12,9 +12,12 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr var(--max-training-width) 1fr;
-    align-items: flex-start;
     grid-gap: var(--space-m);
-    justify-content: center;
+    justify-items: center;
+}
+
+.trainingPage__feedback {
+    justify-self: flex-end;
 }
 
 .trainingPage__logo {

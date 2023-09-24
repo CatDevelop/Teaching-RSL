@@ -27,23 +27,23 @@ export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal({
             {triggerComponent(onOpen)}
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
-                {(onClose) => (
-                    <>
-                    <ModalHeader className="flex flex-col gap-1">Выберите количество слов</ModalHeader>
-                    <ModalBody>
-                        <Range min={MIN_WORDS_COUNT} max={MAX_WORDS_COUNT} value={wordsCount} onChange={handleWordsChange} />
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button variant="faded" onPress={onClose}>
-                            Назад
-                        </Button>
-                        <Button color="primary" onPress={onClose}>
-                            Начать тест
-                        </Button>
-                    </ModalFooter>
-                    </>
-                )}
-            </ModalContent>
+                    {(onClose) => (
+                        <>
+                        <ModalHeader className="flex flex-col gap-1">Выберите количество слов</ModalHeader>
+                        <ModalBody>
+                            <Range min={MIN_WORDS_COUNT} max={MAX_WORDS_COUNT} value={wordsCount} onChange={handleWordsChange} />
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button variant="faded" onPress={onClose}>
+                                Назад
+                            </Button>
+                            <Button color="primary" onPress={onClose}>
+                                Начать тест
+                            </Button>
+                        </ModalFooter>
+                        </>
+                    )}
+                </ModalContent> 
             </Modal>
         </>
     )
