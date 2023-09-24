@@ -1,0 +1,67 @@
+.range {
+    --range-height: 8px;
+    --controller-size: 14px;
+
+    -webkit-appearance: none;
+    width: 100%;
+    padding: var(--space-xs) var(--space-xs);
+    height: var(--range-height);
+    background-color: var(--dark-on-surface-color);
+    border-radius: var(--border-radius-s);
+    background-image: linear-gradient(var(--primary-color), var(--primary-color));
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+}
+
+/* Input Thumb */
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: var(--controller-size);
+    width: var(--controller-size);
+    border-radius: 50%;
+    background-color: var(--on-surface-color);
+    box-shadow: inset 0 0 0 3px var(--primary-color);
+    cursor: ew-resize;
+}
+
+.range::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: var(--controller-size);
+    width: var(--controller-size);
+    border-radius: 50%;
+    background-color: var(--on-surface-color);
+    box-shadow: inset 0 0 0 3px var(--primary-color);
+    cursor: ew-resize;
+}
+
+.range::-ms-thumb {
+    -webkit-appearance: none;
+    height: var(--controller-size);
+    width: var(--controller-size);
+    border-radius: 50%;
+    background-color: var(--on-surface-color);
+    box-shadow: inset 0 0 0 3px var(--primary-color);
+    cursor: ew-resize;
+}
+
+/* Input Track */
+.range::-webkit-slider-runnable-track  {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
+
+.range::-moz-range-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
+
+.range::-ms-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
