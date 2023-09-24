@@ -1,0 +1,11 @@
+.systemTests {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+}
+
+.systemTests__theme {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}

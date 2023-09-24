@@ -10,8 +10,10 @@ type Props = PropsWithChildren & ComponentProps;
 /** Scroll box.  */
 export const ScrollBox: FC<Props> = typedMemo(function ScrollBox(props){
     return (
-        <Card className={clsx(styles.scrollBox, props.className)}>
-            {props.children}
+        <Card className={styles.scrollBox}>
+            <div className={clsx(styles.scrollBox__scroll, props.className)}>
+                {props.children}
+            </div>
         </Card>
     )
 });
