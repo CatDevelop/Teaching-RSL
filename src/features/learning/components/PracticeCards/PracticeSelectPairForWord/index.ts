@@ -1,1 +1,0 @@
-export { PracticeSelectPairForWord } from "./PracticeSelectPairForWord";

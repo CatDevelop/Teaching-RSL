@@ -3,19 +3,6 @@
     box-sizing: border-box;
 }
 
-.theoryCard__titleContainer {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-s);
-    align-items: center;
-}
-
-.theoryCard__title {
-    font-family: var(--main-font);
-    font-weight: var(--font-weight-l);
-    font-size: 18px;
-}
-
 .theoryCard__images {
     display: flex;
     justify-content: center;
@@ -24,14 +11,8 @@
     margin-top: var(--space-m);
 }
 
+.theoryCard__gif video,
 .theoryCard__gif {
-    max-width: 510px;
-    max-height: 370px;
-    width: 100%;
-    height: 100%;
-}
-
-.theoryCard__gif video {
     max-width: 510px;
     max-height: 370px;
     width: 100%;

@@ -3,7 +3,6 @@
     box-sizing: border-box;
 }
 
-
 .practiceSelectGif__contentContainer {
     display: flex;
     flex-direction: column;
@@ -35,4 +34,3 @@
     align-items: end;
     gap: var(--space-m);
 }
-

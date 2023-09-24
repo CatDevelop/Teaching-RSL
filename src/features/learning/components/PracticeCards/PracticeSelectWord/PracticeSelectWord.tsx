@@ -1,5 +1,5 @@
 import {typedMemo} from "../../../../../core/utils/typedMemo";
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import styles from "./PracticeSelectWord.module.css";
 import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
@@ -36,7 +36,7 @@ export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWo
                             props.variants.map(variant => {
                                 return <SelectButton wordObject={variant}
                                                      setState={props.setSelectWord}
-                                                     state={!props.checked ? (props.selectWord?.id === variant.id ? "checked" : "default" ) : variant.id === props.selectWord?.id ? props.selectWord?.id === props.wordObject.id ? "success" : "error" : "disabled" }/>
+                                                     state={!props.checked ? (props.selectWord?.id === variant.id ? "checked" : "default") : variant.id === props.selectWord?.id ? props.selectWord?.id === props.wordObject.id ? "success" : "error" : "disabled"}/>
                             })
                         }
                     </div>

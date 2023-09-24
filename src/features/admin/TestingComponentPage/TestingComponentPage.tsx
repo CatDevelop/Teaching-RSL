@@ -83,11 +83,26 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                 </Card>
             </div>
 
-            <h2 className={styles.componentTitle}>Карточка</h2>
+            <h2 className={styles.componentTitle}>Scroll Box</h2>
             <div className={styles.componentRow}>
                 <div style={{height: "300px", width: "500px"}}>
                     <ScrollBox>
-                        sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>d
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis accumsan auctor.
+                        Mauris <br/>
+                        placerat diam at urna sollicitudin lobortis. Vestibulum at ipsum non diam elementum elementum
+                        et <br/>
+                        vitae enim. Proin mattis purus in est consequat eleifend. Curabitur non elit sit amet
+                        lacus <br/>
+                        eleifend suscipit. Fusce lacinia augue vitae sagittis vulputate. Duis eu dui lacinia,
+                        luctus <br/>
+                        erat id, pulvinar lectus. Phasellus commodo porttitor libero sit amet ornare. Mauris vitae
+                        ex <br/>
+                        tincidunt, facilisis lectus id, viverra dolor. Nullam nec quam pellentesque, pellentesque
+                        sapien <br/>
+                        quis, venenatis velit. Nulla molestie ac diam vitae pulvinar. Phasellus sit amet mi arcu. Nam
+                        ut <br/>
+                        ante dapibus, ornare urna a, pharetra nulla. Interdum et malesuada fames ac ante ipsum primis in<br/>
+                        faucibus.
                     </ScrollBox>
                 </div>
             </div>
@@ -273,8 +288,8 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                                     checked={practiceSelectWordChecked}
                 />
                 <Button variant={'faded'}
-                        color={practiceSelectWord === null ? "default" : "primary"}
-                        disabled={practiceSelectWord === null}
+                        color={practiceSelectWord === null || practiceSelectWord === undefined ? "default" : "primary"}
+                        disabled={practiceSelectWord === null || practiceSelectWord === undefined}
                         onClick={() => {
                             setPracticeSelectWordChecked(!practiceSelectWordChecked)
                         }}>{practiceSelectWordChecked ? "Сбросить" : "Проверить"}</Button>
@@ -287,14 +302,12 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                                    setSelectGIF={setPracticeSelectGIF}
                 />
                 <Button variant={'faded'}
-                        color={practiceSelectGIF === null ? "default" : "primary"}
-                        disabled={practiceSelectGIF === null}
+                        color={practiceSelectGIF === null || practiceSelectGIF === undefined ? "default" : "primary"}
+                        disabled={practiceSelectGIF === null || practiceSelectGIF === undefined}
                         onClick={() => {
                             setPracticeSelectGIFChecked(!practiceSelectGIFChecked)
                         }}>{practiceSelectGIFChecked ? "Сбросить" : "Проверить"}</Button>
             </div>
-            {/*<PracticeSelectPairForWord variants={words}/>*/}
-
         </div>
     )
 });
