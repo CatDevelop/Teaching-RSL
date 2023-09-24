@@ -6,10 +6,7 @@ import {Card} from "../../../components/Card";
 import {ScrollBox} from "../../../components/ScrollBox";
 import {TaskContinue} from "../../../components/TaskContinue";
 import {TaskProgress} from "../../../components/TaskProgress";
-import {SystemTestPreview} from "../../training/pages/TrainingCatalogPage/components/SystemTestPreview";
-import {UserTestPreview} from "../../training/pages/TrainingCatalogPage/components/UserTestPreview";
 import SettingsSVG from '../../../assets/images/Settings.svg'
-import {SystemTests} from "../../training/pages/TrainingCatalogPage/components/SystemTests";
 import clsx from "clsx";
 import {WorkOnMistakes} from "../../training/pages/TrainingCatalogPage/components/WorkOnMistakes";
 import {TheoryCard} from "../../learning/components/TheoryCard";
@@ -22,7 +19,11 @@ import {SelectImage} from "../../learning/components/SelectEntity/SelectImage";
 import {words} from "./data";
 import {PracticeSelectWord} from "../../learning/components/PracticeCards/PracticeSelectWord";
 import {PracticeSelectGIF} from "../../learning/components/PracticeCards/PracticeSelectGIF";
-import { Range } from "../../../components/Range";
+import {Range} from "../../../components/Range"
+import {UserTestPreview} from "../../training/pages/TrainingCatalogPage/components/UserTests/UserTestPreview";
+import {
+    SystemTestPreview
+} from "../../training/pages/TrainingCatalogPage/components/SystemTests/components/SystemTestPreview";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
     const [selectWord, setSelectWord] = useState<Word | null>()
@@ -143,52 +144,51 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             <h1 className={clsx(styles.componentTitle, styles.large)}>Раздел тренировки</h1>
 
             <h2 className={styles.componentTitle}>Карточка пользовательского теста</h2>
-            <UserTestPreview name={"ДЗ №12 от 31.08.2023"} allWordsCount={12}/>
+            <UserTestPreview name={"ДЗ №12 от 31.08.2023"} wordsCount={12} id={1}/>
 
             <h2 className={styles.componentTitle}>Карточка системного теста</h2>
             <SystemTestPreview id={1} name={"Название"} allWordsCount={10} passedWordsCount={1} color={"#AE7EDE"}/>
 
-            <h2 className={styles.componentTitle}>Окно с системными тестами</h2>
-            <SystemTests themes={[
-                {
-                    name: "Тестовая тема",
-                    id: 0,
-                    color: "#AE7EDE",
-                    tests: [
-                        {
-                            name: "Приветствие",
-                            allWordsCount: 46,
-                            passedWordsCount: 12,
-                            id: 10
-                        },
-                        {
-                            name: "Теология",
-                            allWordsCount: 34,
-                            passedWordsCount: 10,
-                            id: 11
-                        }
-                    ]
-                },
-                {
-                    name: "Искусство и развлечения",
-                    id: 1,
-                    color: "#66AAF9",
-                    tests: [
-                        {
-                            name: "Музыка",
-                            allWordsCount: 27,
-                            passedWordsCount: 12,
-                            id: 10
-                        },
-                        {
-                            name: "Изобразительные искусства",
-                            allWordsCount: 39,
-                            passedWordsCount: 29,
-                            id: 11
-                        }
-                    ]
-                }
-            ]}/>
+            {/*<h2 className={styles.componentTitle}>Окно с системными тестами</h2>*/}
+            {/*<SystemTests tests={[*/}
+            {/*    {*/}
+            {/*        name: "Тестовая тема",*/}
+            {/*        id: 0,*/}
+            {/*        tests: [*/}
+            {/*            {*/}
+            {/*                name: "Приветствие",*/}
+            {/*                allWordsCount: 46,*/}
+            {/*                passedWordsCount: 12,*/}
+            {/*                id: 10*/}
+            {/*            },*/}
+            {/*            {*/}
+            {/*                name: "Теология",*/}
+            {/*                allWordsCount: 34,*/}
+            {/*                passedWordsCount: 10,*/}
+            {/*                id: 11*/}
+            {/*            }*/}
+            {/*        ]*/}
+            {/*    },*/}
+            {/*    {*/}
+            {/*        name: "Искусство и развлечения",*/}
+            {/*        id: 1,*/}
+            {/*        color: "#66AAF9",*/}
+            {/*        tests: [*/}
+            {/*            {*/}
+            {/*                name: "Музыка",*/}
+            {/*                allWordsCount: 27,*/}
+            {/*                passedWordsCount: 12,*/}
+            {/*                id: 10*/}
+            {/*            },*/}
+            {/*            {*/}
+            {/*                name: "Изобразительные искусства",*/}
+            {/*                allWordsCount: 39,*/}
+            {/*                passedWordsCount: 29,*/}
+            {/*                id: 11*/}
+            {/*            }*/}
+            {/*        ]*/}
+            {/*    }*/}
+            {/*]}/>*/}
 
             <h2 className={styles.componentTitle}>Окно с работой над ошибками</h2>
             <WorkOnMistakes missingWordsCount={5}/>

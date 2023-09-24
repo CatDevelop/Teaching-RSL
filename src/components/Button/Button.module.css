@@ -1,6 +1,6 @@
 .button {
     font-family: var(--main-font);
-    font-weight: var(--font-weight-m);
+    font-weight: var(--font-weight-l);
     --icon-size: 16px;
 }
 
