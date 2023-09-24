@@ -11,7 +11,6 @@
 
 .button_faded {
     background-color: var(--on-surface-color);
-    color: var(--secondary-text-color)
 }
 
 .button_link {
