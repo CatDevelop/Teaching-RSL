@@ -11,37 +11,40 @@ import { Page } from "../../../../components/Page";
 import { TaskFeedback } from "../../../../components/TaskFeedback";
 import { TaskProgress } from "../../../../components/TaskProgress";
 import styles from "./TrainingPage.module.css";
+import { PageContent } from "../../../../components/PageContent";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage(props){
     return (
-        <Page className={styles.trainingPage}>
-            <div className={styles.trainingPage__header}>
-                <img src={Logo} alt="Go to main page" className={styles.trainingPage__logo} />
+        <Page>
+            <PageContent className={styles.trainingPage}>
+                <div className={styles.trainingPage__header}>
+                    <img src={Logo} alt="Go to main page" className={styles.trainingPage__logo} />
 
-                <div className={styles.trainingPage__info}>
-                    <div className={styles.trainingPage__name}>
-                        <Typography variant="h2">ДЗ бла бла бла</Typography>
-                        <Tooltip anchorSelect={`.${styles.trainingPage__author}`}>
-                            Тест от пользователя Крашенинникова Любовь
-                        </Tooltip>
-                        <img src={User} alt="Test's author" className={styles.trainingPage__author} />
+                    <div className={styles.trainingPage__info}>
+                        <div className={styles.trainingPage__name}>
+                            <Typography variant="h2">ДЗ бла бла бла</Typography>
+                            <Tooltip anchorSelect={`.${styles.trainingPage__author}`}>
+                                Тест от пользователя Крашенинникова Любовь
+                            </Tooltip>
+                            <img src={User} alt="Test's author" className={styles.trainingPage__author} />
+                        </div>
+
+                        <div className={styles.trainingPage__progress}>
+                            <Button 
+                                className={styles.trainingPage__closeTraining}
+                                variant="light" 
+                                endContent={<img src={Close} alt="Close training"/>}
+                            />
+                            <TaskProgress currentTaskId={0} tasks={[{id: 0}, {id:1}]}/>
+                        </div>
                     </div>
 
-                    <div className={styles.trainingPage__progress}>
-                        <Button 
-                            className={styles.trainingPage__closeTraining}
-                            variant="light" 
-                            endContent={<img src={Close} alt="Close training"/>}
-                        />
-                        <TaskProgress currentTaskId={0} tasks={[{id: 0}, {id:1}]}/>
-                    </div>
+                    <TaskFeedback items={[{id:"0", label:"Хочу пиццу"}]} className={styles.trainingPage__feedback} />
                 </div>
+                <RecognitionBlock text="bugaga" className={styles.trainingPage__recognition}/>
 
-                <TaskFeedback items={[{id:"0", label:"Хочу пиццу"}]} className={styles.trainingPage__feedback} />
-            </div>
-            <RecognitionBlock text="bugaga" className={styles.trainingPage__recognition}/>
-
-            <Button variant="faded">Пропустить</Button>
+                <Button variant="faded">Пропустить</Button>
+            </PageContent>
         </Page>
     );
 });

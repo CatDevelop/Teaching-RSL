@@ -5,6 +5,7 @@
     --on-surface-opacity-color: rgba(255, 255, 255, 0.85);
     --dark-on-surface-color: rgba(228, 228, 231, 1);
     --primary-color: rgba(51, 142, 247, 1);
+    --accent-color: rgba(174, 126, 222, 1);
     --light-primary-color: rgba(82, 133, 242, 0.2);
     --danger-color: rgba(255, 75, 75, 1);
     --light-danger-color: rgba(242, 82, 82, 0.2);
@@ -36,6 +37,7 @@
                     0px 2px 30px 0px rgba(0, 0, 0, 0.08), 
                     0px 0px 15px 0px rgba(0, 0, 0, 0.03);
 
-    --border-radius-s: calc(var(--border-radius-m) / 2);
+    --border-radius-xs: calc(var(--border-radius-m) / 2);
+    --border-radius-s: 12px;
     --border-radius-m: 16px;
 }

@@ -11,7 +11,7 @@
 .trainingPage__header {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr var(--max-training-width) 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: var(--space-m);
     justify-items: center;
 }
@@ -21,6 +21,7 @@
 }
 
 .trainingPage__logo {
+    justify-self: flex-start;
     height: var(--logo-height);
 }
 
