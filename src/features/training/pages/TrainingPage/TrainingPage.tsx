@@ -10,13 +10,14 @@ import { Typography } from "../../../../components/Typography";
 import { Page } from "../../../../components/Page";
 import { TaskFeedback } from "../../../../components/TaskFeedback";
 import { TaskProgress } from "../../../../components/TaskProgress";
-import styles from "./TrainingPage.module.css";
 import { PageContent } from "../../../../components/PageContent";
+import { TaskSetting } from "../../../../components/TaskSetting";
+import styles from "./TrainingPage.module.css";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage(props){
     return (
-        <Page>
-            <PageContent className={styles.trainingPage}>
+        <Page className={styles.trainingPage}>
+            <PageContent className={styles.trainingPage__content}>
                 <div className={styles.trainingPage__header}>
                     <img src={Logo} alt="Go to main page" className={styles.trainingPage__logo} />
 
@@ -38,8 +39,10 @@ export const TrainingPage: FC = typedMemo(function TrainingPage(props){
                             <TaskProgress currentTaskId={0} tasks={[{id: 0}, {id:1}]}/>
                         </div>
                     </div>
-
-                    <TaskFeedback items={[{id:"0", label:"Хочу пиццу"}]} className={styles.trainingPage__feedback} />
+                    <div className={styles.trainingPage__actions}>
+                        <TaskFeedback items={[{id:"0", label:"Хочу пиццу"}]} className={styles.trainingPage__feedback} />
+                        <TaskSetting />
+                    </div>
                 </div>
                 <RecognitionBlock text="bugaga" className={styles.trainingPage__recognition}/>
 

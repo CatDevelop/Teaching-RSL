@@ -1,8 +1,7 @@
 .pageContent {
     --page-padding: 50px;
 
-    height: 100%;
-    width: 100%;
+    flex:1;
     padding: var(--page-padding);
     display: flex;
     flex-direction: column;
