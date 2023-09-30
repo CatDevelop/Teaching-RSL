@@ -18,7 +18,7 @@ import {SelectGIF} from "../../learning/components/SelectEntity/SelectGIF";
 import {SelectImage} from "../../learning/components/SelectEntity/SelectImage";
 import {words} from "./data";
 import {PracticeSelectWord} from "../../learning/components/PracticeCards/PracticeSelectWord";
-import {PracticeSelectGIF} from "../../learning/components/PracticeCards/PracticeSelectGIF";
+import {PracticeSelectGIFByWord} from "../../learning/components/PracticeCards/PracticeSelectGIFByWord";
 import {Range} from "../../../components/Range"
 import {UserTestPreview} from "../../training/pages/TrainingCatalogPage/components/UserTests/UserTestPreview";
 import {
@@ -27,8 +27,15 @@ import {
 import {SystemTests} from "../../training/pages/TrainingCatalogPage/components/SystemTests";
 import {UserTests} from "../../training/pages/TrainingCatalogPage/components/UserTests";
 import {RecognitionBlock} from "../../training/pages/TrainingPage/components/RecognitionBlock";
+import {PracticeSelectImage} from "../../learning/components/PracticeCards/PracticeSelectImage";
+import {PracticeSelectGIFByImage} from "../../learning/components/PracticeCards/PracticeSelectGIFByImage";
+import {PracticeMatchWordAndGIF} from "../../learning/components/PracticeCards/PracticeMatchWordAndGIF";
+import {shuffleArray} from "../../../core/utils/shuffleArray";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
+    let correctAnswer = new Audio("https://www.myinstants.com/media/sounds/duolingo-correct.mp3");
+    let wrongAnswer = new Audio("https://www.myinstants.com/media/sounds/duolingo-wrong.mp3")
+
     const [selectWord, setSelectWord] = useState<Word | null>()
     const [selectGIF, setSelectGIF] = useState<Word | null>()
     const [selectImage, setSelectImage] = useState<Word | null>()
@@ -38,8 +45,15 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
     const [practiceSelectWord, setPracticeSelectWord] = useState<Word | null>()
     const [practiceSelectWordChecked, setPracticeSelectWordChecked] = useState<boolean>(false)
 
-    const [practiceSelectGIF, setPracticeSelectGIF] = useState<Word | null>()
-    const [practiceSelectGIFChecked, setPracticeSelectGIFChecked] = useState<boolean>(false)
+    const [practiceSelectGIFByWord, setPracticeSelectGIFByWord] = useState<Word | null>()
+    const [practiceSelectGIFByWordChecked, setPracticeSelectGIFByWordChecked] = useState<boolean>(false)
+
+    const [practiceSelectGIFByImage, setPracticeSelectGIFByImage] = useState<Word | null>()
+    const [practiceSelectGIFByImageChecked, setPracticeSelectGIFByImageChecked] = useState<boolean>(false)
+
+
+    const [practiceSelectImage, setPracticeSelectImage] = useState<Word | null>()
+    const [practiceSelectImageChecked, setPracticeSelectImageChecked] = useState<boolean>(false)
 
 
     return (
@@ -149,7 +163,7 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             <h1 className={clsx(styles.componentTitle, styles.large)}>Раздел тренировки</h1>
 
             <h2 className={styles.componentTitle}>Диапазон</h2>
-            <Range />
+            <Range/>
 
             {/*<h2 className={styles.componentTitle}>Блок распознавания жестов</h2>*/}
             {/*<RecognitionBlock text={"123"}/>*/}
@@ -161,13 +175,16 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             <SystemTestPreview id={1} name={"Название"} allWordsCount={10} passedWordsCount={1} color={"#AE7EDE"}/>
 
             <h2 className={styles.componentTitle}>Окно с системными тестами</h2>
-            <SystemTests />
+            <SystemTests/>
 
             <h2 className={styles.componentTitle}>Окно с пользовательскими тестами</h2>
-            <UserTests />
+            <UserTests/>
 
             <h2 className={styles.componentTitle}>Окно с работой над ошибками</h2>
             <WorkOnMistakes missingWordsCount={5}/>
+
+            <h2 className={styles.componentTitle}>Блок распознавания жестов </h2>
+            <RecognitionBlock text={"Думать"} className={styles.recognitionBlock}/>
 
 
 
@@ -274,20 +291,65 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                         }}>{practiceSelectWordChecked ? "Сбросить" : "Проверить"}</Button>
             </div>
             <div className={styles.componentRow}>
-                <PracticeSelectGIF wordObject={words[0]}
-                                   variants={words}
-                                   selectGIF={practiceSelectGIF}
-                                   checked={practiceSelectGIFChecked}
-                                   setSelectGIF={setPracticeSelectGIF}
+                <PracticeSelectGIFByWord wordObject={words[0]}
+                                         variants={words}
+                                         selectGIF={practiceSelectGIFByWord}
+                                         checked={practiceSelectGIFByWordChecked}
+                                         setSelectGIF={setPracticeSelectGIFByWord}
                 />
                 <Button variant={'faded'}
-                        color={practiceSelectGIF === null || practiceSelectGIF === undefined ? "default" : "primary"}
-                        disabled={practiceSelectGIF === null || practiceSelectGIF === undefined}
+                        color={practiceSelectGIFByWord === null || practiceSelectGIFByWord === undefined ? "default" : "primary"}
+                        disabled={practiceSelectGIFByWord === null || practiceSelectGIFByWord === undefined}
                         onClick={() => {
-                            setPracticeSelectGIFChecked(!practiceSelectGIFChecked)
-                        }}>{practiceSelectGIFChecked ? "Сбросить" : "Проверить"}</Button>
+                            setPracticeSelectGIFByWordChecked(!practiceSelectGIFByWordChecked)
+                        }}>{practiceSelectGIFByWordChecked ? "Сбросить" : "Проверить"}</Button>
             </div>
 
+            <div className={styles.componentRow}>
+                <PracticeSelectImage wordObject={words[0]}
+                                     variants={words}
+                                     selectImage={practiceSelectImage}
+                                     checked={practiceSelectImageChecked}
+                                     setSelectImage={setPracticeSelectImage}
+                />
+                <Button variant={'faded'}
+                        color={practiceSelectImage === null || practiceSelectImage === undefined ? "default" : "primary"}
+                        disabled={practiceSelectImage === null || practiceSelectImage === undefined}
+                        onClick={() => {
+                            setPracticeSelectImageChecked(!practiceSelectImageChecked)
+                            if (!practiceSelectImageChecked)
+                                if (practiceSelectImage?.id === words[0].id)
+                                    correctAnswer.play();
+                                else
+                                    wrongAnswer.play();
+                        }}>{practiceSelectImageChecked ? "Сбросить" : "Проверить"}</Button>
+            </div>
+
+            <div className={styles.componentRow}>
+                <PracticeSelectGIFByImage wordObject={words[0]}
+                                          variants={words}
+                                          selectGIF={practiceSelectGIFByImage}
+                                          checked={practiceSelectGIFByImageChecked}
+                                          setSelectGIF={setPracticeSelectGIFByImage}
+                />
+                <Button variant={'faded'}
+                        color={practiceSelectGIFByImage === null || practiceSelectGIFByImage === undefined ? "default" : "primary"}
+                        disabled={practiceSelectGIFByImage === null || practiceSelectGIFByImage === undefined}
+                        onClick={() => {
+                            setPracticeSelectGIFByImageChecked(!practiceSelectGIFByImageChecked)
+                            if (!practiceSelectGIFByImageChecked)
+                                if (practiceSelectGIFByImage?.id === words[0].id)
+                                    correctAnswer.play();
+                                else
+                                    wrongAnswer.play();
+                        }}>{practiceSelectGIFByImageChecked ? "Сбросить" : "Проверить"}</Button>
+            </div>
+
+            <div className={styles.componentRow}>
+                <PracticeMatchWordAndGIF variants={[words[0], words[1], words[2]]}
+                                         variantsInOtherOrder={shuffleArray([words[0], words[1], words[2]])}
+                 />
+            </div>
         </div>
     )
 });

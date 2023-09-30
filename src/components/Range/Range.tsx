@@ -3,7 +3,6 @@ import {typedMemo} from "../../core/utils/typedMemo";
 import {ComponentProps} from "../../core/models/ComponentProps";
 import {Slider} from '@mantine/core';
 import styles from "./Range.module.css";
-import clsx from "clsx";
 
 type Props = ComponentProps & Readonly<{
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -55,6 +54,10 @@ export const Range: FC<Props> = typedMemo(function Range({
         //         {max}
         //     </span>
         // </div>
+
+
+        // Заменил кастомный Range на компонент из библиотеки Mantine UI
+        // Сейчас без подключения функциональности
         <div className={styles.range}>
             <Slider
                 color="blue"

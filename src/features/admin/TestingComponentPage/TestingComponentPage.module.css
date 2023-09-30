@@ -26,3 +26,9 @@
     font-size: var(--font-size-xl);
     margin-top: 50px;
 }
+
+
+.recognitionBlock {
+    max-width: 680px;
+    width: 100%;
+}

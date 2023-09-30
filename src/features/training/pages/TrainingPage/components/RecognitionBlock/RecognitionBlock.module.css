@@ -1,22 +1,70 @@
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .recognitionBlock {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: var(--space-m);
 }
 
-.recognitionBlock__title,
-.recognitionBlock__recognizedWords {
+.recognitionBlock__titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.recognitionBlock__title {
     font-weight: var(--font-weight-s);
     font-size: var(--font-size-m);
+    line-height: var(--font-size-m);
 }
 
-.recognitionBlock__recognized,
-.recognitionBlock__recognizedWords {
-    align-self: flex-start;
+.recognitionBlock__gesture {
+    line-height: var(--font-size-l);
 }
+
+.recognitionBlock__recognizedContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.recognitionBlock__recognized {
+    line-height: var(--font-size-m);
+}
+
+.recognitionBlock__recognizedWords {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 13px
+}
+
+.recognitionBlock__recognizedWord {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-s);
+    line-height: var(--font-size-m);
+
+    animation: show 0.4s ease-in;
+}
+
+.recognitionBlock__rightWord {
+    color: var(--success-color)
+}
+
 
 .recognitionBlock__camera {
     width: 100%;
     height: 100%;
-    margin: var(--space-m) 0;
 }

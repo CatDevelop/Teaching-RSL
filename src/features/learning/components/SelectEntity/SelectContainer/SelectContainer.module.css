@@ -24,7 +24,7 @@
 .selectContainer img,
 .selectContainer video {
     max-height: 223px;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 .selectContainer__selected {

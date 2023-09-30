@@ -11,11 +11,12 @@ export type SelectContainerProps = PropsWithChildren & Readonly<{
     number: number;
 
     wordObject: Word;
-    setState: React.Dispatch<React.SetStateAction<Word | null | undefined>>;
+    setState: React.Dispatch<React.SetStateAction<any>>;
 }>
 
 /** Контейнер для объектов, которые можно выбрать. */
 export const SelectContainer: FC<SelectContainerProps> = typedMemo(function SelectContainer(props) {
+    
     return (
         <motion.div
             className={clsx(

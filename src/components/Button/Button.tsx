@@ -9,5 +9,5 @@ type Props = ButtonProps;
 /** Button. */
 export const Button: FC<Props> = typedMemo(function Button(props){
     return <ButtonNextUI {...props}
-                className={clsx(styles.button, props.variant === "faded" && styles.button_faded, props.variant === "light" && styles.button_link, props.className)}/>;
+                         className={clsx(styles.button, props.variant === "faded" && styles.button_faded, props.variant === "light" && styles.button_link, props.className)}/>;
 })

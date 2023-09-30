@@ -1,4 +1,5 @@
 .practiceSelectWord {
+
     max-width: 680px;
     box-sizing: border-box;
 }
@@ -18,7 +19,7 @@
 }
 
 .practiceSelectWord__gifContainer video {
-   height: 237px;
+   height: 252px;
 }
 
 .practiceSelectWord__buttonsContainer {
