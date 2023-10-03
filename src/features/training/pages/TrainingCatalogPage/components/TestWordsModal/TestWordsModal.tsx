@@ -4,23 +4,26 @@ import { typedMemo } from "../../../../../../core/utils/typedMemo";
 import React,  { FC, ReactElement, useCallback, useState } from "react";
 import { Button } from "../../../../../../components/Button";
 import { Range } from "../../../../../../components/Range";
+import { GetThemeResponse } from "../../../../../../core/models/themes/GetThemeListResponse";
 
 type Props = ComponentProps & Readonly<{
     triggerComponent: (onOpen: () => void) => ReactElement;
+    start: (wordsCount: GetThemeResponse['wordsCount']) => void;
 }>;
 
 const MIN_WORDS_COUNT = 10;
 const MAX_WORDS_COUNT = 45;
 
 export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal({
-    triggerComponent
+    triggerComponent, 
+    start,
 }){
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [wordsCount, setWordsCount] = useState(MIN_WORDS_COUNT);
 
     const handleWordsChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setWordsCount(Number(event.target.value));
-    }, [])
+    }, []);
 
     return (
         <>
@@ -37,7 +40,7 @@ export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal({
                             <Button variant="faded" onPress={onClose}>
                                 Назад
                             </Button>
-                            <Button color="primary" onPress={onClose}>
+                            <Button color="primary" onPress={() => start(wordsCount)}>
                                 Начать тест
                             </Button>
                         </ModalFooter>

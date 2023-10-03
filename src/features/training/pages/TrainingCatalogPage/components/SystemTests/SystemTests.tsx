@@ -6,38 +6,25 @@ import { SystemTestPreview } from "./components/SystemTestPreview";
 import { ScrollBox } from "../../../../../../components/ScrollBox";
 import { ComponentProps } from "../../../../../../core/models/ComponentProps";
 import styles from "./SystemTests.module.css";
-import { themes as themesTemp } from "../../../../data";
+import { GetThemeListWithUnitsResponse } from "../../../../../../core/models/themes/GetThemeListWithUnitsResponse";
+import { ThemesService } from "../../../../../../api/services/themes";
+import { useQuery } from "react-query";
+import { themes } from "../../../../data";
 
-type TempTest = {
-    name: string;
-    id: number;
-    color: string;
-    tests: {
-        name: string,
-        allWordsCount: number;
-        passedWordsCount: number;
-        id: number;
-    }[];
-}
-
-type Props = ComponentProps
+type Props = ComponentProps;
 
 /** System tests. */
 export const SystemTests: FC<Props> = typedMemo(function SystemTests(props){
-    const [themes, setThemes] = useState<TempTest[]>(themesTemp);
+    //const {data} = useQuery<GetThemeListWithUnitsResponse>("systemtests/get", ThemesService.getListWithUnits)
+    const [test, _] = useState(themes)
 
     return (
         <ScrollBox className={clsx(styles.systemTests, props.className)}>
-            {themes.map(theme => (
+            {test?.map(theme => (
                 <div className={styles.systemTests__theme} key={theme.id}>
                     <Typography variant="h3">{theme.name}</Typography>
-                    {theme.tests.map(test => (
-                        <SystemTestPreview 
-                            color={theme.color}
-                            name={test.name} 
-                            allWordsCount={test.allWordsCount} 
-                            passedWordsCount={test.passedWordsCount} 
-                            id={test.id}/>
+                    {theme.tests.map(unit => (
+                        <SystemTestPreview {...unit}/>
                     ))}
                 </div>
             ))}

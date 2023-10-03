@@ -1,26 +1,26 @@
 export const themes = [
     {
-        id: 0,
+        id: '0',
         name: 'Theme 1',
         color: "rgba(174, 126, 222, 1)",
         tests: [
             {
-                id:0,
+                id:'0',
                 name: 'Section 1',
-                allWordsCount: 10,
-                passedWordsCount: 8,
+                wordsCount: 10,
+                description: "dawdw",
             },
             {
-                id:1,
+                id:'0',
                 name: 'Section 2',
-                allWordsCount: 10,
-                passedWordsCount: 8,
+                wordsCount: 10,
+                description: "dawdw",
             },
             {
-                id:2,
+                id:'0',
                 name: 'Section 3',
-                allWordsCount: 10,
-                passedWordsCount: 8,
+                wordsCount: 10,
+                description: "dawdw",
             }
         ]
     },
@@ -30,16 +30,16 @@ export const themes = [
         color:"rgba(102, 170, 249, 1)",
         tests: [
             {
-                id:0,
+                id:'0',
                 name: 'Section 1',
-                allWordsCount: 10,
-                passedWordsCount: 8,
+                wordsCount: 10,
+                description: "dawdw",
             },
             {
-                id:1,
+                id:'0',
                 name: 'Section 2',
-                allWordsCount: 10,
-                passedWordsCount: 8,
+                wordsCount: 10,
+                description: "dawdw",
             },
         ]
     },
@@ -49,10 +49,10 @@ export const themes = [
         color: "rgba(6, 190, 135, 1)",
         tests: [
             {
-                id:0,
+                id:'0',
                 name: 'Section 1',
-                allWordsCount: 10,
-                passedWordsCount: 8,
+                wordsCount: 10,
+                description: "dawdw",
             }
         ]
     }
