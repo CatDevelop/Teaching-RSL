@@ -4,7 +4,6 @@ import styles from "./TestingComponentPage.module.css";
 import {Button} from "../../../components/Button";
 import {Card} from "../../../components/Card";
 import {ScrollBox} from "../../../components/ScrollBox";
-import {TaskContinue} from "../../../components/TaskContinue";
 import { Range } from "../../../components/Range";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
@@ -21,8 +20,6 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                     sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>sakelfmklsmgl <br/>d
                 </ScrollBox>
             </div>
-            <TaskContinue continue={()=>console.log(123213)} isRightAnswer={true} rightAnswer={"awdawd"}/>
-            <TaskContinue continue={()=>console.log(123213)} isRightAnswer={false} rightAnswer={"awdawd"}/>
             <Range />
         </div>
     )

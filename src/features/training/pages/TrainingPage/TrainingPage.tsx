@@ -16,14 +16,16 @@ import styles from "./TrainingPage.module.css";
 import { feedbackTemp } from "./data";
 import { useNavigate } from "react-router";
 import { testTemp } from "../../data";
+import { TaskContinue } from "../../../../components/TaskContinue";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage(props){
     const data = testTemp;
     const [currentTask, setCurrentTask] = useState(data.words[0]);
     const [countSkippedWords, setCountSkippedWords] = useState(0);
+    const [isDoneTask, setIsDoneTask] = useState(false);
     const navigate = useNavigate();
 
-    const skip = useCallback(() => {
+    const toNextTask = useCallback(() => {
         const nextTaskIndex = data.words.findIndex(word => word.id === currentTask.id) + 1;
 
         if(nextTaskIndex === data.words.length){
@@ -32,8 +34,17 @@ export const TrainingPage: FC = typedMemo(function TrainingPage(props){
         }
 
         setCurrentTask(data.words[nextTaskIndex]);
+    }, [data, currentTask, navigate, setCurrentTask, countSkippedWords])
+
+    const skip = useCallback(() => {
+        toNextTask();
         setCountSkippedWords(count => count + 1);
-    }, [data, currentTask, navigate, setCountSkippedWords, setCurrentTask, countSkippedWords])
+    }, [setCountSkippedWords, toNextTask]);
+
+    const next = useCallback(() => {
+        toNextTask();
+        setIsDoneTask(false);
+    }, [])
 
     return (
         <Page className={styles.trainingPage}>
@@ -61,13 +72,14 @@ export const TrainingPage: FC = typedMemo(function TrainingPage(props){
                     </div>
                     <div className={styles.trainingPage__actions}>
                         <TaskFeedback items={feedbackTemp} className={styles.trainingPage__feedback} />
-                        <TaskSetting />
+                        {/* <TaskSetting />*/}
                     </div>
                 </div>
-                <RecognitionBlock text={currentTask.word} className={styles.trainingPage__recognition} next={() => {}}/>
+                <RecognitionBlock text={currentTask.word} className={styles.trainingPage__recognition} next={() => setIsDoneTask(true)}/>
 
-                <Button variant="faded" onClick={skip}>Пропустить</Button>
+                {!isDoneTask && <Button variant="faded" onClick={skip}>Пропустить</Button>}
             </PageContent>
+            {isDoneTask && <TaskContinue next={next} isRightAnswer={true} />}
         </Page>
     );
 });

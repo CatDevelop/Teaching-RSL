@@ -9,7 +9,7 @@ import { Typography } from "../../components/Typography";
 import { ComponentProps } from "../../core/models/ComponentProps";
 
 type Props = ComponentProps & Readonly<{
-    continue: () => void;
+    next: () => void;
     isRightAnswer: boolean;
     rightAnswer?: string;
 }>
@@ -28,7 +28,7 @@ export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
                             Вы отлично справились!
                         </Typography>
                     </div>
-                    <Button color="primary" onClick={props.continue}>Далее</Button>
+                    <Button color="primary" onClick={props.next}>Далее</Button>
                 </> :
                 <>
                     <div className={styles.taskContinue__result}>
@@ -38,7 +38,7 @@ export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
                             <Typography className={styles.taskContinue__description}>{props.rightAnswer}</Typography>
                         </div>
                     </div>
-                    <Button color="danger" onClick={props.continue}>Далее</Button>
+                    <Button color="danger" onClick={props.next}>Далее</Button>
                 </>
         }
         </div>
