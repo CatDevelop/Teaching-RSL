@@ -1,5 +1,5 @@
 import {typedMemo} from "../../../../../core/utils/typedMemo";
-import React, {FC} from "react";
+import React, {FC, useEffect, useMemo, useState} from "react";
 import styles from "./PracticeSelectWord.module.css";
 import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
@@ -9,17 +9,41 @@ import {Word} from "../../../../../core/models/Word";
 import {SignVideo} from "../../../../../components/SignVideo";
 import {SelectButton} from "../../SelectEntity/SelectButton";
 import {Typography} from "../../../../../components/Typography";
+import {StepStatus} from "../../../../../core/models/StepStatus";
+import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 
 type Props = ComponentProps & Readonly<{
     wordObject: Word;
-    variants: Word[];
+    otherVariants: Word[];
     checked: boolean;
-    selectWord?: Word | null;
-    setSelectWord: React.Dispatch<React.SetStateAction<Word | null | undefined>>;
+    setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
+    setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
+    // selectWord?: Word | null;
+    // setSelectWord: React.Dispatch<React.SetStateAction<Word | null | undefined>>;
 }>
 
 /** Практика "Выбери слово". */
 export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWord(props) {
+    const [selectWord, setSelectWord] = useState<Word | null>()
+    const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants])) // Это песня... Нужно, чтобы не перемешивался при рендере
+
+    useEffect(() => {
+        if(props.checked){
+            if(selectWord?.id === props.wordObject.id)
+                props.setStatus({status: "success"})
+            else
+                props.setStatus({status: "error", message: props.wordObject.text})
+        }
+    }, [props.checked])
+
+    useEffect(() => {
+        if(selectWord)
+            props.setIsTaskReadyToCheck(true)
+        else
+            props.setIsTaskReadyToCheck(false)
+
+    }, [selectWord])
+
     return (
         <div className={clsx(styles.practiceSelectWord)}>
             <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>
@@ -33,10 +57,10 @@ export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWo
                             Выбери верное слово
                         </Typography>
                         {
-                            props.variants.map(variant => {
+                            variants?.map(variant => {
                                 return <SelectButton wordObject={variant}
-                                                     setState={props.setSelectWord}
-                                                     state={!props.checked ? (props.selectWord?.id === variant.id ? "checked" : "default") : variant.id === props.selectWord?.id ? props.selectWord?.id === props.wordObject.id ? "success" : "error" : "disabled"}/>
+                                                     setState={setSelectWord}
+                                                     state={!props.checked ? (selectWord?.id === variant.id ? "checked" : "default") : variant.id === selectWord?.id ? selectWord?.id === props.wordObject.id ? "success" : "error" : "disabled"}/>
                             })
                         }
                     </div>

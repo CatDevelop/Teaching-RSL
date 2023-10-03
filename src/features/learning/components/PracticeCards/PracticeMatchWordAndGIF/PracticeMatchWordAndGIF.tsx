@@ -10,6 +10,8 @@ import {Typography} from "../../../../../components/Typography";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
 import {SelectButton} from "../../SelectEntity/SelectButton";
 import {SelectState} from "../../../../../core/models/SelectState";
+import {shuffleArray} from "../../../../../core/utils/shuffleArray";
+import {StepStatus} from "../../../../../core/models/StepStatus";
 
 type SelectObjectState = {
     wordObject: Readonly<Word>;
@@ -18,12 +20,16 @@ type SelectObjectState = {
 
 type Props = ComponentProps & Readonly<{
     variants: Word[];
-    variantsInOtherOrder: Word[];
+
+    setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
+    setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }>
 
 /** Практика "Подбери пару к словам". */
 export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMatchWordAndGIF(props) {
-    const initialWordState: SelectObjectState[] = [...props.variantsInOtherOrder.map<SelectObjectState>(variant => {
+    const [variantsInOtherOrder] = useState(shuffleArray(props.variants))
+
+    const initialWordState: SelectObjectState[] = [...variantsInOtherOrder.map<SelectObjectState>(variant => {
         return {wordObject: variant, state: "default"}
     })]
 
@@ -34,7 +40,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
     const [wordsState, setWordsState] = useState<SelectObjectState[]>([...initialWordState])
     const [gifsState, setGIFsState] = useState<SelectObjectState[]>([...initialGIFState])
     const [isBlocked, setIsBlocked] = useState<boolean>(false)
-
+    const [countOfCompleted, setCountOfCompleted] = useState(0)
 
     // TODO Скорее всего изменю алгоритм для проверки данного задания
     const handleClickOnSelectObject = (clickWordObject: Word, selectObjectState: SelectObjectState[], setSelectObjectState: React.Dispatch<React.SetStateAction<SelectObjectState[]>>) => {
@@ -62,6 +68,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
             let newState: SelectState;
             if (wordsState[checkedWordId].wordObject.id === gifsState[checkedGIFId].wordObject.id) {
                 newState = "success"
+                setCountOfCompleted(countOfCompleted+1)
                 setIsBlocked(false)
             } else {
                 newState = "error"
@@ -76,6 +83,12 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
             setWordsState(wordsState.with(checkedWordId, {wordObject: wordsState[checkedWordId].wordObject, state: newState}))
             setGIFsState(gifsState.with(checkedGIFId, {wordObject: gifsState[checkedGIFId].wordObject, state: newState}))
         }
+        if(countOfCompleted === 3)
+        {
+            props.setIsTaskReadyToCheck(true)
+            props.setStatus({status: "success"})
+        }
+
     }, [wordsState, gifsState])
 
     return (

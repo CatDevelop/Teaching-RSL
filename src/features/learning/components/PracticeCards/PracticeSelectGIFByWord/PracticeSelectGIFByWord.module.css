@@ -1,13 +1,25 @@
+@keyframes showDown {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .practiceSelectGif {
     width: 100%;
     max-width: 680px;
     box-sizing: border-box;
+    animation: showDown 0.5s ease-in;
 }
 
 .practiceSelectGif__contentContainer {
     display: flex;
     flex-direction: column;
-    gap: var(--space-m);
+    gap: 10px;
 }
 
 .practiceSelectGif__titleContainer {
@@ -33,5 +45,5 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     align-items: end;
-    gap: var(--space-m);
+    gap: 10px;
 }

@@ -11,7 +11,7 @@ import { ComponentProps } from "../../core/models/ComponentProps";
 type Props = ComponentProps & Readonly<{
     continue: () => void;
     isRightAnswer: boolean;
-    rightAnswer: string;
+    rightAnswer?: string;
 }>
 
 /** Task continue panel. */

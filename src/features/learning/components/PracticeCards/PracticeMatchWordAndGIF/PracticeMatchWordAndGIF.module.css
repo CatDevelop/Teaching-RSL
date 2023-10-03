@@ -1,7 +1,19 @@
+@keyframes showDown {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .practiceMatchWordAndGIF {
     width: 100%;
     max-width: 1080px;
     box-sizing: border-box;
+    animation: showDown 0.5s ease-in;
 }
 
 .practiceMatchWordAndGIF__contentContainer {
@@ -43,9 +55,9 @@
     gap: 20px;
 }
 .practiceMatchWordAndGIF__taskContainer_buttons button {
-    width: 315px;
+    width: 285px;
 }
 
 .practiceMatchWordAndGIF__taskContainer_gifs video {
-    width: 315px;
+    width: 285px;
 }

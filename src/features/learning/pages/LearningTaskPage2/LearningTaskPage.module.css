@@ -1,0 +1,80 @@
+@keyframes showDown {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.learningTask {
+    gap: var(--space-m);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.learningTask__headerContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.learningTask__logoContainer {
+    cursor: pointer;
+}
+
+.learningTask__progressBarContainer {
+    width: 678px;
+}
+.learningTask__taskContainer {
+    max-width: 1080px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 110px;
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+}
+
+.learningTask__startCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 500px;
+}
+
+.learningTask__theory {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.learningTask__taskContinueContainer {
+    height: 100px;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.learningTask__startAnimation {
+    animation: showDown 0.5s ease-in;
+}
+
+
+

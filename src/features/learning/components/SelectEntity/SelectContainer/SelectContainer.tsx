@@ -16,7 +16,7 @@ export type SelectContainerProps = PropsWithChildren & Readonly<{
 
 /** Контейнер для объектов, которые можно выбрать. */
 export const SelectContainer: FC<SelectContainerProps> = typedMemo(function SelectContainer(props) {
-    
+
     return (
         <motion.div
             className={clsx(

@@ -276,34 +276,34 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
             </div>
 
             <h2 className={styles.componentTitle}>Карточки практики</h2>
-            <div className={styles.componentRow}>
-                <PracticeSelectWord wordObject={words[0]}
-                                    variants={words}
-                                    selectWord={practiceSelectWord}
-                                    setSelectWord={setPracticeSelectWord}
-                                    checked={practiceSelectWordChecked}
-                />
-                <Button variant={'faded'}
-                        color={practiceSelectWord === null || practiceSelectWord === undefined ? "default" : "primary"}
-                        disabled={practiceSelectWord === null || practiceSelectWord === undefined}
-                        onClick={() => {
-                            setPracticeSelectWordChecked(!practiceSelectWordChecked)
-                        }}>{practiceSelectWordChecked ? "Сбросить" : "Проверить"}</Button>
-            </div>
-            <div className={styles.componentRow}>
-                <PracticeSelectGIFByWord wordObject={words[0]}
-                                         variants={words}
-                                         selectGIF={practiceSelectGIFByWord}
-                                         checked={practiceSelectGIFByWordChecked}
-                                         setSelectGIF={setPracticeSelectGIFByWord}
-                />
-                <Button variant={'faded'}
-                        color={practiceSelectGIFByWord === null || practiceSelectGIFByWord === undefined ? "default" : "primary"}
-                        disabled={practiceSelectGIFByWord === null || practiceSelectGIFByWord === undefined}
-                        onClick={() => {
-                            setPracticeSelectGIFByWordChecked(!practiceSelectGIFByWordChecked)
-                        }}>{practiceSelectGIFByWordChecked ? "Сбросить" : "Проверить"}</Button>
-            </div>
+            {/*<div className={styles.componentRow}>*/}
+            {/*    <PracticeSelectWord wordObject={words[0]}*/}
+            {/*                        variants={words}*/}
+            {/*                        selectWord={practiceSelectWord}*/}
+            {/*                        setSelectWord={setPracticeSelectWord}*/}
+            {/*                        checked={practiceSelectWordChecked}*/}
+            {/*    />*/}
+            {/*    <Button variant={'faded'}*/}
+            {/*            color={practiceSelectWord === null || practiceSelectWord === undefined ? "default" : "primary"}*/}
+            {/*            disabled={practiceSelectWord === null || practiceSelectWord === undefined}*/}
+            {/*            onClick={() => {*/}
+            {/*                setPracticeSelectWordChecked(!practiceSelectWordChecked)*/}
+            {/*            }}>{practiceSelectWordChecked ? "Сбросить" : "Проверить"}</Button>*/}
+            {/*</div>*/}
+            {/*<div className={styles.componentRow}>*/}
+            {/*    <PracticeSelectGIFByWord wordObject={words[0]}*/}
+            {/*                             variants={words}*/}
+            {/*                             selectGIF={practiceSelectGIFByWord}*/}
+            {/*                             checked={practiceSelectGIFByWordChecked}*/}
+            {/*                             setSelectGIF={setPracticeSelectGIFByWord}*/}
+            {/*    />*/}
+            {/*    <Button variant={'faded'}*/}
+            {/*            color={practiceSelectGIFByWord === null || practiceSelectGIFByWord === undefined ? "default" : "primary"}*/}
+            {/*            disabled={practiceSelectGIFByWord === null || practiceSelectGIFByWord === undefined}*/}
+            {/*            onClick={() => {*/}
+            {/*                setPracticeSelectGIFByWordChecked(!practiceSelectGIFByWordChecked)*/}
+            {/*            }}>{practiceSelectGIFByWordChecked ? "Сбросить" : "Проверить"}</Button>*/}
+            {/*</div>*/}
 
             <div className={styles.componentRow}>
                 <PracticeSelectImage wordObject={words[0]}
@@ -345,11 +345,11 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                         }}>{practiceSelectGIFByImageChecked ? "Сбросить" : "Проверить"}</Button>
             </div>
 
-            <div className={styles.componentRow}>
-                <PracticeMatchWordAndGIF variants={[words[0], words[1], words[2]]}
-                                         variantsInOtherOrder={shuffleArray([words[0], words[1], words[2]])}
-                 />
-            </div>
+            {/*<div className={styles.componentRow}>*/}
+            {/*    <PracticeMatchWordAndGIF variants={[words[0], words[1], words[2]]}*/}
+            {/*                             variantsInOtherOrder={shuffleArray([words[0], words[1], words[2]])}*/}
+            {/*     />*/}
+            {/*</div>*/}
         </div>
     )
 });
