@@ -12,8 +12,13 @@ import { Button } from "../../../../components/Button";
 import { TaskFeedback } from "../../../../components/TaskFeedback";
 import { PageContent } from "../../../../components/PageContent";
 import { ResultCard } from "./components/ResultCard";
+import { testTemp } from "../../data";
+import { feedbackTemp } from "../TrainingPage/data";
+import { useLocation } from "react-router";
 
 export const TrainingResultPage: FC = typedMemo(function TrainingResultPage(){
+    const location = useLocation();
+
     return (
         <Page className={styles.trainingResultPage}>
             <PageContent className={styles.trainingResultPage__content}>
@@ -21,20 +26,20 @@ export const TrainingResultPage: FC = typedMemo(function TrainingResultPage(){
                     <img src={Logo} alt="Go to main page" className={styles.trainingResultPage__logo} />
 
                     <div className={styles.trainingResultPage__info}>
-                        <Typography variant="h2">ДЗ бла бла бла</Typography>
+                        <Typography variant="h2">{testTemp.name}</Typography>
                         <Tooltip anchorSelect={`.${styles.trainingResultPage__author}`}>
-                            Тест от пользователя Крашенинникова Любовь
+                            Системный тест
                         </Tooltip>
                         <img src={User} alt="Test's author" className={styles.trainingResultPage__author} />
                     </div>
 
-                    <TaskFeedback items={[{id:"0", label:"Хочу пиццу"}]} className={styles.trainingResultPage__feedback} />
+                    <TaskFeedback items={feedbackTemp} className={styles.trainingResultPage__feedback} />
                 </div>
 
                 <div className={styles.trainingResultPage__result}>
                     <img src={ResultImage} className={styles.trainingResultPage__resultImage} alt="Your result"/>
                     <Typography variant="h2" className={styles.trainingResultPage__resultTitle}>Конец тренировки!</Typography>
-                    <ResultCard title="Результат" iconUrl={Result} content="100%" className={styles.trainingResultPage__resultCard} />
+                    <ResultCard title="Результат" iconUrl={Result} content={`${location.state.result}%`} className={styles.trainingResultPage__resultCard} />
                 </div>
             </PageContent>
 

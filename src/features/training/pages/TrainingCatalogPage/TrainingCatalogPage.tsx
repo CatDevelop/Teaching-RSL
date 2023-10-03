@@ -22,7 +22,7 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
                     Тренировки
                 </Typography>
 
-                <WorkOnMistakes missingWordsCount={15} className={styles.trainingCatalog__workOnMistakes}/>
+                <WorkOnMistakes missingWordsCount={0} className={styles.trainingCatalog__workOnMistakes}/>
 
                 <div className={styles.trainingCatalog__testsOverflow}>
                     <div className={styles.trainingCatalog__tests}>

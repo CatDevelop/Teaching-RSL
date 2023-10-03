@@ -17,13 +17,13 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
 
     const navigate = useNavigate();
 
-    const start = useCallback((wordsCount: GetThemeResponse['wordsCount']) => {
-        
+    const start = useCallback((/*wordsCount: GetThemeResponse['wordsCount']*/) => {
+        navigate('0');
     }, [navigate])
 
     const renderTestPreview = useCallback((onOpen: () => void) => {
         return (
-            <div className={clsx(styles.systemTestPreview, props.className)} onClick={onOpen} style={{backgroundColor: "#AE7EDE"}}>
+            <div className={clsx(styles.systemTestPreview, props.className)} onClick={start} style={{backgroundColor: "#AE7EDE"}}>
                 <div className={styles.systemTestPreview__content}>
                     <Typography
                         variant="h3"
@@ -43,5 +43,5 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
         )
     },[props])
 
-    return <TestWordsModal triggerComponent={renderTestPreview} />;
+    return <TestWordsModal triggerComponent={renderTestPreview} start={start} />;
 });

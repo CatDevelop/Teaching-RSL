@@ -29,6 +29,10 @@
     height: var(--logo-height);
 }
 
+.trainingResultPage__actions {
+    align-self: flex-start;
+}
+
 .trainingResultPage__info {
     width: 100%;
     display: flex;

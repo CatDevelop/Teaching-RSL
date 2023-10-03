@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import { typedMemo } from "../../../../core/utils/typedMemo";
 import { RecognitionBlock } from "./components/RecognitionBlock";
@@ -13,8 +13,28 @@ import { TaskProgress } from "../../../../components/TaskProgress";
 import { PageContent } from "../../../../components/PageContent";
 import { TaskSetting } from "../../../../components/TaskSetting";
 import styles from "./TrainingPage.module.css";
+import { feedbackTemp } from "./data";
+import { useNavigate } from "react-router";
+import { testTemp } from "../../data";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage(props){
+    const data = testTemp;
+    const [currentTask, setCurrentTask] = useState(data.words[0]);
+    const [countSkippedWords, setCountSkippedWords] = useState(0);
+    const navigate = useNavigate();
+
+    const skip = useCallback(() => {
+        const nextTaskIndex = data.words.findIndex(word => word.id === currentTask.id) + 1;
+
+        if(nextTaskIndex === data.words.length){
+            navigate('result', {state: {result: 100 - Math.floor((countSkippedWords + 1) / data.words.length * 100)}});
+            return;
+        }
+
+        setCurrentTask(data.words[nextTaskIndex]);
+        setCountSkippedWords(count => count + 1);
+    }, [data, currentTask, navigate, setCountSkippedWords, setCurrentTask, countSkippedWords])
+
     return (
         <Page className={styles.trainingPage}>
             <PageContent className={styles.trainingPage__content}>
@@ -23,9 +43,9 @@ export const TrainingPage: FC = typedMemo(function TrainingPage(props){
 
                     <div className={styles.trainingPage__info}>
                         <div className={styles.trainingPage__name}>
-                            <Typography variant="h2">ДЗ бла бла бла</Typography>
+                            <Typography variant="h2">{data.name}</Typography>
                             <Tooltip anchorSelect={`.${styles.trainingPage__author}`}>
-                                Тест от пользователя Крашенинникова Любовь
+                                Системный тест
                             </Tooltip>
                             <img src={User} alt="Test's author" className={styles.trainingPage__author} />
                         </div>
@@ -36,17 +56,17 @@ export const TrainingPage: FC = typedMemo(function TrainingPage(props){
                                 variant="light" 
                                 endContent={<img src={Close} alt="Close training"/>}
                             />
-                            <TaskProgress currentTaskId={0} tasks={[{id: 0}, {id:1}]}/>
+                            <TaskProgress currentTaskId={currentTask.id} tasks={data.words}/>
                         </div>
                     </div>
                     <div className={styles.trainingPage__actions}>
-                        <TaskFeedback items={[{id:"0", label:"Хочу пиццу"}]} className={styles.trainingPage__feedback} />
+                        <TaskFeedback items={feedbackTemp} className={styles.trainingPage__feedback} />
                         <TaskSetting />
                     </div>
                 </div>
-                <RecognitionBlock text="bugaga" className={styles.trainingPage__recognition}/>
+                <RecognitionBlock text={currentTask.word} className={styles.trainingPage__recognition} next={() => {}}/>
 
-                <Button variant="faded">Пропустить</Button>
+                <Button variant="faded" onClick={skip}>Пропустить</Button>
             </PageContent>
         </Page>
     );

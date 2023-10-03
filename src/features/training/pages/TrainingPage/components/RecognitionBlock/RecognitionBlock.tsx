@@ -1,17 +1,19 @@
 import { Card } from "../../../../../../components/Card";
 import { typedMemo } from "../../../../../../core/utils/typedMemo";
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import styles from "./RecognitionBlock.module.css";
 import { Typography } from "../../../../../../components/Typography";
 import { ComponentProps } from "../../../../../../core/models/ComponentProps";
 import clsx from "clsx";
 
 type Props = ComponentProps & Readonly<{
-    text: string
+    text: string;
+    next: () => void;
 }>
 
 export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock({
     text,
+    next,
     className,
 }){
     return (
