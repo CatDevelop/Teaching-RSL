@@ -19,15 +19,17 @@ export const TheoryCard: FC<Props> = typedMemo(function TheoryCard(props) {
         <div className={clsx(styles.theoryCard)}>
             <LearningBlock iconUrl={TheoryIconSVG} title={"Теория"}>
                 <div className={styles.theoryCard__images}>
-                    <SignVideo src={props.wordObject.gifSource}
-                               className={styles.theoryCard__gif}
+                    <SignVideo
+                        src={props.wordObject.gifSource}
+                        className={styles.theoryCard__gif}
                     />
 
                     {
                         props.wordObject.imageSource &&
-                        <img src={props.wordObject.imageSource}
-                             alt={"Изображение для жеста" + props.wordObject.text}
-                             className={styles.theoryCard__image}
+                        <img
+                            src={props.wordObject.imageSource}
+                            alt={"Изображение для жеста" + props.wordObject.text}
+                            className={styles.theoryCard__image}
                         />
                     }
                 </div>

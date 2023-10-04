@@ -40,20 +40,21 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
         setSignRecognizeText([...signRecognizeText, text])
     });
 
+    const addFrameSender = () => {
+        setInterval(() => {
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            context?.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            const image = canvas.toDataURL('image/jpeg');
+            socket.emit("data", image);
+        }, 30); // Отправка каждый кадр (30 кадров в секунду)
+    }
 
     async function startWebcam() {
         try {
             videoElement.srcObject = await navigator.mediaDevices.getUserMedia({video: {facingMode: "user"}});
 
-            videoElement.addEventListener('play', () => {
-                setInterval(() => {
-                    canvas.width = videoElement.videoWidth;
-                    canvas.height = videoElement.videoHeight;
-                    context?.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-                    const image = canvas.toDataURL('image/jpeg');
-                    socket.emit("data", image);
-                }, 30); // Отправка каждый кадр (30 кадров в секунду)
-            });
+            videoElement.addEventListener('play', addFrameSender);
         } catch (error) {
             console.error('Error accessing webcam:', error);
         }
@@ -64,8 +65,8 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     useEffect(() => {
         videoElement = document.getElementById('webcam');
-
         startWebcam();
+        return () => videoElement.removeEventListener('play', addFrameSender);
     }, []);
 
 

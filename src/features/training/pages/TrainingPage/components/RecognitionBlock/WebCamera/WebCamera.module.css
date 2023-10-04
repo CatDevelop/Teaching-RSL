@@ -9,6 +9,7 @@
 }
 
 .container {
+    position: relative;
     z-index: 100;
     grid-area: webcamera;
     border-radius: 10px;
@@ -19,10 +20,8 @@
     animation: showFade 1s ease-in;
     opacity: 0;
     animation-fill-mode: forwards;
-
     justify-self: center;
 }
-
 
 .rec {
     display: flex;
@@ -34,16 +33,12 @@
     z-index: 100;
     top: 10px;
     left: 10px;
-
     color: #eeeeee;
-
     padding: 3px 5px;
     border-radius: 5px;
     background: rgba(36, 36, 40, 0.40);
     height: 18px;
-
     opacity: 0;
-
     animation: showFade 1s ease-in;
     animation-delay: 1s;
     animation-fill-mode: forwards;

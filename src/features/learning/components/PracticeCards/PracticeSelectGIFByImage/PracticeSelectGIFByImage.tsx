@@ -22,6 +22,24 @@ type Props = ComponentProps & Readonly<{
 
 /** Практика "Выбери изображение". */
 export const PracticeSelectGIFByImage: FC<Props> = typedMemo(function PracticeSelectGIFByImage(props) {
+    const getGIFStatus = (currentVariant: Word) => {
+        if (props.checked) {
+            if (props.selectGIF?.id === props.wordObject.id) {
+                if (currentVariant.id === props.selectGIF?.id)
+                     return "success"
+                else
+                    return "disabled"
+            } else if (currentVariant.id === props.selectGIF?.id)
+                return "error"
+            else
+                return "disabled"
+        } else {
+            if (props.selectGIF?.id === currentVariant.id)
+                return "checked"
+            else
+                return "default"
+        }
+    }
     return (
         <div className={clsx(styles.practiceSelectGifByImage)}>
             <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>
@@ -41,7 +59,7 @@ export const PracticeSelectGIFByImage: FC<Props> = typedMemo(function PracticeSe
                                 props.variants.map((variant, number) => {
                                     return <SelectGIF wordObject={variant}
                                                       setState={props.setSelectGIF}
-                                                      state={!props.checked ? (props.selectGIF?.id === variant.id ? "checked" : "default") : variant.id === props.selectGIF?.id ? props.selectGIF?.id === props.wordObject.id ? "success" : "error" : "disabled"}
+                                                      state={getGIFStatus(variant)}
                                                       number={number}/>
                                 })
                             }

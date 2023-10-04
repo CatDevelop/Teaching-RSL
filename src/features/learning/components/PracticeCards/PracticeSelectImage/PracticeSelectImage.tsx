@@ -42,7 +42,6 @@ export const PracticeSelectImage: FC<Props> = typedMemo(function PracticeSelectI
                                 })
                             }
                         </div>
-
                     </div>
                 </div>
             </LearningBlock>

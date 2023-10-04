@@ -3,5 +3,5 @@
 }
 
 .selectButton__disabled {
-    color: #71717A;
+    color: var(--disabled-button-color);
 }

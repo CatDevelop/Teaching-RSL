@@ -1,13 +1,10 @@
 export const shuffleArray = (array: any[]) => {
     let newArray = [...array];
-    let currentIndex = newArray.length,  randomIndex;
 
-    while (currentIndex > 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
 
-        [newArray[currentIndex], newArray[randomIndex]] = [
-            newArray[randomIndex], newArray[currentIndex]];
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
 
     return newArray;

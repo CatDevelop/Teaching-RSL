@@ -8,7 +8,7 @@ import {Typography} from "../components/Typography";
 import {Card} from "../components/Card";
 import {Button} from "../components/Button";
 import MGPULogo from "../assets/images/MGPULogo.svg";
-import SberLogo from "../assets/images/SberLogo.png";
+import SberLogo from "../assets/images/SberAI.png";
 import PinCodeLogo from '../assets/images/PinCodeLogo.svg';
 import UrFULogo from '../assets/images/UrFULogo.png';
 

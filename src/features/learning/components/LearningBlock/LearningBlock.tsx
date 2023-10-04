@@ -24,7 +24,6 @@ export const LearningBlock: FC<Props> = typedMemo(function LearningBlock(props){
             <div className={styles.learningBlock__contentContainer}>
                 {props.children}
             </div>
-
         </Card>
     );
 });
