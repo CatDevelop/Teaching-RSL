@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mantine/core": "^7.1.0",
+    "@mantine/hooks": "^7.1.0",
     "@nextui-org/react": "^2.1.10",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/jest": "^29.5.4",
@@ -24,6 +26,7 @@
     "react-toastify": "^9.1.3",
     "react-tooltip": "^5.21.4",
     "reactflow": "^11.7.4",
+    "socket.io-client": "^4.7.2",
     "typescript": "^5.2.2"
   },
   "scripts": {
@@ -53,7 +56,9 @@
   "devDependencies": {
     "@types/css-modules": "^1.0.3",
     "autoprefixer": "^10.4.15",
-    "postcss": "^8.4.29",
+    "postcss": "^8.4.30",
+    "postcss-preset-mantine": "^1.7.0",
+    "postcss-simple-vars": "^7.0.1",
     "tailwindcss": "^3.3.3"
   },
   "overrides": {

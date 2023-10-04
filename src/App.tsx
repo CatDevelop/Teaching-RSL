@@ -1,8 +1,10 @@
 import React, { Suspense } from "react";
 import './App.css';
-import {HashRouter} from "react-router-dom";
-import { RootRouter } from "./routes/RootRouter";
-import { QueryClientProvider, QueryClient } from "react-query";
+import {BrowserRouter} from "react-router-dom";
+import {RootRouter} from "./routes/RootRouter";
+import {QueryClientProvider, QueryClient} from "react-query";
+import {MantineProvider} from "@mantine/core";
+import '@mantine/core/styles.css';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -14,13 +16,17 @@ const queryClient = new QueryClient({
 
 function MyApp() {
     return (
-        <QueryClientProvider client={queryClient}>
-            <HashRouter>
-                <Suspense fallback={"Loading"}>
-                    <RootRouter/>
-                </Suspense>
-            </HashRouter>
-        </QueryClientProvider>
+        <div className="App">
+            <QueryClientProvider client={queryClient}>
+                <MantineProvider>
+                    <BrowserRouter>
+                        <Suspense fallback={"Loading"}>
+                            <RootRouter/>
+                        </Suspense>
+                    </BrowserRouter>
+                </MantineProvider>
+            </QueryClientProvider>
+        </div>
     );
 }
 

@@ -8,12 +8,14 @@ type Props = ButtonProps;
 
 /** Button. */
 export const Button: FC<Props> = typedMemo(function Buttont(props){
-    return <ButtonNextUI {...props} 
+    return <ButtonNextUI 
+                {...props} 
                 className={clsx(
                     styles.button, 
                     props.variant === "faded" && styles.button_faded, 
                     props.variant === "light" && styles.button_link, 
                     props.variant === undefined && styles.button__filled,
                     props.className
-                    )}/>;
+                    )}
+            />;
 })

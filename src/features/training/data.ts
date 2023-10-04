@@ -43,4 +43,4 @@ export const testTemp: TestGetResponse = {
             word: 'Друг'
         }
     ]
-} 
+}

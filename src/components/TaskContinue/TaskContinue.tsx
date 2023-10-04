@@ -5,7 +5,7 @@ import TickCircle from '../../assets/images/TickCircle.svg'
 import CloseCircle from '../../assets/images/CloseCircle.svg'
 import styles from "./TaskContinue.module.css";
 import { Button } from "../Button";
-import { Typography } from "../../components/Typography";
+import { Typography } from "../Typography";
 import { ComponentProps } from "../../core/models/ComponentProps";
 
 type Props = ComponentProps & Readonly<{
@@ -22,7 +22,7 @@ export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
                 <>
                     <div className={styles.taskContinue__result}>
                         <img src={TickCircle} alt="You answered correctly" className={styles.taskContinue__icon} />
-                        <Typography 
+                        <Typography
                             variant="h3"
                             className={styles.taskContinue__textBlock}>
                             Вы отлично справились!

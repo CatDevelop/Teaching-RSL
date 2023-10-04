@@ -1,8 +1,7 @@
 .button {
-    --icon-size: 16px;
-
+    font-family: var(--main-font);
     font-weight: var(--font-weight-m);
-
+    --icon-size: 16px;
 }
 
 .button img {

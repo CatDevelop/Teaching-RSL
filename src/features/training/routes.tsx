@@ -10,7 +10,7 @@ export const trainingRoutes: RouteObject[] = [
         children:[
             {
                 path: '',
-                element: <TrainingCatalogPage />, 
+                element: <TrainingCatalogPage />,
             },
             {
                 path: ':id',
