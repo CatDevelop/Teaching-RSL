@@ -54,7 +54,9 @@ export const TaskFeedback:FC<Props> = typedMemo(function TaskFeedback({
                             <CheckboxGroup className={styles.taskFeedback__checkboxes} onValueChange={changeSelectedIds}>
                                 {
                                     items.map(item => (
-                                        <Checkbox value={item.id} className={styles.taskFeedback__checkbox}>{item.label}</Checkbox>
+                                        <Checkbox value={item.id} className={styles.taskFeedback__checkbox} key={item.id}>
+                                            {item.label}
+                                        </Checkbox>
                                     ))
                                 }
                             </CheckboxGroup>

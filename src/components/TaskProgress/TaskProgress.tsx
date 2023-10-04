@@ -2,12 +2,13 @@ import React, { FC, useCallback, useMemo } from "react";
 import { Progress } from "@nextui-org/react";
 import { typedMemo } from "../../core/utils/typedMemo";
 import { ComponentProps } from "../../core/models/ComponentProps";
+import { TestGetResponse, WordInTest } from "../../core/models/training/TestGetResponse";
 
 type Props = ComponentProps & Readonly<{
-    currentTaskId: number;
+    currentTaskId: WordInTest['id'];
 
     // TODO: заменить нормальным типом
-    tasks: {id: number}[];
+    tasks: TestGetResponse['words'];
 }>;
 
 /** Task progress. */

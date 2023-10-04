@@ -1,6 +1,6 @@
 import {Card} from "../../../../../../components/Card";
 import {typedMemo} from "../../../../../../core/utils/typedMemo";
-import React, {FC, useEffect, useRef, useState} from "react";
+import React, {FC, useEffect, useMemo, useRef, useState} from "react";
 import styles from "./RecognitionBlock.module.css";
 import {Typography} from "../../../../../../components/Typography";
 import {ComponentProps} from "../../../../../../core/models/ComponentProps";
@@ -9,10 +9,15 @@ import io from "socket.io-client";
 import {WebCamera} from "./WebCamera/WebCamera";
 
 type Props = ComponentProps & Readonly<{
-    text: string
+    text: string;
+    next: () => void;
 }>
 
-export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props) {
+export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock({
+    text,
+    next,
+    className,
+}){
     const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
 
     const videoRef = useRef(null);
@@ -100,12 +105,8 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                             )
                         })
                     }
-
                 </div>
-
             </div>
-
-
         </Card>
     );
 });

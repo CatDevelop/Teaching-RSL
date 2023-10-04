@@ -1,7 +1,9 @@
 .trainingPage {
     --max-training-width: 700px;
     --logo-height: 42px;
+}
 
+.trainingPage__content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,9 +13,16 @@
 .trainingPage__header {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr var(--max-training-width) 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: var(--space-m);
     justify-items: center;
+}
+
+.trainingPage__actions {
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--space-m);
 }
 
 .trainingPage__feedback {
@@ -21,6 +30,7 @@
 }
 
 .trainingPage__logo {
+    justify-self: flex-start;
     height: var(--logo-height);
 }
 

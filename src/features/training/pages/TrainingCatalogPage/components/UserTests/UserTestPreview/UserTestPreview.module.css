@@ -1,5 +1,5 @@
 .userTestPreview {
-    border-radius: var(--border-radius-s);
+    border-radius: var(--border-radius-xs);
     padding: var(--space-m);
     display: flex;
     align-items: center;
