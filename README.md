@@ -12,7 +12,7 @@
 7. Запустить фронтенд (npm run start)
 
 ## Иллюстрации
-![Home](https://raw.githubusercontent.com/CatDevelop/Teaching-RSL/stand/src/assets/images/Demo1.png "Teaching-RSL")
-![Theory](https://raw.githubusercontent.com/CatDevelop/Teaching-RSL/stand/src/assets/images/Demo2.png "Teaching-RSL")
-![Practice](https://raw.githubusercontent.com/CatDevelop/Teaching-RSL/stand/src/assets/images/Demo3.png "Teaching-RSL")
-![Result](https://raw.githubusercontent.com/CatDevelop/Teaching-RSL/stand/src/assets/images/Demo4.png "Teaching-RSL")
+![Home](https://github.com/CatDevelop/Teaching-RSL/blob/88_exhibition_stand__dev/src/assets/images/Demo1.png "Teaching-RSL")
+![Theory](https://github.com/CatDevelop/Teaching-RSL/blob/88_exhibition_stand__dev/src/assets/images/Demo2.png "Teaching-RSL")
+![Practice](https://github.com/CatDevelop/Teaching-RSL/blob/88_exhibition_stand__dev/src/assets/images/Demo3.png "Teaching-RSL")
+![Result](https://github.com/CatDevelop/Teaching-RSL/blob/88_exhibition_stand__dev/src/assets/images/Demo4.png "Teaching-RSL")
