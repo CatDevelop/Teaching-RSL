@@ -168,6 +168,7 @@
     transform: translateX(-50%);
     width: 550px;
     z-index: 1000;
+    animation: showFade 1s ease-in;
 }
 
 .trainingTask__warning__gitLink {

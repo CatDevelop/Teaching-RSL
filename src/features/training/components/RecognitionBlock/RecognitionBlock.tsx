@@ -21,12 +21,58 @@ type Props = ComponentProps & Readonly<{
 }>
 
 export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props){
+
     let videoElement: any;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
+    const startWebcam = useCallback(async (addFrameSender: () => void) => {
+        console.log("startWebcam")
+        try {
+            videoElement.srcObject = await navigator.mediaDevices.getUserMedia({video: {facingMode: "user"}});
+            videoElement.addEventListener('play', addFrameSender, {once: true});
+        } catch (error) {
+            console.error('Error accessing webcam:', error);
+        }
+        return () => videoElement.removeEventListener('play', addFrameSender, {once: true});
+    }, [videoElement])
+
+    const addFrameSender = useCallback(() => {
+        console.log("addFrameSender")
+        let id = setInterval(() => {
+            console.log('Send frame')
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            context?.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            const image = canvas.toDataURL('image/jpeg');
+            socket.emit("data", image);
+        }, 30); // Отправка каждый кадр (30 кадров в секунду)
+        props.setIntervalID(id)
+    }, [context, canvas, videoElement, props.setIntervalID])
+
+    useEffect(() => {
+        videoElement = document.getElementById('webcam');
+        if(videoElement)
+            startWebcam(addFrameSender);
+
+        return () => {
+            videoElement.removeEventListener('play', addFrameSender);
+            clearInterval(props.intervalID)
+        }
+    }, []);
+
+
+    useEffect(() => {
+        if(props.signRecognizeText.includes(props.word.text.toLowerCase()))
+            props.onSuccess()
+    }, [props.signRecognizeText])
+
+
+    if(!props)
+        return;
+
     let socket = io('ws://localhost:5000', {
-        'reconnection': true,
+        'reconnection': false,
         'reconnectionDelay': 500,
         'reconnectionAttempts': 10,
     });
@@ -43,48 +89,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
         console.log(text)
         props.setSignRecognizeText([...props.signRecognizeText, text])
     });
-
-    const startWebcam = useCallback(async (addFrameSender: () => void) => {
-        console.log("startWebcam")
-        try {
-            videoElement.srcObject = await navigator.mediaDevices.getUserMedia({video: {facingMode: "user"}});
-            videoElement.addEventListener('play', addFrameSender);
-        } catch (error) {
-            console.error('Error accessing webcam:', error);
-        }
-    }, [videoElement])
-
-    const addFrameSender = useCallback(() => {
-        console.log("addFrameSender")
-        let id = setInterval(() => {
-            console.log('Send frame')
-            canvas.width = videoElement.videoWidth;
-            canvas.height = videoElement.videoHeight;
-            context?.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-            const image = canvas.toDataURL('image/jpeg');
-            socket.emit("data", image);
-        }, 30); // Отправка каждый кадр (30 кадров в секунду)
-        props.setIntervalID(id)
-    }, [context, canvas, socket, videoElement, props])
-
-
-    useEffect(() => {
-        videoElement = document.getElementById('webcam');
-
-        startWebcam(addFrameSender);
-
-        return () => {
-            videoElement.removeEventListener('play', addFrameSender);
-            clearInterval(props.intervalID)
-        }
-    }, []);
-
-
-    useEffect(() => {
-        if(props.signRecognizeText.includes(props.word.text.toLowerCase()))
-            props.onSuccess()
-    }, [props.signRecognizeText])
-
 
     return (
         <Card className={clsx(styles.recognitionBlock, props.className)}>

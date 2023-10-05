@@ -58,7 +58,10 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.trainingTask}>
-                <div className={styles.trainingTask__logoContainer} onClick={() => navigate("/")}>
+                <div className={styles.trainingTask__logoContainer} onClick={() => {
+                    clearInterval(intervalID)
+                    navigate("/")
+                }}>
                     <img src={Logo} alt={"Логотип"} width={230}/>
                 </div>
                 {
