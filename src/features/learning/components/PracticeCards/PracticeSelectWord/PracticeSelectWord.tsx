@@ -11,6 +11,7 @@ import {SelectButton} from "../../SelectEntity/SelectButton";
 import {Typography} from "../../../../../components/Typography";
 import {StepStatus} from "../../../../../core/models/StepStatus";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
+import {getSelectEntity} from "../../SelectEntity/SelectContainer/SelectContainer";
 
 type Props = ComponentProps & Readonly<{
     wordObject: Word;
@@ -18,8 +19,6 @@ type Props = ComponentProps & Readonly<{
     checked: boolean;
     setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
-    // selectWord?: Word | null;
-    // setSelectWord: React.Dispatch<React.SetStateAction<Word | null | undefined>>;
 }>
 
 /** Практика "Выбери слово". */
@@ -28,8 +27,8 @@ export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWo
     const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants])) // Это песня... Нужно, чтобы не перемешивался при рендере
 
     useEffect(() => {
-        if(props.checked){
-            if(selectWord?.id === props.wordObject.id)
+        if (props.checked) {
+            if (selectWord?.id === props.wordObject.id)
                 props.setStatus({status: "success"})
             else
                 props.setStatus({status: "error", message: props.wordObject.text})
@@ -37,31 +36,27 @@ export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWo
     }, [props.checked])
 
     useEffect(() => {
-        if(selectWord)
-            props.setIsTaskReadyToCheck(true)
-        else
-            props.setIsTaskReadyToCheck(false)
-
+        props.setIsTaskReadyToCheck(!!selectWord)
     }, [selectWord])
 
     return (
         <div className={clsx(styles.practiceSelectWord)}>
             <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>
                 <div className={styles.practiceSelectWord__contentContainer}>
-                    <div className={styles.practiceSelectWord__gifContainer}>
-                        <SignVideo src={props.wordObject.gifSource}/>
-                    </div>
+                    <SignVideo src={props.wordObject.gifSource}/>
 
                     <div className={styles.practiceSelectWord__buttonsContainer}>
                         <Typography variant="h3" className={styles.practiceSelectWord__title}>
                             Выбери верное слово
                         </Typography>
                         {
-                            variants?.map(variant => {
-                                return <SelectButton wordObject={variant}
-                                                     setState={setSelectWord}
-                                                     state={!props.checked ? (selectWord?.id === variant.id ? "checked" : "default") : variant.id === selectWord?.id ? selectWord?.id === props.wordObject.id ? "success" : "error" : "disabled"}/>
-                            })
+                            variants?.map(variant => (
+                                <SelectButton
+                                    wordObject={variant}
+                                    setState={setSelectWord}
+                                    state={getSelectEntity(props.checked, selectWord, variant, props.wordObject)}
+                                />
+                            ))
                         }
                     </div>
                 </div>

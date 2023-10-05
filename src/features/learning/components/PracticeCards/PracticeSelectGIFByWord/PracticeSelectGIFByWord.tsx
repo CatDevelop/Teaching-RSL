@@ -10,6 +10,8 @@ import {Typography} from "../../../../../components/Typography";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {StepStatus} from "../../../../../core/models/StepStatus";
+import {getSelectEntity} from "../../SelectEntity/SelectContainer/SelectContainer";
+
 
 type Props = ComponentProps & Readonly<{
     wordObject: Word;
@@ -17,18 +19,17 @@ type Props = ComponentProps & Readonly<{
     checked: boolean;
     setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
-    // selectGIF?: Word | null;
-    // setSelectGIF: React.Dispatch<React.SetStateAction<Word | null | undefined>>;
 }>
+
 
 /** Практика "Выбери жест". */
 export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSelectGIFByWord(props) {
     const [selectGIF, setSelectGIF] = useState<Word | null>()
-    const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants])) // Это песня... Нужно, чтобы не перемешивался при рендере
+    const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants]))
 
     useEffect(() => {
-        if(props.checked){
-            if(selectGIF?.id === props.wordObject.id)
+        if (props.checked) {
+            if (selectGIF?.id === props.wordObject.id)
                 props.setStatus({status: "success"})
             else
                 props.setStatus({status: "error", message: props.wordObject.text})
@@ -36,39 +37,37 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
     }, [props.checked])
 
     useEffect(() => {
-        if(selectGIF)
-            props.setIsTaskReadyToCheck(true)
-        else
-            props.setIsTaskReadyToCheck(false)
-
+        props.setIsTaskReadyToCheck(!!selectGIF)
     }, [selectGIF])
 
     return (
-        <div className={clsx(styles.practiceSelectGif)}>
-            <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>
-                <div className={styles.practiceSelectGif__contentContainer}>
-                    <div className={styles.practiceSelectGif__titleContainer}>
-                        <Typography variant="h3" className={styles.practiceSelectGif__title}>
-                            Выбери жест
-                        </Typography>
-                        <Typography variant="h3"
-                                    className={clsx(styles.practiceSelectGif__title, styles.practiceSelectGif__titleSignText)}>
-                            {props.wordObject.text}
-                        </Typography>
-                    </div>
+        <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>
+            <div className={styles.practiceSelectGif__titleContainer}>
+                <Typography variant="h3" className={styles.practiceSelectGif__title}>
+                    Выбери жест
+                </Typography>
+                <Typography
+                    variant="h3"
+                    className={clsx(styles.practiceSelectGif__title, styles.practiceSelectGif__titleSignText)}
+                >
+                    {props.wordObject.text}
+                </Typography>
+            </div>
 
-                    <div className={styles.practiceSelectGif__gifsContainer}>
-                        {
-                            variants.map((variant, index) => {
-                                return <SelectGIF wordObject={variant}
-                                                  state={!props.checked ? (selectGIF?.id === variant.id ? "checked" : "default") : variant.id === selectGIF?.id ? selectGIF?.id === props.wordObject.id ? "success" : "error" : "disabled"}
-                                                  setState={setSelectGIF}
-                                                  number={index + 1}/>
-                            })
-                        }
-                    </div>
-                </div>
-            </LearningBlock>
-        </div>
+            <div className={styles.practiceSelectGif__gifsContainer}>
+                {
+                    variants.map((variant, index) => {
+                        return <div className={styles.practiceSelectGif__gif}>
+                            <SelectGIF
+                                key={"SelectGIF" + index}
+                                wordObject={variant}
+                                state={getSelectEntity(props.checked, selectGIF, variant, props.wordObject)}
+                                setState={setSelectGIF}
+                                number={index + 1}/>
+                        </div>
+                    })
+                }
+            </div>
+        </LearningBlock>
     );
 });

@@ -22,7 +22,5 @@
 }
 
 .learningBlock__contentContainer {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m)
+    height: 100%;
 }

@@ -1,1 +1,0 @@
-export { TestingComponentPage } from "./TestingComponentPage";

@@ -1,6 +1,6 @@
 .button {
     font-family: var(--main-font);
-    font-weight: var(--font-weight-m);
+    font-weight: var(--font-weight-xl);
     --icon-size: 16px;
 }
 
@@ -10,17 +10,21 @@
 }
 
 .button__filled {
-    --min-width:  150px;
-
+    --min-width: 150px;
     min-width: var(--min-width);
 }
 
-.button_faded {
+.button__faded {
     background-color: var(--on-surface-color);
     color: var(--secondary-text-color)
 }
 
-.button_link {
+.button__primary__faded {
+    background-color: var(--on-surface-color);
+    color: var(--primary-color)
+}
+
+.button__link {
     height: auto;
     font-weight: var(--font-weight-m);
     padding: 0 var(--space-xs);

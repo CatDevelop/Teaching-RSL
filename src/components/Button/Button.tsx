@@ -6,16 +6,17 @@ import styles from "./Button.module.css";
 
 type Props = ButtonProps;
 
-/** Button. */
-export const Button: FC<Props> = typedMemo(function Buttont(props){
-    return <ButtonNextUI 
-                {...props} 
+/** Кнопка. */
+export const Button: FC<Props> = typedMemo(function Button(props){
+    return <ButtonNextUI
+                {...props}
                 className={clsx(
-                    styles.button, 
-                    props.variant === "faded" && styles.button_faded, 
-                    props.variant === "light" && styles.button_link, 
+                    styles.button,
+                    props.variant === "faded" && props.color !== "primary" && styles.button__faded,
+                    props.variant === "faded" && props.color === "primary" && styles.button__primary__faded,
+                    props.variant === "light" && styles.button__link,
                     props.variant === undefined && styles.button__filled,
                     props.className
-                    )}
+                )}
             />;
 })

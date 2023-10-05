@@ -1,5 +1,5 @@
 import {typedMemo} from "../../../../../core/utils/typedMemo";
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useCallback, useEffect, useState} from "react";
 import styles from "./PracticeMatchWordAndGIF.module.css";
 import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
@@ -14,6 +14,12 @@ import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {StepStatus} from "../../../../../core/models/StepStatus";
 
 
+type handleClickOnSelectObject = (
+    clickWordObject: Word,
+    selectObjectState: SelectObjectState[],
+    setSelectObjectState: React.Dispatch<React.SetStateAction<SelectObjectState[]>>
+) => void
+
 type SelectObjectState = {
     wordObject: Readonly<Word>;
     state: SelectState;
@@ -25,17 +31,18 @@ type Props = ComponentProps & Readonly<{
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }>
 
+
 /** Практика "Подбери пару к словам". */
 export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMatchWordAndGIF(props) {
     const [variantsInOtherOrder] = useState(shuffleArray(props.variants))
 
     const getInitialSelectObjectsState = (variants: Word[]) => {
-        return variants.map<SelectObjectState>(variant => {
-            return {
+        return variants.map<SelectObjectState>(variant => (
+            {
                 wordObject: variant,
                 state: "default"
             }
-        })
+        ))
     }
 
     const [words, setWords] = useState<SelectObjectState[]>(getInitialSelectObjectsState(variantsInOtherOrder))
@@ -43,13 +50,13 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
     const [isBlocked, setIsBlocked] = useState<boolean>(false)
     const [countOfCompleted, setCountOfCompleted] = useState(0)
 
-    // TODO Скорее всего изменю алгоритм для проверки данного задания
-    const handleClickOnSelectObject = (clickWordObject: Word, selectObjectState: SelectObjectState[], setSelectObjectState: React.Dispatch<React.SetStateAction<SelectObjectState[]>>) => {
-        const toDefaultState: () => { wordObject: Readonly<Word>; state: SelectState }[] = () =>
-            selectObjectState.map(objectInState => ({
+    const handleClickOnSelectObject: handleClickOnSelectObject = useCallback((clickWordObject, selectObjectState, setSelectObjectState) => {
+        const toDefaultState: () => { wordObject: Readonly<Word>; state: SelectState }[] = () => {
+            return selectObjectState.map(objectInState => ({
                 wordObject: objectInState.wordObject,
                 state: objectInState.state === "success" ? "success" : "default"
             }))
+        }
 
         if (isBlocked)
             return;
@@ -64,40 +71,41 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
                 }))
         } else
             setSelectObjectState(toDefaultState())
-    }
+    }, [isBlocked])
 
     const checkStatusOfSelectedPair = () => {
-        if (words.some(wordInState => wordInState.state === "checked")
-            && gifs.some(gifInState => gifInState.state === "checked")) {
-            let checkedWordId = words.findIndex(word => word.state === "checked")
-            let checkedGIFId = gifs.findIndex(gif => gif.state === "checked")
+        if (words.some(word => word.state === "checked")
+            && gifs.some(gif => gif.state === "checked")) {
+            let checkedWordIndex = words.findIndex(word => word.state === "checked")
+            let checkedGIFIndex = gifs.findIndex(gif => gif.state === "checked")
+
             setIsBlocked(true)
             let newState: SelectState;
-            if (words[checkedWordId].wordObject.id === gifs[checkedGIFId].wordObject.id) {
+            if (words[checkedWordIndex].wordObject.id === gifs[checkedGIFIndex].wordObject.id) {
                 newState = "success"
                 setCountOfCompleted(countOfCompleted + 1)
                 setIsBlocked(false)
             } else {
                 newState = "error"
                 setTimeout(() => {
-                    setWords(words.with(checkedWordId, {
-                        wordObject: words[checkedWordId].wordObject,
+                    setWords(words.with(checkedWordIndex, {
+                        wordObject: words[checkedWordIndex].wordObject,
                         state: "default"
                     }))
-                    setGifs(gifs.with(checkedGIFId, {
-                        wordObject: gifs[checkedGIFId].wordObject,
+                    setGifs(gifs.with(checkedGIFIndex, {
+                        wordObject: gifs[checkedGIFIndex].wordObject,
                         state: "default"
                     }))
                     setIsBlocked(false)
                 }, 1000)
             }
 
-            setWords(words.with(checkedWordId, {
-                wordObject: words[checkedWordId].wordObject,
+            setWords(words.with(checkedWordIndex, {
+                wordObject: words[checkedWordIndex].wordObject,
                 state: newState
             }))
-            setGifs(gifs.with(checkedGIFId, {
-                wordObject: gifs[checkedGIFId].wordObject,
+            setGifs(gifs.with(checkedGIFIndex, {
+                wordObject: gifs[checkedGIFIndex].wordObject,
                 state: newState
             }))
         }
@@ -133,17 +141,20 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
                                         className={styles.practiceMatchWordAndGIF__taskContainer__button}
                                         state={word.state}
                                         wordObject={word.wordObject}
-                                        setState={(clickWordObject) => handleClickOnSelectObject(clickWordObject, words, setWords)}/>
+                                        setState={(clickWordObject) => handleClickOnSelectObject(clickWordObject, words, setWords)}
+                                    />
                                 })
                             }
                         </div>
                         <div className={styles.practiceMatchWordAndGIF__taskContainer_gifs}>
                             {
                                 gifs.map((gif, index) => {
-                                    return <SelectGIF wordObject={gif.wordObject}
-                                                      state={gif.state}
-                                                      setState={(clickWordObject) => handleClickOnSelectObject(clickWordObject, gifs, setGifs)}
-                                                      number={index + 1}/>
+                                    return <SelectGIF
+                                        wordObject={gif.wordObject}
+                                        state={gif.state}
+                                        setState={(clickWordObject) => handleClickOnSelectObject(clickWordObject, gifs, setGifs)}
+                                        number={index + 1}
+                                    />
                                 })
                             }
                         </div>

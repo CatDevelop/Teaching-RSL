@@ -1,5 +1,5 @@
 import {typedMemo} from "../../../../../core/utils/typedMemo";
-import React, {FC, PropsWithChildren} from "react";
+import React, {FC, PropsWithChildren, useCallback} from "react";
 import styles from "./SelectContainer.module.css";
 import clsx from "clsx";
 import {Word} from "../../../../../core/models/Word";
@@ -16,6 +16,10 @@ export type SelectContainerProps = PropsWithChildren & Readonly<{
 
 /** Контейнер для объектов, которые можно выбрать. */
 export const SelectContainer: FC<SelectContainerProps> = typedMemo(function SelectContainer(props) {
+    const handleClickOnSelectObject = useCallback(() => {
+        if (props.state === "default" || props.state === "checked")
+            props.setState(props.state === "checked" ? null : props.wordObject)
+    }, [props.state, props.setState, props.wordObject])
 
     return (
         <motion.div
@@ -26,14 +30,20 @@ export const SelectContainer: FC<SelectContainerProps> = typedMemo(function Sele
                 props.state === "error" && styles.selectContainer__danger,
                 props.state === "disabled" && styles.selectContainer__disabled,
             )}
-            onClick={
-                (props.state !== "default" && props.state !== "checked") ?
-                    undefined :
-                    () => props.setState(props.state === "checked" ? null : props.wordObject)
-            }
+            onClick={handleClickOnSelectObject}
         >
             {props.children}
             <div className={clsx(styles.selectContainer__number)}>{props.number}</div>
         </motion.div>
     );
 });
+
+export const getSelectEntity = (checked: boolean, selectEntity: Word | undefined | null, currentVariant: Word, rightVariant: Word) => {
+    let result: SelectState = "disabled";
+    if (!checked) {
+        result = selectEntity?.id === currentVariant.id ? "checked" : "default"
+    } else if (currentVariant.id === selectEntity?.id) {
+        result = selectEntity?.id === rightVariant.id ? "success" : "error"
+    }
+    return result;
+}

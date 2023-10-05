@@ -1,85 +1,174 @@
-import React, { FC, useCallback, useState } from "react";
-import { Tooltip } from "react-tooltip";
-import { typedMemo } from "../../../../core/utils/typedMemo";
-import { RecognitionBlock } from "./components/RecognitionBlock";
-import { Button } from "../../../../components/Button";
-import Logo from "../../../../assets/images/Logo.svg";
-import User from "../../../../assets/images/User.svg";
-import Close from "../../../../assets/images/Close.svg";
-import { Typography } from "../../../../components/Typography";
-import { Page } from "../../../../components/Page";
-import { TaskFeedback } from "../../../../components/TaskFeedback";
-import { TaskProgress } from "../../../../components/TaskProgress";
-import { PageContent } from "../../../../components/PageContent";
-import { TaskSetting } from "../../../../components/TaskSetting";
+import {typedMemo} from "../../../../core/utils/typedMemo";
+import React, {FC, useCallback, useEffect, useState} from "react";
 import styles from "./TrainingPage.module.css";
-import { feedbackTemp } from "./data";
-import { useNavigate } from "react-router";
-import { testTemp } from "../../data";
-import { TaskContinue } from "../../../../components/TaskContinue";
+import {Page} from "../../../../components/Page";
+import Logo from "../../../../assets/images/Logo.svg"
+import {Button} from "../../../../components/Button";
+import {Card} from "../../../../components/Card";
+import {Typography} from "../../../../components/Typography";
+import {useNavigate} from "react-router-dom";
+import {clsx} from "clsx";
+import {TaskContinue} from "../../../../components/TaskContinue";
+import {ProgressBar} from "../../../../components/ProgressBar";
+import {PageContent} from "../../../../components/PageContent";
+import ResultImage from "../../../../assets/images/ResultTrainingImage.svg";
+import {RecognitionBlock} from "../../components/RecognitionBlock";
+import Result from "../../../../assets/images/Result.svg";
+import {ResultCard} from "../../components/ResultCard";
+import {getFireworks} from "../../../../core/utils/explodeFireworks";
+import {ExitConfirmation} from "../../../../components/ExitConfirmation";
+import {StartThemeWords} from "../../../../core/data";
+import {shuffleArray} from "../../../../core/utils/shuffleArray";
+import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
-export const TrainingPage: FC = typedMemo(function TrainingPage(props){
-    const data = testTemp;
-    const [currentTask, setCurrentTask] = useState(data.words[0]);
+export const TrainingPage: FC = typedMemo(function TrainingPage() {
+    const navigate = useNavigate()
+    const fireworks = getFireworks(3000)
+
+    const [data] = useState(shuffleArray(StartThemeWords));
+    const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
+    const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
     const [countSkippedWords, setCountSkippedWords] = useState(0);
     const [isDoneTask, setIsDoneTask] = useState(false);
-    const navigate = useNavigate();
+    const [intervalID, setIntervalID] = useState<TimeoutId>()
+    const [currentStep, setCurrentStep] = useState(-1)
 
-    const toNextTask = useCallback(() => {
-        const nextTaskIndex = data.words.findIndex(word => word.id === currentTask.id) + 1;
-
-        if(nextTaskIndex === data.words.length){
-            navigate('result', {state: {result: 100 - Math.floor((countSkippedWords + 1) / data.words.length * 100)}});
-            return;
-        }
-
-        setCurrentTask(data.words[nextTaskIndex]);
-    }, [data, currentTask, navigate, setCurrentTask, countSkippedWords])
+    const getTaskResult = () => 100 - Math.floor((countSkippedWords) / data.length * 100)
+    const clearRecognizeText = () => setSignRecognizeText([])
 
     const skip = useCallback(() => {
-        toNextTask();
+        setCurrentStep(currentStep => currentStep + 1)
         setCountSkippedWords(count => count + 1);
-    }, [setCountSkippedWords, toNextTask]);
+        clearRecognizeText()
+    }, [setCountSkippedWords, setCurrentStep]);
 
     const next = useCallback(() => {
-        toNextTask();
+        setCurrentStep(currentStep => currentStep + 1)
         setIsDoneTask(false);
-    }, [])
+        clearRecognizeText()
+    }, [setCurrentStep, setIsDoneTask])
+
+    useEffect(() => {
+        if (currentStep === data.length && countSkippedWords !== data.length)
+            fireworks()
+    }, [currentStep]);
+
 
     return (
-        <Page className={styles.trainingPage}>
-            <PageContent className={styles.trainingPage__content}>
-                <div className={styles.trainingPage__header}>
-                    <img src={Logo} alt="Go to main page" className={styles.trainingPage__logo} />
-
-                    <div className={styles.trainingPage__info}>
-                        <div className={styles.trainingPage__name}>
-                            <Typography variant="h2">{data.name}</Typography>
-                            <Tooltip anchorSelect={`.${styles.trainingPage__author}`}>
-                                Системный тест
-                            </Tooltip>
-                            <img src={User} alt="Test's author" className={styles.trainingPage__author} />
-                        </div>
-
-                        <div className={styles.trainingPage__progress}>
-                            <Button 
-                                className={styles.trainingPage__closeTraining}
-                                variant="light" 
-                                endContent={<img src={Close} alt="Close training"/>}
-                            />
-                            <TaskProgress currentTaskId={currentTask.id} tasks={data.words}/>
-                        </div>
-                    </div>
-                    <div className={styles.trainingPage__actions}>
-                        <TaskFeedback items={feedbackTemp} className={styles.trainingPage__feedback} />
-                        {/* <TaskSetting />*/}
-                    </div>
+        <Page>
+            <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
+            <PageContent className={styles.trainingTask}>
+                <div className={styles.trainingTask__logoContainer} onClick={() => navigate("/")}>
+                    <img src={Logo} alt={"Логотип"} width={230}/>
                 </div>
-                <RecognitionBlock text={currentTask.word} className={styles.trainingPage__recognition} next={() => setIsDoneTask(true)}/>
+                {
+                    currentStep !== -1 &&
+                    <div className={styles.trainingTask__progressBarContainer}>
+                        <ProgressBar currentStep={currentStep - 1} stepCount={data.length}/>
+                    </div>
+                }
+                <div className={styles.trainingTask__exitButtonContainer}>
+                    {
+                        currentStep !== data.length &&
+                        <Button
+                            variant={"faded"}
+                            color={"default"}
+                            size={"lg"}
+                            onClick={() => setExitModalIsOpen(true)}
+                        >
+                            В главное меню
+                        </Button>
+                    }
+                </div>
 
-                {!isDoneTask && <Button variant="faded" onClick={skip}>Пропустить</Button>}
+
+                <div className={styles.trainingTask__taskContainer}>
+                    {
+                        currentStep === -1 &&
+                        (
+                            <Card className={clsx(styles.trainingTask__startCard, styles.trainingTask__startAnimation)}>
+                                <Typography variant={"h2"}>
+                                    Начало тренировки
+                                </Typography>
+                                <Typography variant={"p"} className={styles.trainingTask__startCardDescription}>
+                                    Вам будут предложены слова, которое вы должны показать в камеру.
+                                    Наша система распознает ваш жест и отобразит слово зелёным цветом.
+                                    После успешного выполнения перейдите к следующему слову.
+                                </Typography>
+
+                                <Button variant={"solid"} color={"primary"}
+                                        onClick={() => setCurrentStep(0)}
+                                        size={"lg"}
+                                >
+                                    Начать прохождение
+                                </Button>
+                            </Card>
+                        )
+                    }
+                    {
+                        currentStep >= 0 && currentStep <= data.length - 1 &&
+                        <RecognitionBlock
+                            word={data[currentStep]}
+                            className={styles.trainingTask__recognition}
+                            onSuccess={() => setIsDoneTask(true)}
+                            setIntervalID={setIntervalID}
+                            intervalID={intervalID}
+                            signRecognizeText={signRecognizeText}
+                            setSignRecognizeText={setSignRecognizeText}
+                        />
+                    }
+                    {
+                        currentStep === data.length &&
+                        <div className={styles.trainingTask__result}>
+                            <img src={ResultImage} className={styles.trainingTask__resultImage}
+                                 alt="Иконка результата"/>
+                            <Typography variant="h2" className={styles.trainingTask__resultTitle}>
+                                Конец тренировки!
+                            </Typography>
+                            <ResultCard
+                                title="Результат"
+                                iconUrl={Result}
+                                content={`${getTaskResult()}%`}
+                                className={styles.trainingTask__resultCard}/>
+                        </div>
+                    }
+                </div>
+
+                <div className={styles.trainingTask__buttonsContainer}>
+                    {
+                        currentStep >= 0 && currentStep <= data.length - 1 && !isDoneTask &&
+                        <Button
+                            size={"lg"}
+                            variant="faded"
+                            onClick={skip}
+                        >
+                            Пропустить
+                        </Button>
+                    }
+                </div>
+
+                <div className={styles.trainingTask__taskContinueContainer}>
+                    {
+                        isDoneTask &&
+                        <TaskContinue next={next} isRightAnswer={true}/>
+                    }
+                    {
+                        currentStep === data.length &&
+                        <div className={styles.trainingTask__toHome}>
+                            <Button
+                                size={'lg'}
+                                color="primary"
+                                onClick={() => {
+                                    clearInterval(intervalID)
+                                    navigate("/")
+                                }}
+                            >
+                                В главное меню
+                            </Button>
+                        </div>
+                    }
+                </div>
             </PageContent>
-            {isDoneTask && <TaskContinue next={next} isRightAnswer={true} />}
         </Page>
-    );
-});
+    )
+})

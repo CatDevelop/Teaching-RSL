@@ -1,24 +1,34 @@
+@keyframes showDown {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .practiceSelectWord {
-    max-width: 9300px;
     box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    animation: showDown 0.5s ease-in;
 }
 
 .practiceSelectWord__contentContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: end;
     gap: var(--space-m);
+    height: 100%;
+    padding-top: var(--space-m);
 }
 
 .practiceSelectWord__title {
     font-family: var(--main-font);
-    font-weight: var(--font-weight-l);
+    font-weight: var(--font-weight-xl);
     font-size: var(--font-size-s);
     text-align: center;
-}
-
-.practiceSelectWord__gifContainer video {
-   height: 252px;
 }
 
 .practiceSelectWord__buttonsContainer {

@@ -20,31 +20,26 @@
     }
 }
 
+@keyframes showFade {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
 .learningTask {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 230px 1fr 230px;
-    grid-template-rows: 70px 1fr 70px;
+    grid-template-rows: 70px calc(100vh - 140px - var(--page-padding-m) * 2 - var(--space-m) * 2) 70px;
     grid-template-areas:
             "logo progress exit"
             "b task c"
             "d buttons e";
-
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    gap: 20px;
+    align-items: center !important;
+    justify-content: center !important;
+    justify-items: center !important;
+    gap: var(--space-m);
+    max-height: 100vh !important;
+    overflow: hidden;
 }
-
-/*.learningTask__headerContainer {*/
-/*    height: 50px;*/
-
-/*    width: 100%;*/
-
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*}*/
 
 .learningTask__logoContainer {
     cursor: pointer;
@@ -63,17 +58,12 @@
 
 .learningTask__taskContainer {
     grid-area: task;
-    max-width: 1080px;
-    max-height: 450px;
     width: 100%;
+    height: 100%;
+    padding: var(--space-m);
     display: flex;
     justify-content: center;
     align-items: center;
-    /*margin-bottom: 110px;*/
-    /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 50%;*/
-    /*transform: translate(-50%, -50%);*/
 }
 
 .learningTask__buttonsContainer {
@@ -92,13 +82,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
-    max-width: 500px;
+    justify-content: space-between;
+    gap: var(--space-m);
+    width: 700px;
+    height: 300px;
+}
+
+.learningTask__startCardDescription {
+    font-family: var(--main-font);
+    font-size: var(--font-size-m);
+    text-align: center;
 }
 
 .learningTask__theory {
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,5 +118,40 @@
     animation: showDown 0.5s ease-in;
 }
 
+.learningTask__toPractice {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-l);
+    gap: var(--space-xl);
+    background-color: var(--light-primary-color);
+    animation: showFade 0.3s ease-in;
+}
 
+.learningTask__result {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-m);
+}
 
+.learningTask__resultTitle {
+    color: var(--primary-color);
+}
+
+.learningTask__resultDescription {
+    font-family: var(--main-font);
+    font-size: var(--font-size-m);
+    text-align: center;
+}
+
+.learningTask__resultImage {
+    max-height: 100%;
+    max-width: 100%;
+    animation: showDown 0.5s ease-in;
+}

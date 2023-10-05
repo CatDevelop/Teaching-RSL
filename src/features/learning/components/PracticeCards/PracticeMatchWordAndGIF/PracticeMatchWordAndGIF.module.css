@@ -11,7 +11,6 @@
 
 .practiceMatchWordAndGIF {
     width: 100%;
-    max-width: 1080px;
     box-sizing: border-box;
     animation: showDown 0.5s ease-in;
 }
@@ -20,6 +19,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
+    height: 100%;
+    width: 100%;
 }
 
 .practiceMatchWordAndGIF__titleContainer {
@@ -31,7 +32,7 @@
 
 .practiceMatchWordAndGIF__title {
     font-family: var(--main-font);
-    font-weight: var(--font-weight-l);
+    font-weight: var(--font-weight-xl);
     font-size: var(--font-size-s);
     text-align: center;
 }
@@ -46,6 +47,7 @@
     gap: var(--space-m);
     margin-top: var(--space-m);
     align-items: center;
+    height: 100%;
 }
 
 .practiceMatchWordAndGIF__taskContainer_buttons,
@@ -53,11 +55,5 @@
     display: flex;
     flex-direction: row;
     gap: var(--space-m);
-}
-.practiceMatchWordAndGIF__taskContainer__button {
-    width: 285px;
-}
-
-.practiceMatchWordAndGIF__taskContainer_gifs video {
-    width: 285px;
+    width: 100%;
 }

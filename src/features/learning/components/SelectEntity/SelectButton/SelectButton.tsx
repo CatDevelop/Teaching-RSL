@@ -16,10 +16,7 @@ type Props = ComponentProps & Readonly<{
 /** Кнопка, которую можно выбрать. */
 export const SelectButton: FC<Props> = typedMemo(function SelectButton(props) {
     const handleClick = () => {
-        if(props.state === "checked")
-            props.setState(null)
-        else
-            props.setState(props.wordObject)
+        props.setState(props.state === "checked" ? null : props.wordObject)
     }
 
     return (

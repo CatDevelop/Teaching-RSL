@@ -11,7 +11,8 @@
 
 .practiceSelectGif {
     width: 100%;
-    max-width: 680px;
+    height: 100%;
+    /*max-width: 680px;*/
     box-sizing: border-box;
     animation: showDown 0.5s ease-in;
 }
@@ -20,6 +21,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 100%;
+    width: 100%;
+
+    overflow: hidden;
 }
 
 .practiceSelectGif__titleContainer {
@@ -31,7 +36,7 @@
 
 .practiceSelectGif__title {
     font-family: var(--main-font);
-    font-weight: var(--font-weight-l);
+    font-weight: var(--font-weight-xl);
     font-size: var(--font-size-s);
     text-align: center;
 }
@@ -43,7 +48,36 @@
 .practiceSelectGif__gifsContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    align-items: end;
+    grid-template-rows: repeat(2, calc(100% - 25px - 15px - 50%));
+    justify-items: right;
     gap: 10px;
+    /*height: calc(100% - 86px);*/
+    height: 100%;
+    margin-top: 10px;
 }
+
+/*.practiceSelectGif__gifsContainer {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 20px;*/
+/*    height: calc(100vh - 580px);*/
+/*}*/
+/*.practiceSelectGif__gifsRow {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    gap: 20px;*/
+/*    height: 100%;*/
+/*}*/
+
+
+.practiceSelectGif__gif {
+    aspect-ratio: 5 / 3;
+    /*width: 100%;*/
+    height: 100%;
+
+}
+
+.practiceSelectGif__gif:nth-child(2n) {
+    justify-self: left;
+}
+

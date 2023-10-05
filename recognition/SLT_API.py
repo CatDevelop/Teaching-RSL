@@ -7,14 +7,11 @@ from collections import deque
 from concurrent.futures import ThreadPoolExecutor
 from queue import Queue
 from threading import Thread
-
 import cv2
 import numpy as np
 import socketio
 from flask import Flask
 from omegaconf import OmegaConf
-
-from GigaChat_API import normalize_text
 from model import Predictor
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'

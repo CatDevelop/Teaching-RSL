@@ -1,5 +1,4 @@
 :root{
-
     /* Colors */
     --service-backround-color: rgba(240, 247, 255, 1);
     --on-surface-color: rgba(255, 255, 255, 1);
@@ -15,11 +14,14 @@
     --secondary-text-color: rgba(82, 82, 91, 1);
     --thirdly-text-color: rgba(161, 161, 170, 1);
     --disabled-button-color: rgb(113, 113, 122, 1);
+    --modal-blur: rgba(0, 0, 0, 0.65);
+
 
     /* Font */
     --main-font: OpenSans, serif;
 
-    --font-weight-l: 700;
+    --font-weight-xl: 700;
+    --font-weight-l: 600;
     --font-weight-m: 500;
     --font-weight-s: 400;
 
@@ -30,12 +32,17 @@
     --font-size-xl: calc(var(--font-size-m) * 1.6);
     --font-size-xxl: calc(var(--font-size-m) * 2.4);
 
+
     /* Spaces */
     --space-m: 20px;
     --space-xs: calc(var(--space-m) * 0.25);
     --space-s: calc(var(--space-m) * 0.5);
     --space-l: calc(var(--space-m) * 1.6);
     --space-xl: calc(var(--space-m) * 3);
+
+    --page-padding-m: 50px;
+    --page-padding-l: calc(var(--page-padding-m) * 2);
+
 
     /* Other */
     --box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),

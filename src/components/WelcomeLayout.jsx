@@ -1,6 +1,6 @@
 import React from 'react';
 import {Outlet} from 'react-router-dom';
-import WidthContent from "./WidthContent/WidthContent";
+import {WidthContent} from "./WidthContent";
 
 const HomeLayout = () => {
     return (
