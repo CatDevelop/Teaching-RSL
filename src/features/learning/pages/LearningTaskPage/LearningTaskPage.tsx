@@ -113,7 +113,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     useEffect(() => {
         if (currentStep === theoryCount + practiceCount)
             fireworks()
-    }, [currentStep]);
+    }, [currentStep, fireworks]);
 
     return (
         <Page>

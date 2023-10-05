@@ -34,11 +34,11 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
             else
                 props.setStatus({status: "error", message: props.wordObject.text})
         }
-    }, [props.checked])
+    }, [props, selectGIF?.id])
 
     useEffect(() => {
         props.setIsTaskReadyToCheck(!!selectGIF)
-    }, [selectGIF])
+    }, [selectGIF, props.setIsTaskReadyToCheck])
 
     return (
         <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>

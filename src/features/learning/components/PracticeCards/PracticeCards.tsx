@@ -1,13 +1,6 @@
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import React, {Dispatch, FC, SetStateAction} from "react";
-import styles from "./TheoryCard.module.css";
-import clsx from "clsx";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
-import TheoryIconSVG from "../../../../assets/images/TheoryIcon.svg"
-import {Typography} from "../../../../components/Typography";
-import {SignVideo} from "../../../../components/SignVideo";
-import {LearningBlock} from "../LearningBlock";
-import {Word} from "../../../../core/models/Word";
 import {taskType} from "../../../../core/data";
 import {PracticeSelectWord} from "./PracticeSelectWord";
 import {PracticeSelectGIFByWord} from "./PracticeSelectGIFByWord";

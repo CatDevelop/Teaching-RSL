@@ -19,7 +19,7 @@ export const SelectContainer: FC<SelectContainerProps> = typedMemo(function Sele
     const handleClickOnSelectObject = useCallback(() => {
         if (props.state === "default" || props.state === "checked")
             props.setState(props.state === "checked" ? null : props.wordObject)
-    }, [props.state, props.setState, props.wordObject])
+    }, [props])
 
     return (
         <motion.div

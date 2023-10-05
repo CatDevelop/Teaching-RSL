@@ -1,8 +1,8 @@
-import { typedMemo } from "../../../../core/utils/typedMemo";
-import React, { FC } from "react";
+import {typedMemo} from "../../../../core/utils/typedMemo";
+import React, {FC} from "react";
 import styles from "./ResultCard.module.css";
-import { ComponentProps } from "../../../../core/models/ComponentProps";
-import { Typography } from "../../../../components/Typography";
+import {ComponentProps} from "../../../../core/models/ComponentProps";
+import {Typography} from "../../../../components/Typography";
 import clsx from "clsx";
 
 type Props = ComponentProps & Readonly<{

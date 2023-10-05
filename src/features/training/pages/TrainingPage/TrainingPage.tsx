@@ -51,7 +51,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     useEffect(() => {
         if (currentStep === data.length && countSkippedWords !== data.length)
             fireworks()
-    }, [currentStep]);
+    }, [currentStep, countSkippedWords, data.length, fireworks]);
 
 
     return (

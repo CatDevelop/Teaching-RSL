@@ -1,6 +1,6 @@
 import {Card} from "../../../../components/Card";
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import React, {Dispatch, FC, SetStateAction, useCallback, useEffect, useMemo, useRef, useState} from "react";
+import React, {Dispatch, FC, SetStateAction, useCallback, useEffect} from "react";
 import styles from "./RecognitionBlock.module.css";
 import {Typography} from "../../../../components/Typography";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
@@ -21,7 +21,6 @@ type Props = ComponentProps & Readonly<{
 }>
 
 export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props){
-
     let videoElement: any;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -75,7 +74,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
         startWebcam(addFrameSender);
 
         return () => {
-            console.log('EEEEE')
             videoElement.removeEventListener('play', addFrameSender);
             clearInterval(props.intervalID)
         }
@@ -101,7 +99,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
             <div className={styles.recognitionBlock__camera}>
                 <Spinner className={styles.recognitionBlock__cameraLoading}/>
-                <WebCamera isClosing={false}/>
+                <WebCamera/>
             </div>
 
             <div className={styles.recognitionBlock__recognizedContainer}>

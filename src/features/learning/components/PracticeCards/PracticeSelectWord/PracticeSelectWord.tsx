@@ -1,5 +1,5 @@
 import {typedMemo} from "../../../../../core/utils/typedMemo";
-import React, {FC, useEffect, useMemo, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import styles from "./PracticeSelectWord.module.css";
 import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
@@ -24,7 +24,7 @@ type Props = ComponentProps & Readonly<{
 /** Практика "Выбери слово". */
 export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWord(props) {
     const [selectWord, setSelectWord] = useState<Word | null>()
-    const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants])) // Это песня... Нужно, чтобы не перемешивался при рендере
+    const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants]))
 
     useEffect(() => {
         if (props.checked) {
@@ -33,11 +33,11 @@ export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWo
             else
                 props.setStatus({status: "error", message: props.wordObject.text})
         }
-    }, [props.checked])
+    }, [props, selectWord])
 
     useEffect(() => {
         props.setIsTaskReadyToCheck(!!selectWord)
-    }, [selectWord])
+    }, [selectWord, props.setIsTaskReadyToCheck])
 
     return (
         <div className={clsx(styles.practiceSelectWord)}>
