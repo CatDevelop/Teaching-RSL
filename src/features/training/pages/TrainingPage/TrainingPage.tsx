@@ -180,7 +180,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                             Предупреждение
                         </Typography>
                         <Typography variant={"p"} className={styles.trainingTask__warning__description}>
-                            Распознавание работает только на локальном стенде, <br/>чтобы развернуть его следуйте
+                            Распознавание работает только при запущенной на локальной машине модели распознавания <br/>чтобы развернуть её следуйте
                             инструкции в Readme.md данного репозитория:
                             <div className={styles.trainingTask__warning__gitLink}>
                                 <svg width={20} height={20} viewBox="0 0 15 15" fill="none"
