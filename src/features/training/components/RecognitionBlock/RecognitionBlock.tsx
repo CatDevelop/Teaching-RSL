@@ -20,7 +20,7 @@ type Props = ComponentProps & Readonly<{
     setSignRecognizeText: Dispatch<SetStateAction<string[]>>
 }>
 
-export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props){
+export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props) {
 
     let videoElement: any;
     const canvas = document.createElement('canvas');
@@ -52,7 +52,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     useEffect(() => {
         videoElement = document.getElementById('webcam');
-        if(videoElement)
+        if (videoElement)
             startWebcam(addFrameSender);
 
         return () => {
@@ -63,12 +63,12 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
 
     useEffect(() => {
-        if(props.signRecognizeText.includes(props.word.text.toLowerCase()))
+        if (props.signRecognizeText.includes(props.word.recognitionText.toLowerCase()))
             props.onSuccess()
     }, [props.signRecognizeText])
 
 
-    if(!props)
+    if (!props)
         return;
 
     let socket = io('ws://localhost:5000', {
@@ -114,7 +114,13 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                     {
                         props.signRecognizeText.slice(-15).map(word => {
                             return (
-                                <Typography variant="span" className={clsx(styles.recognitionBlock__recognizedWord, word === props.word.text.toLowerCase() && styles.recognitionBlock__rightWord)}>
+                                <Typography
+                                    variant="span"
+                                    className={clsx(
+                                        styles.recognitionBlock__recognizedWord,
+                                        word === props.word.recognitionText.toLowerCase() && styles.recognitionBlock__rightWord
+                                    )}
+                                >
                                     {word}
                                 </Typography>
                             )
