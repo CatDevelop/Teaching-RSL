@@ -22,7 +22,7 @@ export const ResultCard: FC<Props> = typedMemo(function ResultCard({
         <div className={clsx(styles.resultCard, className)}>
             <Typography variant="span" className={styles.resultCard__title}>{title}</Typography>
             <div className={styles.resultCard__result}>
-                <img src={iconUrl} className={styles.resultCard__resultIcon} alt="Иконка результата"/>
+                <img src={iconUrl} rel="preload" className={styles.resultCard__resultIcon} alt="Иконка результата"/>
                 <Typography variant="span" className={styles.resultCard__resultContent}>
                     {content}
                 </Typography>
