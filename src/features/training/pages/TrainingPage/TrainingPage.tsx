@@ -62,7 +62,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     clearInterval(intervalID)
                     navigate("/")
                 }}>
-                    <img src={Logo} alt={"Логотип"} width={230}/>
+                    <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
                 </div>
                 {
                     currentStep !== -1 &&
@@ -123,8 +123,12 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     {
                         currentStep === data.length &&
                         <div className={styles.trainingTask__result}>
-                            <img src={ResultImage} className={styles.trainingTask__resultImage}
-                                 alt="Иконка результата"/>
+                            <img
+                                src={ResultImage}
+                                rel="preload"
+                                className={styles.trainingTask__resultImage}
+                                alt="Иконка результата"
+                            />
                             <Typography variant="h2" className={styles.trainingTask__resultTitle}>
                                 Конец тренировки!
                             </Typography>

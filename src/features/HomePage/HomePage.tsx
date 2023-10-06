@@ -21,7 +21,7 @@ export const HomePage = () => {
                 <div onClick={() => navigate("learning")}>
                     <Card className={styles.homePage__buttonContainer}>
                         <div className={styles.homePage__button__imageContainer}>
-                            <img src={startLearningSVG} alt={"Перейти к обучению"}/>
+                            <img src={startLearningSVG} rel="preload" alt={"Перейти к обучению"}/>
                         </div>
                         <div className={styles.homePage__button__typographyContainer}>
                             <Typography variant={"h2"} className={styles.homePage__button__title}>
@@ -38,7 +38,7 @@ export const HomePage = () => {
                 <div onClick={() => navigate("training")}>
                     <Card className={styles.homePage__buttonContainer}>
                         <div className={styles.homePage__button__imageContainer}>
-                            <img src={startTrainingSVG} alt={"Перейти к тренировкам"}/>
+                            <img src={startTrainingSVG} rel="preload" alt={"Перейти к тренировкам"}/>
                         </div>
                         <div className={styles.homePage__button__typographyContainer}>
                             <Typography variant={"h2"} className={styles.homePage__button__title}>

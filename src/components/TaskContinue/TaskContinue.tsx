@@ -25,7 +25,7 @@ export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
             {props.isRightAnswer ?
                 <>
                     <div className={styles.taskContinue__result}>
-                        <img src={TickCircle} alt="Иконка галочки" className={styles.taskContinue__icon} />
+                        <img src={TickCircle} rel="preload" alt="Иконка галочки" className={styles.taskContinue__icon} />
                         <Typography
                             variant="h3"
                             className={styles.taskContinue__textBlock}>
@@ -36,7 +36,7 @@ export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
                 </> :
                 <>
                     <div className={styles.taskContinue__result}>
-                        <img src={CloseCircle} alt="Иконка крестика" className={styles.taskContinue__icon} />
+                        <img src={CloseCircle} rel="preload" alt="Иконка крестика" className={styles.taskContinue__icon} />
                         <div className={styles.taskContinue__textBlock}>
                             <Typography variant="h3">Правильный ответ: </Typography>
                             <Typography className={styles.taskContinue__description}>{props.rightAnswer}</Typography>

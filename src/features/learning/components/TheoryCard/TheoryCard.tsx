@@ -28,8 +28,9 @@ export const TheoryCard: FC<Props> = typedMemo(function TheoryCard(props) {
                         {
                             props.wordObject.imageSource &&
                             <img
+                                rel="preload"
                                 src={props.wordObject.imageSource}
-                                alt={"Изображение для жеста" + props.wordObject.text}
+                                alt={"Изображение для жеста"}
                                 className={styles.theoryCard__image}
                             />
                         }
