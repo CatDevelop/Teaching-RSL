@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction} from "react";
+import React, {Dispatch, FC, SetStateAction, useCallback} from "react";
 import clsx from "clsx";
 import {typedMemo} from "../../core/utils/typedMemo";
 import styles from "./ExitConfirmation.module.css";
@@ -16,6 +16,9 @@ type Props = ComponentProps & Readonly<{
 export const ExitConfirmation: FC<Props> = typedMemo(function ExitConfirmation(props) {
     const navigate = useNavigate()
 
+    const closeModal = useCallback(() => props.setIsOpen(false), [props.setIsOpen])
+    const toMainPage = useCallback(() => navigate("/"), [navigate])
+
     if (!props.isOpen)
         return;
 
@@ -25,23 +28,23 @@ export const ExitConfirmation: FC<Props> = typedMemo(function ExitConfirmation(p
             <div className={clsx(styles.exitConfirmation__container, props.className)}>
                 <div className={styles.exitConfirmation__contentContainer}>
                     <div>
-                        <Typography variant={'h2'}>Действительно хотите выйти?</Typography>
-                        <Typography variant={'p'} className={styles.exitConfirmation_description}>
+                        <Typography variant='h2'>Действительно хотите выйти?</Typography>
+                        <Typography variant='p' className={styles.exitConfirmation__description}>
                             Ваш результат не сохранится
                         </Typography>
                     </div>
                     <div className={styles.exitConfirmation__buttons}>
                         <Button
-                            size={"lg"}
-                            variant={"faded"}
-                            onClick={() => props.setIsOpen(false)}
+                            size="lg"
+                            variant="faded"
+                            onClick={closeModal}
                         >
                             Остаться
                         </Button>
                         <Button
-                            size={"lg"}
+                            size="lg"
                             color="primary"
-                            onClick={() => navigate("/")}
+                            onClick={toMainPage}
                         >
                             Выйти
                         </Button>

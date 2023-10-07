@@ -120,7 +120,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.learningTask}>
                 <div className={styles.learningTask__logoContainer} onClick={() => navigate("/")}>
-                    <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
+                    <img src={Logo} rel="preload" alt="Логотип" width={230}/>
                 </div>
 
                 {
@@ -132,8 +132,8 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
 
                 <div className={styles.learningTask__exitButtonContainer}>
                     <Button
-                        variant={"faded"}
-                        color={"default"}
+                        variant="faded"
+                        color="default"
                         onClick={() => setExitModalIsOpen(true)}
                     >
                         В главное меню
@@ -146,9 +146,9 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         currentStep === -1 &&
                         (
                             <Card className={clsx(styles.learningTask__startCard, styles.learningTask__startAnimation)}>
-                                <Typography variant={"h2"}>Начало обучения</Typography>
+                                <Typography variant="h2">Начало обучения</Typography>
                                 <Typography
-                                    variant={"p"}
+                                    variant="p"
                                     className={styles.learningTask__startCardDescription}
                                 >
                                     Сначала вы ознакомитесь с теорией, затем пройдёте 3 интерактивных задания,
@@ -157,8 +157,8 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                                 </Typography>
 
                                 <Button
-                                    variant={"solid"}
-                                    color={"primary"}
+                                    variant="solid"
+                                    color="primary"
                                     onClick={() => setCurrentStep(0)}
                                 >
                                     Начать прохождение
@@ -208,9 +208,9 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     {
                         currentStep >= 0 && currentStep <= theoryCount - 2 &&
                         <Button
-                            size={"lg"}
-                            variant={"faded"}
-                            color={"primary"}
+                            size="lg"
+                            variant="faded"
+                            color="primary"
                             onClick={() => setCurrentStep(currentStep + 1)}
                         >
                             Далее
@@ -220,8 +220,8 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     {
                         currentStep === theoryCount - 1 &&
                         <Button
-                            size={"lg"}
-                            color={"primary"}
+                            size="lg"
+                            color="primary"
                             onClick={() => setCurrentStep(currentStep + 1)}
                         >
                             Перейти к практике
@@ -236,8 +236,8 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         <Button
                             disabled={!taskCompleted}
                             color={taskCompleted ? "primary" : "default"}
-                            variant={"faded"}
-                            size={"lg"}
+                            variant="faded"
+                            size="lg"
                             onClick={() => {
                                 setTaskChecked(true)
                             }}
@@ -279,7 +279,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     {
                         currentStep === theoryCount + practiceCount &&
                         <div className={styles.learningTask__toPractice}>
-                            <Button variant={"faded"} onClick={() => {
+                            <Button variant="faded" onClick={() => {
                                 navigate("/")
                             }}>
                                 В главное меню

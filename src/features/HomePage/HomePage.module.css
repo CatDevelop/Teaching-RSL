@@ -114,7 +114,7 @@
     .homePage__button__imageContainer {
         display: flex;
         justify-content: center;
-        max-height: 280px !important;
+        max-height: 280px;
     }
 
     .homePage__logosContainer {

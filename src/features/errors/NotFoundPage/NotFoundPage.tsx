@@ -1,12 +1,16 @@
-import React from "react";
+import React, {FC, useCallback} from "react";
 import {useNavigate} from "react-router-dom";
 import styles from "./NotFoundPage.module.css";
 import Logo from "../../../assets/images/Logo.svg";
 import {Typography} from "../../../components/Typography";
 import {Button} from "../../../components/Button";
+import {typedMemo} from "../../../core/utils/typedMemo";
 
-export const NotFoundPage = () => {
+export const NotFoundPage: FC = typedMemo(function NotFoundPage() {
     const navigate = useNavigate()
+
+    const toMainPage = useCallback(() => navigate("/"), [navigate])
+
     return (
         <div className={styles.notFoundPage}>
             <img src={Logo} width={400} alt={"Логотип сервиса \"Изучение русского жестового языка\""}/>
@@ -16,10 +20,10 @@ export const NotFoundPage = () => {
                     Извините, страница не найдена
                 </Typography>
 
-                <Button color="primary" variant="solid" onClick={() => navigate("/")}>
+                <Button color="primary" variant="solid" onClick={toMainPage}>
                     На главную
                 </Button>
             </div>
         </div>
     )
-}
+})

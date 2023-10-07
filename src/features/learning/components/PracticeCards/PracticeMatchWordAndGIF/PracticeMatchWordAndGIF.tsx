@@ -13,7 +13,6 @@ import {SelectState} from "../../../../../core/models/SelectState";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {StepStatus} from "../../../../../core/models/StepStatus";
 
-
 type handleClickOnSelectObject = (
     clickWordObject: Word,
     selectObjectState: SelectObjectState[],
