@@ -5,6 +5,7 @@ import {HomePage} from '../features/HomePage/HomePage';
 import {learningRoutes} from '../features/learning/routes';
 import {trainingRoutes} from '../features/training/routes';
 import {errorsRouts} from "../features/errors/routes";
+import {adminRoutes} from "../features/admin/routes";
 
 const routes: RouteObject[] = [
     {
@@ -20,6 +21,7 @@ const routes: RouteObject[] = [
            ...trainingRoutes,
         ]
     },
+    ...adminRoutes,
     ...errorsRouts
 ];
 
