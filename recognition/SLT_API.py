@@ -18,9 +18,24 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
 # Setting up the WebSocket server using Socket.IO
 sio = socketio.Server(cors_allowed_origins="*", async_mode='threading')
-# app = socketio.WSGIApp(sio)
 app = Flask(__name__)
 app.wsgi_app = socketio.WSGIApp(sio, app.wsgi_app)
+
+args = {
+    "config_path": "static/config.json",
+    "device": "cpu",
+    "camera_id": 0,
+    "sample_length": 32,
+    "drawing_fps": 20,
+    "inference_fps": 4,
+    "openvino": False
+}
+
+
+
+
+
+
 
 # Create a deque to hold video frames with a maximum length of 32
 frame_queue = deque(maxlen=32)
@@ -28,39 +43,11 @@ sign_res = []
 
 room_id = 0
 
+users = {}
 
-# Function to parse command-line arguments
-def parse_args():
-    parser = argparse.ArgumentParser(description='MMAction2 webcam demo')
-    parser.add_argument('--config_path', default='static/config.json', help='model config')
-    parser.add_argument(
-        '--device', type=str, default='cpu', help='CPU/CUDA device option')
-    parser.add_argument(
-        '--camera-id', type=int, default=0, help='camera device id')
-    parser.add_argument(
-        '--sample-length',
-        type=int,
-        default=32,
-        help='len of frame queue')
-    parser.add_argument(
-        '--drawing-fps',
-        type=int,
-        default=20,
-        help='Set upper bound FPS value of the output drawing')
-    parser.add_argument(
-        '--inference-fps',
-        type=int,
-        default=4,
-        help='Set upper bound FPS value of model inference')
-    parser.add_argument(
-        '--openvino',
-        action='store_true',
-        help='Use OpenVINO backend for inference. Available only on Linux')
-    args = parser.parse_args()
-    return args
+model = ""
 
 
-# Resize and pad image while preserving aspect ratio.
 def resize(im, new_shape=(224, 224)):
     shape = im.shape[:2]
     if isinstance(new_shape, int):
@@ -110,21 +97,26 @@ def init_model(config_path):
 
 
 # Function to perform model inference on video frames
-def inference(model, frame_queue, result_queue):
-    global room_id
-    args = parse_args()
+def inference(model, frame_queue, result_queue, sid):
+    global args, room_id, users
+
     last_sign_time = time.time()
+
     while True:
+        if users[sid][3]:
+            users.pop(sid, None)
+            break
+
         cur_fps_time = time.time()
 
         if (time.time() - last_sign_time > 3 and len(sign_res) > 1) or len(sign_res) > 10:
             not_normalize_text = ' '.join(sign_res)
 
-            print(not_normalize_text)
+            print(not_normalize_text, sid)
             last_sign_time = time.time()
             sign_res.clear()
 
-        if len(frame_queue) >= args.sample_length:
+        if len(frame_queue) >= args["sample_length"]:
             cur_windows = list(frame_queue)
         else:
             continue
@@ -145,27 +137,26 @@ def inference(model, frame_queue, result_queue):
                 if len(sign_res) == 0:
                     sign_res.append(label)
                     last_sign_time = time.time()
-                    sio.emit("send_not_normalize_text", label, room=room_id)
+                    sio.emit("send_not_normalize_text", label, room=sid)
                 elif sign_res[-1] != label:
                     sign_res.append(label)
                     last_sign_time = time.time()
-                    sio.emit("send_not_normalize_text", label, room=room_id)
+                    sio.emit("send_not_normalize_text", label, room=sid)
 
             # last_sign_time = time.time()
         model_fps = 1 / (time.time() - cur_fps_time)
 
 
 def main():
-    global frame_queue
-    args = parse_args()
+    global frame_queue, model
     model = init_model('config.json')
-    data = dict(img_shape=None, modality='RGB', label=-1)
+    # data = dict(img_shape=None, modality='RGB', label=-1)
     cam_disp = {'cam': None}
 
-    result_queue = Queue(maxsize=100)
+    # result_queue = Queue(maxsize=100)
 
-    pr = Thread(target=inference, args=(model, frame_queue, result_queue), daemon=True)
-    pr.start()
+    # pr = Thread(target=inference, args=(model, frame_queue, result_queue), daemon=True)
+    # pr.start()
 
     # Use ThreadPoolExecutor to manage multiple concurrent tasks
     with ThreadPoolExecutor(max_workers=2) as executor:
@@ -183,21 +174,39 @@ def main():
 # Socket.IO event handler: Client connects
 @sio.event
 def connect(sid, environ):
-    global room_id
+    global room_id, users, model
     print("Client connected:", sid)
-    print(sid)
+
     room_id = sid
 
+    if sid not in users.keys():
+        users[sid] = []
+        users[sid].append(deque(maxlen=32))
+        users[sid].append(Queue(maxsize=100))
+        users[sid].append(Thread(target=inference, args=(model, users[sid][0], users[sid][1], sid), daemon=True))
+        users[sid].append(False)
+        users[sid][2].start()
+    print(users)
+
+@sio.event
+def disconnect(sid):
+    global room_id, users, model
+    print("Disconnected:", sid)
+    users[sid][0].clear()
+    users[sid][3] = True
+    print(users)
 
 # Socket.IO event handler: Received video frame data from the client
 @sio.on("data")
 def data(sid, data):
-    global frame_queue
+    global frame_queue, users
     image_data = data.split(",")[1]
     image_bytes = base64.b64decode(image_data)
     frame = np.frombuffer(image_bytes, dtype=np.uint8)
     image = cv2.imdecode(frame, -1)
-    frame_queue.append(np.array(resize(image, (224, 224))[:, :, ::-1]))
+    users[sid][0].append(np.array(resize(image, (224, 224))[:, :, ::-1]))
+    print(sid)
+    # frame_queue.append(np.array(resize(image, (224, 224))[:, :, ::-1]))
 
 
 # Function to create the WebSocket server

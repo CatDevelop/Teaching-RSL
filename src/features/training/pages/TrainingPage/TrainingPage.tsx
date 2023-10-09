@@ -21,6 +21,7 @@ import {StartThemeWords} from "../../../../core/data";
 import {shuffleArray} from "../../../../core/utils/shuffleArray";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 import GitHubLogo from "../../../../assets/images/GitHubLogo.svg"
+import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
@@ -36,6 +37,8 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
 
     const getTaskResult = () => 100 - Math.floor((countSkippedWords) / data.length * 100)
     const clearRecognizeText = () => setSignRecognizeText([])
+
+    const toMainPage = useCallback(() => navigate("/"), [])
 
     const skip = useCallback(() => {
         setCurrentStep(currentStep => currentStep + 1)
@@ -54,15 +57,11 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
             fireworks()
     }, [currentStep, countSkippedWords, data.length, fireworks]);
 
-
     return (
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.trainingTask}>
-                <div className={styles.trainingTask__logoContainer} onClick={() => {
-                    clearInterval(intervalID)
-                    navigate("/")
-                }}>
+                <div className={styles.trainingTask__logoContainer} onClick={toMainPage}>
                     <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
                 </div>
                 {
@@ -166,10 +165,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                             <Button
                                 size={'lg'}
                                 color="primary"
-                                onClick={() => {
-                                    clearInterval(intervalID)
-                                    navigate("/")
-                                }}
+                                onClick={toMainPage}
                             >
                                 В главное меню
                             </Button>
