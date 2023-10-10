@@ -32,11 +32,6 @@ args = {
 }
 
 
-
-
-
-
-
 # Create a deque to hold video frames with a maximum length of 32
 frame_queue = deque(maxlen=32)
 sign_res = []
@@ -48,25 +43,25 @@ users = {}
 model = ""
 
 
-def resize(im, new_shape=(224, 224)):
-    shape = im.shape[:2]
-    if isinstance(new_shape, int):
-        new_shape = (new_shape, new_shape)
-
-    r = min(new_shape[0] / shape[0], new_shape[1] / shape[1])
-
-    new_unpad = int(round(shape[1] * r)), int(round(shape[0] * r))
-    dw, dh = new_shape[1] - new_unpad[0], new_shape[0] - new_unpad[1]
-
-    dw /= 2
-    dh /= 2
-
-    if shape[::-1] != new_unpad:
-        im = cv2.resize(im, new_unpad, interpolation=cv2.INTER_LINEAR)
-    top, bottom = int(round(dh - 0.1)), int(round(dh + 0.1))
-    left, right = int(round(dw - 0.1)), int(round(dw + 0.1))
-    im = cv2.copyMakeBorder(im, top, bottom, left, right, cv2.BORDER_CONSTANT, value=(114, 114, 114))
-    return im
+# def resize(im, new_shape=(224, 224)):
+#     shape = im.shape[:2]
+#     if isinstance(new_shape, int):
+#         new_shape = (new_shape, new_shape)
+#
+#     r = min(new_shape[0] / shape[0], new_shape[1] / shape[1])
+#
+#     new_unpad = int(round(shape[1] * r)), int(round(shape[0] * r))
+#     dw, dh = new_shape[1] - new_unpad[0], new_shape[0] - new_unpad[1]
+#
+#     dw /= 2
+#     dh /= 2
+#
+#     if shape[::-1] != new_unpad:
+#         im = cv2.resize(im, new_unpad, interpolation=cv2.INTER_LINEAR)
+#     top, bottom = int(round(dh - 0.1)), int(round(dh + 0.1))
+#     left, right = int(round(dw - 0.1)), int(round(dw + 0.1))
+#     im = cv2.copyMakeBorder(im, top, bottom, left, right, cv2.BORDER_CONSTANT, value=(114, 114, 114))
+#     return im
 
 
 # Initialize the ML model with configuration
@@ -188,6 +183,7 @@ def connect(sid, environ):
         users[sid][2].start()
     print(users)
 
+
 @sio.event
 def disconnect(sid):
     global room_id, users, model
@@ -195,6 +191,7 @@ def disconnect(sid):
     users[sid][0].clear()
     users[sid][3] = True
     print(users)
+
 
 # Socket.IO event handler: Received video frame data from the client
 @sio.on("data")
@@ -204,7 +201,7 @@ def data(sid, data):
     image_bytes = base64.b64decode(image_data)
     frame = np.frombuffer(image_bytes, dtype=np.uint8)
     image = cv2.imdecode(frame, -1)
-    users[sid][0].append(np.array(resize(image, (224, 224))[:, :, ::-1]))
+    users[sid][0].append(np.array(image[:, :, ::-1]))
     print(sid)
     # frame_queue.append(np.array(resize(image, (224, 224))[:, :, ::-1]))
 

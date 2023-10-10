@@ -5,7 +5,6 @@ import styles from "./RecognitionBlock.module.css";
 import {Typography} from "../../../../components/Typography";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
 import clsx from "clsx";
-import io from "socket.io-client";
 import {WebCamera} from "../WebCamera/WebCamera";
 import {Spinner} from "@nextui-org/react";
 import {Word} from "../../../../core/models/Word";
@@ -24,6 +23,13 @@ type Props = ComponentProps & Readonly<{
 
 export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props) {
     let videoElement: any;
+    // Dynamically create a canvas element
+    let resizeCanvas = document.createElement("canvas");
+
+    // var canvas = document.getElementById("canvas");
+    let resizeContext = resizeCanvas.getContext("2d");
+
+
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
@@ -48,9 +54,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     }, [onReceiveText]);
 
 
-
-
-
     const startWebcam = useCallback(async (addFrameSender: () => void) => {
         try {
             stopAllTracks(videoElement.srcObject)
@@ -69,9 +72,20 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     const addFrameSender = useCallback(() => {
         let id = setInterval(() => {
             console.log("Send frame")
-            canvas.width = videoElement.videoWidth;
-            canvas.height = videoElement.videoHeight;
-            context?.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            const originalWidth = videoElement.videoWidth;
+            const originalHeight = videoElement.videoHeight;
+            const aspectRatio = originalWidth / originalHeight;
+            let newWidth = 224;
+            let newHeight = newWidth / aspectRatio;
+
+            canvas.width = 224;
+            canvas.height = 224;
+
+            if (context)
+                context.fillStyle = 'rgb(114, 114, 114)';
+            context?.fillRect(0, 0, canvas.width, canvas.width);
+
+            context?.drawImage(videoElement, 0, (224 - newHeight) / 2, newWidth, newHeight);
             const image = canvas.toDataURL('image/jpeg');
             socket.emit("data", image);
         }, 30);
