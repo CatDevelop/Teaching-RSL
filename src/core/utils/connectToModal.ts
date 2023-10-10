@@ -4,4 +4,7 @@ export const socket = io('ws://6.tcp.eu.ngrok.io:11616', {
     'reconnection': false,
     'reconnectionDelay': 500,
     'reconnectionAttempts': 10,
+    extraHeaders: {
+        "ngrok-skip-browser-warning": "true"
+    }
 });
