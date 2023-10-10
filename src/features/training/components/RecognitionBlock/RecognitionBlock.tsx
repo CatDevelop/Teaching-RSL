@@ -23,13 +23,6 @@ type Props = ComponentProps & Readonly<{
 
 export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props) {
     let videoElement: any;
-    // Dynamically create a canvas element
-    let resizeCanvas = document.createElement("canvas");
-
-    // var canvas = document.getElementById("canvas");
-    let resizeContext = resizeCanvas.getContext("2d");
-
-
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
