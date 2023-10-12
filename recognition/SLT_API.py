@@ -13,6 +13,9 @@ import socketio
 from flask import Flask
 from omegaconf import OmegaConf
 from model import Predictor
+import gevent
+from engineio.async_drivers import gevent
+from engineio.async_drivers import threading
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
@@ -35,11 +38,7 @@ args = {
 # Create a deque to hold video frames with a maximum length of 32
 frame_queue = deque(maxlen=32)
 sign_res = []
-
-room_id = 0
-
 users = {}
-
 model = ""
 
 
@@ -93,7 +92,7 @@ def init_model(config_path):
 
 # Function to perform model inference on video frames
 def inference(model, frame_queue, result_queue, sid):
-    global args, room_id, users
+    global args, users
 
     last_sign_time = time.time()
 
@@ -169,10 +168,8 @@ def main():
 # Socket.IO event handler: Client connects
 @sio.event
 def connect(sid, environ):
-    global room_id, users, model
+    global users, model
     print("Client connected:", sid)
-
-    room_id = sid
 
     if sid not in users.keys():
         users[sid] = []
@@ -186,7 +183,7 @@ def connect(sid, environ):
 
 @sio.event
 def disconnect(sid):
-    global room_id, users, model
+    global users, model
     print("Disconnected:", sid)
     users[sid][0].clear()
     users[sid][3] = True
