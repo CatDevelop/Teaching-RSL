@@ -1,1 +1,0 @@
-export { TestWordsModal } from "./TestWordsModal";
