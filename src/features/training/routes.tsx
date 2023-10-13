@@ -1,7 +1,6 @@
 import React from "react";
-import { RouteObject } from "react-router-dom";
-import { TrainingCatalogPage } from './pages/TrainingCatalogPage';
-import { TrainingPage } from "./pages/TrainingPage";
+import {RouteObject} from "react-router-dom";
+import {TrainingPage} from "./pages/TrainingPage";
 
 export const trainingRoutes: RouteObject[] = [
     {
@@ -9,12 +8,8 @@ export const trainingRoutes: RouteObject[] = [
         children:[
             {
                 path: '',
-                element: <TrainingCatalogPage />, 
+                element: <TrainingPage />,
             },
-            {
-                path: ':id',
-                element: <TrainingPage />, 
-            }
         ],
     }
 ]
