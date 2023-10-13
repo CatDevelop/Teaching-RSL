@@ -36,6 +36,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const getTaskResult = () => 100 - Math.floor((countSkippedWords) / data.length * 100)
     const clearRecognizeText = () => setSignRecognizeText([])
 
+    const openExitModal = useCallback(() => setExitModalIsOpen(true), [setExitModalIsOpen])
     const toMainPage = useCallback(() => navigate("/"), [navigate])
 
     const skip = useCallback(() => {
@@ -59,7 +60,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.trainingTask}>
-                <div className={styles.trainingTask__logoContainer} onClick={toMainPage}>
+                <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
                     <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
                 </div>
                 {
@@ -75,7 +76,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                             variant={"faded"}
                             color={"default"}
                             size={"lg"}
-                            onClick={() => setExitModalIsOpen(true)}
+                            onClick={openExitModal}
                         >
                             В главное меню
                         </Button>

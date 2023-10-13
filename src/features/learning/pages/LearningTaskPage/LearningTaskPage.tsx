@@ -68,6 +68,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
         setCurrentStep(currentStep + 1)
     }, [currentStep, setCurrentStep])
 
+    const openExitModal = useCallback(() => setExitModalIsOpen(true), [setExitModalIsOpen])
     const toMainPage = useCallback(() => navigate("/"), [navigate])
     const toTrainingPage = useCallback(() => navigate("/training"), [navigate])
 
@@ -75,7 +76,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.learningTask}>
-                <div className={styles.learningTask__logoContainer} onClick={() => navigate("/")}>
+                <div className={styles.learningTask__logoContainer} onClick={openExitModal}>
                     <img src={Logo} rel="preload" alt="Логотип" width={230}/>
                 </div>
 
@@ -90,7 +91,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     <Button
                         variant="faded"
                         color="default"
-                        onClick={() => setExitModalIsOpen(true)}
+                        onClick={openExitModal}
                     >
                         В главное меню
                     </Button>
