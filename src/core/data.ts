@@ -3,13 +3,11 @@ import Hello from "../assets/images/ExhibitionStand/Привет.svg"
 import I from "../assets/images/ExhibitionStand/Я.svg"
 import You from "../assets/images/ExhibitionStand/Ты.png"
 import Friend from "../assets/images/ExhibitionStand/Друг.svg"
-import Love from "../assets/images/ExhibitionStand/Любовь.svg"
 import HelloSignVideo from "../assets/video/ExhibitionStand/Привет.mp4"
 import FriendSignVideo from "../assets/video/ExhibitionStand/Друг.mp4"
 import ISignVideo from "../assets/video/ExhibitionStand/Я.mp4"
 import LoveSignVideo from "../assets/video/ExhibitionStand/Люблю.mp4"
 import YouSignVideo from "../assets/video/ExhibitionStand/Тебя.mp4"
-import {TestGetResponse} from "./models/training/TestGetResponse";
 
 export type taskType = "SelectWord" | "SelectGIFByWord" | "MatchWordAndGIF"
 export const StartThemeWords: Word[] = [
@@ -18,6 +16,7 @@ export const StartThemeWords: Word[] = [
         text: "Привет",
         recognitionText: 'привет',
         gifSource: HelloSignVideo,
+        // gifSource: "https://media.spreadthesign.com/video/mp4/12/17658.mp4",
         imageSource: Hello,
     },
     {
@@ -25,6 +24,7 @@ export const StartThemeWords: Word[] = [
         text: "Друг",
         recognitionText: 'друг',
         gifSource: FriendSignVideo,
+        // gifSource: "https://media.spreadthesign.com/video/mp4/12/351476.mp4",
         imageSource: Friend,
     },
     {
@@ -32,6 +32,7 @@ export const StartThemeWords: Word[] = [
         text: "Я",
         recognitionText: 'я',
         gifSource: ISignVideo,
+        // gifSource: "https://media.spreadthesign.com/video/mp4/12/12788.mp4",
         imageSource: I,
     },
     {
@@ -39,7 +40,8 @@ export const StartThemeWords: Word[] = [
         text: "Любить",
         recognitionText: 'любовь',
         gifSource: LoveSignVideo,
-        imageSource: Love,
+        // gifSource: "https://media.spreadthesign.com/video/mp4/12/43672.mp4",
+        imageSource: "https://img.freepik.com/free-vector/in-love-illustration-concept_114360-867.jpg?w=740&t=st=1696343075~exp=1696343675~hmac=b2f71632908f384437f68a1838ab5d32feb410145a728f1ac20332feb27bcc6d",
     },
     {
         id: 4,
@@ -56,49 +58,3 @@ export const StartThemeTasks: taskType[] = [
     "SelectGIFByWord",
     "MatchWordAndGIF"
 ]
-
-export const themes = [
-    {
-        id: '0',
-        name: 'Семья',
-        color: "rgba(174, 126, 222, 1)",
-        tests: [
-            {
-                id:'0',
-                name: 'Тест 1',
-                wordsCount: 10,
-                description: "dawdw",
-            },
-        ]
-    },
-];
-
-export const userTests: any[] = [];
-
-export const testTemp: TestGetResponse = {
-    id:'0',
-    name: 'Тест 1',
-    words: [
-        {
-            id: '0',
-            word: 'Привет'
-        },
-        {
-            id: '1',
-            word: 'Я'
-        },
-        {
-            id: '2',
-            word: 'Тебя'
-        },
-        {
-            id: '3',
-            word: 'Люблю'
-        },
-        {
-            id: '4',
-            word: 'Друг'
-        }
-    ]
-}
-

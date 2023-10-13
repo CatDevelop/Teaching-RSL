@@ -105,12 +105,6 @@
     box-sizing: border-box;
 }
 
-.homePage__testButton {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-}
-
 @media (max-height: 800px)  {
     .homePage__buttonContainer {
         max-width: 450px !important; /* Переопределяю размер компонента Card */

@@ -15,8 +15,8 @@
 7. Запустить фронтенд (npm run start)
 
 ## Иллюстрации
-![Home](https://github.com/CatDevelop/Teaching-RSL/blob/98_link_front_with_back/src/assets/images/Demo1.png "Teaching-RSL")
-![Theory](https://github.com/CatDevelop/Teaching-RSL/blob/98_link_front_with_back/src/assets/images/Demo2.png "Teaching-RSL")
-![Practice](https://github.com/CatDevelop/Teaching-RSL/blob/98_link_front_with_back/src/assets/images/Demo3.png "Teaching-RSL")
-![Result](https://github.com/CatDevelop/Teaching-RSL/blob/98_link_front_with_back/src/assets/images/Demo4.png "Teaching-RSL")
-![Training](https://github.com/CatDevelop/Teaching-RSL/blob/98_link_front_with_back/src/assets/images/Demo5.png "Teaching-RSL")
+![Home](https://github.com/CatDevelop/Teaching-RSL/blob/stand/src/assets/images/Demo1.png "Teaching-RSL")
+![Theory](https://github.com/CatDevelop/Teaching-RSL/blob/stand/src/assets/images/Demo2.png "Teaching-RSL")
+![Practice](https://github.com/CatDevelop/Teaching-RSL/blob/stand/src/assets/images/Demo3.png "Teaching-RSL")
+![Result](https://github.com/CatDevelop/Teaching-RSL/blob/stand/src/assets/images/Demo4.png "Teaching-RSL")
+![Training](https://github.com/CatDevelop/Teaching-RSL/blob/stand/src/assets/images/Demo5.png "Teaching-RSL")
