@@ -17,8 +17,8 @@ import {PageContent} from "../../../../components/PageContent";
 import ResultImage from "../../../../assets/images/ResultLearningImage.svg";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
-import {PracticeCards} from "../../components/PracticeCards/PracticeCards";
-import {StartLearning} from "../../components/StartLearning/StartLearning";
+import {PracticeCards} from "../../components/PracticeCards";
+import {StartLearning} from "../../components/StartLearning";
 import {generateTasks} from "../../../../core/utils/generateTasks";
 
 // TODO написать нормальные типы
