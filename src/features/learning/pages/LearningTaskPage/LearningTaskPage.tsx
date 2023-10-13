@@ -4,14 +4,12 @@ import styles from "./LearningTaskPage.module.css";
 import {Page} from "../../../../components/Page";
 import Logo from "../../../../assets/images/Logo.svg"
 import {shuffleArray} from "../../../../core/utils/shuffleArray";
-import {StartThemeTasks, StartThemeWords, taskType} from "../../../../core/data";
+import {StartThemeTasks, StartThemeWords} from "../../../../core/data";
 import {Button} from "../../../../components/Button";
 import {TheoryCard} from "../../components/TheoryCard";
-import {Card} from "../../../../components/Card";
 import {Typography} from "../../../../components/Typography";
 import {useNavigate} from "react-router-dom";
 import {clsx} from "clsx";
-import {Word} from "../../../../core/models/Word";
 import {TaskContinue} from "../../../../components/TaskContinue";
 import {StepStatus} from '../../../../core/models/StepStatus'
 import {ProgressBar} from "../../../../components/ProgressBar";
@@ -20,7 +18,8 @@ import ResultImage from "../../../../assets/images/ResultLearningImage.svg";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {PracticeCards} from "../../components/PracticeCards/PracticeCards";
-import {TasksType} from "../../../../core/models/Tasks";
+import {StartLearning} from "../../components/StartLearning/StartLearning";
+import {generateTasks} from "../../../../core/utils/generateTasks";
 
 // TODO написать нормальные типы
 type task = {
@@ -28,8 +27,6 @@ type task = {
     task: any,
     type: string
 }
-
-type GeneratePracticesType = (words: Word[], tasks: taskType[]) => TasksType[]
 
 export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const navigate = useNavigate()
@@ -47,39 +44,6 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const [taskChecked, setTaskChecked] = useState<boolean>(false)
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
 
-    const generatePractices: GeneratePracticesType = useCallback((words, tasks) => {
-        const getOtherWords = (words: Word[], currentWordIndex: number, count: number) => {
-            let otherWords = [...words]
-            otherWords.splice(currentWordIndex, 1)
-            const shuffledOtherWords = shuffleArray(otherWords)
-            return shuffledOtherWords.slice(0, count)
-        }
-
-        const shuffledWords = shuffleArray(words);
-        const shuffledTasks = shuffleArray(tasks);
-        let results: TasksType[] = [];
-        let taskIndex = 0;
-        for (let task of shuffledTasks) {
-            if (task === "SelectWord" || task === "SelectGIFByWord") {
-                results.push({
-                    wordObject: shuffledWords[taskIndex],
-                    otherVariants: getOtherWords(shuffledWords, taskIndex, 3),
-                    type: task
-                })
-                taskIndex += 1;
-            }
-
-            if (task === "MatchWordAndGIF") {
-                results.push({
-                    variants: shuffledWords.slice(taskIndex, taskIndex + 3),
-                    type: task
-                })
-                taskIndex += 3;
-            }
-        }
-        return results
-    }, [])
-
     const [tasks] = useState<task[]>([
         ...shuffleArray(StartThemeWords).map((wordObject, index) => ({
             id: index,
@@ -88,7 +52,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
             },
             type: "theory"
         })),
-        ...shuffleArray(generatePractices(StartThemeWords, StartThemeTasks)).map((task, index) => ({
+        ...shuffleArray(generateTasks(StartThemeWords, StartThemeTasks)).map((task, index) => ({
             id: index + 5,
             task,
             type: "practice"
@@ -105,7 +69,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     }, [currentStep, setCurrentStep])
 
     const toMainPage = useCallback(() => navigate("/"), [navigate])
-    const toTrainingPage = useCallback(() => navigate("training"), [navigate])
+    const toTrainingPage = useCallback(() => navigate("/training"), [navigate])
 
     return (
         <Page>
@@ -136,27 +100,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                 <div className={styles.learningTask__taskContainer}>
                     {
                         currentStep === -1 &&
-                        (
-                            <Card className={clsx(styles.learningTask__startCard, styles.learningTask__startAnimation)}>
-                                <Typography variant="h2">Начало обучения</Typography>
-                                <Typography
-                                    variant="p"
-                                    className={styles.learningTask__startCardDescription}
-                                >
-                                    Сначала вы ознакомитесь с теорией, затем пройдёте 3 интерактивных задания,
-                                    чтобы закрепить материал.<br/>
-                                    Постарайтесь запомнить все жесты, чтобы успешно пройти практику.
-                                </Typography>
-
-                                <Button
-                                    variant="solid"
-                                    color="primary"
-                                    onClick={() => setCurrentStep(0)}
-                                >
-                                    Начать прохождение
-                                </Button>
-                            </Card>
-                        )
+                        <StartLearning onStart={nextStep}/>
                     }
 
                     {

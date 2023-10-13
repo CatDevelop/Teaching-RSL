@@ -159,32 +159,3 @@
     color: var(--accent-color);
 }
 
-.trainingTask__warning__container {
-    outline: 3px var(--danger-color) solid;
-    position: absolute;
-    left: 50%;
-    bottom: var(--space-m);
-    height: 170px;
-    transform: translateX(-50%);
-    width: 550px;
-    z-index: var(--bottom-modal-container-index);
-    animation: showFade 1s ease-in;
-}
-
-.trainingTask__warning__gitLink {
-    display: inline-flex;
-    flex-direction: row;
-    gap: var(--space-xs);
-    padding: 2px 5px;
-    border-radius: 5px;
-    transition: all 0.1s ease-in;
-    align-items: center;
-    justify-content: center;
-    margin: 0 10px;
-    transform: translateY(4px);
-    font-size: var(--font-size-s);
-}
-
-.trainingTask__warning__gitLink:hover {
-    background: var(--dark-on-surface-color);
-}
