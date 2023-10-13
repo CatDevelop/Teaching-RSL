@@ -72,7 +72,7 @@
     max-width: 500px;
     justify-content: space-between;
     align-items: center;
-    z-index: var(--bottom-modal-container-index);
+    z-index: var(--bottom-buttons-index);
 }
 
 .trainingTask__startCard {

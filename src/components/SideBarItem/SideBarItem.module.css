@@ -6,11 +6,12 @@
     cursor: pointer;
     border-left: 4px transparent solid;
     transition: all 0.1s ease-in;
+    align-items: center;
 }
 
 .sideBarItem__label {
     color: var(--thirdly-text-color);
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-s);
 }
 
 .sideBarItem__container:hover {
