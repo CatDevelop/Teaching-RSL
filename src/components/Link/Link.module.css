@@ -1,0 +1,16 @@
+.link {
+    --hover-opacity: 0.9;
+    --focus-opacity: 0.8;
+
+    color: var(--primary-color);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-l);
+}
+
+.link:hover {
+    opacity: var(--hover-opacity);
+}
+
+.link:active {
+    opacity: var(--focus-opacity);
+}

@@ -59,4 +59,6 @@
     --exit-confirmation-blur-index: 900;
     --webcamera-index: 200;
     --select-entity-number-index: 100;
+  
+    --sidebar-width: 320px;
 }

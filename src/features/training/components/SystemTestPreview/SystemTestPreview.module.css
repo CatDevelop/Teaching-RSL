@@ -1,0 +1,44 @@
+.systemTestPreview {
+    border-radius: var(--border-radius-xs);
+    padding: var(--space-m);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    cursor: pointer;
+    width: 100%;
+}
+
+.systemTestPreview:hover {
+    box-shadow: var(--box-shadow);
+}
+
+.systemTestPreview:hover .systemTestPreview__start {
+    transform: translateX(10px);
+}
+
+.systemTestPreview__info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+}
+
+.systemTestPreview__name {
+    color: var(--on-surface-color);
+    margin-bottom: var(--space-s);
+}
+
+.systemTestPreview__description {
+    font-size: var(--font-size-xs);
+    color: var(--on-surface-opacity-color);
+    font-weight: var(--font-weight-m);
+}
+
+.systemTestPreview__separator {
+    --separator-size: 3px;
+
+    width: var(--separator-size);
+    height: var(--separator-size);
+    border-radius: 100%;
+    background-color: var(--on-surface-opacity-color);
+}
