@@ -6,6 +6,12 @@ export type SelectWordTaskType = {
     type: "SelectWord"
 }
 
+export type SelectImageTaskType = {
+    wordObject: Word,
+    otherVariants: Word[],
+    type: "SelectImage"
+}
+
 export type SelectGIFByWordTaskType = {
     wordObject: Word,
     otherVariants: Word[],
@@ -22,4 +28,4 @@ export type TheoryTaskType = {
     type: "theory"
 }
 
-export type TasksType = SelectWordTaskType | SelectGIFByWordTaskType | MatchWordAndGIFTaskType | TheoryTaskType
+export type TasksType = SelectWordTaskType | SelectImageTaskType | SelectGIFByWordTaskType | MatchWordAndGIFTaskType | TheoryTaskType

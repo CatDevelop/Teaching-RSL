@@ -60,7 +60,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
         let results: TasksType[] = [];
         let taskIndex = 0;
         for (let task of shuffledTasks) {
-            if (task === "SelectWord" || task === "SelectGIFByWord") {
+            if (task === "SelectWord" || task === "SelectGIFByWord" || task === "SelectImage") {
                 results.push({
                     wordObject: shuffledWords[taskIndex],
                     otherVariants: getOtherWords(shuffledWords, taskIndex, 3),
@@ -151,7 +151,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                                 <Button
                                     variant="solid"
                                     color="primary"
-                                    onClick={() => setCurrentStep(0)}
+                                    onClick={nextStep}
                                 >
                                     Начать прохождение
                                 </Button>

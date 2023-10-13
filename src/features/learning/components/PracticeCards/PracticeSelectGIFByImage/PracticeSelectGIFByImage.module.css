@@ -1,0 +1,41 @@
+.practiceSelectGifByImage {
+    width: 100%;
+    max-width: 1080px;
+    box-sizing: border-box;
+}
+
+.practiceSelectGifByImage__contentContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+    gap: var(--space-m);
+}
+
+.practiceSelectGifByImage__title {
+    font-family: var(--main-font);
+    font-weight: var(--font-weight-l);
+    font-size: var(--font-size-s);
+    text-align: center;
+}
+
+.practiceSelectGifByImage__imageContainer img {
+    margin-top: 44px;
+    height: 223px;
+    object-fit: cover;
+    width: 315px;
+    border: 1px solid var(--dark-on-surface-color);
+    border-radius: var(--border-radius-m);
+}
+
+.practiceSelectGifByImage__buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+.practiceSelectGifByImage__imagesContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    flex-wrap: wrap;
+}
