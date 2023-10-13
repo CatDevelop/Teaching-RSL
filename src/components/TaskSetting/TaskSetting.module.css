@@ -1,0 +1,9 @@
+.taskSetting__camera {
+    --max-camera-height: 400px;
+
+    max-height: var(--max-camera-height);
+    height: 100%;
+    width: 100%;
+    border-radius: var(--border-radius-m);
+    background-color: red;
+}

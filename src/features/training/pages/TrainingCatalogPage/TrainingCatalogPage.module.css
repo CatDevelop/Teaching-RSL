@@ -1,0 +1,30 @@
+.trainingCatalog {
+    gap: var(--space-m);
+}
+
+.trainingCatalog__title {
+    margin-bottom: var(--space-l);
+}
+
+.trainingCatalog__testsOverflow {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.trainingCatalog__tests {
+    --random-test-button-width: 40px;
+
+    width: 100%;
+    height: 100%;
+    display: grid;
+    position: absolute;
+    grid-template-columns: 1fr 1fr var(--random-test-button-width);
+    grid-gap: var(--space-m);
+}
+
+.trainingCatalog__randomTest {
+    padding: var(--space-xs);
+    min-width: var(--random-test-button-width);
+    align-self: flex-end;
+}
