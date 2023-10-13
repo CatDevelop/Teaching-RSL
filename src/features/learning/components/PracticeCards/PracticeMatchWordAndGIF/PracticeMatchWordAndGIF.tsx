@@ -9,9 +9,10 @@ import {Word} from "../../../../../core/models/Word";
 import {Typography} from "../../../../../components/Typography";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
 import {SelectButton} from "../../SelectEntity/SelectButton";
-import {SelectState} from "../../../../../core/models/SelectState";
+import {SelectObjectState, SelectState} from "../../../../../core/models/SelectState";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {StepStatus} from "../../../../../core/models/StepStatus";
+import {getInitialSelectObjectsState} from "../../../../../core/utils/getInitialSelectObjectsState";
 
 type handleClickOnSelectObject = (
     clickWordObject: Word,
@@ -19,30 +20,18 @@ type handleClickOnSelectObject = (
     setSelectObjectState: React.Dispatch<React.SetStateAction<SelectObjectState[]>>
 ) => void
 
-type SelectObjectState = {
-    wordObject: Readonly<Word>;
-    state: SelectState;
-}
-
 type Props = ComponentProps & Readonly<{
     variants: Word[];
     setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }>
 
+type toDefaultStateType = () => { wordObject: Readonly<Word>; state: SelectState }[]
+
 
 /** Практика "Подбери пару к словам". */
 export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMatchWordAndGIF(props) {
     const [variantsInOtherOrder] = useState(shuffleArray(props.variants))
-
-    const getInitialSelectObjectsState = (variants: Word[]) => {
-        return variants.map<SelectObjectState>(variant => (
-            {
-                wordObject: variant,
-                state: "default"
-            }
-        ))
-    }
 
     const [words, setWords] = useState<SelectObjectState[]>(getInitialSelectObjectsState(variantsInOtherOrder))
     const [gifs, setGifs] = useState<SelectObjectState[]>(getInitialSelectObjectsState(props.variants))
@@ -50,7 +39,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
     const [countOfCompleted, setCountOfCompleted] = useState(0)
 
     const handleClickOnSelectObject: handleClickOnSelectObject = useCallback((clickWordObject, selectObjectState, setSelectObjectState) => {
-        const toDefaultState: () => { wordObject: Readonly<Word>; state: SelectState }[] = () => {
+        const toDefaultState: toDefaultStateType = () => {
             return selectObjectState.map(objectInState => ({
                 wordObject: objectInState.wordObject,
                 state: objectInState.state === "success" ? "success" : "default"

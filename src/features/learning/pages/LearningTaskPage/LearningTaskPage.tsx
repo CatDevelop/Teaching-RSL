@@ -20,6 +20,7 @@ import ResultImage from "../../../../assets/images/ResultLearningImage.svg";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {PracticeCards} from "../../components/PracticeCards/PracticeCards";
+import {TasksType} from "../../../../core/models/Tasks";
 
 // TODO написать нормальные типы
 type task = {
@@ -28,22 +29,7 @@ type task = {
     type: string
 }
 
-type taskObject = Partial<
-    {
-        wordObject: Word,
-        otherVariants: Word[],
-        type: "SelectWord" | "SelectGIFByWord"
-    } &
-    {
-        variants: Word[],
-        type: "MatchWordAndGIF"
-    } &
-    {
-        wordObject: Word,
-        type: "theory"
-    }
->
-
+type GeneratePracticesType = (words: Word[], tasks: taskType[]) => TasksType[]
 
 export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const navigate = useNavigate()
@@ -61,8 +47,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const [taskChecked, setTaskChecked] = useState<boolean>(false)
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
 
-
-    const generatePractices = useCallback((words: Word[], tasks: taskType[]) => {
+    const generatePractices: GeneratePracticesType = useCallback((words, tasks) => {
         const getOtherWords = (words: Word[], currentWordIndex: number, count: number) => {
             let otherWords = [...words]
             otherWords.splice(currentWordIndex, 1)
@@ -72,7 +57,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
 
         const shuffledWords = shuffleArray(words);
         const shuffledTasks = shuffleArray(tasks);
-        let results = [];
+        let results: TasksType[] = [];
         let taskIndex = 0;
         for (let task of shuffledTasks) {
             if (task === "SelectWord" || task === "SelectGIFByWord") {
@@ -114,6 +99,13 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
         if (currentStep === theoryCount + practiceCount)
             fireworks()
     }, [currentStep, fireworks]);
+
+    const nextStep = useCallback(() => {
+        setCurrentStep(currentStep + 1)
+    }, [currentStep, setCurrentStep])
+
+    const toMainPage = useCallback(() => navigate("/"), [navigate])
+    const toTrainingPage = useCallback(() => navigate("training"), [navigate])
 
     return (
         <Page>
@@ -171,7 +163,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         currentStep >= 0 && currentStep <= theoryCount - 1 &&
                         (
                             <div className={clsx(styles.learningTask__theory, styles.learningTask__startAnimation)}>
-                                <TheoryCard wordObject={tasks[currentStep].task.wordObject}/>
+                                <TheoryCard wordObject={tasks[currentStep].task?.wordObject}/>
                             </div>
                         )
                     }
@@ -211,7 +203,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                             size="lg"
                             variant="faded"
                             color="primary"
-                            onClick={() => setCurrentStep(currentStep + 1)}
+                            onClick={nextStep}
                         >
                             Далее
                         </Button>
@@ -222,7 +214,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         <Button
                             size="lg"
                             color="primary"
-                            onClick={() => setCurrentStep(currentStep + 1)}
+                            onClick={nextStep}
                         >
                             Перейти к практике
                         </Button>
@@ -253,7 +245,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         currentStepStatus.status === 'success' &&
                         <TaskContinue
                             next={() => {
-                                setCurrentStep(currentStep + 1)
+                                nextStep()
                                 setCurrentStepStatus({status: "default"})
                                 setTaskChecked(false)
                                 setTaskCompleted(false)
@@ -266,7 +258,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         currentStepStatus.status === 'error' &&
                         <TaskContinue
                             next={() => {
-                                setCurrentStep(currentStep + 1)
+                                nextStep()
                                 setCurrentStepStatus({status: "default"})
                                 setTaskChecked(false)
                                 setTaskCompleted(false)
@@ -279,14 +271,10 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     {
                         currentStep === theoryCount + practiceCount &&
                         <div className={styles.learningTask__toPractice}>
-                            <Button variant="faded" onClick={() => {
-                                navigate("/")
-                            }}>
+                            <Button variant="faded" onClick={toMainPage}>
                                 В главное меню
                             </Button>
-                            <Button color="primary" onClick={() => {
-                                navigate("/training/")
-                            }}>
+                            <Button color="primary" onClick={toTrainingPage}>
                                 Попробовать свои знания
                             </Button>
                         </div>

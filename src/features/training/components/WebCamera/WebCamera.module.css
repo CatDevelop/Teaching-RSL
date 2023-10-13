@@ -11,7 +11,7 @@
 .webcamera {
     height: 100%;
     border-radius: 10px;
-    z-index: 5;
+    z-index: var(--webcamera-index);
     margin: 0 auto;
     object-fit: cover;
     transform: scale(-1, 1);

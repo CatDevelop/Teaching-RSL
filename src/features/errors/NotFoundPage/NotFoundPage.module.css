@@ -36,5 +36,5 @@
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-s);
     text-align: center;
-    margin-bottom: 30%;
+    margin-bottom: var(--space-m);
 }

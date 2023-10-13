@@ -10,7 +10,7 @@
     width: 100vw;
     height: 100vh;
     background-color: var(--modal-blur);
-    z-index: 2000;
+    z-index: var(--exit-confirmation-blur-index);
 }
 
 .exitConfirmation__container {
@@ -25,7 +25,7 @@
     padding: var(--space-l);
     gap: var(--space-xl);
     background-color: var(--on-surface-color);
-    z-index: 9999;
+    z-index: var(--bottom-modal-container-index);
     animation: showFade 0.3s ease-in;
 }
 

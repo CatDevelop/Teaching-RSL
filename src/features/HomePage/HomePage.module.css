@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-l);
-    padding: 20px 70px;
+    padding: var(--space-m) var(--space-xl);
     justify-content: center;
     align-items: center;
 }
@@ -42,11 +42,11 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-    padding: var(--space-l) !important;
+    padding: var(--space-l) !important; /* Переопределяю отступы компонента Card */
     height: 100%;
     width: 100%;
-    max-width: 525px !important;
-    max-height: 525px !important;
+    max-width: 525px !important; /* Переопределяю размер компонента Card */
+    max-height: 525px !important; /* Переопределяю размер компонента Card */
     box-sizing: border-box;
     transition: all 0.2s ease-in;
     cursor: pointer;
@@ -63,13 +63,13 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 90px );
+    height: calc(100% - 90px);
 }
 
 .homePage__button__typographyContainer {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--space-s);
 }
 
 .homePage__button__title {
@@ -100,15 +100,15 @@
     justify-content: space-around;
     align-items: center;
     max-width: 1080px;
-    max-height: 85px !important;
+    max-height: 85px !important; /* Переопределяю размер компонента Card */
     width: 100%;
     box-sizing: border-box;
 }
 
 @media (max-height: 800px)  {
     .homePage__buttonContainer {
-        max-width: 450px !important;
-        max-height: 450px !important;
+        max-width: 450px !important; /* Переопределяю размер компонента Card */
+        max-height: 450px !important; /* Переопределяю размер компонента Card */
     }
 
     .homePage__button__imageContainer {
@@ -118,6 +118,6 @@
     }
 
     .homePage__logosContainer {
-        max-width: 930px !important;
+        max-width: 930px;
     }
 }
