@@ -1,6 +1,5 @@
 # Сервис для изучения русской жестовой речи 
-Проект выполнен в рамках дисциплины "Проектный практикум" студентов 2-3 курсов Уральского федерального университета имени первого Президента России Б. Н. Ельцина. 
-Для международной выставки-форума "Россия" на ВДНХ в Москве
+Проект выполнен в рамках дисциплины "Проектный практикум" студентов 2-3 курсов Уральского федерального университета имени первого Президента России Б. Н. Ельцина.
 
 ## Инструкция запуска
 1. Перейти в папку recognition (cd recognition)
@@ -12,7 +11,7 @@
 7. Запустить фронтенд (npm run start)
 
 ## Иллюстрации
-![Home](https://github.com/CatDevelop/Teaching-RSL/blob/88_exhibition_stand__dev/src/assets/images/Demo1.png "Teaching-RSL")
-![Theory](https://github.com/CatDevelop/Teaching-RSL/blob/88_exhibition_stand__dev/src/assets/images/Demo2.png "Teaching-RSL")
-![Practice](https://github.com/CatDevelop/Teaching-RSL/blob/88_exhibition_stand__dev/src/assets/images/Demo3.png "Teaching-RSL")
-![Result](https://github.com/CatDevelop/Teaching-RSL/blob/88_exhibition_stand__dev/src/assets/images/Demo4.png "Teaching-RSL")
+![Home](https://github.com/CatDevelop/Teaching-RSL/blob/stand/src/assets/images/Demo1.png "Teaching-RSL")
+![Theory](https://github.com/CatDevelop/Teaching-RSL/blob/stand/src/assets/images/Demo2.png "Teaching-RSL")
+![Practice](https://github.com/CatDevelop/Teaching-RSL/blob/stand/src/assets/images/Demo3.png "Teaching-RSL")
+![Result](https://github.com/CatDevelop/Teaching-RSL/blob/stand/src/assets/images/Demo4.png "Teaching-RSL")
