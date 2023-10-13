@@ -52,4 +52,6 @@
     --border-radius-xs: calc(var(--border-radius-m) / 2);
     --border-radius-s: 12px;
     --border-radius-m: 16px;
+
+    --sidebar-width: 320px;
 }

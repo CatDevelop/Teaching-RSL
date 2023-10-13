@@ -10,10 +10,12 @@ import { Button } from "../../../../components/Button";
 import RandomIcon from "../../../../assets/images/Random.svg";
 import { Tooltip } from "react-tooltip";
 import { PageContent } from "../../../../components/PageContent";
+import {SideBar} from "../../../../components/SideBar";
 
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
     return (
         <Page className={styles.trainingCatalog}>
+            <SideBar currentPage={"/training"}/>
             <PageContent>
                 <Typography
                     variant="h1"
