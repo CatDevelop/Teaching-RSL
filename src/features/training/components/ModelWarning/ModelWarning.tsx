@@ -17,7 +17,7 @@ export const ModelWarning: FC = typedMemo(function ModelWarning() {
                 инструкции в Readme.md данного репозитория:
                 <div className={styles.modelWarning__gitLink}>
                     <img src={GitHubLogo} alt="GitHub логотип" />
-                    <a href={"https://github.com/CatDevelop/Teaching-RSL/tree/stand"} target={"_blank"}>
+                    <a href={"https://github.com/CatDevelop/Teaching-RSL/tree/stand"} target={"_blank"} rel="noreferrer">
                         Teaching-RSL
                     </a>
                 </div>

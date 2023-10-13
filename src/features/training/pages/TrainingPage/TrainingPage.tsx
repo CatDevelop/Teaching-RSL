@@ -36,7 +36,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const getTaskResult = () => 100 - Math.floor((countSkippedWords) / data.length * 100)
     const clearRecognizeText = () => setSignRecognizeText([])
 
-    const toMainPage = useCallback(() => navigate("/"), [])
+    const toMainPage = useCallback(() => navigate("/"), [navigate])
 
     const skip = useCallback(() => {
         setCurrentStep(currentStep => currentStep + 1)

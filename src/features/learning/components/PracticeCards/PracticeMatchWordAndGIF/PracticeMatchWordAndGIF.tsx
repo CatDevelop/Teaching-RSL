@@ -26,8 +26,12 @@ type Props = ComponentProps & Readonly<{
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }>
 
-type toDefaultStateType = () => { wordObject: Readonly<Word>; state: SelectState }[]
+type toDefaultStateType = () => {
+    wordObject: Readonly<Word>;
+    state: SelectState
+}[]
 
+type getNewStatusMatchPracticeType = (checkedWordIndex: number, checkedGIFIndex: number) => SelectState
 
 /** Практика "Подбери пару к словам". */
 export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMatchWordAndGIF(props) {
@@ -61,20 +65,13 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
             setSelectObjectState(toDefaultState())
     }, [isBlocked])
 
-    const checkStatusOfSelectedPair = () => {
-        if (words.some(word => word.state === "checked")
-            && gifs.some(gif => gif.state === "checked")) {
-            let checkedWordIndex = words.findIndex(word => word.state === "checked")
-            let checkedGIFIndex = gifs.findIndex(gif => gif.state === "checked")
-
-            setIsBlocked(true)
-            let newState: SelectState;
+    const getNewStatusMatchPractice: getNewStatusMatchPracticeType = useCallback(
+        (checkedWordIndex, checkedGIFIndex) => {
             if (words[checkedWordIndex].wordObject.id === gifs[checkedGIFIndex].wordObject.id) {
-                newState = "success"
                 setCountOfCompleted(countOfCompleted + 1)
                 setIsBlocked(false)
+                return "success";
             } else {
-                newState = "error"
                 setTimeout(() => {
                     setWords(words.with(checkedWordIndex, {
                         wordObject: words[checkedWordIndex].wordObject,
@@ -86,7 +83,20 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
                     }))
                     setIsBlocked(false)
                 }, 1000)
+                return "error";
             }
+        },
+        [words, gifs, setCountOfCompleted, countOfCompleted, setIsBlocked, setGifs, setWords]
+    )
+
+    const checkStatusOfSelectedPair = useCallback(() => {
+        if (words.some(word => word.state === "checked")
+            && gifs.some(gif => gif.state === "checked")) {
+            let checkedWordIndex = words.findIndex(word => word.state === "checked")
+            let checkedGIFIndex = gifs.findIndex(gif => gif.state === "checked")
+
+            setIsBlocked(true)
+            let newState: SelectState = getNewStatusMatchPractice(checkedWordIndex, checkedGIFIndex);
 
             setWords(words.with(checkedWordIndex, {
                 wordObject: words[checkedWordIndex].wordObject,
@@ -97,19 +107,19 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
                 state: newState
             }))
         }
-    }
+    }, [words, gifs, setIsBlocked, setWords, setGifs, getNewStatusMatchPractice]);
 
-    const checkTaskStatus = () => {
+    const checkTaskStatus = useCallback(() => {
         if (countOfCompleted === 3) {
             props.setIsTaskReadyToCheck(true)
             props.setStatus({status: "success"})
         }
-    }
+    }, [props.setIsTaskReadyToCheck, props.setStatus, countOfCompleted])
 
     useEffect(() => {
         checkStatusOfSelectedPair()
         checkTaskStatus()
-    }, [words, gifs])
+    }, [words, gifs, checkStatusOfSelectedPair, checkTaskStatus])
 
     return (
         <div className={clsx(styles.practiceMatchWordAndGIF)}>

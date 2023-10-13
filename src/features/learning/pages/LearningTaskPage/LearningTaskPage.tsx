@@ -11,7 +11,7 @@ import {Typography} from "../../../../components/Typography";
 import {useNavigate} from "react-router-dom";
 import {clsx} from "clsx";
 import {TaskContinue} from "../../../../components/TaskContinue";
-import {StepStatus} from '../../../../core/models/StepStatus'
+import {StepStatus} from '../../../../core/models/StepStatus';
 import {ProgressBar} from "../../../../components/ProgressBar";
 import {PageContent} from "../../../../components/PageContent";
 import ResultImage from "../../../../assets/images/ResultLearningImage.svg";
@@ -96,13 +96,11 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     </Button>
                 </div>
 
-
                 <div className={styles.learningTask__taskContainer}>
                     {
                         currentStep === -1 &&
                         <StartLearning onStart={nextStep}/>
                     }
-
                     {
                         currentStep >= 0 && currentStep <= theoryCount - 1 &&
                         (
@@ -111,7 +109,6 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                             </div>
                         )
                     }
-
                     {
                         currentStep !== -1 &&
                         currentStep >= theoryCount &&
@@ -123,8 +120,6 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                                        setTaskCompleted={setTaskCompleted}
                         />
                     }
-
-
                     {
                         currentStep === theoryCount + practiceCount &&
                         <div className={styles.learningTask__result}>
