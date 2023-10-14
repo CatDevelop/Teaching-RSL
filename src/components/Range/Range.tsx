@@ -5,7 +5,7 @@ import {Slider} from '@mantine/core';
 import styles from "./Range.module.css";
 
 type Props = ComponentProps & Readonly<{
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (value: number) => void;
     value?: number;
     min?: number;
     max?: number;
@@ -36,33 +36,12 @@ export const Range: FC<Props> = typedMemo(function Range({
     }, [rangeRef, handleRangeChange]);
 
     return (
-        // <div className={styles.range}>
-        //     <span className={clsx(styles.range__limit, styles.range__min)}>
-        //         {min}
-        //     </span>
-        //     <input
-        //         ref={rangeRef}
-        //         type="range"
-        //         min={min}
-        //         max={max}
-        //         value={value}
-        //         step="1"
-        //         className={styles.range__input}
-        //         onChange={onChange}
-        //     />
-        //     <span className={clsx(styles.range__limit, styles.range__max)}>
-        //         {max}
-        //     </span>
-        // </div>
-
-
-        // Заменил кастомный Range на компонент из библиотеки Mantine UI
-        // Сейчас без подключения функциональности
         <div className={styles.range}>
             <Slider
                 color="blue"
                 min={min}
                 max={max}
+                onChange={onChange}
                 marks={[
                     {value: min, label: min},
                     {value: Math.round((min+max)/2), label: Math.round((min+max)/2)},

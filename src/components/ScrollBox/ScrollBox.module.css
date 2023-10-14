@@ -1,6 +1,8 @@
 .container {
     padding: var(--space-m);
+    overflow: hidden;
 }
+
 .scrollBox {
     max-height: 100%;
     padding: 5px;

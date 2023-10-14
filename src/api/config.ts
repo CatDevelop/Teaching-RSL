@@ -1,3 +1,3 @@
 export const CONFIG = {
-	apiUrl: 'http://178.253.43.171:5189/api/v1/public/',
+	apiUrl: 'http://2016927-kgolunov.twc1.net/api/v1/public/',
 };

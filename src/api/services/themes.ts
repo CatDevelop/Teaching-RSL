@@ -10,7 +10,7 @@ import { GetThemeListResponseMapper } from "../../core/mappers/themes/GetThemeLi
 export namespace ThemesService {
 
     export async function getListWithUnits(): Promise<GetThemeListWithUnitsResponse> {
-        const {data} = await http.get<GetThemeListWithUnitsResponseDto>(ApiUrlsConfig.themes.getList);
+        const {data} = await http.get<GetThemeListWithUnitsResponseDto>(ApiUrlsConfig.themes.getListWithUnits());
         return GetThemeListWithUnitsResponseMapper.fromDto(data);
     }
 
