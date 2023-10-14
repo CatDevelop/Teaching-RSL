@@ -9,32 +9,41 @@ import { GetThemeResponse } from "../../../../core/models/themes/GetThemeListRes
 type Props = ComponentProps & Readonly<{
     triggerComponent: (onOpen: () => void) => ReactElement;
     start: (wordsCount: GetThemeResponse['wordsCount']) => void;
+    maxWordsCount: number;
 }>;
 
 const MIN_WORDS_COUNT = 10;
-const MAX_WORDS_COUNT = 45;
 
 export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal({
     triggerComponent,
     start,
+    maxWordsCount,
 }){
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [wordsCount, setWordsCount] = useState(MIN_WORDS_COUNT);
 
-    const handleWordsChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        setWordsCount(Number(event.target.value));
-    }, []);
+    const handleWordsChange = useCallback((value: number) => {
+        setWordsCount(value);
+    }, [setWordsCount]);
+
+    const openModal = useCallback(() => {
+        if(maxWordsCount < MIN_WORDS_COUNT){
+            start(maxWordsCount)
+        } else {
+            onOpen();
+        }
+    }, [onOpen, maxWordsCount, start])
 
     return (
         <>
-            {triggerComponent(onOpen)}
+            {triggerComponent(openModal)}
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
                         <>
                         <ModalHeader className="flex flex-col gap-1">Выберите количество слов</ModalHeader>
                         <ModalBody>
-                            <Range min={MIN_WORDS_COUNT} max={MAX_WORDS_COUNT} value={wordsCount} onChange={handleWordsChange} />
+                            <Range min={MIN_WORDS_COUNT} max={maxWordsCount} value={wordsCount} onChange={handleWordsChange} />
                         </ModalBody>
                         <ModalFooter>
                             <Button variant="faded" onPress={onClose}>

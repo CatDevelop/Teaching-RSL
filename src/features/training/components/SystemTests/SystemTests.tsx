@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import clsx from "clsx";
 import { typedMemo } from "../../../../core/utils/typedMemo";
 import { Typography } from "../../../../components/Typography";
@@ -9,21 +9,22 @@ import styles from "./SystemTests.module.css";
 import { GetThemeListWithUnitsResponse } from "../../../../core/models/themes/GetThemeListWithUnitsResponse";
 import { ThemesService } from "../../../../api/services/themes";
 import { useQuery } from "react-query";
-import { themes } from "../../../../core/data";
 
 type Props = ComponentProps;
 
 /** System tests. */
 export const SystemTests: FC<Props> = typedMemo(function SystemTests(props){
-    //const {data} = useQuery<GetThemeListWithUnitsResponse>("systemtests/get", ThemesService.getListWithUnits)
-    const [test, _] = useState(themes)
+    const {data} = useQuery<GetThemeListWithUnitsResponse>("systemtests/get", ThemesService.getListWithUnits)
 
+    if(!data) {
+        return null;
+    }
     return (
         <ScrollBox className={clsx(styles.systemTests, props.className)}>
-            {test?.map(theme => (
+            {data.themeList.map(theme => (
                 <div className={styles.systemTests__theme} key={theme.id}>
                     <Typography variant="h3">{theme.name}</Typography>
-                    {theme.tests.map(unit => (
+                    {theme.units.map(unit => (
                         <SystemTestPreview {...unit}/>
                     ))}
                 </div>

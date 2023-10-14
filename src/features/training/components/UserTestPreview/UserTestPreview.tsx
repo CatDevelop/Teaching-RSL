@@ -41,5 +41,5 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
         )
     },[props])
 
-    return <TestWordsModal triggerComponent={renderTestPreview} start={() => {}}/>;
+    return <TestWordsModal triggerComponent={renderTestPreview} start={() => {}} maxWordsCount={props.wordsCount} />;
 });
