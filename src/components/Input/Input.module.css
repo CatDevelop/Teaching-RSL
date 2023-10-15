@@ -1,0 +1,7 @@
+.input__inputWrapper{
+    background-color: var(--on-surface-color);
+}
+
+.input__label {
+    color: var(--thirdly-text-color)
+}
