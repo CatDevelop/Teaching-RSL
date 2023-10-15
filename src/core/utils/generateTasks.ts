@@ -18,10 +18,10 @@ export const generateTasks: GenerateTasksType = (words, tasks) => {
     let results: TasksType[] = [];
     let taskIndex = 0;
     for (let task of shuffledTasks) {
-        if (task === "SelectWord" || task === "SelectGIFByWord") {
+        if (task === "SelectWord" || task === "SelectGIFByWord" || task === "SelectImage") {
             results.push({
-                wordObject: shuffledWords[taskIndex],
-                otherVariants: getOtherWords(shuffledWords, taskIndex, 3),
+                wordObject: shuffledWords[taskIndex % words.length],
+                otherVariants: getOtherWords(shuffledWords, taskIndex % words.length, 3),
                 type: task
             })
             taskIndex += 1;
@@ -29,7 +29,7 @@ export const generateTasks: GenerateTasksType = (words, tasks) => {
 
         if (task === "MatchWordAndGIF") {
             results.push({
-                variants: shuffledWords.slice(taskIndex, taskIndex + 3),
+                variants: getOtherWords(shuffledWords, taskIndex % words.length, 3),
                 type: task
             })
             taskIndex += 3;

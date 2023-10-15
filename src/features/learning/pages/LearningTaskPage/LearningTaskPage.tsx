@@ -32,7 +32,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const navigate = useNavigate()
     const fireworks = getFireworks(3000)
     const theoryCount = 5;
-    const practiceCount = 3;
+    const practiceCount = 4;
 
     // -1 - стартовая плашка
     // 0-(theoryCount-1) - теория

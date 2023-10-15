@@ -1,5 +1,5 @@
 import {typedMemo} from "../../../../../core/utils/typedMemo";
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import styles from "./PracticeSelectImage.module.css";
 import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
@@ -20,14 +20,25 @@ type Props = ComponentProps & Readonly<{
     setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
 
-    // selectImage?: Word | null;
-    // setSelectImage: React.Dispatch<React.SetStateAction<Word | null | undefined>>;
 }>
 
 /** Практика "Выбери изображение". */
 export const PracticeSelectImage: FC<Props> = typedMemo(function PracticeSelectImage(props) {
     const [selectImage, setSelectImage] = useState<Word | null>()
     const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants]))
+
+    useEffect(() => {
+        if (props.checked) {
+            if (selectImage?.id === props.wordObject.id)
+                props.setStatus({status: "success"})
+            else
+                props.setStatus({status: "error", message: props.wordObject.text})
+        }
+    }, [props, selectImage?.id])
+
+    useEffect(() => {
+        props.setIsTaskReadyToCheck(!!selectImage)
+    }, [selectImage, props.setIsTaskReadyToCheck])
 
     return (
         <div className={clsx(styles.practiceSelectImage)}>
@@ -37,22 +48,26 @@ export const PracticeSelectImage: FC<Props> = typedMemo(function PracticeSelectI
                         <SignVideo src={props.wordObject.gifSource}/>
                     </div>
 
-                    <div className={styles.practiceSelectImage__buttonsContainer}>
-                        <Typography variant="h3" className={styles.practiceSelectImage__title}>
-                            Выбери правильную картинку
-                        </Typography>
-                        <div className={styles.practiceSelectImage__imagesContainer}>
-                            {
-                                variants.map((variant, number) => {
-                                    return <SelectImage wordObject={variant}
-                                                        setState={setSelectImage}
-                                                        state={getSelectEntity(props.checked, selectImage, variant, props.wordObject)}
-                                                        number={number}
-                                    />
-                                })
-                            }
-                        </div>
+                    {/*<div className={styles.practiceSelectImage__buttonsContainer}>*/}
+                    <Typography variant="h3" className={styles.practiceSelectImage__title}>
+                        Выбери правильную картинку
+                    </Typography>
+                    <div className={styles.practiceSelectImage__imagesContainer}>
+                        {
+                            variants.map((variant, index) => {
+                                return (
+                                    <div className={styles.practiceSelectImage__imageContainer}>
+                                        <SelectImage wordObject={variant}
+                                                     setState={setSelectImage}
+                                                     state={getSelectEntity(props.checked, selectImage, variant, props.wordObject)}
+                                                     number={index + 1}
+                                        />
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
+                    {/*</div>*/}
                 </div>
             </LearningBlock>
         </div>

@@ -1,3 +1,14 @@
+.selectImage__image div {
+    height: 100%;
+    width: 100%;
+    max-width: unset !important; /* Заменяю стандартное поведение изображения из nextui*/
+}
+
+.selectImage__image {
+    height: 100%;
+    width: 100%;
+}
+
 .selectImage__altText {
     width: 315px;
     height: 225px;

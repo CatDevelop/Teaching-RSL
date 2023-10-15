@@ -7,21 +7,26 @@ import {PageContent} from "../../../../components/PageContent";
 import {SideBar} from "../../../../components/SideBar";
 import {Button} from "../../../../components/Button";
 import {useNavigate} from "react-router-dom";
+import {LevelLink} from "../../components/Temporary/TestToTask/LevelLink";
 
 export const LearningCatalogPage: FC = typedMemo(function LearningCatalogPage(){
     const navigate = useNavigate()
     const toTask = useCallback(() => navigate("0"), [navigate])
     return (
-        <Page className={styles.trainingCatalog}>
+        <Page className={styles.learningCatalogg}>
             <SideBar currentPage={"/learning"}/>
             <PageContent>
                 <Typography
                     variant="h1"
-                    className={styles.trainingCatalog__title}
+                    className={styles.learningCatalog__title}
                 >
                     Обучение
                 </Typography>
-                <Button onClick={toTask}>К заданию</Button>
+                <div className={styles.learningCatalog__links}>
+                    <LevelLink id={"0"} name={"Часть 1"} completeWordsCount={5} allWordsCount={10}/>
+                    <LevelLink id={"1"} name={"Часть 2"} completeWordsCount={9} allWordsCount={10}/>
+                </div>
+                {/*<Button onClick={toTask}>К заданию</Button>*/}
             </PageContent>
         </Page>
     )

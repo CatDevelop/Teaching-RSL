@@ -1,17 +1,33 @@
+@keyframes showDown {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .practiceSelectImage {
     width: 100%;
-    max-width: 1080px;
+    height: 100%;
     box-sizing: border-box;
+    animation: showDown 0.5s ease-in;
 }
 
 .practiceSelectImage__contentContainer {
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr;
+    grid-template-rows: 25px 1fr 1fr;
+    grid-template-areas: "a header" "gif image" "gif image";
     align-items: start;
     gap: var(--space-m);
 }
 
 .practiceSelectImage__title {
+    grid-area: header;
     font-family: var(--main-font);
     font-weight: var(--font-weight-l);
     font-size: var(--font-size-s);
@@ -19,6 +35,7 @@
 }
 
 .practiceSelectImage__gifContainer video {
+    grid-area: gif;
     margin-top: 44px;
     height: 225px;
 }
@@ -26,12 +43,26 @@
 .practiceSelectImage__buttonsContainer {
     display: flex;
     flex-direction: column;
-    gap: var(--space-m);
+    gap: var(--space-s);
 }
 
 .practiceSelectImage__imagesContainer {
+    grid-area: image;
+    justify-items: right;
+    gap: var(--space-s);
+    height: calc(100% - 2*var(--space-m));
     display: flex;
     flex-direction: row;
-    gap: 40px;
     flex-wrap: wrap;
+    /*margin-top: 10px;*/
+}
+
+.practiceSelectImage__imagesContainer img {
+    height: 100%;
+    width: 100%;
+}
+
+.practiceSelectImage__imageContainer {
+    width: calc(50% - var(--space-s)/2);
+    height: calc(50% - var(--space-s)/2);
 }
