@@ -14,11 +14,7 @@ type Props = ComponentProps & Readonly<{
 
 const MIN_WORDS_COUNT = 10;
 
-export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal({
-    triggerComponent,
-    start,
-    maxWordsCount,
-}){
+export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal(props){
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [wordsCount, setWordsCount] = useState(MIN_WORDS_COUNT);
 
@@ -27,29 +23,29 @@ export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal({
     }, [setWordsCount]);
 
     const openModal = useCallback(() => {
-        if(maxWordsCount < MIN_WORDS_COUNT){
-            start(maxWordsCount)
+        if(props.maxWordsCount < MIN_WORDS_COUNT){
+            props.start(props.maxWordsCount)
         } else {
             onOpen();
         }
-    }, [onOpen, maxWordsCount, start])
+    }, [onOpen, props.maxWordsCount, props.start])
 
     return (
         <>
-            {triggerComponent(openModal)}
+            {props.triggerComponent(openModal)}
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
                         <>
                         <ModalHeader className="flex flex-col gap-1">Выберите количество слов</ModalHeader>
                         <ModalBody>
-                            <Range min={MIN_WORDS_COUNT} max={maxWordsCount} value={wordsCount} onChange={handleWordsChange} />
+                            <Range min={MIN_WORDS_COUNT} max={props.maxWordsCount} value={wordsCount} onChange={handleWordsChange} />
                         </ModalBody>
                         <ModalFooter>
                             <Button variant="faded" onPress={onClose}>
                                 Назад
                             </Button>
-                            <Button color="primary" onPress={() => start(wordsCount)}>
+                            <Button color="primary" onPress={() => props.start(wordsCount)}>
                                 Начать тест
                             </Button>
                         </ModalFooter>

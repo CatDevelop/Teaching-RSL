@@ -3,7 +3,6 @@ import { GetThemeListWithUnitsResponse, GetThemeWithUnitsResponse } from "../../
 import { GetUnitResponseMapper } from "../GetUnitResponseMapper";
 
 namespace GetThemeWithUnitsResponseMapper {
-
 	/**
 	 * Маппинг DTO в модель.
 	 * @param dto DTO.
@@ -20,7 +19,6 @@ namespace GetThemeWithUnitsResponseMapper {
 }
 
 export namespace GetThemeListWithUnitsResponseMapper {
-
 	/**
 	 * Маппинг DTO в модель.
 	 * @param dto DTO.
