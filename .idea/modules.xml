@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/TeachingRussianSignLanguage.iml" filepath="$PROJECT_DIR$/.idea/TeachingRussianSignLanguage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Teaching-RSL.iml" filepath="$PROJECT_DIR$/.idea/Teaching-RSL.iml" />
     </modules>
   </component>
 </project>

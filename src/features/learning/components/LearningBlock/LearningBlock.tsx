@@ -1,10 +1,10 @@
-import { Card } from "../../../../components/Card";
-import { typedMemo } from "../../../../core/utils/typedMemo";
+import {Card} from "../../../../components/Card";
+import {typedMemo} from "../../../../core/utils/typedMemo";
 import React, {FC, PropsWithChildren} from "react";
 import styles from "./LearningBlock.module.css"
-import { Typography } from "../../../../components/Typography";
+import {Typography} from "../../../../components/Typography";
 
-type Props = PropsWithChildren & Readonly<{
+type Props = PropsWithChildren & Readonly <{
     iconUrl: string;
     title: string;
 }>
@@ -21,7 +21,9 @@ export const LearningBlock: FC<Props> = typedMemo(function LearningBlock(props){
                     {props.title}
                 </Typography>
             </div>
-            {props.children}
+            <div className={styles.learningBlock__contentContainer}>
+                {props.children}
+            </div>
         </Card>
     );
 });

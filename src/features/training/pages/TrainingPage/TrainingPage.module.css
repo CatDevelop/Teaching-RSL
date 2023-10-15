@@ -1,62 +1,190 @@
-.trainingPage {
-    --max-training-width: 700px;
-    --logo-height: 42px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-l);
+@keyframes showUp {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.trainingPage__header {
+@keyframes showDown {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes showFade {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+.trainingTask {
+    display: grid !important;
+    grid-template-columns: 230px 1fr 230px;
+    grid-template-rows: 70px calc(100vh - 140px - var(--page-padding-m) * 2 - var(--space-m) * 2) 70px;
+    grid-template-areas:
+            "logo progress exit"
+            "b task c"
+            "d buttons e";
+    align-items: center !important;
+    justify-content: center !important;
+    justify-items: center !important;
+    gap: var(--space-m);
+    max-height: 100vh !important;
+    overflow: hidden;
+}
+
+.trainingTask__logoContainer {
+    cursor: pointer;
+    grid-area: logo;
+}
+
+.trainingTask__progressBarContainer {
+    width: 678px;
+    grid-area: progress;
+    animation: showUp 0.5s ease-in;
+}
+
+.trainingTask__exitButtonContainer {
+    grid-area: exit;
+}
+
+.trainingTask__taskContainer {
+    grid-area: task;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr var(--max-training-width) 1fr;
-    grid-gap: var(--space-m);
-    justify-items: center;
-}
-
-.trainingPage__feedback {
-    justify-self: flex-end;
-}
-
-.trainingPage__logo {
-    height: var(--logo-height);
-}
-
-.trainingPage__info {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-s);
-}
-
-.trainingPage__name {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--space-s)
 }
 
-.trainingPage__author {
-    --icon-size: 18px;
-    height: var(--icon-size);
-    width: var(--icon-size);
-}
-
-.trainingPage__progress {
+.trainingTask__buttonsContainer {
+    grid-area: buttons;
     display: flex;
-    gap: var(--space-m);
+    flex-direction: row;
+    max-width: 500px;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    z-index: 1000;
 }
 
-.trainingPage__closeTraining {
-    min-width: 0;
-    padding: var(--space-xs)
+.trainingTask__startCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    width: 700px;
+    height: 320px;
 }
 
-.trainingPage__recognition {
-    max-width: var(--max-training-width);
+.trainingTask__startCardDescription {
+    font-family: var(--main-font);
+    font-size: var(--font-size-m);
+    text-align: center;
+}
+
+.trainingTask__recognition {
     width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: showDown 0.5s ease-in;
+}
+
+.trainingTask__taskContinueContainer {
+    height: 100px;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.trainingTask__startAnimation {
+    animation: showDown 0.5s ease-in;
+}
+
+
+.trainingTask__toHome {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-l);
+    gap: var(--space-xl);
+    background-color: var(--light-primary-color);
+    animation: showFade 0.3s ease-in;
+}
+
+.trainingTask__result {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-m);
+}
+
+.trainingTask__resultTitle {
+    color: var(--primary-color);
+}
+
+.trainingTask__resultDescription {
+    font-family: var(--main-font);
+    font-size: var(--font-size-m);
+    text-align: center;
+}
+
+.trainingTask__resultImage {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.trainingTask__resultCard {
+    background-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.trainingTask__warning__container {
+    outline: 3px var(--danger-color) solid;
+    position: absolute;
+    left: 50%;
+    bottom: var(--space-m);
+    height: 170px;
+    transform: translateX(-50%);
+    width: 550px;
+    z-index: 1000;
+    animation: showFade 1s ease-in;
+}
+
+.trainingTask__warning__gitLink {
+    display: inline-flex;
+    flex-direction: row;
+    gap: var(--space-xs);
+    padding: 2px 5px;
+    border-radius: 5px;
+    transition: all 0.1s ease-in;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    transform: translateY(4px);
+    font-size: var(--font-size-s);
+}
+
+.trainingTask__warning__gitLink:hover {
+    background: var(--dark-on-surface-color);
 }

@@ -1,7 +1,6 @@
 .learningBlock {
     display: flex;
     flex-direction: column;
-    gap: var(--space-m);
 }
 
 .learningBlock__header {
@@ -20,4 +19,8 @@
 
 .learningBlock__title {
     color: var(--text-color);
+}
+
+.learningBlock__contentContainer {
+    height: 100%;
 }
