@@ -19,7 +19,6 @@ type Props = ComponentProps & Readonly<{
     checked: boolean;
     setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
-
 }>
 
 /** Практика "Выбери изображение". */

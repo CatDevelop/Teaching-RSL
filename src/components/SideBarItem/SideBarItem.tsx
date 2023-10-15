@@ -14,7 +14,8 @@ type Props = {
     },
     isActive: boolean,
 };
-export const SideBarItem: FC<Props> = typedMemo(function SideBarItem(props){
+
+export const SideBarItem: FC<Props> = typedMemo(function SideBarItem(props) {
     const navigate = useNavigate()
     const handleClick = useCallback(() => navigate(props.item.link), [props.item.link])
 
@@ -25,13 +26,8 @@ export const SideBarItem: FC<Props> = typedMemo(function SideBarItem(props){
             {
                 props.item.icon
             }
-            {/*<img src={props.item.icon} alt={"Иконка"} className={styles.sideBarItem__icon}/>*/}
-            <Typography variant="h3"
-                        className={styles.sideBarItem__label}
-            >
-                {
-                    props.item.label
-                }
+            <Typography variant="h3" className={styles.sideBarItem__label}>
+                {props.item.label}
             </Typography>
 
         </div>

@@ -26,8 +26,7 @@ export const PracticeCards: FC<Props> = typedMemo(function PracticeCards(props) 
             setStatus={props.setStatus}
             setIsTaskReadyToCheck={props.setTaskCompleted}
         />
-    if (props.type === "SelectImage") {
-        console.log(props)
+    if (props.type === "SelectImage")
         return <PracticeSelectImage
             wordObject={props.task.wordObject}
             otherVariants={props.task.otherVariants}
@@ -35,7 +34,6 @@ export const PracticeCards: FC<Props> = typedMemo(function PracticeCards(props) 
             setStatus={props.setStatus}
             setIsTaskReadyToCheck={props.setTaskCompleted}
         />
-    }
 
     if (props.type === "SelectGIFByWord")
         return <PracticeSelectGIFByWord
@@ -45,6 +43,7 @@ export const PracticeCards: FC<Props> = typedMemo(function PracticeCards(props) 
             setStatus={props.setStatus}
             setIsTaskReadyToCheck={props.setTaskCompleted}
         />
+
     if (props.type === "MatchWordAndGIF")
         return <PracticeMatchWordAndGIF
             variants={props.task.variants}

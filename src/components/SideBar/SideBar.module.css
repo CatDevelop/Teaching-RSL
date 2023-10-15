@@ -9,7 +9,7 @@
     padding: var(--page-padding-m) 0;
     width: var(--sidebar-width);
     justify-content: space-between;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 var(--border-radius-xs) var(--border-radius-xs) 0;
 }
 
 
