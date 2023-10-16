@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./LoginForm.settings";
 import { Button } from "../../../../../../components/Button";
 import { SocialBlock } from "../../../../components/SocialBlock"
+import { FormLink } from "../../../../components/FormLink";
 
 type Props = Readonly<{
     
@@ -16,7 +17,6 @@ type Props = Readonly<{
 type LoginTemp = {
     email: string;
     password:string;
-    repeatPassword:string;
 }
 
 export const LoginForm:FC<Props> = typedMemo(function LoginForm(props){
@@ -30,20 +30,31 @@ export const LoginForm:FC<Props> = typedMemo(function LoginForm(props){
     
     return (
         <div className={styles.loginForm}>
-            <Typography variant="h3">Новый аккаунт</Typography>
+            <Typography variant="h3">Вход</Typography>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.loginForm__form}>
                 <Input label="Почта"/>
                 <Input label="Пароль"/>
-                <Input label="Повторите пароль"/>
                 <Button color="primary" type="submit">
-                    Создать аккаунт
+                    Войти
                 </Button>
             </form>
             <SocialBlock 
-                    label="Или создать аккаунт с помощью"
-                    onVKClick={() => {}}
-                    onYandexClick={() => {}}
+                label="Или войти с помощью"
+                onVKClick={() => {}}
+                onYandexClick={() => {}}
+            />
+            <div className={styles.loginForm__links}>
+                <FormLink 
+                    label="Забыли пароль?"
+                    linkText="Восстановить"
+                    linkUrl="/reset"
                 />
+                <FormLink 
+                    label="У вас еще нет аккаунта?"
+                    linkText="Зарегистрироваться"
+                    linkUrl="/signup"
+                />
+            </div>
         </div>
     )
 })

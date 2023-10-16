@@ -5,10 +5,12 @@
     grid-template-columns: var(--logo-width) 1fr var(--logo-width);
     gap: var(--space-m);
     justify-items: center;
+    align-items: center;
 }
 
 .loginPage__logo {
     max-width: var(--logo-width);
     justify-self: flex-start;
+    align-self: flex-start;
     width: 100%;
 }
