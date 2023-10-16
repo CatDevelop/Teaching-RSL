@@ -1,37 +1,38 @@
 import { typedMemo } from "../../../../../../core/utils/typedMemo";
 import React, { FC } from "react";
-import styles from "./LoginForm.module.css";
+import styles from "./LogupForm.module.css";
 import { Typography } from "../../../../../../components/Typography";
 import { Input } from "../../../../../../components/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "./LoginForm.settings";
+import { schema } from "./LogupForm.settings";
 import { Button } from "../../../../../../components/Button";
-import { SocialBlock } from "../../../../components/SocialBlock"
+import { SocialBlock } from "../../../../components/SocialBlock";
+import { FormLink } from "../../../../components/FormLink";
 
 type Props = Readonly<{
     
 }>
 
-type LoginTemp = {
+type LogupTemp = {
     email: string;
     password:string;
     repeatPassword:string;
 }
 
-export const LoginForm:FC<Props> = typedMemo(function LoginForm(props){
+export const LogupForm:FC<Props> = typedMemo(function LogupForm(props){
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<LoginTemp>({resolver: yupResolver(schema)})
+    } = useForm<LogupTemp>({resolver: yupResolver(schema)})
     
     const onSubmit = () =>{}
     
     return (
-        <div className={styles.loginForm}>
+        <div className={styles.logupForm}>
             <Typography variant="h3">Новый аккаунт</Typography>
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.loginForm__form}>
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.logupForm__form}>
                 <Input label="Почта"/>
                 <Input label="Пароль"/>
                 <Input label="Повторите пароль"/>
@@ -40,10 +41,16 @@ export const LoginForm:FC<Props> = typedMemo(function LoginForm(props){
                 </Button>
             </form>
             <SocialBlock 
-                    label="Или создать аккаунт с помощью"
-                    onVKClick={() => {}}
-                    onYandexClick={() => {}}
-                />
+                onVKClick={() => {}}
+                onYandexClick={() => {}}
+                label="Или создать аккаунт с помощью"
+            />
+            <FormLink 
+                className={styles.logupForm__link}
+                label="У вас уже есть аккаунт?"
+                linkText="Войти"
+                linkUrl="/signin"
+            />
         </div>
     )
 })

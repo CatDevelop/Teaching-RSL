@@ -1,0 +1,14 @@
+.loginPage {
+    --logo-width: 218px;
+
+    display: grid;
+    grid-template-columns: var(--logo-width) 1fr var(--logo-width);
+    gap: var(--space-m);
+    justify-items: center;
+}
+
+.loginPage__logo {
+    max-width: var(--logo-width);
+    justify-self: flex-start;
+    width: 100%;
+}

@@ -1,4 +1,4 @@
-.loginForm {
+.logupForm {
     --max-form-width: 640px;
 
     display: flex;
@@ -12,8 +12,12 @@
     box-shadow: var(--box-shadow-light);
 }
 
-.loginForm__form {
+.logupForm__form {
     display: flex;
     flex-direction: column;
     gap: var(--space-l);
+}
+
+.logupForm__link {
+    align-self: center;
 }
