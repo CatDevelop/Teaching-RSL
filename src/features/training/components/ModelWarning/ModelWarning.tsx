@@ -4,21 +4,22 @@ import {Card} from "../../../../components/Card";
 import styles from "./ModelWarning.module.css";
 import {Typography} from "../../../../components/Typography";
 import GitHubLogo from "../../../../assets/images/GitHubLogo.svg";
+import {clsx} from "clsx";
+import {ComponentProps} from "../../../../core/models/ComponentProps";
+import {Spinner} from "@nextui-org/react";
 
-export const ModelWarning: FC = typedMemo(function ModelWarning() {
+export const ModelWarning: FC<ComponentProps> = typedMemo(function ModelWarning(props) {
     return (
-        <Card className={styles.modelWarning__container}>
+        <Card className={clsx(styles.modelWarning__container, props.className)}>
             <Typography variant={"h3"} className={styles.modelWarning__title}>
-                Предупреждение
+                Произошла ошибка 🤖💔
             </Typography>
             <Typography variant={"p"} className={styles.modelWarning__description}>
-                Распознавание работает только при запущенной на локальной машине модели распознавания <br/>
-                чтобы развернуть её следуйте
-                инструкции в Readme.md данного репозитория:
+                Распознавание работает только при запущенной на локальной машине модели распознавания.
+                Чтобы развернуть её, скачайте архив и запустите .exe файл:
                 <div className={styles.modelWarning__gitLink}>
-                    <img src={GitHubLogo} alt="GitHub логотип" />
-                    <a href={"https://github.com/CatDevelop/Teaching-RSL/tree/stand"} target={"_blank"} rel="noreferrer">
-                        Teaching-RSL
+                    <a href={"https://drive.google.com/file/d/17o-jI42XvbdJuj8Ap_oINbbuQvxtwEEx/view?usp=sharing"} target={"_blank"} rel="noreferrer">
+                        Скачать архив
                     </a>
                 </div>
             </Typography>

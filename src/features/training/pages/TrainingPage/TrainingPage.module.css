@@ -159,3 +159,15 @@
     color: var(--accent-color);
 }
 
+.trainingPage__warningContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trainingPage__warning {
+    position: absolute;
+    left: 50%;
+    bottom: var(--space-m);
+    transform: translateX(-50%);
+}

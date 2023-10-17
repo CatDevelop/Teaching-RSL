@@ -20,6 +20,7 @@ import {shuffleArray} from "../../../../core/utils/shuffleArray";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 import {StartTraining} from "../../components/StartTraining/StartTraining";
 import {ModelWarning} from "../../components/ModelWarning/ModelWarning";
+import {socket} from "../../../../core/utils/connectToModal";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
@@ -32,6 +33,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const [isDoneTask, setIsDoneTask] = useState(false);
     const [intervalID, setIntervalID] = useState<TimeoutId>()
     const [currentStep, setCurrentStep] = useState(-1)
+    const [isNotStartModel, setIsNotStartModel] = useState(false)
 
     const getTaskResult = () => 100 - Math.floor((countSkippedWords) / data.length * 100)
     const clearRecognizeText = () => setSignRecognizeText([])
@@ -56,6 +58,12 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
             fireworks()
     }, [currentStep, countSkippedWords, data.length, fireworks]);
 
+    useEffect(() => {
+        socket.on('connect_error', () => setIsNotStartModel(true))
+        socket.on('connect_failed', () => setIsNotStartModel(true))
+        socket.on('connect', () => setIsNotStartModel(false))
+    }, []);
+
     return (
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
@@ -64,7 +72,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
                 </div>
                 {
-                    currentStep !== -1 &&
+                    currentStep !== -1 && !isNotStartModel &&
                     <div className={styles.trainingTask__progressBarContainer}>
                         <ProgressBar currentStep={currentStep - 1} stepCount={data.length}/>
                     </div>
@@ -90,7 +98,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                         <StartTraining onStart={() => setCurrentStep(0)}/>
                     }
                     {
-                        currentStep >= 0 && currentStep <= data.length - 1 &&
+                        currentStep >= 0 && currentStep <= data.length - 1 && !isNotStartModel &&
                         <RecognitionBlock
                             word={data[currentStep]}
                             className={styles.trainingTask__recognition}
@@ -100,6 +108,13 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                             signRecognizeText={signRecognizeText}
                             setSignRecognizeText={setSignRecognizeText}
                         />
+                    }
+                    {
+                        currentStep >= 0 && currentStep <= data.length - 1 && isNotStartModel &&
+                        <div className={styles.trainingPage__warningContainer}>
+                            <ModelWarning/>
+                        </div>
+
                     }
                     {
                         currentStep === data.length &&
@@ -124,7 +139,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
 
                 <div className={styles.trainingTask__buttonsContainer}>
                     {
-                        currentStep >= 0 && currentStep <= data.length - 1 && !isDoneTask &&
+                        currentStep >= 0 && currentStep <= data.length - 1 && !isDoneTask && !isNotStartModel &&
                         <Button
                             size={"lg"}
                             variant="faded"
@@ -154,8 +169,8 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     }
                 </div>
                 {
-                    currentStep === -1 &&
-                    <ModelWarning/>
+                    currentStep === -1 && isNotStartModel &&
+                    <ModelWarning className={styles.trainingPage__warning}/>
                 }
             </PageContent>
         </Page>
