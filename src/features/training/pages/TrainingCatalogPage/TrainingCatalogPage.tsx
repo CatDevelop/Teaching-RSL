@@ -15,7 +15,7 @@ import {SideBar} from "../../../../components/SideBar";
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
     return (
         <Page className={styles.trainingCatalog}>
-            <SideBar currentPage={"/training"}/>
+            <SideBar/>
             <PageContent>
                 <Typography
                     variant="h1"

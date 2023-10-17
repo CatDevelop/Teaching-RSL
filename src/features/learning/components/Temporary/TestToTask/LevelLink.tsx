@@ -17,14 +17,10 @@ export const LevelLink: FC<Props> = typedMemo(function TrainingCatalogPage(props
     return (
         <div className={styles.levelLink} onClick={toLevel}>
             <p className={styles.levelLink__name}>
-            {
-                props.name
-            }
+                {props.name}
             </p>
             <p className={styles.levelLink__wordsCount}>
-                {
-                    props.completeWordsCount + " / " + props.allWordsCount
-                }
+                {props.completeWordsCount} / {props.allWordsCount}
             </p>
         </div>
     )

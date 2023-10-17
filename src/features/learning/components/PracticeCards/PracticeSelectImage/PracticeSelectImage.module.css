@@ -21,7 +21,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 25px 1fr 1fr;
-    grid-template-areas: "a header" "gif image" "gif image";
+    grid-template-areas: "_ header" "gif image" "gif image";
     align-items: start;
     gap: var(--space-m);
 }

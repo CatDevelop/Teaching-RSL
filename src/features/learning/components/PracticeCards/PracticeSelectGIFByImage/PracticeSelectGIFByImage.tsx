@@ -1,53 +1,36 @@
 import {typedMemo} from "../../../../../core/utils/typedMemo";
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import styles from "./PracticeSelectGIFByImage.module.css";
 import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
 import PracticeIconSVG from "../../../../../assets/images/PracticeIcon.svg"
 import {LearningBlock} from "../../LearningBlock";
 import {Word} from "../../../../../core/models/Word";
-import {SignVideo} from "../../../../../components/SignVideo";
-import {SelectButton} from "../../SelectEntity/SelectButton";
 import {Typography} from "../../../../../components/Typography";
-import {SelectImage} from "../../SelectEntity/SelectImage";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
+import {getSelectEntityStatus} from "../../SelectEntity/SelectContainer/SelectContainer";
+import {StepStatus} from "../../../../../core/models/StepStatus";
+import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 
 type Props = ComponentProps & Readonly<{
     wordObject: Word;
-    variants: Word[];
+    otherVariants: Word[];
     checked: boolean;
-    selectGIF?: Word | null;
-    setSelectGIF: React.Dispatch<React.SetStateAction<Word | null | undefined>>;
+    setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
+    setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }>
 
 /** Практика "Выбери изображение". */
 export const PracticeSelectGIFByImage: FC<Props> = typedMemo(function PracticeSelectGIFByImage(props) {
-    const getGIFStatus = (currentVariant: Word) => {
-        if (props.checked) {
-            if (props.selectGIF?.id === props.wordObject.id) {
-                if (currentVariant.id === props.selectGIF?.id)
-                     return "success"
-                else
-                    return "disabled"
-            } else if (currentVariant.id === props.selectGIF?.id)
-                return "error"
-            else
-                return "disabled"
-        } else {
-            if (props.selectGIF?.id === currentVariant.id)
-                return "checked"
-            else
-                return "default"
-        }
-    }
+    const [selectGIF, setSelectGIF] = useState<Word | null>()
+    const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants]))
+
     return (
         <div className={clsx(styles.practiceSelectGifByImage)}>
             <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>
                 <div className={styles.practiceSelectGifByImage__contentContainer}>
                     <div className={styles.practiceSelectGifByImage__imageContainer}>
-                        <img src={props.wordObject.imageSource}
-                             alt="Изображение для жеста"
-                        />
+                        <img src={props.wordObject.imageSource} alt="Изображение для жеста"/>
                     </div>
 
                     <div className={styles.practiceSelectGifByImage__buttonsContainer}>
@@ -56,11 +39,15 @@ export const PracticeSelectGIFByImage: FC<Props> = typedMemo(function PracticeSe
                         </Typography>
                         <div className={styles.practiceSelectGifByImage__imagesContainer}>
                             {
-                                props.variants.map((variant, number) => {
-                                    return <SelectGIF wordObject={variant}
-                                                      setState={props.setSelectGIF}
-                                                      state={getGIFStatus(variant)}
-                                                      number={number}/>
+                                variants.map((variant, index) => {
+                                    return (
+                                        <SelectGIF
+                                            wordObject={variant}
+                                            setState={setSelectGIF}
+                                            state={getSelectEntityStatus(props.checked, selectGIF, variant, props.wordObject)}
+                                            number={index}
+                                        />
+                                    )
                                 })
                             }
                         </div>

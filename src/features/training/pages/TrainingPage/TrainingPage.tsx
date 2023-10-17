@@ -19,6 +19,7 @@ import {StartThemeWords} from "../../../../core/data";
 import {shuffleArray} from "../../../../core/utils/shuffleArray";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 import {StartTraining} from "../../components/StartTraining/StartTraining";
+import {socket} from "../../../../core/utils/connectToModal";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()

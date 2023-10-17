@@ -10,7 +10,7 @@ import {Typography} from "../../../../../components/Typography";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {StepStatus} from "../../../../../core/models/StepStatus";
-import {getSelectEntity} from "../../SelectEntity/SelectContainer/SelectContainer";
+import {getSelectEntityStatus} from "../../SelectEntity/SelectContainer/SelectContainer";
 
 
 type Props = ComponentProps & Readonly<{
@@ -61,7 +61,7 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
                             <SelectGIF
                                 key={"SelectGIF" + index}
                                 wordObject={variant}
-                                state={getSelectEntity(props.checked, selectGIF, variant, props.wordObject)}
+                                state={getSelectEntityStatus(props.checked, selectGIF, variant, props.wordObject)}
                                 setState={setSelectGIF}
                                 number={index + 1}/>
                         </div>

@@ -14,7 +14,7 @@ export const LearningCatalogPage: FC = typedMemo(function LearningCatalogPage(){
     const toTask = useCallback(() => navigate("0"), [navigate])
     return (
         <Page className={styles.learningCatalogg}>
-            <SideBar currentPage={"/learning"}/>
+            <SideBar/>
             <PageContent>
                 <Typography
                     variant="h1"
@@ -26,7 +26,6 @@ export const LearningCatalogPage: FC = typedMemo(function LearningCatalogPage(){
                     <LevelLink id={"0"} name={"Часть 1"} completeWordsCount={5} allWordsCount={10}/>
                     <LevelLink id={"1"} name={"Часть 2"} completeWordsCount={9} allWordsCount={10}/>
                 </div>
-                {/*<Button onClick={toTask}>К заданию</Button>*/}
             </PageContent>
         </Page>
     )

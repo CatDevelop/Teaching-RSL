@@ -11,7 +11,7 @@ import {Typography} from "../../../../../components/Typography";
 import {SelectImage} from "../../SelectEntity/SelectImage";
 import {StepStatus} from "../../../../../core/models/StepStatus";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
-import {getSelectEntity} from "../../SelectEntity/SelectContainer/SelectContainer";
+import {getSelectEntityStatus} from "../../SelectEntity/SelectContainer/SelectContainer";
 
 type Props = ComponentProps & Readonly<{
     wordObject: Word;
@@ -27,12 +27,13 @@ export const PracticeSelectImage: FC<Props> = typedMemo(function PracticeSelectI
     const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants]))
 
     useEffect(() => {
-        if (props.checked) {
-            if (selectImage?.id === props.wordObject.id)
-                props.setStatus({status: "success"})
-            else
-                props.setStatus({status: "error", message: props.wordObject.text})
-        }
+        if (!props.checked)
+            return;
+
+        if (selectImage?.id === props.wordObject.id)
+            props.setStatus({status: "success"})
+        else
+            props.setStatus({status: "error", message: props.wordObject.text})
     }, [props, selectImage?.id])
 
     useEffect(() => {
@@ -47,7 +48,6 @@ export const PracticeSelectImage: FC<Props> = typedMemo(function PracticeSelectI
                         <SignVideo src={props.wordObject.gifSource}/>
                     </div>
 
-                    {/*<div className={styles.practiceSelectImage__buttonsContainer}>*/}
                     <Typography variant="h3" className={styles.practiceSelectImage__title}>
                         Выбери правильную картинку
                     </Typography>
@@ -56,17 +56,17 @@ export const PracticeSelectImage: FC<Props> = typedMemo(function PracticeSelectI
                             variants.map((variant, index) => {
                                 return (
                                     <div className={styles.practiceSelectImage__imageContainer}>
-                                        <SelectImage wordObject={variant}
-                                                     setState={setSelectImage}
-                                                     state={getSelectEntity(props.checked, selectImage, variant, props.wordObject)}
-                                                     number={index + 1}
+                                        <SelectImage
+                                            wordObject={variant}
+                                            setState={setSelectImage}
+                                            state={getSelectEntityStatus(props.checked, selectImage, variant, props.wordObject)}
+                                            number={index + 1}
                                         />
                                     </div>
                                 )
                             })
                         }
                     </div>
-                    {/*</div>*/}
                 </div>
             </LearningBlock>
         </div>

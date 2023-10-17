@@ -38,7 +38,7 @@ export const SelectContainer: FC<SelectContainerProps> = typedMemo(function Sele
     );
 });
 
-export const getSelectEntity = (checked: boolean, selectEntity: Word | undefined | null, currentVariant: Word, rightVariant: Word) => {
+export const getSelectEntityStatus = (checked: boolean, selectEntity: Word | undefined | null, currentVariant: Word, rightVariant: Word) => {
     let result: SelectState = "disabled";
     if (!checked) {
         result = selectEntity?.id === currentVariant.id ? "checked" : "default"

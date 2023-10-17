@@ -14,7 +14,7 @@ import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {StepStatus} from "../../../../../core/models/StepStatus";
 import {getInitialSelectObjectsState} from "../../../../../core/utils/getInitialSelectObjectsState";
 
-type handleClickOnSelectObject = (
+type HandleClickOnSelectObject = (
     clickWordObject: Word,
     selectObjectState: SelectObjectState[],
     setSelectObjectState: React.Dispatch<React.SetStateAction<SelectObjectState[]>>
@@ -26,12 +26,12 @@ type Props = ComponentProps & Readonly<{
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }>
 
-type toDefaultStateType = () => {
+type ToDefaultStateType = () => {
     wordObject: Readonly<Word>;
     state: SelectState
 }[]
 
-type getNewStatusMatchPracticeType = (checkedWordIndex: number, checkedGIFIndex: number) => SelectState
+type GetNewStatusMatchPracticeType = (checkedWordIndex: number, checkedGIFIndex: number) => SelectState
 
 /** Практика "Подбери пару к словам". */
 export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMatchWordAndGIF(props) {
@@ -42,8 +42,8 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
     const [isBlocked, setIsBlocked] = useState<boolean>(false)
     const [countOfCompleted, setCountOfCompleted] = useState(0)
 
-    const handleClickOnSelectObject: handleClickOnSelectObject = useCallback((clickWordObject, selectObjectState, setSelectObjectState) => {
-        const toDefaultState: toDefaultStateType = () => {
+    const handleClickOnSelectObject: HandleClickOnSelectObject = useCallback((clickWordObject, selectObjectState, setSelectObjectState) => {
+        const toDefaultState: ToDefaultStateType = () => {
             return selectObjectState.map(objectInState => ({
                 wordObject: objectInState.wordObject,
                 state: objectInState.state === "success" ? "success" : "default"
@@ -65,26 +65,25 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
             setSelectObjectState(toDefaultState())
     }, [isBlocked])
 
-    const getNewStatusMatchPractice: getNewStatusMatchPracticeType = useCallback(
+    const getNewStatusMatchPractice: GetNewStatusMatchPracticeType = useCallback(
         (checkedWordIndex, checkedGIFIndex) => {
             if (words[checkedWordIndex].wordObject.id === gifs[checkedGIFIndex].wordObject.id) {
                 setCountOfCompleted(countOfCompleted + 1)
                 setIsBlocked(false)
                 return "success";
-            } else {
-                setTimeout(() => {
-                    setWords(words.with(checkedWordIndex, {
-                        wordObject: words[checkedWordIndex].wordObject,
-                        state: "default"
-                    }))
-                    setGifs(gifs.with(checkedGIFIndex, {
-                        wordObject: gifs[checkedGIFIndex].wordObject,
-                        state: "default"
-                    }))
-                    setIsBlocked(false)
-                }, 1000)
-                return "error";
             }
+            setTimeout(() => {
+                setWords(words.with(checkedWordIndex, {
+                    wordObject: words[checkedWordIndex].wordObject,
+                    state: "default"
+                }))
+                setGifs(gifs.with(checkedGIFIndex, {
+                    wordObject: gifs[checkedGIFIndex].wordObject,
+                    state: "default"
+                }))
+                setIsBlocked(false)
+            }, 1000)
+            return "error";
         },
         [words, gifs, setCountOfCompleted, countOfCompleted, setIsBlocked, setGifs, setWords]
     )

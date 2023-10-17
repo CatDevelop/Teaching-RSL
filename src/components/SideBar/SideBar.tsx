@@ -9,12 +9,11 @@ import {TrainingIcon} from "../../assets/images/TrainingIcon"
 import {DictionaryIcon} from "../../assets/images/DictionaryIcon"
 import {ExitIcon} from "../../assets/images/ExitIcon"
 import {Card} from "../Card";
+import {useLocation} from "react-router-dom";
 
-type Props = {
-    currentPage: string,
-};
+export const SideBar: FC = typedMemo(function SideBar() {
+    const location = useLocation();
 
-export const SideBar: FC<Props> = typedMemo(function SideBar(props) {
     const items = [
         {
             id: 0,
@@ -49,13 +48,15 @@ export const SideBar: FC<Props> = typedMemo(function SideBar(props) {
         link: "/"
     }
 
+    console.log(location)
+
     return (
         <Card className={styles.sidebar__container}>
             <img src={Logo} width={218} alt={"Логотип"} className={styles.sidebar__logo}/>
             <div>
                 {
                     items.map(item => {
-                        return <SideBarItem item={item} isActive={props.currentPage === item.link}/>
+                        return <SideBarItem item={item} isActive={location.pathname === item.link}/>
                     })
                 }
             </div>
