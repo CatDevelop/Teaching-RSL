@@ -59,8 +59,8 @@ export const HomePage: FC = typedMemo(function HomePage() {
 
             <div className={styles.homePage__logosContainer}>
                 <Card className={styles.homePage__logos}>
-                    <img src={SberLogo} alt="SberAI" width={200}/>
                     <img src={PinCodeLogo} alt="ПИН-КОД" width={60}/>
+                    <img src={SberLogo} alt="SberAI" width={200}/>
                     <img src={UrFULogo} alt="УрФУ" width={66}/>
                 </Card>
             </div>
