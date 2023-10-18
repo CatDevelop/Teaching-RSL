@@ -7,7 +7,6 @@ import { TestGetResponseDto } from "../../core/dtos/training/TestGetResponseDto"
 import { TestGetResponseMapper } from "../../core/mappers/training/TestGetResponseMapper";
 
 export namespace TrainingService {
-
     export async function postTrainingCreate(body: CreateTestRequest): Promise<TestGetResponse> {
         const {data} = await http.post<TestGetResponseDto>(ApiUrlsConfig.training.postTestCreate, CreateTestRequestMapper.toDto(body));
         return TestGetResponseMapper.fromDto(data);

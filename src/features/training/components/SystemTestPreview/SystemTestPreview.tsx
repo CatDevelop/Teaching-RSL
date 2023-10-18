@@ -26,7 +26,7 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
 
     const renderTestPreview = useCallback((onOpen: () => void) => {
         return (
-            <div className={clsx(styles.systemTestPreview, props.className)} onClick={onOpen} style={{backgroundColor: "#AE7EDE"}}>
+            <div className={clsx(styles.systemTestPreview, props.className)} onClick={onOpen}>
                 <div className={styles.systemTestPreview__content}>
                     <Typography
                         variant="h3"
@@ -36,7 +36,7 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
                     <div className={styles.systemTestPreview__info}>
                         <Typography className={styles.systemTestPreview__description}>Тест к разделу</Typography>
                         <div className={styles.systemTestPreview__separator}></div>
-                        <Typography className={styles.systemTestPreview__description}>{props.wordsCount} из {props.wordsCount} слов пройдено</Typography>
+                        <Typography className={styles.systemTestPreview__description}>Всего {props.wordsCount} слов</Typography>
                     </div>
                 </div>
                 <button className={styles.systemTestPreview__start} type="button">

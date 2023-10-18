@@ -2,7 +2,6 @@ import { GetThemeListResponseDto, GetThemeResponseDto } from "../../dtos/themes/
 import { GetThemeListResponse, GetThemeResponse } from "../../models/themes/GetThemeListResponse";
 
 namespace GetThemeResponseMapper {
-
 	/**
 	 * Маппинг DTO в модель.
 	 * @param dto DTO.
@@ -18,7 +17,6 @@ namespace GetThemeResponseMapper {
 }
 
 export namespace GetThemeListResponseMapper {
-
 	/**
 	 * Маппинг DTO в модель.
 	 * @param dto DTO.

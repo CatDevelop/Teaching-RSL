@@ -8,7 +8,6 @@ import { GetThemeListResponseDto } from "../../core/dtos/themes/GetThemeListResp
 import { GetThemeListResponseMapper } from "../../core/mappers/themes/GetThemeListResponseMapper";
 
 export namespace ThemesService {
-
     export async function getListWithUnits(): Promise<GetThemeListWithUnitsResponse> {
         const {data} = await http.get<GetThemeListWithUnitsResponseDto>(ApiUrlsConfig.themes.getListWithUnits());
         return GetThemeListWithUnitsResponseMapper.fromDto(data);
