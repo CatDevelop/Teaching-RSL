@@ -16,11 +16,10 @@ const routes: RouteObject[] = [
             path: '',
             element: <HomePage/>
            } ,
-
-           ...learningRoutes,
-           ...trainingRoutes,
         ]
     },
+    ...learningRoutes,
+    ...trainingRoutes,
     ...adminRoutes,
     ...errorsRouts
 ];
