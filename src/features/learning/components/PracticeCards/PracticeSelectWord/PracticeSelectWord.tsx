@@ -24,7 +24,7 @@ type Props = ComponentProps & Readonly<{
 /** Практика "Выбери слово". */
 export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWord(props) {
     const [selectWord, setSelectWord] = useState<Word | null>()
-    const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants]))
+    const [variants] = useState(shuffleArray<Word>([props.wordObject, ...props.otherVariants]))
 
     useEffect(() => {
         if (props.checked) {

@@ -20,6 +20,8 @@ import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {PracticeCards} from "../../components/PracticeCards";
 import {StartLearning} from "../../components/StartLearning";
 import {generateTasks} from "../../../../core/utils/generateTasks";
+import {TasksType} from "../../../../core/models/Tasks";
+import {Word} from "../../../../core/models/Word";
 
 // TODO написать нормальные типы
 type task = {
@@ -45,14 +47,14 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
 
     const [tasks] = useState<task[]>([
-        ...shuffleArray(StartThemeWords).map((wordObject, index) => ({
+        ...shuffleArray<Word>(StartThemeWords).map((wordObject, index) => ({
             id: index,
             task: {
                 wordObject
             },
             type: "theory"
         })),
-        ...shuffleArray(generateTasks(StartThemeWords, StartThemeTasks)).map((task, index) => ({
+        ...shuffleArray<TasksType>(generateTasks(StartThemeWords, StartThemeTasks)).map((task, index) => ({
             id: index + 5,
             task,
             type: "practice"

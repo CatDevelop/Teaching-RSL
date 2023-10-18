@@ -46,7 +46,7 @@ export const PracticeCards: FC<Props> = typedMemo(function PracticeCards(props) 
 
     if (props.type === "MatchWordAndGIF")
         return <PracticeMatchWordAndGIF
-            variants={props.task.variants}
+            variants={props.task.otherVariants}
             setStatus={props.setStatus}
             setIsTaskReadyToCheck={props.setTaskCompleted}
         />

@@ -20,12 +20,13 @@ import {shuffleArray} from "../../../../core/utils/shuffleArray";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 import {StartTraining} from "../../components/StartTraining/StartTraining";
 import {socket} from "../../../../core/utils/connectToModal";
+import {Word} from "../../../../core/models/Word";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
     const fireworks = getFireworks(3000)
 
-    const [data] = useState(shuffleArray(StartThemeWords));
+    const [data] = useState(shuffleArray<Word>(StartThemeWords));
     const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
     const [countSkippedWords, setCountSkippedWords] = useState(0);

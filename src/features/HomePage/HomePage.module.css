@@ -41,7 +41,7 @@
 .homePage__buttonContainer {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--space-s);
     padding: var(--space-l) !important; /* Переопределяю отступы компонента Card */
     height: 100%;
     width: 100%;

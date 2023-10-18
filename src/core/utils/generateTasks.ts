@@ -8,13 +8,13 @@ type GenerateTasksType = (words: Word[], tasks: taskType[]) => TasksType[]
 const getOtherWords = (words: Word[], currentWordIndex: number, count: number) => {
     let otherWords = [...words]
     otherWords.splice(currentWordIndex, 1)
-    const shuffledOtherWords = shuffleArray(otherWords)
+    const shuffledOtherWords = shuffleArray<Word>(otherWords)
     return shuffledOtherWords.slice(0, count)
 }
 
 export const generateTasks: GenerateTasksType = (words, tasks) => {
-    const shuffledWords = shuffleArray(words);
-    const shuffledTasks = shuffleArray(tasks);
+    const shuffledWords = shuffleArray<Word>(words);
+    const shuffledTasks = shuffleArray<taskType>(tasks);
     let results: TasksType[] = [];
     let taskIndex = 0;
     for (let task of shuffledTasks) {
@@ -29,7 +29,7 @@ export const generateTasks: GenerateTasksType = (words, tasks) => {
 
         if (task === "MatchWordAndGIF") {
             results.push({
-                variants: getOtherWords(shuffledWords, taskIndex % words.length, 3),
+                otherVariants: getOtherWords(shuffledWords, taskIndex % words.length, 3),
                 type: task
             })
             taskIndex += 3;

@@ -1,5 +1,5 @@
 .levelLink {
-    padding: 10px 20px;
+    padding: var(--space-s) var(--space-m);
     cursor: pointer;
     background: var(--dark-on-surface-color);
     border-radius: var(--border-radius-m);

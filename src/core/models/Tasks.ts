@@ -1,31 +1,22 @@
 import {Word} from "./Word";
 
-export type SelectWordTaskType = {
+type TaskType<T> = {
+    type: T,
     wordObject: Word,
     otherVariants: Word[],
-    type: "SelectWord"
 }
 
-export type SelectImageTaskType = {
-    wordObject: Word,
-    otherVariants: Word[],
-    type: "SelectImage"
-}
+export type SelectWordTaskType = TaskType<"SelectWord">;
+export type SelectImageTaskType = TaskType<"SelectImage">;
+export type SelectGIFByWordTaskType = TaskType<"SelectGIFByWord">;
+export type MatchWordAndGIFTaskType = Pick<TaskType<"MatchWordAndGIF">, "type" | "otherVariants">
+export type TheoryTaskType = Pick<TaskType<"theory">, "type" | "wordObject">
 
-export type SelectGIFByWordTaskType = {
-    wordObject: Word,
-    otherVariants: Word[],
-    type: "SelectGIFByWord"
-}
+export type TasksType = (
+    SelectWordTaskType |
+    SelectImageTaskType |
+    SelectGIFByWordTaskType |
+    MatchWordAndGIFTaskType |
+    TheoryTaskType
+)
 
-export type MatchWordAndGIFTaskType = {
-    variants: Word[],
-    type: "MatchWordAndGIF"
-}
-
-export type TheoryTaskType = {
-    wordObject: Word,
-    type: "theory"
-}
-
-export type TasksType = SelectWordTaskType | SelectImageTaskType | SelectGIFByWordTaskType | MatchWordAndGIFTaskType | TheoryTaskType

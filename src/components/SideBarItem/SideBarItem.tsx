@@ -1,8 +1,8 @@
-import React, {FC, useCallback} from "react";
+import React, {FC} from "react";
 import {typedMemo} from "../../core/utils/typedMemo";
 import styles from "./SideBarItem.module.css"
 import clsx from "clsx";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {Typography} from "../Typography";
 
 type Props = {
@@ -16,8 +16,6 @@ type Props = {
 };
 
 export const SideBarItem: FC<Props> = typedMemo(function SideBarItem(props) {
-    const navigate = useNavigate()
-
     return (
         <NavLink
             to={props.item.link}
