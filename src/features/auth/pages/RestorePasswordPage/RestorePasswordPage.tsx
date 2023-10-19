@@ -27,7 +27,13 @@ export const RestorePasswordPage: FC = typedMemo(function RestorePasswordPage(){
         <AuthFormPage>
             <Typography variant="h3">Восстановление пароля</Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Input label="Почта"/>
+                <Input 
+                    label="Почта"
+                    isInvalid={errors.email !== undefined}
+                    color={errors.email !== undefined ? "danger" : "default"}
+                    errorMessage={errors.email?.message}
+                    {...register('email')}
+                />
                 <Button color="primary" type="submit">
                     Отправить письмо
                 </Button>

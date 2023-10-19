@@ -30,9 +30,27 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
         <AuthFormPage>
             <Typography variant="h3">Новый аккаунт</Typography>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.logupPage__form}>
-                <Input label="Почта"/>
-                <Input label="Пароль"/>
-                <Input label="Повторите пароль"/>
+                <Input 
+                    label="Почта"
+                    isInvalid={errors.email !== undefined}
+                    color={errors.email !== undefined ? "danger" : "default"}
+                    errorMessage={errors.email?.message}
+                    {...register('email')}
+                />
+                <Input 
+                    label="Пароль"
+                    isInvalid={errors.password !== undefined}
+                    color={errors.password !== undefined ? "danger" : "default"}
+                    errorMessage={errors.password?.message}
+                    {...register('password')}
+                />
+                <Input 
+                    label="Повторите пароль"
+                    isInvalid={errors.repeatPassword !== undefined}
+                    color={errors.repeatPassword !== undefined ? "danger" : "default"}
+                    errorMessage={errors.repeatPassword?.message}
+                    {...register('repeatPassword')}
+                />
                 <Button color="primary" type="submit">
                     Создать аккаунт
                 </Button>

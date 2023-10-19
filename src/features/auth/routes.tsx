@@ -3,6 +3,7 @@ import {RouteObject} from "react-router-dom";
 import { LoginPage } from './pages/LoginPage';
 import { LogupPage } from './pages/LogupPage';
 import { RestorePasswordPage } from './pages/RestorePasswordPage';
+import { ChangePasswordPage } from './pages/ChangePasswordPage';
 
 export const authRoutes: RouteObject[] = [
     {
@@ -16,5 +17,9 @@ export const authRoutes: RouteObject[] = [
     {
         path: 'restorepassword',
         element: <RestorePasswordPage/>,
+    },
+    {
+        path: 'changepassword',
+        element: <ChangePasswordPage/>,
     }
 ]

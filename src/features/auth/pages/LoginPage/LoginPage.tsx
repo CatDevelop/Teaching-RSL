@@ -23,15 +23,29 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
         formState: { errors },
     } = useForm<LoginTemp>({resolver: yupResolver(schema)})
     
-    const onSubmit = () =>{}
+    const onSubmit = () =>{
+        console.log(errors)
+    }
     
     return (
         <AuthFormPage>
             <Typography variant="h3">Вход</Typography>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.loginPage__form}>
-                <Input label="Почта"/>
-                <Input label="Пароль"/>
-                <Button color="primary" type="submit">
+                <Input 
+                    label="Почта" 
+                    isInvalid={errors.email !== undefined}
+                    color={errors.email !== undefined ? "danger" : "default"}
+                    errorMessage={errors.email?.message}
+                    {...register('email')}
+                />
+                <Input 
+                    label="Пароль" 
+                    isInvalid={errors.password !== undefined}
+                    color={errors.password !== undefined ? "danger" : "default"}
+                    errorMessage={errors.password?.message}
+                    {...register('password')}
+                />
+                <Button color="primary" type="submit" onClick={handleSubmit(onSubmit)}>
                     Войти
                 </Button>
             </form>
