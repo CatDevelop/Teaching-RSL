@@ -12,6 +12,9 @@ type Props = ComponentProps & Readonly<{
     linkText: string;
 }>
 
+/**
+ * Ссылки в форме
+ */
 export const FormLink: FC<Props> = typedMemo(function FormLink(props){
     return (
         <div className={clsx(styles.formLink, props.className)}>

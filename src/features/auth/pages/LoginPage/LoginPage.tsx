@@ -16,6 +16,9 @@ type LoginTemp = {
     password:string;
 }
 
+/**
+ * Страница входа
+ */
 export const LoginPage: FC = typedMemo(function LoginPage(){
     const {
         register,

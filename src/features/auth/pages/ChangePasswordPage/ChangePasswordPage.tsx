@@ -15,6 +15,9 @@ type ChangePasswordTemp = {
     repeatPassword: string;
 }
 
+/**
+ * Страница изменения пароля
+ */
 export const ChangePasswordPage: FC = typedMemo(function ChangePasswordPage(){
     const {
         register,

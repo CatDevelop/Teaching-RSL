@@ -10,7 +10,7 @@ export namespace CreateTestRequestMapper {
 	export function toDto(model: CreateTestRequest): CreateTestRequestDto {
 		return {
 			id: model.id,
-			testType: model.testType,
+			trainingType: model.trainingType,
 			wordsCount: model.wordsCount,
 		};
 	}

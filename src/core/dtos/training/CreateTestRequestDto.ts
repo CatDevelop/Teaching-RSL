@@ -13,7 +13,7 @@ export type CreateTestRequestDto = Readonly<{
     /**
      * Тип теста.
      */
-    testType: TestTypeEnum;
+    trainingType: TestTypeEnum;
 
     /**
      * Количество слов в тесте.

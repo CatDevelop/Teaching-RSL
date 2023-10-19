@@ -33,10 +33,10 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
                             Создать рандомный тест
                         </Tooltip>
                         <Button
-                                className={styles.trainingCatalog__randomTest}
-                                variant="faded"
-                                endContent={<img src={RandomIcon} alt="Create random test" />}
-                            />
+                            className={styles.trainingCatalog__randomTest}
+                            variant="faded"
+                            endContent={<img src={RandomIcon} alt="Create random test" />}
+                        />
                     </div>
                 </div>
             </PageContent>
