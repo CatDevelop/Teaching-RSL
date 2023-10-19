@@ -7,6 +7,9 @@ import styles from "./AuthFormPage.module.css";
 
 type Props = PropsWithChildren;
 
+/**
+ * Страница из раздела авторизации
+ */
 export const AuthFormPage: FC<Props> = typedMemo(function AuthFormPage(props){
     return (
         <Page>

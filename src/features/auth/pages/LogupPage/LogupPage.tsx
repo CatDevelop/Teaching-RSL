@@ -17,6 +17,9 @@ type LogupTemp = {
     repeatPassword:string;
 }
 
+/**
+ * Страница регистрации
+ */
 export const LogupPage: FC = typedMemo(function LogupPage(){
     const {
         register,

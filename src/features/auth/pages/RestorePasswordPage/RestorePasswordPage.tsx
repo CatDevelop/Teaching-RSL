@@ -14,6 +14,9 @@ type RestorePasswordTemp = {
     email: string;
 }
 
+/**
+ * Страница восстановления пароля
+ */
 export const RestorePasswordPage: FC = typedMemo(function RestorePasswordPage(){
     const {
         register,

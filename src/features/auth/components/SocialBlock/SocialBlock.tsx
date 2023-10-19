@@ -11,12 +11,14 @@ type Props = Readonly<{
     onYandexClick: () =>void;
 }>
 
+/**
+ * Социальные сети для входа
+ */
 export const SocialBlock: FC<Props> = typedMemo(function SocialBlock(props){
     return (
         <div className={styles.socialBlock}>
             <Typography variant="span" className={styles.socialBlock__label}>{props.label}</Typography>
-
-           <div className={styles.socialBlock__socialButtons}>
+            <div className={styles.socialBlock__socialButtons}>
             <button className={styles.socialBlock__social} onClick={props.onVKClick}>
                 <img src={VK} alt="Вк" className={styles.socialBlock__socialIcon}/>
                 <Typography variant="span" className={styles.socialBlock__socialName}>Вконтакте</Typography>
