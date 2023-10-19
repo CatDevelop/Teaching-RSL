@@ -1,23 +1,57 @@
 import React, { FC } from "react";
 import { typedMemo } from "../../../../core/utils/typedMemo";
-import { LoginForm } from "./components/LoginForm";
-import { Page } from "../../../../components/Page";
-import Logo from "../../../../assets/images/Logo.svg";
 import styles from "./LoginPage.module.css";
-import { PageContent } from "../../../../components/PageContent";
 import { SocialBlock } from "../../components/SocialBlock";
+import { AuthFormPage } from "../../components/AuthFormPage";
+import { Typography } from "../../../../components/Typography";
+import { Input } from "../../../../components/Input";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "./LoginPage.settings";
+import { Button } from "../../../../components/Button";
+import { FormLink } from "../../components/FormLink";
+
+type LoginTemp = {
+    email: string;
+    password:string;
+}
 
 export const LoginPage: FC = typedMemo(function LoginPage(){
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<LoginTemp>({resolver: yupResolver(schema)})
+    
+    const onSubmit = () =>{}
+    
     return (
-        <Page>
-            <PageContent className={styles.loginPage}>
-                <img 
-                    className={styles.loginPage__logo}
-                    src={Logo} 
-                    alt={"Логотип сервиса \"Изучение русского жестового языка\""} 
+        <AuthFormPage>
+            <Typography variant="h3">Вход</Typography>
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.loginPage__form}>
+                <Input label="Почта"/>
+                <Input label="Пароль"/>
+                <Button color="primary" type="submit">
+                    Войти
+                </Button>
+            </form>
+            <SocialBlock 
+                label="Или войти с помощью"
+                onVKClick={() => {}}
+                onYandexClick={() => {}}
+            />
+            <div className={styles.loginPage__links}>
+                <FormLink 
+                    label="Забыли пароль?"
+                    linkText="Восстановить"
+                    linkUrl="/restorepassword"
                 />
-                <LoginForm/>
-            </PageContent>
-        </Page>
+                <FormLink 
+                    label="У вас еще нет аккаунта?"
+                    linkText="Зарегистрироваться"
+                    linkUrl="/signup"
+                />
+            </div>
+        </AuthFormPage>
     )
 })

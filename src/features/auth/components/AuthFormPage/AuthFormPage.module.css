@@ -1,4 +1,21 @@
-.logupForm {
+.authFormPage {
+    --logo-width: 218px;
+
+    display: grid;
+    grid-template-columns: var(--logo-width) 1fr var(--logo-width);
+    gap: var(--space-m);
+    justify-items: center;
+    align-items: center;
+}
+
+.authFormPage__logo {
+    max-width: var(--logo-width);
+    justify-self: flex-start;
+    width: 100%;
+    align-self: flex-start;
+}
+
+.authFormPage__form {
     --max-form-width: 640px;
 
     display: flex;
@@ -12,12 +29,8 @@
     box-shadow: var(--box-shadow-light);
 }
 
-.logupForm__form {
+.authFormPage__form form {
     display: flex;
     flex-direction: column;
     gap: var(--space-l);
-}
-
-.logupForm__link {
-    align-self: center;
 }

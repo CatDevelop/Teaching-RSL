@@ -7,7 +7,7 @@ import { ComponentProps } from "../../../../core/models/ComponentProps";
 import clsx from "clsx";
 
 type Props = ComponentProps & Readonly<{
-    label: string;
+    label?: string;
     linkUrl: string;
     linkText: string;
 }>
