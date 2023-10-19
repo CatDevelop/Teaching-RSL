@@ -15,8 +15,10 @@ type Props = ComponentProps & Readonly<{
 export const FormLink: FC<Props> = typedMemo(function FormLink(props){
     return (
         <div className={clsx(styles.formLink, props.className)}>
-            <Typography variant="span" className={styles.formLink__label}>{props.label}</Typography>
-            <Link to={props.linkUrl}>{props.linkText}</Link>
+            <Typography variant="span" className={styles.formLink__label}>
+                {props.label} 
+                <Link to={props.linkUrl}className={styles.formLink__link}>{props.linkText}</Link>
+            </Typography>
         </div>
     )
 })

@@ -1,9 +1,9 @@
 .authFormPage {
     --logo-width: 218px;
 
-    display: grid;
-    grid-template-columns: var(--logo-width) 1fr var(--logo-width);
-    gap: var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
     justify-items: center;
     align-items: center;
 }

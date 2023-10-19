@@ -1,9 +1,15 @@
 .formLink {
     display: flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: var(--space-s);
 }
 
 .formLink__label {
     color: var(--thirdly-text-color);
+}
+
+.formLink__link {
+    margin-left: var(--space-s);
 }
