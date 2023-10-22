@@ -46,7 +46,7 @@ export const StartThemeWords: Word[] = [
     {
         id: 4,
         text: "Тебя",
-        recognitionText: 'ты',
+        recognitionText: 'Ты/тебя',
         gifSource: YouSignVideo,
         // gifSource: "https://media.spreadthesign.com/video/mp4/12/12804.mp4",
         imageSource: You,
