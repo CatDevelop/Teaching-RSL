@@ -1,7 +1,9 @@
+import { TestTypeEnum } from "../../models/themes/TestTypeEnum";
+
 /**
  * Полученный тест.
  */
-export type TestGetResponseDto = Readonly<{
+export type GetTestResponseDto = Readonly<{
 
     /**
      * Id.
@@ -17,6 +19,11 @@ export type TestGetResponseDto = Readonly<{
      * Слова в тесте.
      */
     words: readonly WordInTestDto[];
+
+    /**
+     * Тип теста
+     */
+    testType: TestTypeEnum;
 }>
 
 /**

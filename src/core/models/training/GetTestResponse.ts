@@ -1,7 +1,7 @@
 /**
  * Полученный тест.
  */
-export class TestGetResponse {
+export class GetTestResponse {
 
     /**
      * Id.
@@ -18,14 +18,14 @@ export class TestGetResponse {
      */
     public readonly words: readonly WordInTest[];
 
-    public constructor({id, name, words}: TestGetResponseProps) {
+    public constructor({id, name, words}: GetTestResponseProps) {
         this.id = id;
         this.name = name;
         this.words = words;
     }
 }
 
-type TestGetResponseProps = TestGetResponse;
+type GetTestResponseProps = GetTestResponse;
 
 /**
  * Слово в тесте.

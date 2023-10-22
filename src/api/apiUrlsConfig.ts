@@ -12,7 +12,8 @@ export namespace ApiUrlsConfig {
 
 	/** API ссылки тренировок. */
 	export const training = {
-		postTestCreate: toApi('training')
+		postTestCreate: toApi('training'),
+		getTest: (id: string) => toApi(`training/${id}`)
 	};
 
 	/**

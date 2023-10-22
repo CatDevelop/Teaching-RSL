@@ -8,11 +8,11 @@ import clsx from "clsx";
 import io from "socket.io-client";
 import {WebCamera} from "../WebCamera/WebCamera";
 import {Spinner} from "@nextui-org/react";
-import {Word} from "../../../../core/models/Word";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
+import { WordInTest } from "../../../../core/models/training/GetTestResponse";
 
 type Props = ComponentProps & Readonly<{
-    word: Word;
+    word: WordInTest;
     onSuccess: () => void;
     intervalID: TimeoutId | undefined;
     setIntervalID: Dispatch<SetStateAction<TimeoutId | undefined>>;
