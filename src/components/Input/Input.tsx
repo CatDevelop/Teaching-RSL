@@ -12,10 +12,7 @@ export const Input: FC<InputProps> = typedMemo(forwardRef(function Input(props, 
         {...props} 
         variant="faded"
         ref={ref}
-        classNames={{
-            inputWrapper: [styles.input__inputWrapper],
-            label: [styles.input__label]
-        }}
+        classNames={{inputWrapper: [styles.input__inputWrapper]}}
         className={clsx(styles.input, styles.className)}
     />
 }))
