@@ -42,6 +42,11 @@ export class WordInTest {
      */
     public readonly word: string;
 
+    /**
+     * Распознанные слова
+     */
+    public recognitionText?: string;
+
     public constructor({id, word}: WordInTestProps) {
         this.id = id;
         this.word = word;

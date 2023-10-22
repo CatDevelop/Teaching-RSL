@@ -63,7 +63,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
 
     useEffect(() => {
-        if (props.signRecognizeText.includes(props.word.recognitionText.toLowerCase()))
+        if (props.signRecognizeText.includes(props.word.recognitionText?.toLowerCase() ?? ''))
             props.onSuccess()
     }, [props.signRecognizeText])
 
@@ -97,7 +97,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                     Покажите жест в камеру
                 </Typography>
                 <Typography variant="h2" className={styles.recognitionBlock__gesture}>
-                    {props.word.text}
+                    {props.word.word}
                 </Typography>
             </div>
 
@@ -118,7 +118,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                                     variant="span"
                                     className={clsx(
                                         styles.recognitionBlock__recognizedWord,
-                                        word === props.word.recognitionText.toLowerCase() && styles.recognitionBlock__rightWord
+                                        word === props.word.recognitionText?.toLowerCase() && styles.recognitionBlock__rightWord
                                     )}
                                 >
                                     {word}
