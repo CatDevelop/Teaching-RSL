@@ -10,6 +10,12 @@ export namespace ApiUrlsConfig {
 		getListWithUnits: () => toApi('themes/list/with-units'),
 	};
 
+	/** API ссылки разделов. */
+	export const unit = {
+		getList: toApi('unit/list'),
+		getListWithLevels: () => toApi('unit/list/with-levels'),
+	};
+
 	/** API ссылки тренировок. */
 	export const training = {
 		postTestCreate: toApi('training')

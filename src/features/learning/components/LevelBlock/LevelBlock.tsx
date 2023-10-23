@@ -1,7 +1,7 @@
 import React, {FC} from "react";
-import {typedMemo} from "../../../../../core/utils/typedMemo";
-import {NavLink, useNavigate} from "react-router-dom";
-import styles from "./LevelLink.module.css"
+import {typedMemo} from "../../../../core/utils/typedMemo";
+import {NavLink} from "react-router-dom";
+import styles from "./LevelBlock.module.css"
 
 type Props = {
     id: string,
@@ -11,13 +11,13 @@ type Props = {
 }
 
 /* Компонент для тестов, не войдёт в прод*/
-export const LevelLink: FC<Props> = typedMemo(function LevelLink(props) {
+export const LevelBlock: FC<Props> = typedMemo(function LevelBlock(props) {
     return (
         <NavLink to={"/learning/" + props.id} className={styles.levelLink}>
-            <p className={styles.levelLink__name}>
+            <p className={styles.levelBlock__name}>
                 {props.name}
             </p>
-            <p className={styles.levelLink__wordsCount}>
+            <p className={styles.levelBlock__wordsCount}>
                 {props.completeWordsCount} / {props.allWordsCount}
             </p>
         </NavLink>

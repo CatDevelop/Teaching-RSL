@@ -1,6 +1,6 @@
 import { GetThemeListWithUnitsResponseDto, GetThemeWithUnitsResponseDto } from "../../dtos/themes/GetThemeListWithUnitsResponseDto";
 import { GetThemeListWithUnitsResponse, GetThemeWithUnitsResponse } from "../../models/themes/GetThemeListWithUnitsResponse";
-import { GetUnitResponseMapper } from "../GetUnitResponseMapper";
+import { GetUnitResponseMapper } from "../unit/GetUnitResponseMapper";
 
 namespace GetThemeWithUnitsResponseMapper {
 	/**
