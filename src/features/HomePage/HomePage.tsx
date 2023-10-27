@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useEffect, useState} from "react";
+import React, {FC, useCallback} from "react";
 import styles from "./HomePage.module.css";
 import {useNavigate} from "react-router-dom";
 import Logo from "../../assets/images/Logo.svg";
@@ -7,16 +7,13 @@ import startTrainingSVG from '../../assets/images/StartTraining.svg'
 import {Typography} from "../../components/Typography";
 import {Card} from "../../components/Card";
 import SberLogo from "../../assets/images/SberAI.png";
-import PinCodeLogo from '../../assets/images/PinCodeLogo.svg';
-import UrFULogo from '../../assets/images/UrFULogo.png';
 import {typedMemo} from "../../core/utils/typedMemo";
-import {socket} from "../../core/utils/connectToModal";
 
 export const HomePage: FC = typedMemo(function HomePage() {
     const navigate = useNavigate();
 
     const toLearning = useCallback(() => navigate("learning"), [navigate])
-    const toTraining = useCallback(() => navigate( "training"), [navigate])
+    const toTraining = useCallback(() => navigate("training"), [navigate])
 
     return (
         <div className={styles.homePage}>
@@ -54,6 +51,13 @@ export const HomePage: FC = typedMemo(function HomePage() {
                         </div>
                     </Card>
                 </div>
+
+            </div>
+
+            <div className={styles.homePage__logosContainer}>
+                <Card className={styles.homePage__logos}>
+                    <img src={SberLogo} alt="SberAI" width={200}/>
+                </Card>
             </div>
         </div>
     )

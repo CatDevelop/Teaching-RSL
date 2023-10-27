@@ -14,8 +14,9 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
-    padding: var(--page-padding-m);
+    gap: var(--space-l);
+    padding: var(--space-m) var(--space-xl);
+    justify-content: center;
     align-items: center;
 }
 
@@ -40,7 +41,7 @@
 .homePage__buttonContainer {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--space-s);
     padding: var(--space-l) !important; /* Переопределяю отступы компонента Card */
     height: 100%;
     width: 100%;
@@ -102,6 +103,12 @@
     max-height: 85px !important; /* Переопределяю размер компонента Card */
     width: 100%;
     box-sizing: border-box;
+}
+
+.homePage__testButton {
+    position: absolute;
+    top: 50px;
+    right: 50px;
 }
 
 @media (max-height: 800px)  {
