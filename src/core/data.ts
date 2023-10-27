@@ -16,7 +16,6 @@ export const StartThemeWords: Word[] = [
         text: "Привет",
         recognitionText: 'привет',
         gifSource: HelloSignVideo,
-        // gifSource: "https://media.spreadthesign.com/video/mp4/12/17658.mp4",
         imageSource: Hello,
     },
     {
@@ -24,7 +23,6 @@ export const StartThemeWords: Word[] = [
         text: "Друг",
         recognitionText: 'друг',
         gifSource: FriendSignVideo,
-        // gifSource: "https://media.spreadthesign.com/video/mp4/12/351476.mp4",
         imageSource: Friend,
     },
     {
@@ -32,7 +30,6 @@ export const StartThemeWords: Word[] = [
         text: "Я",
         recognitionText: 'я',
         gifSource: ISignVideo,
-        // gifSource: "https://media.spreadthesign.com/video/mp4/12/12788.mp4",
         imageSource: I,
     },
     {
@@ -40,7 +37,6 @@ export const StartThemeWords: Word[] = [
         text: "Любить",
         recognitionText: 'любовь',
         gifSource: LoveSignVideo,
-        // gifSource: "https://media.spreadthesign.com/video/mp4/12/43672.mp4",
         imageSource: "https://img.freepik.com/free-vector/in-love-illustration-concept_114360-867.jpg?w=740&t=st=1696343075~exp=1696343675~hmac=b2f71632908f384437f68a1838ab5d32feb410145a728f1ac20332feb27bcc6d",
     },
     {
@@ -48,7 +44,6 @@ export const StartThemeWords: Word[] = [
         text: "Тебя",
         recognitionText: 'ты/тебя',
         gifSource: YouSignVideo,
-        // gifSource: "https://media.spreadthesign.com/video/mp4/12/12804.mp4",
         imageSource: You,
     },
 ]
