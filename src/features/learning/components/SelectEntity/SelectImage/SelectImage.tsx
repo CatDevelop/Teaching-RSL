@@ -11,11 +11,14 @@ export const SelectImage: FC<SelectContainerProps> = typedMemo(function SelectIm
         <SelectContainer {...props}>
             {
                 props.wordObject.imageSource
-                    ? <Image
-                        width={315}
-                        alt="Изображения для жеста"
-                        src={props.wordObject.imageSource}
-                    />
+                    ? <div className={styles.selectImage__image}>
+                        <Image
+                            className={styles.selectImage__imageTest}
+                            alt="Изображения для жеста"
+                            src={props.wordObject.imageSource}
+                        />
+                    </div>
+
                     : <div className={styles.selectImage__altText}>
                         <Typography variant={"h1"}>
                             {props.wordObject.text}

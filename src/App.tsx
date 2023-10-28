@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
     },
 })
 
-function MyApp() {
+export default function MyApp() {
     return (
         <div className="App">
             <QueryClientProvider client={queryClient}>
@@ -29,5 +29,3 @@ function MyApp() {
         </div>
     );
 }
-
-export default MyApp;
