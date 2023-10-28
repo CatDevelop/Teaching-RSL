@@ -1,0 +1,36 @@
+.authFormPage {
+    --logo-width: 218px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+    justify-items: center;
+    align-items: center;
+}
+
+.authFormPage__logo {
+    max-width: var(--logo-width);
+    justify-self: flex-start;
+    width: 100%;
+    align-self: flex-start;
+}
+
+.authFormPage__form {
+    --max-form-width: 640px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+    max-width: var(--max-form-width);
+    width: 100%;
+    background-color: var(--on-surface-color);
+    border-radius: var(--border-radius-s);
+    padding: var(--space-xxl);
+    box-shadow: var(--box-shadow-light);
+}
+
+.authFormPage__form form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+}

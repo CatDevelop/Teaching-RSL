@@ -1,0 +1,1 @@
+export { AuthFormPage } from "./AuthFormPage";

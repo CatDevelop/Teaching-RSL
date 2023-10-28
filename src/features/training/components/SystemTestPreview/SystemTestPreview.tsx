@@ -20,7 +20,7 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
     const navigate = useNavigate();
 
     const start = useCallback(async (wordsCount: GetThemeResponse['wordsCount'] ) => {
-        const test = await TrainingService.postTrainingCreate({id: props.id, wordsCount, testType: TestTypeEnum.TestByUnit});
+        const test = await TrainingService.postTrainingCreate({id: props.id, wordsCount, trainingType: TestTypeEnum.TestByUnit});
         navigate(test.id)
     }, [navigate, props.id])
 

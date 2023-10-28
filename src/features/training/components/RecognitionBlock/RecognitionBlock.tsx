@@ -7,13 +7,13 @@ import {ComponentProps} from "../../../../core/models/ComponentProps";
 import clsx from "clsx";
 import {WebCamera} from "../WebCamera/WebCamera";
 import {Spinner} from "@nextui-org/react";
-import {Word} from "../../../../core/models/Word";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
+import { WordInTest } from "../../../../core/models/training/GetTestResponse";
 import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
 import {socket} from "../../../../core/utils/connectToModal";
 
 type Props = ComponentProps & Readonly<{
-    word: Word;
+    word: WordInTest;
     onSuccess: () => void;
     intervalID: TimeoutId | undefined;
     setIntervalID: Dispatch<SetStateAction<TimeoutId | undefined>>;
@@ -112,7 +112,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     }, [props.intervalID])
 
     useEffect(() => {
-        if (props.signRecognizeText.includes(props.word.recognitionText.toLowerCase()))
+        if (props.signRecognizeText.includes(props.word.recognitionText?.toLowerCase() ?? ''))
             props.onSuccess()
     }, [props.signRecognizeText])
 
@@ -126,7 +126,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                     Покажите жест в камеру
                 </Typography>
                 <Typography variant="h2" className={styles.recognitionBlock__gesture}>
-                    {props.word.text}
+                    {props.word.word}
                 </Typography>
             </div>
 
@@ -147,7 +147,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                                     variant="span"
                                     className={clsx(
                                         styles.recognitionBlock__recognizedWord,
-                                        word === props.word.recognitionText.toLowerCase() && styles.recognitionBlock__rightWord
+                                        word === props.word.recognitionText?.toLowerCase() && styles.recognitionBlock__rightWord
                                     )}
                                 >
                                     {word}

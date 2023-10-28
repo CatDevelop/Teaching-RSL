@@ -1,5 +1,5 @@
-import { TestGetResponseDto, WordInTestDto } from "../../../core/dtos/training/TestGetResponseDto";
-import { TestGetResponse, WordInTest } from "../../../core/models/training/TestGetResponse";
+import { GetTestResponseDto, WordInTestDto } from "../../dtos/training/GetTestResponseDto";
+import { GetTestResponse, WordInTest } from "../../models/training/GetTestResponse";
 
 
 namespace WordInTestMapper {
@@ -16,14 +16,14 @@ namespace WordInTestMapper {
 	}
 }
 
-export namespace TestGetResponseMapper {
+export namespace GetTestResponseMapper {
 
 	/**
 	 * Маппинг DTO в модель.
 	 * @param dto DTO.
 	 */
-	export function fromDto(dto: TestGetResponseDto): TestGetResponse {
-		return new TestGetResponse ({
+	export function fromDto(dto: GetTestResponseDto): GetTestResponse {
+		return new GetTestResponse ({
 			id: dto.id,
 			words: dto.words.map(wordDto => WordInTestMapper.fromDto(wordDto)),
 			name: dto.name,
