@@ -7,8 +7,7 @@
     gap: var(--space-m);
     cursor: pointer;
     width: 100%;
-    background-color: var(--accent-color);
-    /*background-color: var(--dark-on-surface-color);*/
+    background-color: var(--dark-on-surface-color);
 }
 
 .systemTestPreview:hover {

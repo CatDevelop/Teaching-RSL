@@ -21,14 +21,32 @@ import {UserTestPreview} from "../../training/components/UserTestPreview";
 import {SystemTestPreview} from "../../training/components/SystemTestPreview";
 import {SystemTests} from "../../training/components/SystemTests";
 import {UserTests} from "../../training/components/UserTests";
+import {RecognitionBlock} from "../../training/components/RecognitionBlock";
 import {ProgressBar} from "../../../components/ProgressBar";
 
 export const TestingComponentPage: FC = typedMemo(function TestingComponentPage() {
+    let correctAnswer = new Audio("https://www.myinstants.com/media/sounds/duolingo-correct.mp3");
+    let wrongAnswer = new Audio("https://www.myinstants.com/media/sounds/duolingo-wrong.mp3")
+
     const [selectWord, setSelectWord] = useState<Word | null>()
     const [selectGIF, setSelectGIF] = useState<Word | null>()
     const [selectImage, setSelectImage] = useState<Word | null>()
 
     const [progressBar, setProgressBar] = useState(1);
+
+    const [practiceSelectWord, setPracticeSelectWord] = useState<Word | null>()
+    const [practiceSelectWordChecked, setPracticeSelectWordChecked] = useState<boolean>(false)
+
+    const [practiceSelectGIFByWord, setPracticeSelectGIFByWord] = useState<Word | null>()
+    const [practiceSelectGIFByWordChecked, setPracticeSelectGIFByWordChecked] = useState<boolean>(false)
+
+    const [practiceSelectGIFByImage, setPracticeSelectGIFByImage] = useState<Word | null>()
+    const [practiceSelectGIFByImageChecked, setPracticeSelectGIFByImageChecked] = useState<boolean>(false)
+
+
+    const [practiceSelectImage, setPracticeSelectImage] = useState<Word | null>()
+    const [practiceSelectImageChecked, setPracticeSelectImageChecked] = useState<boolean>(false)
+
 
     return (
         <div className={styles.container}>
@@ -138,6 +156,9 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
 
             <h2 className={styles.componentTitle}>Диапазон</h2>
             <Range/>
+
+            {/*<h2 className={styles.componentTitle}>Блок распознавания жестов</h2>*/}
+            {/*<RecognitionBlock text={"123"}/>*/}
 
             <h2 className={styles.componentTitle}>Карточка пользовательского теста</h2>
             <UserTestPreview name={"ДЗ №12 от 31.08.2023"} wordsCount={12} id={1}/>

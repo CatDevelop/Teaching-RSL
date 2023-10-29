@@ -1,4 +1,4 @@
-import { GetUnitResponse } from "../unit/GetUnitResponse";
+import { GetUnitResponse } from "../GetUnitResponse";
 
 /**
  * Лист тем.

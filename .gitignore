@@ -5,8 +5,6 @@
 /.pnp
 .pnp.js
 /.idea
-recognition/.idea
-recognition/venv
 
 # testing
 /coverage

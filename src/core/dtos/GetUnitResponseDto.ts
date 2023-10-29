@@ -2,7 +2,7 @@
  * Раздел темы.
  */
 export type GetUnitResponseDto = Readonly<{
-
+    
     /**
      * Id.
      */

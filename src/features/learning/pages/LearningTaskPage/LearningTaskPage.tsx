@@ -4,24 +4,22 @@ import styles from "./LearningTaskPage.module.css";
 import {Page} from "../../../../components/Page";
 import Logo from "../../../../assets/images/Logo.svg"
 import {shuffleArray} from "../../../../core/utils/shuffleArray";
-import {StartThemeTasks, StartThemeWords} from "../../../../core/data";
+import {StartThemeTasks, StartThemeWords, taskType} from "../../../../core/data";
 import {Button} from "../../../../components/Button";
 import {TheoryCard} from "../../components/TheoryCard";
+import {Card} from "../../../../components/Card";
 import {Typography} from "../../../../components/Typography";
 import {useNavigate} from "react-router-dom";
 import {clsx} from "clsx";
+import {Word} from "../../../../core/models/Word";
 import {TaskContinue} from "../../../../components/TaskContinue";
-import {StepStatus} from '../../../../core/models/StepStatus';
+import {StepStatus} from '../../../../core/models/StepStatus'
 import {ProgressBar} from "../../../../components/ProgressBar";
 import {PageContent} from "../../../../components/PageContent";
 import ResultImage from "../../../../assets/images/ResultLearningImage.svg";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
-import {PracticeCards} from "../../components/PracticeCards";
-import {StartLearning} from "../../components/StartLearning";
-import {generateTasks} from "../../../../core/utils/generateTasks";
-import {TasksType} from "../../../../core/models/Tasks";
-import {Word} from "../../../../core/models/Word";
+import {PracticeCards} from "../../components/PracticeCards/PracticeCards";
 
 // TODO написать нормальные типы
 type task = {
@@ -30,11 +28,28 @@ type task = {
     type: string
 }
 
+type taskObject = Partial<
+    {
+        wordObject: Word,
+        otherVariants: Word[],
+        type: "SelectWord" | "SelectGIFByWord"
+    } &
+    {
+        variants: Word[],
+        type: "MatchWordAndGIF"
+    } &
+    {
+        wordObject: Word,
+        type: "theory"
+    }
+>
+
+
 export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const navigate = useNavigate()
     const fireworks = getFireworks(3000)
     const theoryCount = 5;
-    const practiceCount = 4;
+    const practiceCount = 3;
 
     // -1 - стартовая плашка
     // 0-(theoryCount-1) - теория
@@ -46,15 +61,49 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const [taskChecked, setTaskChecked] = useState<boolean>(false)
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
 
+
+    const generatePractices = useCallback((words: Word[], tasks: taskType[]) => {
+        const getOtherWords = (words: Word[], currentWordIndex: number, count: number) => {
+            let otherWords = [...words]
+            otherWords.splice(currentWordIndex, 1)
+            const shuffledOtherWords = shuffleArray(otherWords)
+            return shuffledOtherWords.slice(0, count)
+        }
+
+        const shuffledWords = shuffleArray(words);
+        const shuffledTasks = shuffleArray(tasks);
+        let results = [];
+        let taskIndex = 0;
+        for (let task of shuffledTasks) {
+            if (task === "SelectWord" || task === "SelectGIFByWord") {
+                results.push({
+                    wordObject: shuffledWords[taskIndex],
+                    otherVariants: getOtherWords(shuffledWords, taskIndex, 3),
+                    type: task
+                })
+                taskIndex += 1;
+            }
+
+            if (task === "MatchWordAndGIF") {
+                results.push({
+                    variants: shuffledWords.slice(taskIndex, taskIndex + 3),
+                    type: task
+                })
+                taskIndex += 3;
+            }
+        }
+        return results
+    }, [])
+
     const [tasks] = useState<task[]>([
-        ...shuffleArray<Word>(StartThemeWords).map((wordObject, index) => ({
+        ...shuffleArray(StartThemeWords).map((wordObject, index) => ({
             id: index,
             task: {
                 wordObject
             },
             type: "theory"
         })),
-        ...shuffleArray<TasksType>(generateTasks(StartThemeWords, StartThemeTasks)).map((task, index) => ({
+        ...shuffleArray(generatePractices(StartThemeWords, StartThemeTasks)).map((task, index) => ({
             id: index + 5,
             task,
             type: "practice"
@@ -65,13 +114,6 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
         if (currentStep === theoryCount + practiceCount)
             fireworks()
     }, [currentStep, fireworks]);
-
-    const nextStep = useCallback(() => {
-        setCurrentStep(currentStep + 1)
-    }, [currentStep, setCurrentStep])
-
-    const toMainPage = useCallback(() => navigate("/"), [navigate])
-    const toTrainingPage = useCallback(() => navigate("/training"), [navigate])
 
     return (
         <Page>
@@ -98,19 +140,42 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     </Button>
                 </div>
 
+
                 <div className={styles.learningTask__taskContainer}>
                     {
                         currentStep === -1 &&
-                        <StartLearning onStart={nextStep}/>
+                        (
+                            <Card className={clsx(styles.learningTask__startCard, styles.learningTask__startAnimation)}>
+                                <Typography variant="h2">Начало обучения</Typography>
+                                <Typography
+                                    variant="p"
+                                    className={styles.learningTask__startCardDescription}
+                                >
+                                    Сначала вы ознакомитесь с теорией, затем пройдёте 3 интерактивных задания,
+                                    чтобы закрепить материал.<br/>
+                                    Постарайтесь запомнить все жесты, чтобы успешно пройти практику.
+                                </Typography>
+
+                                <Button
+                                    variant="solid"
+                                    color="primary"
+                                    onClick={() => setCurrentStep(0)}
+                                >
+                                    Начать прохождение
+                                </Button>
+                            </Card>
+                        )
                     }
+
                     {
                         currentStep >= 0 && currentStep <= theoryCount - 1 &&
                         (
                             <div className={clsx(styles.learningTask__theory, styles.learningTask__startAnimation)}>
-                                <TheoryCard wordObject={tasks[currentStep].task?.wordObject}/>
+                                <TheoryCard wordObject={tasks[currentStep].task.wordObject}/>
                             </div>
                         )
                     }
+
                     {
                         currentStep !== -1 &&
                         currentStep >= theoryCount &&
@@ -122,6 +187,8 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                                        setTaskCompleted={setTaskCompleted}
                         />
                     }
+
+
                     {
                         currentStep === theoryCount + practiceCount &&
                         <div className={styles.learningTask__result}>
@@ -144,7 +211,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                             size="lg"
                             variant="faded"
                             color="primary"
-                            onClick={nextStep}
+                            onClick={() => setCurrentStep(currentStep + 1)}
                         >
                             Далее
                         </Button>
@@ -155,7 +222,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         <Button
                             size="lg"
                             color="primary"
-                            onClick={nextStep}
+                            onClick={() => setCurrentStep(currentStep + 1)}
                         >
                             Перейти к практике
                         </Button>
@@ -186,7 +253,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         currentStepStatus.status === 'success' &&
                         <TaskContinue
                             next={() => {
-                                nextStep()
+                                setCurrentStep(currentStep + 1)
                                 setCurrentStepStatus({status: "default"})
                                 setTaskChecked(false)
                                 setTaskCompleted(false)
@@ -199,7 +266,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         currentStepStatus.status === 'error' &&
                         <TaskContinue
                             next={() => {
-                                nextStep()
+                                setCurrentStep(currentStep + 1)
                                 setCurrentStepStatus({status: "default"})
                                 setTaskChecked(false)
                                 setTaskCompleted(false)
@@ -212,10 +279,14 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     {
                         currentStep === theoryCount + practiceCount &&
                         <div className={styles.learningTask__toPractice}>
-                            <Button variant="faded" onClick={toMainPage}>
+                            <Button variant="faded" onClick={() => {
+                                navigate("/")
+                            }}>
                                 В главное меню
                             </Button>
-                            <Button color="primary" onClick={toTrainingPage}>
+                            <Button color="primary" onClick={() => {
+                                navigate("/training/")
+                            }}>
                                 Попробовать свои знания
                             </Button>
                         </div>

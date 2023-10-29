@@ -6,7 +6,7 @@ import { Typography } from "../../../../components/Typography";
 import { ComponentProps } from "../../../../core/models/ComponentProps";
 import { TestWordsModal } from "../TestWordsModal";
 import styles from "./SystemTestPreview.module.css";
-import { GetUnitResponse } from "../../../../core/models/unit/GetUnitResponse";
+import { GetUnitResponse } from "../../../../core/models/GetUnitResponse";
 import { useNavigate } from "react-router-dom";
 import { GetThemeResponse } from "../../../../core/models/themes/GetThemeListResponse";
 import { TrainingService } from "../../../../api/services/training";

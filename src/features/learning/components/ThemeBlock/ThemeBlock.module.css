@@ -1,5 +1,0 @@
-.themeBlock__units {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-l);
-}

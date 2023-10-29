@@ -11,7 +11,7 @@ import LoveSignVideo from "../assets/video/ExhibitionStand/Люблю.mp4"
 import YouSignVideo from "../assets/video/ExhibitionStand/Тебя.mp4"
 import {GetTestResponse} from "./models/training/GetTestResponse";
 
-export type taskType = "SelectWord" | "SelectImage" | "SelectGIFByWord" | "MatchWordAndGIF"
+export type taskType = "SelectWord" | "SelectGIFByWord" | "MatchWordAndGIF"
 export const StartThemeWords: Word[] = [
     {
         id: 0,
@@ -53,7 +53,6 @@ export const StartThemeWords: Word[] = [
 
 export const StartThemeTasks: taskType[] = [
     "SelectWord",
-    "SelectImage",
     "SelectGIFByWord",
     "MatchWordAndGIF"
 ]
