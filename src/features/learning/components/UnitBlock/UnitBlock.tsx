@@ -23,13 +23,14 @@ export const UnitBlock: FC<Props> = typedMemo(function UnitBlock(props) {
             <div className={styles.unitBlock__levels}>
                 {
                     props.levels.map((level, index) => {
-                        return <><LevelBlock
-                            id={level.id}
-                            number={index + 1}
-                            completeWordsCount={10}
-                            disabled={false}
-                            allWordsCount={level.wordsCount}
-                        />
+                        return <>
+                            <LevelBlock
+                                id={level.id}
+                                number={index + 1}
+                                completeWordsCount={10}
+                                disabled={false}
+                                allWordsCount={level.wordsCount}
+                            />
                             <p className={styles.unitBlock__levels__delimiter}/>
                         </>
                     })
