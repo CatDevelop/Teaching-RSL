@@ -37,7 +37,7 @@ export const SideBar: FC = typedMemo(function SideBar() {
             id: 3,
             label: "Словарь",
             icon: DictionaryIcon,
-            link: "/dictionary"
+            link: "/dictionary/by-theme"
         },
     ]
 

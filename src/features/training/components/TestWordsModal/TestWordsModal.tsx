@@ -1,10 +1,10 @@
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
-import { ComponentProps } from "../../../../core/models/ComponentProps";
-import { typedMemo } from "../../../../core/utils/typedMemo";
-import React,  { FC, ReactElement, useCallback, useState } from "react";
-import { Button } from "../../../../components/Button";
-import { Range } from "../../../../components/Range";
-import { GetThemeResponse } from "../../../../core/models/themes/GetThemeListResponse";
+import {Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure} from "@nextui-org/react";
+import {ComponentProps} from "../../../../core/models/ComponentProps";
+import {typedMemo} from "../../../../core/utils/typedMemo";
+import React, {FC, ReactElement, useCallback, useState} from "react";
+import {Button} from "../../../../components/Button";
+import {Range} from "../../../../components/Range";
+import {GetThemeResponse} from "../../../../core/models/themes/GetThemeListResponse";
 
 type Props = ComponentProps & Readonly<{
     triggerComponent: (onOpen: () => void) => ReactElement;

@@ -19,22 +19,22 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
         <Page className={styles.trainingCatalog}>
             <SideBar/>
             <PageContent className={styles.trainingCatalog__pageContent}>
-                <Suspense fallback={<Spinner className={styles.trainingCatalog__loading}/>}>
-                    <Card className={styles.trainingCatalog__titleContainer}>
-                        <Typography
-                            variant="h1"
-                            className={styles.trainingCatalog__titleContainer__title}
-                        >
-                            Практика
-                        </Typography>
-                        <Typography
-                            variant="p"
-                            className={styles.trainingCatalog__titleContainer__description}
-                        >
-                            Потренируйся в воспроизведении жестов, а мы поможем
-                        </Typography>
-                    </Card>
 
+                <Card className={styles.trainingCatalog__titleContainer}>
+                    <Typography
+                        variant="h1"
+                        className={styles.trainingCatalog__titleContainer__title}
+                    >
+                        Практика
+                    </Typography>
+                    <Typography
+                        variant="p"
+                        className={styles.trainingCatalog__titleContainer__description}
+                    >
+                        Потренируйся в воспроизведении жестов, а мы поможем
+                    </Typography>
+                </Card>
+                <Suspense fallback={<Spinner className={styles.trainingCatalog__loading}/>}>
                     <div className={styles.trainingCatalog__systemTests}>
                         <SystemTests/>
                     </div>

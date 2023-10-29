@@ -1,0 +1,37 @@
+.dictionary {
+    --mistakes-height: 157px;
+
+    gap: var(--space-m);
+}
+
+.dictionary__pageContent {
+    position: relative;
+    display: grid;
+    grid-template-areas: "title title" "systems other";
+    grid-template-rows: var(--title-block-container-height) 1fr;
+    grid-template-columns: var(--accent-block-container-width) 1fr;
+}
+
+.dictionary__titleContainer {
+    grid-area: title;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+}
+
+.dictionary__titleContainer__title {
+    color: var(--text-color);
+    line-height: var(--font-size-xl);
+}
+
+.dictionary__titleContainer__description {
+    color: var(--text-color);
+    line-height: var(--font-size-s);
+}
+
+.dictionary__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

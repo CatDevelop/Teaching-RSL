@@ -21,12 +21,12 @@
 
 .trainingCatalog__titleContainer__title {
     color: var(--text-color);
-    line-height: 38px;
+    line-height: var(--font-size-xl);
 }
 
 .trainingCatalog__titleContainer__description {
     color: var(--text-color);
-    line-height: 19px;
+    line-height: var(--font-size-s);
 }
 
 
@@ -48,7 +48,6 @@
 }
 
 .trainingCatalog__userTests {
-    /*height: calc(100% - var(--mistakes-height) - var(--space-m));*/
     height: 100%;
 }
 

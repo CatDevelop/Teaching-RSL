@@ -13,12 +13,9 @@ export const ProfilePage: FC = typedMemo(function LearningCatalogPage() {
         <Page>
             <SideBar/>
             <PageContent className={styles.profile__pageContent}>
-                {/*<Suspense fallback={<Spinner className={styles.learningCatalog__loading}/>}>*/}
+                {/*<Suspense fallback={<Spinner className={styles.profile__loading}/>}>*/}
                 <Spinner className={styles.learningCatalog__loading}/>
                 <Card className={styles.profile__levelBlock}>
-                    <div>
-                        Крашенинникова Любовь
-                    </div>
                     <LevelBlock level={33} experience={1236} experienceForNextLevel={3000}/>
                 </Card>
                 {/*</Suspense>*/}

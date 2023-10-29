@@ -1,7 +1,7 @@
 .profile__pageContent {
     display: grid;
     grid-template-areas: "level level" "progress stats" "progress trophies";
-    grid-template-rows: 174px 1fr 1fr;
+    grid-template-rows: var(--title-block-container-height) 1fr 1fr;
     grid-template-columns: var(--accent-block-container-width) 1fr;
     justify-content: center;
     align-items: center;
@@ -12,12 +12,7 @@
     grid-area: level;
 }
 
-.learningCatalog__themes {
-    grid-area: themes;
-    height: calc(100vh - var(--title-block-container-height) - 2*var(--page-padding-m) - var(--space-m));
-}
-
-.learningCatalog__loading {
+.profile__loading {
     position: absolute;
     top: 50%;
     left: 50%;

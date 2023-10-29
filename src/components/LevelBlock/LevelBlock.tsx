@@ -11,7 +11,7 @@ type Props = ComponentProps & Readonly<{
     experienceForNextLevel: number;
 }>
 
-/** Подтверждение выхода из задания. */
+/** Блок с уровнем и количеством опыта. */
 export const LevelBlock: FC<Props> = typedMemo(function LevelBlock(props) {
     return (
         <div className={styles.levelBlock}>
