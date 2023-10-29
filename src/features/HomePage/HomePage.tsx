@@ -6,10 +6,7 @@ import startLearningSVG from '../../assets/images/StartLearning.svg'
 import startTrainingSVG from '../../assets/images/StartTraining.svg'
 import {Typography} from "../../components/Typography";
 import {Card} from "../../components/Card";
-import MGPULogo from "../../assets/images/MGPULogo.svg";
 import SberLogo from "../../assets/images/SberAI.png";
-import PinCodeLogo from '../../assets/images/PinCodeLogo.svg';
-import UrFULogo from '../../assets/images/UrFULogo.png';
 import {typedMemo} from "../../core/utils/typedMemo";
 import {Button} from "../../components/Button";
 
@@ -60,10 +57,7 @@ export const HomePage: FC = typedMemo(function HomePage() {
 
             <div className={styles.homePage__logosContainer}>
                 <Card className={styles.homePage__logos}>
-                    <img src={MGPULogo} alt="МГПУ" width={110}/>
                     <img src={SberLogo} alt="SberAI" width={200}/>
-                    <img src={PinCodeLogo} alt="ПИН-КОД" width={60}/>
-                    <img src={UrFULogo} alt="УрФУ" width={66}/>
                 </Card>
             </div>
 

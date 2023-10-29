@@ -1,13 +1,25 @@
-.learningCatalog {
-    gap: var(--space-m);
+.learningCatalog__pageContent {
+    display: grid;
+    grid-template-areas: "level _" "themes _";
+    grid-template-rows: var(--title-block-container-height) 1fr;
+    grid-template-columns: var(--accent-block-container-width) 1fr;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.learningCatalog__title {
-    margin-bottom: var(--space-l);
+.learningCatalog__levelBlock {
+    grid-area: level;
 }
 
-.learningCatalog__links {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-m)
+.learningCatalog__themes {
+    grid-area: themes;
+    height: calc(100vh - var(--title-block-container-height) - 2*var(--page-padding-m) - var(--space-m));
+}
+
+.learningCatalog__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

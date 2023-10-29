@@ -1,0 +1,1 @@
+export { DictionaryByThemePage } from "./DictionaryByThemePage";

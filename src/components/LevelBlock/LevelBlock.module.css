@@ -1,0 +1,18 @@
+.levelBlock {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m)
+}
+
+.levelBlock__titleContainer {
+    display: flex;
+    align-items: end;
+    gap: var(--space-l)
+}
+.levelBlock__level {
+    line-height: 38px;
+}
+
+.levelBlock__experienceCount {
+    color: var(--thirdly-text-color)
+}

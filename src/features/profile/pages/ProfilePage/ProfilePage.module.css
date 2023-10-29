@@ -1,0 +1,20 @@
+.profile__pageContent {
+    display: grid;
+    grid-template-areas: "level level" "progress stats" "progress trophies";
+    grid-template-rows: var(--title-block-container-height) 1fr 1fr;
+    grid-template-columns: var(--accent-block-container-width) 1fr;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.profile__levelBlock {
+    grid-area: level;
+}
+
+.profile__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

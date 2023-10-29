@@ -22,7 +22,7 @@ export const SideBarItem: FC<Props> = typedMemo(function SideBarItem(props) {
             className={clsx(styles.sideBarItem__container, props.isActive && styles.sideBarItem_active)}
         >
             {props.item.icon}
-            <Typography variant="h3" className={styles.sideBarItem__label}>
+            <Typography variant="p" className={styles.sideBarItem__label}>
                 {props.item.label}
             </Typography>
         </NavLink>

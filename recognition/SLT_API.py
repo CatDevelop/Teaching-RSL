@@ -100,6 +100,8 @@ def inference(model, frame_queue, result_queue, sid):
                 label = 'он'
             if label == 'вы/твой/ваш':
                 label = 'вы'
+            if label == 'ты':
+                label = 'ты/тебя'
             print(label)
 
             if label != 'нет жеста':

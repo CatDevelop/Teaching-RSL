@@ -1,23 +1,35 @@
 .levelLink {
-    padding: var(--space-s) var(--space-m);
-    cursor: pointer;
-    background: var(--dark-on-surface-color);
-    border-radius: var(--border-radius-m);
+    border: 2px solid var(--thirdly-text-color);
     display: flex;
-    flex-direction: row;
-    gap: var(--space-m);
+    cursor: pointer;
+    border-radius: 100%;
     justify-content: center;
     align-items: center;
+    width: 32px;
+    height: 32px;
 }
 
-.levelLink__name {
-    font-family: var(--main-font);
-    font-size: var(--font-size-m);
-    line-height: var(--font-size-m);
+.levelBlock__number {
+    color: var(--thirdly-text-color);
+    font-weight: var(--font-weight-l);
+    line-height: var(--font-size-s);
 }
 
-.levelLink__wordsCount {
-    font-family: var(--main-font);
-    font-size: var(--font-size-s);
-    line-height: var(--font-size-m);
+.levelLink_completed {
+    border: 2px solid transparent;
+    background: var(--success-color);
+    cursor: default;
+}
+
+.levelLink_completed .levelBlock__number {
+    color: var(--on-surface-color);
+}
+
+.levelLink_disabled {
+    border: 2px solid var(--disabled-text-color);
+    cursor: default;
+}
+
+.levelLink_disabled .levelBlock__number {
+    color: var(--disabled-text-color);
 }

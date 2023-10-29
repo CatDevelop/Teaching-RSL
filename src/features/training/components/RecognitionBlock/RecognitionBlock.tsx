@@ -36,7 +36,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     const onReceiveText = useCallback((text: string) => {
         console.log(text)
-        props.setSignRecognizeText([...props.signRecognizeText, text])
+        props.setSignRecognizeText([...props.signRecognizeText, text.toLowerCase()])
     }, [props.setSignRecognizeText, props.signRecognizeText, props])
 
     useEffect(() => {
@@ -147,7 +147,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                                     variant="span"
                                     className={clsx(
                                         styles.recognitionBlock__recognizedWord,
-                                        word === props.word.recognitionText?.toLowerCase() && styles.recognitionBlock__rightWord
+                                        word.toLowerCase() === props.word.recognitionText?.toLowerCase() && styles.recognitionBlock__rightWord
                                     )}
                                 >
                                     {word}

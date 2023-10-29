@@ -7,6 +7,8 @@ import {trainingRoutes} from '../features/training/routes';
 import {errorsRouts} from "../features/errors/routes";
 import {adminRoutes} from "../features/admin/routes";
 import { authRoutes } from '../features/auth/routes';
+import {profileRoutes} from "../features/profile/routes";
+import {dictionaryRoutes} from "../features/dictionary/routes";
 
 const routes: RouteObject[] = [
     {
@@ -20,8 +22,10 @@ const routes: RouteObject[] = [
         ]
     },
     ...authRoutes,
+    ...profileRoutes,
     ...learningRoutes,
     ...trainingRoutes,
+    ...dictionaryRoutes,
     ...adminRoutes,
     ...errorsRouts
 ];
