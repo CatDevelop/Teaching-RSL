@@ -11,7 +11,7 @@ import {SelectButton} from "../../SelectEntity/SelectButton";
 import {Typography} from "../../../../../components/Typography";
 import {StepStatus} from "../../../../../core/models/StepStatus";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
-import {getSelectEntity} from "../../SelectEntity/SelectContainer/SelectContainer";
+import {getSelectEntityStatus} from "../../SelectEntity/SelectContainer/SelectContainer";
 
 type Props = ComponentProps & Readonly<{
     wordObject: Word;
@@ -24,7 +24,7 @@ type Props = ComponentProps & Readonly<{
 /** Практика "Выбери слово". */
 export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWord(props) {
     const [selectWord, setSelectWord] = useState<Word | null>()
-    const [variants] = useState(shuffleArray([props.wordObject, ...props.otherVariants]))
+    const [variants] = useState(shuffleArray<Word>([props.wordObject, ...props.otherVariants]))
 
     useEffect(() => {
         if (props.checked) {
@@ -54,7 +54,7 @@ export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWo
                                 <SelectButton
                                     wordObject={variant}
                                     setState={setSelectWord}
-                                    state={getSelectEntity(props.checked, selectWord, variant, props.wordObject)}
+                                    state={getSelectEntityStatus(props.checked, selectWord, variant, props.wordObject)}
                                 />
                             ))
                         }

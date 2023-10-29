@@ -1,0 +1,13 @@
+.withSideBarContent {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin-left: var(--sidebar-width)
+}
+
+
+.withSideBarContent__app {
+    width: calc(100vw - var(--sidebar-width));
+    height: 100vh;
+}
+

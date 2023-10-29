@@ -1,5 +1,5 @@
-import { GetUnitResponseDto } from "../dtos/GetUnitResponseDto";
-import { GetUnitResponse } from "../models/GetUnitResponse";
+import { GetUnitResponseDto } from "../../dtos/unit/GetUnitResponseDto";
+import { GetUnitResponse } from "../../models/unit/GetUnitResponse";
 
 export namespace GetUnitResponseMapper {
 	/**

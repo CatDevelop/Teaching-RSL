@@ -4,7 +4,6 @@ import styles from "./TrainingPage.module.css";
 import {Page} from "../../../../components/Page";
 import Logo from "../../../../assets/images/Logo.svg"
 import {Button} from "../../../../components/Button";
-import {Card} from "../../../../components/Card";
 import {Typography} from "../../../../components/Typography";
 import {useNavigate, useParams} from "react-router-dom";
 import {clsx} from "clsx";
@@ -21,6 +20,9 @@ import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types"
 import GitHubLogo from "../../../../assets/images/GitHubLogo.svg"
 import { useQuery } from "react-query";
 import { TrainingService } from "../../../../api/services/training";
+import {StartTraining} from "../../components/StartTraining/StartTraining";
+import {socket} from "../../../../core/utils/connectToModal";
+import {Word} from "../../../../core/models/Word";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
@@ -43,6 +45,8 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     }, [data, countSkippedWords])
 
     const clearRecognizeText = () => setSignRecognizeText([])
+
+    const toMainPage = useCallback(() => navigate("/"), [navigate])
 
     const skip = useCallback(() => {
         setCurrentStep(currentStep => currentStep + 1)
@@ -67,14 +71,12 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     if(!data){ 
         return null
     }
+        
     return (
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.trainingTask}>
-                <div className={styles.trainingTask__logoContainer} onClick={() => {
-                    clearInterval(intervalID)
-                    navigate("/")
-                }}>
+                <div className={styles.trainingTask__logoContainer} onClick={toMainPage}>
                     <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
                 </div>
                 {
@@ -101,25 +103,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                 <div className={styles.trainingTask__taskContainer}>
                     {
                         currentStep === -1 &&
-                        (
-                            <Card className={clsx(styles.trainingTask__startCard, styles.trainingTask__startAnimation)}>
-                                <Typography variant={"h2"}>
-                                    Начало тренировки
-                                </Typography>
-                                <Typography variant={"p"} className={styles.trainingTask__startCardDescription}>
-                                    Вам будут предложены слова, которое вы должны показать в камеру.
-                                    Наша система распознает ваш жест и отобразит слово зелёным цветом.
-                                    После успешного выполнения перейдите к следующему слову.
-                                </Typography>
-
-                                <Button variant={"solid"} color={"primary"}
-                                        onClick={() => setCurrentStep(0)}
-                                        size={"lg"}
-                                >
-                                    Начать прохождение
-                                </Button>
-                            </Card>
-                        )
+                        <StartTraining onStart={() => setCurrentStep(0)}/>
                     }
                     {
                         currentStep >= 0 && currentStep <= data.words.length - 1 &&
@@ -178,17 +162,13 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                             <Button
                                 size={'lg'}
                                 color="primary"
-                                onClick={() => {
-                                    clearInterval(intervalID)
-                                    navigate("/")
-                                }}
+                                onClick={toMainPage}
                             >
                                 В главное меню
                             </Button>
                         </div>
                     }
                 </div>
-
 
                 {
                     currentStep === -1 &&
