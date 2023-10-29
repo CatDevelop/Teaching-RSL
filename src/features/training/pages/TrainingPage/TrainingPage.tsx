@@ -82,7 +82,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.trainingTask}>
-                <div className={styles.trainingTask__logoContainer} onClick={toMainPage}>
+                <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
                     <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
                 </div>
                 {

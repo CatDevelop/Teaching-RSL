@@ -2,7 +2,6 @@ import React, {FC, useCallback} from "react";
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import {NavLink} from "react-router-dom";
 import styles from "./LevelBlock.module.css"
-import {bool} from "yup";
 import {clsx} from "clsx";
 import {Typography} from "../../../../components/Typography";
 
@@ -14,7 +13,7 @@ type Props = {
     allWordsCount: number
 }
 
-/* Компонент для тестов, не войдёт в прод*/
+/* Ссылка на уровень */
 export const LevelBlock: FC<Props> = typedMemo(function LevelBlock(props) {
     const getLevelClass = useCallback(() => {
             if (props.completeWordsCount === props.allWordsCount)
