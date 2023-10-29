@@ -1,0 +1,16 @@
+.socialBlock {
+    border-top: 1px solid var(--dark-on-surface-color);
+    padding-top: var(--space-l);
+}
+
+.socialBlock__label {
+    color: var(--thirdly-text-color);
+    display: inline-block;
+    margin-bottom: var(--space-l);
+}
+
+.socialBlock__socialButtons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}

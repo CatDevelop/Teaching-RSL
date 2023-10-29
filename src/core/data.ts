@@ -9,9 +9,9 @@ import FriendSignVideo from "../assets/video/ExhibitionStand/Друг.mp4"
 import ISignVideo from "../assets/video/ExhibitionStand/Я.mp4"
 import LoveSignVideo from "../assets/video/ExhibitionStand/Люблю.mp4"
 import YouSignVideo from "../assets/video/ExhibitionStand/Тебя.mp4"
-import {TestGetResponse} from "./models/training/TestGetResponse";
+import {GetTestResponse} from "./models/training/GetTestResponse";
 
-export type taskType = "SelectWord" | "SelectImage" | "SelectGIFByWord" | "MatchWordAndGIF"
+export type taskType = "SelectWord" | "SelectGIFByWord" | "MatchWordAndGIF"
 export const StartThemeWords: Word[] = [
     {
         id: 0,
@@ -53,7 +53,6 @@ export const StartThemeWords: Word[] = [
 
 export const StartThemeTasks: taskType[] = [
     "SelectWord",
-    "SelectImage",
     "SelectGIFByWord",
     "MatchWordAndGIF"
 ]
@@ -76,7 +75,7 @@ export const themes = [
 
 export const userTests: any[] = [];
 
-export const testTemp: TestGetResponse = {
+export const testTemp: GetTestResponse = {
     id:'0',
     name: 'Тест 1',
     words: [

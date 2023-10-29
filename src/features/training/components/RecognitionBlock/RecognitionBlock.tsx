@@ -5,15 +5,14 @@ import styles from "./RecognitionBlock.module.css";
 import {Typography} from "../../../../components/Typography";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
 import clsx from "clsx";
+import io from "socket.io-client";
 import {WebCamera} from "../WebCamera/WebCamera";
 import {Spinner} from "@nextui-org/react";
-import {Word} from "../../../../core/models/Word";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
-import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
-import {socket} from "../../../../core/utils/connectToModal";
+import { WordInTest } from "../../../../core/models/training/GetTestResponse";
 
 type Props = ComponentProps & Readonly<{
-    word: Word;
+    word: WordInTest;
     onSuccess: () => void;
     intervalID: TimeoutId | undefined;
     setIntervalID: Dispatch<SetStateAction<TimeoutId | undefined>>;
@@ -22,102 +21,74 @@ type Props = ComponentProps & Readonly<{
 }>
 
 export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props) {
+
     let videoElement: any;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
-    const onConnectToModal = useCallback(() => {
-        console.log("Connected to server");
-    }, [])
-
-    const onDisconnectFromModal = useCallback(() => {
-        console.log("Disconnect");
-    }, [])
-
-    const onReceiveText = useCallback((text: string) => {
-        console.log(text)
-        props.setSignRecognizeText([...props.signRecognizeText, text])
-    }, [props.setSignRecognizeText, props.signRecognizeText, props])
-
-    useEffect(() => {
-        socket.on("send_not_normalize_text", onReceiveText);
-        return () => {
-            socket.off("send_not_normalize_text", onReceiveText)
-        }
-    }, [onReceiveText]);
-
-
     const startWebcam = useCallback(async (addFrameSender: () => void) => {
+        console.log("startWebcam")
         try {
-            stopAllTracks(videoElement.srcObject)
             videoElement.srcObject = await navigator.mediaDevices.getUserMedia({video: {facingMode: "user"}});
             videoElement.addEventListener('play', addFrameSender, {once: true});
         } catch (error) {
             console.error('Error accessing webcam:', error);
         }
-
-        return () => {
-            videoElement.removeEventListener('play', addFrameSender, {once: true});
-            stopAllTracks(videoElement.srcObject)
-        }
-    }, [videoElement, props.intervalID])
+        return () => videoElement.removeEventListener('play', addFrameSender, {once: true});
+    }, [videoElement])
 
     const addFrameSender = useCallback(() => {
+        console.log("addFrameSender")
         let id = setInterval(() => {
-            console.log("Send frame")
-            const originalWidth = videoElement.videoWidth;
-            const originalHeight = videoElement.videoHeight;
-            const aspectRatio = originalWidth / originalHeight;
-            let newWidth = 224;
-            let newHeight = newWidth / aspectRatio;
-
-            canvas.width = 224;
-            canvas.height = 224;
-
-            if (context)
-                context.fillStyle = 'rgb(114, 114, 114)';
-            context?.fillRect(0, 0, canvas.width, canvas.width);
-
-            context?.drawImage(videoElement, 0, (224 - newHeight) / 2, newWidth, newHeight);
+            console.log('Send frame')
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            context?.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
             const image = canvas.toDataURL('image/jpeg');
             socket.emit("data", image);
-        }, 30);
+        }, 30); // Отправка каждый кадр (30 кадров в секунду)
         props.setIntervalID(id)
     }, [context, canvas, videoElement, props.setIntervalID])
 
-
     useEffect(() => {
-        socket.connect()
-
-        socket.on("connect", onConnectToModal);
-        socket.on("disconnect", onDisconnectFromModal);
-        // socket.on("send_not_normalize_text", onReceiveText);
-
         videoElement = document.getElementById('webcam');
         if (videoElement)
             startWebcam(addFrameSender);
 
         return () => {
-            socket.off("connect", onConnectToModal);
-            socket.off("disconnect", onDisconnectFromModal);
-            // socket.off("send_not_normalize_text", onReceiveText);
-            socket.disconnect();
             videoElement.removeEventListener('play', addFrameSender);
-            stopAllTracks(videoElement.srcObject)
+            clearInterval(props.intervalID)
         }
     }, []);
 
-    useEffect(() => {
-        return () => clearInterval(props.intervalID)
-    }, [props.intervalID])
 
     useEffect(() => {
-        if (props.signRecognizeText.includes(props.word.recognitionText.toLowerCase()))
+        if (props.signRecognizeText.includes(props.word.recognitionText?.toLowerCase() ?? ''))
             props.onSuccess()
     }, [props.signRecognizeText])
 
+
     if (!props)
         return;
+
+    let socket = io('ws://localhost:5000', {
+        'reconnection': false,
+        'reconnectionDelay': 500,
+        'reconnectionAttempts': 10,
+    });
+
+    socket.on("connect", () => {
+        console.log("Connected to server");
+    });
+
+    socket.on("disconnect", () => {
+        console.log("Disconnect");
+    });
+
+    socket.on("send_not_normalize_text", (text: string) => {
+        console.log(text)
+        props.setSignRecognizeText([...props.signRecognizeText, text])
+    });
 
     return (
         <Card className={clsx(styles.recognitionBlock, props.className)}>
@@ -126,7 +97,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                     Покажите жест в камеру
                 </Typography>
                 <Typography variant="h2" className={styles.recognitionBlock__gesture}>
-                    {props.word.text}
+                    {props.word.word}
                 </Typography>
             </div>
 
@@ -147,7 +118,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                                     variant="span"
                                     className={clsx(
                                         styles.recognitionBlock__recognizedWord,
-                                        word === props.word.recognitionText.toLowerCase() && styles.recognitionBlock__rightWord
+                                        word === props.word.recognitionText?.toLowerCase() && styles.recognitionBlock__rightWord
                                     )}
                                 >
                                     {word}

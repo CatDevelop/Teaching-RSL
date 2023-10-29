@@ -48,9 +48,9 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(2, calc(100% - 25px - 15px - 50%));
     justify-items: right;
-    gap: var(--space-s);
+    gap: 10px;
     height: 100%;
-    margin-top: var(--space-s);
+    margin-top: 10px;
 }
 
 .practiceSelectGif__gif {

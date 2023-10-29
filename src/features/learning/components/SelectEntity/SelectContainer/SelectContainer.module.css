@@ -14,11 +14,7 @@
     scale: 0.98;
 }
 
-.selectContainer img
-{
-    object-fit: contain;
-}
-
+.selectContainer img,
 .selectContainer video {
     object-fit: cover;
 }
@@ -48,7 +44,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    z-index: var(--select-entity-number-index);
+    z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;

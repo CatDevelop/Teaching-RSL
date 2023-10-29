@@ -68,12 +68,14 @@
 
 .learningTask__buttonsContainer {
     grid-area: buttons;
+
     display: flex;
     flex-direction: row;
     max-width: 500px;
     justify-content: space-between;
     align-items: center;
-    z-index: var(--bottom-buttons-index);
+
+    z-index: 1000;
 }
 
 .learningTask__startCard {
@@ -109,7 +111,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: var(--bottom-modal-container-index);
+    z-index: 1;
 }
 
 .learningTask__startAnimation {

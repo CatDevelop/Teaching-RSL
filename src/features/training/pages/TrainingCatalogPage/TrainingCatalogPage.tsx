@@ -10,12 +10,10 @@ import { Button } from "../../../../components/Button";
 import RandomIcon from "../../../../assets/images/Random.svg";
 import { Tooltip } from "react-tooltip";
 import { PageContent } from "../../../../components/PageContent";
-import {SideBar} from "../../../../components/SideBar";
 
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
     return (
         <Page className={styles.trainingCatalog}>
-            <SideBar/>
             <PageContent>
                 <Typography
                     variant="h1"
@@ -35,10 +33,10 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
                             Создать рандомный тест
                         </Tooltip>
                         <Button
-                                className={styles.trainingCatalog__randomTest}
-                                variant="faded"
-                                endContent={<img src={RandomIcon} alt="Create random test" />}
-                            />
+                            className={styles.trainingCatalog__randomTest}
+                            variant="faded"
+                            endContent={<img src={RandomIcon} alt="Create random test" />}
+                        />
                     </div>
                 </div>
             </PageContent>

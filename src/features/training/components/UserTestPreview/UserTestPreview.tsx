@@ -7,6 +7,7 @@ import { Typography } from "../../../../components/Typography";
 import { ComponentProps } from "../../../../core/models/ComponentProps";
 import { TestWordsModal } from "../TestWordsModal";
 import styles from "./UserTestPreview.module.css";
+import { useNavigate } from "react-router-dom";
 
 type Props = ComponentProps & Readonly<{
     name: string;
@@ -16,6 +17,11 @@ type Props = ComponentProps & Readonly<{
 
 /** User test preview. */
 export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(props){
+    const navigate = useNavigate();
+
+    const start = useCallback(() => {
+        navigate(props.id)
+    }, [navigate, props.id])
 
     const renderTestPreview = useCallback((onOpen: () => void) => {
         return (
@@ -41,5 +47,5 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
         )
     },[props])
 
-    return <TestWordsModal triggerComponent={renderTestPreview} start={() => {}} maxWordsCount={props.wordsCount} />;
+    return <TestWordsModal triggerComponent={renderTestPreview} start={start} maxWordsCount={props.wordsCount} />;
 });

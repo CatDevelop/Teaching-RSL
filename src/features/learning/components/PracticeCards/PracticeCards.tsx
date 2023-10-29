@@ -6,7 +6,6 @@ import {PracticeSelectWord} from "./PracticeSelectWord";
 import {PracticeSelectGIFByWord} from "./PracticeSelectGIFByWord";
 import {PracticeMatchWordAndGIF} from "./PracticeMatchWordAndGIF";
 import {StepStatus} from "../../../../core/models/StepStatus";
-import {PracticeSelectImage} from "./PracticeSelectImage";
 
 type Props = ComponentProps & Readonly<{
     type: taskType,
@@ -26,15 +25,6 @@ export const PracticeCards: FC<Props> = typedMemo(function PracticeCards(props) 
             setStatus={props.setStatus}
             setIsTaskReadyToCheck={props.setTaskCompleted}
         />
-    if (props.type === "SelectImage")
-        return <PracticeSelectImage
-            wordObject={props.task.wordObject}
-            otherVariants={props.task.otherVariants}
-            checked={props.checked || false}
-            setStatus={props.setStatus}
-            setIsTaskReadyToCheck={props.setTaskCompleted}
-        />
-
     if (props.type === "SelectGIFByWord")
         return <PracticeSelectGIFByWord
             wordObject={props.task.wordObject}
@@ -43,10 +33,9 @@ export const PracticeCards: FC<Props> = typedMemo(function PracticeCards(props) 
             setStatus={props.setStatus}
             setIsTaskReadyToCheck={props.setTaskCompleted}
         />
-
     if (props.type === "MatchWordAndGIF")
         return <PracticeMatchWordAndGIF
-            variants={props.task.otherVariants}
+            variants={props.task.variants}
             setStatus={props.setStatus}
             setIsTaskReadyToCheck={props.setTaskCompleted}
         />

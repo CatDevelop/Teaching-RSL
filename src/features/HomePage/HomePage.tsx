@@ -11,7 +11,6 @@ import SberLogo from "../../assets/images/SberAI.png";
 import PinCodeLogo from '../../assets/images/PinCodeLogo.svg';
 import UrFULogo from '../../assets/images/UrFULogo.png';
 import {typedMemo} from "../../core/utils/typedMemo";
-import {Button} from "../../components/Button";
 
 export const HomePage: FC = typedMemo(function HomePage() {
     const navigate = useNavigate();
@@ -66,14 +65,6 @@ export const HomePage: FC = typedMemo(function HomePage() {
                     <img src={UrFULogo} alt="УрФУ" width={66}/>
                 </Card>
             </div>
-
-            <Button className={styles.homePage__testButton}
-                    variant="faded"
-                    color={"primary"}
-                    onClick={() => navigate("admin/testing-component")}
-            >
-                Тестирование компонентов
-            </Button>
         </div>
     )
 })

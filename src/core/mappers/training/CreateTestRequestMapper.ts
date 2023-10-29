@@ -2,7 +2,6 @@ import { CreateTestRequestDto } from "../../dtos/training/CreateTestRequestDto";
 import { CreateTestRequest } from "../../models/training/CreateTestRequest";
 
 export namespace CreateTestRequestMapper {
-
 	/**
 	 * Маппинг модели в DTO.
 	 * @param model Модель.
@@ -10,7 +9,7 @@ export namespace CreateTestRequestMapper {
 	export function toDto(model: CreateTestRequest): CreateTestRequestDto {
 		return {
 			id: model.id,
-			testType: model.testType,
+			trainingType: model.trainingType,
 			wordsCount: model.wordsCount,
 		};
 	}

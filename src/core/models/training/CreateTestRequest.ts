@@ -4,7 +4,6 @@ import { TestTypeEnum } from "../themes/TestTypeEnum";
  * Тело запроса создания теста.
  */
 export class CreateTestRequest {
-
     /**
      * Id.
      */
@@ -13,16 +12,16 @@ export class CreateTestRequest {
     /**
      * Тип теста.
      */
-    public readonly testType: TestTypeEnum;
+    public readonly trainingType: TestTypeEnum;
 
     /**
      * Количество слов в тесте.
      */
     public readonly wordsCount: number;
 
-    public constructor({id, testType, wordsCount}:CreateTestRequestProps) {
+    public constructor({id, trainingType, wordsCount}:CreateTestRequestProps) {
         this.id = id;
-        this.testType = testType;
+        this.trainingType = trainingType;
         this.wordsCount = wordsCount;
     }
 }
