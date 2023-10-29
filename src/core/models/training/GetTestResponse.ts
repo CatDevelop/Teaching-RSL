@@ -2,7 +2,6 @@
  * Полученный тест.
  */
 export class GetTestResponse {
-
     /**
      * Id.
      */

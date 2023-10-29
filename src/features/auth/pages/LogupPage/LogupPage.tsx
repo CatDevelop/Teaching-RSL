@@ -10,6 +10,8 @@ import { schema } from "./LogupPage.settings";
 import { Button } from "../../../../components/Button";
 import { SocialBlock } from "../../components/SocialBlock";
 import { FormLink } from "../../components/FormLink";
+import VK from "../../../../assets/images/VK.svg";
+import Yandex from "../../../../assets/images/Yandex.svg";
 
 type LogupTemp = {
     email: string;
@@ -26,28 +28,41 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
         handleSubmit,
         formState: { errors },
     } = useForm<LogupTemp>({resolver: yupResolver(schema)})
-    
-    const onSubmit = () =>{}
+
+    const onSubmit = () => {}
+
+    const socialLinks = [
+        {
+            label: "Вконтакте",
+            icon: VK,
+            onClick: () => {}
+        },
+        {
+            label: "Яндекс",
+            icon: Yandex,
+            onClick: () => {}
+        }
+    ]
 
     return (
         <AuthFormPage>
             <Typography variant="h3">Новый аккаунт</Typography>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.logupPage__form}>
-                <Input 
+                <Input
                     label="Почта"
                     isInvalid={errors.email !== undefined}
                     color={errors.email !== undefined ? "danger" : "default"}
                     errorMessage={errors.email?.message}
                     {...register('email')}
                 />
-                <Input 
+                <Input
                     label="Пароль"
                     isInvalid={errors.password !== undefined}
                     color={errors.password !== undefined ? "danger" : "default"}
                     errorMessage={errors.password?.message}
                     {...register('password')}
                 />
-                <Input 
+                <Input
                     label="Повторите пароль"
                     isInvalid={errors.repeatPassword !== undefined}
                     color={errors.repeatPassword !== undefined ? "danger" : "default"}
@@ -58,12 +73,11 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
                     Создать аккаунт
                 </Button>
             </form>
-            <SocialBlock 
-                onVKClick={() => {}}
-                onYandexClick={() => {}}
+            <SocialBlock
                 label="Или создать аккаунт с помощью"
+                links={socialLinks}
             />
-            <FormLink 
+            <FormLink
                 className={styles.logupPage__link}
                 label="У вас уже есть аккаунт?"
                 linkText="Войти"

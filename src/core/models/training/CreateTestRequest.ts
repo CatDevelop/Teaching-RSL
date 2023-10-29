@@ -4,7 +4,6 @@ import { TestTypeEnum } from "../themes/TestTypeEnum";
  * Тело запроса создания теста.
  */
 export class CreateTestRequest {
-
     /**
      * Id.
      */

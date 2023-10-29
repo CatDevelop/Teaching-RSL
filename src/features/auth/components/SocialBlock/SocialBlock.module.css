@@ -14,23 +14,3 @@
     flex-direction: column;
     gap: var(--space-m);
 }
-
-.socialBlock__social {
-    outline:none;
-    border: none;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    gap: var(--space-s);
-}
-
-.socialBlock__socialIcon {
-    --icon-size: 24px;
-
-    width: var(--icon-size);
-    height: var(--icon-size);
-}
-
-.socialBlock__socialName {
-    color: var(--disabled-button-color);
-}

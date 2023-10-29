@@ -2,7 +2,6 @@ import { GetUnitResponseDto } from "../dtos/GetUnitResponseDto";
 import { GetUnitResponse } from "../models/GetUnitResponse";
 
 export namespace GetUnitResponseMapper {
-
 	/**
 	 * Маппинг DTO в модель.
 	 * @param dto DTO.

@@ -18,7 +18,6 @@ type GetThemeListResponseProps = GetThemeListResponse;
  * Тема.
  */
 export class GetThemeResponse {
-
     /**
      * Id.
      */

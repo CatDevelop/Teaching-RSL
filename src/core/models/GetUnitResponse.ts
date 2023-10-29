@@ -2,7 +2,6 @@
  * Раздел темы.
  */
 export class GetUnitResponse {
-    
     /**
      * Id.
      */

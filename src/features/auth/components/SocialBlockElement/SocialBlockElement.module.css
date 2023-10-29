@@ -1,0 +1,19 @@
+.socialBlockElement {
+    outline:none;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+}
+
+.socialBlockElement__icon {
+    --icon-size: 24px;
+
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+.socialBlockElement__name {
+    color: var(--disabled-button-color);
+}

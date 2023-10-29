@@ -3,7 +3,6 @@ import { GetTestResponse, WordInTest } from "../../models/training/GetTestRespon
 
 
 namespace WordInTestMapper {
-
 	/**
 	 * Маппинг DTO в модель.
 	 * @param dto DTO.
@@ -17,7 +16,6 @@ namespace WordInTestMapper {
 }
 
 export namespace GetTestResponseMapper {
-
 	/**
 	 * Маппинг DTO в модель.
 	 * @param dto DTO.

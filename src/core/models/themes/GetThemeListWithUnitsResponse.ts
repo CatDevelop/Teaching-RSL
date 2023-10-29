@@ -20,7 +20,6 @@ type GetThemeListWithUnitsResponseProps = GetThemeListWithUnitsResponse;
  * Тема.
  */
 export class GetThemeWithUnitsResponse {
-
     /**
      * Id.
      */

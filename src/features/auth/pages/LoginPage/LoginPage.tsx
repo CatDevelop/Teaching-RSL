@@ -10,6 +10,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./LoginPage.settings";
 import { Button } from "../../../../components/Button";
 import { FormLink } from "../../components/FormLink";
+import VK from "../../../../assets/images/VK.svg"
+import Yandex from "../../../../assets/images/Yandex.svg"
 
 type LoginTemp = {
     email: string;
@@ -25,24 +27,37 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
         handleSubmit,
         formState: { errors },
     } = useForm<LoginTemp>({resolver: yupResolver(schema)})
-    
+
     const onSubmit = () =>{
         console.log(errors)
     }
-    
+
+    const socialLinks = [
+        {
+            label: "Вконтакте",
+            icon: VK,
+            onClick: () => {}
+        },
+        {
+            label: "Яндекс",
+            icon: Yandex,
+            onClick: () => {}
+        }
+    ]
+
     return (
         <AuthFormPage>
             <Typography variant="h3">Вход</Typography>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.loginPage__form}>
-                <Input 
-                    label="Почта" 
+                <Input
+                    label="Почта"
                     isInvalid={errors.email !== undefined}
                     color={errors.email !== undefined ? "danger" : "default"}
                     errorMessage={errors.email?.message}
                     {...register('email')}
                 />
-                <Input 
-                    label="Пароль" 
+                <Input
+                    label="Пароль"
                     isInvalid={errors.password !== undefined}
                     color={errors.password !== undefined ? "danger" : "default"}
                     errorMessage={errors.password?.message}
@@ -52,18 +67,17 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
                     Войти
                 </Button>
             </form>
-            <SocialBlock 
+            <SocialBlock
                 label="Или войти с помощью"
-                onVKClick={() => {}}
-                onYandexClick={() => {}}
+                links={socialLinks}
             />
             <div className={styles.loginPage__links}>
-                <FormLink 
+                <FormLink
                     label="Забыли пароль?"
                     linkText="Восстановить"
                     linkUrl="/restorepassword"
                 />
-                <FormLink 
+                <FormLink
                     label="У вас еще нет аккаунта?"
                     linkText="Зарегистрироваться"
                     linkUrl="/signup"
