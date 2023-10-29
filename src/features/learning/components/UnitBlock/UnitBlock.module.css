@@ -8,6 +8,7 @@
     font-family: var(--main-font);
     font-weight: var(--font-weight-s);
     font-size: var(--font-size-m);
+    line-height: var(--font-size-m);
 }
 
 .unitBlock__levels {
@@ -15,4 +16,16 @@
     flex-direction: row;
     gap: var(--space-s);
     flex-wrap: wrap;
+    align-items: center;
+}
+
+.unitBlock__levels__delimiter {
+    width: 20px;
+    height: 3px;
+    background: var(--dark-on-surface-color);
+    border-radius: 4px;
+}
+
+.unitBlock__levels__delimiter:last-child {
+    display: none;
 }

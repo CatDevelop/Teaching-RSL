@@ -1,5 +1,29 @@
-.themeBlock__units {
+.themeBlock {
     display: flex;
     flex-direction: column;
     gap: var(--space-l);
 }
+
+.themeBlock__titleContainer {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-m);
+    align-items: center;
+}
+
+.themeBlock__titleContainer__title {
+    line-height: var(--font-size-m);
+}
+
+.themeBlock__titleContainer__wordCount {
+    line-height: var(--font-size-m);
+    color: var(--thirdly-text-color);
+    font-weight: var(--font-weight-m);
+}
+
+.themeBlock__units {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, {Suspense} from "react";
 import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import {RootRouter} from "./routes/RootRouter";
@@ -8,9 +8,9 @@ import '@mantine/core/styles.css';
 
 const queryClient = new QueryClient({
     defaultOptions: {
-      queries: {
-        suspense: true,
-      },
+        queries: {
+            suspense: true,
+        },
     },
 })
 
@@ -20,9 +20,7 @@ export default function MyApp() {
             <QueryClientProvider client={queryClient}>
                 <MantineProvider>
                     <BrowserRouter>
-                        <Suspense fallback={"Loading"}>
-                            <RootRouter/>
-                        </Suspense>
+                        <RootRouter/>
                     </BrowserRouter>
                 </MantineProvider>
             </QueryClientProvider>

@@ -16,10 +16,17 @@ type Props = {
 /* Компонент для тестов, не войдёт в прод*/
 export const ThemeBlock: FC<Props> = typedMemo(function ThemeBlock(props) {
     return (
-        <div key={"themeBlock" + props.id}>
-            <Typography variant="h2">
-                {props.name}
-            </Typography>
+        <div key={"themeBlock" + props.id} className={styles.themeBlock}>
+            <div className={styles.themeBlock__titleContainer}>
+                <Typography variant="h3" className={styles.themeBlock__titleContainer__title}>
+                    {props.name}
+                </Typography>
+                <Typography variant="p" className={styles.themeBlock__titleContainer__wordCount}>
+                    33 / 100
+                </Typography>
+
+            </div>
+
             <div className={styles.themeBlock__units}>
                 {
                     props.units ?

@@ -82,7 +82,7 @@
     justify-content: space-between;
     gap: var(--space-m);
     width: 700px;
-    height: 320px;
+    height: 350px;
 }
 
 .trainingTask__startCardDescription {
@@ -159,3 +159,15 @@
     color: var(--accent-color);
 }
 
+.trainingPage__warningContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trainingPage__warning {
+    position: absolute;
+    left: 50%;
+    bottom: var(--space-m);
+    transform: translateX(-50%);
+}

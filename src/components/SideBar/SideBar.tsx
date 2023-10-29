@@ -19,7 +19,7 @@ export const SideBar: FC = typedMemo(function SideBar() {
             id: 0,
             label: "Личный кабинет",
             icon: LKIcon,
-            link: "/"
+            link: "/profile"
         },
         {
             id: 1,

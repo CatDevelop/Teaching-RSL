@@ -12,6 +12,7 @@
 .sideBarItem__label {
     color: var(--thirdly-text-color);
     font-size: var(--font-size-s);
+    font-weight: var(--font-weight-l);
 }
 
 .sideBarItem__container:hover {
@@ -22,7 +23,7 @@
     border-left: 4px var(--primary-color) solid;
 }
 
-.sideBarItem_active h3 {
+.sideBarItem_active p {
     color: var(--primary-color);
 }
 

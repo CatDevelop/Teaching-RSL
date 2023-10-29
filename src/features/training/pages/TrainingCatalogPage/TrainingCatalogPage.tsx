@@ -1,46 +1,60 @@
-import React, { FC } from "react";
-import { typedMemo } from "../../../../core/utils/typedMemo";
+import React, {FC, Suspense} from "react";
+import {typedMemo} from "../../../../core/utils/typedMemo";
 import styles from "./TrainingCatalogPage.module.css";
-import { Typography } from "../../../../components/Typography";
-import { WorkOnMistakes } from "../../components/WorkOnMistakes";
-import { Page } from "../../../../components/Page";
-import { SystemTests } from "../../components/SystemTests";
-import { UserTests } from "../../components/UserTests";
-import { Button } from "../../../../components/Button";
-import RandomIcon from "../../../../assets/images/Random.svg";
-import { Tooltip } from "react-tooltip";
-import { PageContent } from "../../../../components/PageContent";
+import {Typography} from "../../../../components/Typography";
+import {WorkOnMistakes} from "../../components/WorkOnMistakes";
+import {Page} from "../../../../components/Page";
+import {SystemTests} from "../../components/SystemTests";
+import {UserTests} from "../../components/UserTests";
+import {PageContent} from "../../../../components/PageContent";
 import {SideBar} from "../../../../components/SideBar";
+import {Card} from "../../../../components/Card";
+import {Spinner} from "@nextui-org/react";
+import {clsx} from "clsx";
 
-export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage(){
+export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() {
+    let missingWordsCount = 0; // temp
+
     return (
         <Page className={styles.trainingCatalog}>
             <SideBar/>
-            <PageContent>
-                <Typography
-                    variant="h1"
-                    className={styles.trainingCatalog__title}
-                >
-                    Тренировки
-                </Typography>
+            <PageContent className={styles.trainingCatalog__pageContent}>
+                <Suspense fallback={<Spinner className={styles.trainingCatalog__loading}/>}>
+                    <Card className={styles.trainingCatalog__titleContainer}>
+                        <Typography
+                            variant="h1"
+                            className={styles.trainingCatalog__titleContainer__title}
+                        >
+                            Практика
+                        </Typography>
+                        <Typography
+                            variant="p"
+                            className={styles.trainingCatalog__titleContainer__description}
+                        >
+                            Потренируйся в воспроизведении жестов, а мы поможем
+                        </Typography>
+                    </Card>
 
-                <WorkOnMistakes missingWordsCount={0} className={styles.trainingCatalog__workOnMistakes}/>
-
-                <div className={styles.trainingCatalog__testsOverflow}>
-                    <div className={styles.trainingCatalog__tests}>
-                        <SystemTests />
-                        <UserTests />
-
-                        <Tooltip anchorSelect={`.${styles.trainingCatalog__randomTest}`}>
-                            Создать рандомный тест
-                        </Tooltip>
-                        <Button
-                            className={styles.trainingCatalog__randomTest}
-                            variant="faded"
-                            endContent={<img src={RandomIcon} alt="Create random test" />}
-                        />
+                    <div className={styles.trainingCatalog__systemTests}>
+                        <SystemTests/>
                     </div>
-                </div>
+
+                    <div className={styles.trainingCatalog__otherTests}>
+                        {
+                            missingWordsCount !== 0 &&
+                            <WorkOnMistakes
+                                missingWordsCount={missingWordsCount}
+                                className={styles.trainingCatalog__workOnMistakes}
+                            />
+                        }
+                        <div className={clsx(
+                            styles.trainingCatalog__userTests,
+                            missingWordsCount !== 0 && styles.trainingCatalog__userTestsWithMistakes
+                        )}>
+                            <UserTests/>
+                        </div>
+                    </div>
+                </Suspense>
             </PageContent>
         </Page>
     )
