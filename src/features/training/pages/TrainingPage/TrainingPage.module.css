@@ -144,12 +144,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: var(--space-m);
 }
 
 .trainingTask__resultTitle {
     color: var(--primary-color);
+    text-align: center;
 }
 
 .trainingTask__resultDescription {
