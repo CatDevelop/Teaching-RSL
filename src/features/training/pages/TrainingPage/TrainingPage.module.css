@@ -48,10 +48,6 @@
 
 .trainingTask__bySberAI {
     z-index: 1;
-    /*position: absolute;*/
-    /*top: 120px;*/
-    /*right: 50px;*/
-    /*grid-area: sber;*/
 }
 
 .trainingTask__progressBarContainer {
@@ -151,6 +147,7 @@
 .trainingTask__resultTitle {
     color: var(--primary-color);
     text-align: center;
+    font-size: var(--font-size-xl);
 }
 
 .trainingTask__resultDescription {
