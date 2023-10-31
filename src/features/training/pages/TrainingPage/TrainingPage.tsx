@@ -21,6 +21,7 @@ import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types"
 import {StartTraining} from "../../components/StartTraining/StartTraining";
 import {ModelWarning} from "../../components/ModelWarning/ModelWarning";
 import {socket} from "../../../../core/utils/connectToModal";
+import {BySberAI} from "../../../../components/BySberAI";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
@@ -128,16 +129,25 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                             <Typography variant="h2" className={styles.trainingTask__resultTitle}>
                                 Конец тренировки!
                             </Typography>
+                            <div className={styles.trainingTask__result__container}>
+                            <BySberAI/>
                             <ResultCard
                                 title="Результат"
                                 iconUrl={Result}
                                 content={`${getTaskResult()}%`}
                                 className={styles.trainingTask__resultCard}/>
+                            </div>
                         </div>
                     }
                 </div>
 
                 <div className={styles.trainingTask__buttonsContainer}>
+                    {
+                        currentStep <= data.length - 1 && !isDoneTask &&
+                        <div className={styles.trainingTask__bySberAI}>
+                            <BySberAI/>
+                        </div>
+                    }
                     {
                         currentStep >= 0 && currentStep <= data.length - 1 && !isDoneTask && !isNotStartModel &&
                         <Button

@@ -32,7 +32,7 @@
     grid-template-areas:
             "logo progress exit"
             "b task c"
-            "d buttons e";
+            "sber buttons e";
     align-items: center ;
     justify-content: center;
     justify-items: center;
@@ -44,6 +44,14 @@
 .trainingTask__logoContainer {
     cursor: pointer;
     grid-area: logo;
+}
+
+.trainingTask__bySberAI {
+    z-index: 1;
+    /*position: absolute;*/
+    /*top: 120px;*/
+    /*right: 50px;*/
+    /*grid-area: sber;*/
 }
 
 .trainingTask__progressBarContainer {
@@ -72,6 +80,7 @@
     max-width: 500px;
     justify-content: space-between;
     align-items: center;
+    gap: var(--space-m);
     z-index: var(--bottom-buttons-index);
 }
 
@@ -147,6 +156,11 @@
     font-family: var(--main-font);
     font-size: var(--font-size-m);
     text-align: center;
+}
+
+.trainingTask__result__container {
+    display: flex;
+    gap: var(--space-s)
 }
 
 .trainingTask__resultImage {

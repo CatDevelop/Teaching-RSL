@@ -8,6 +8,7 @@ import {Typography} from "../../components/Typography";
 import {Card} from "../../components/Card";
 import SberLogo from "../../assets/images/SberAI.png";
 import {typedMemo} from "../../core/utils/typedMemo";
+import {BySberAI} from "../../components/BySberAI";
 
 export const HomePage: FC = typedMemo(function HomePage() {
     const navigate = useNavigate();
@@ -51,13 +52,6 @@ export const HomePage: FC = typedMemo(function HomePage() {
                         </div>
                     </Card>
                 </div>
-
-            </div>
-
-            <div className={styles.homePage__logosContainer}>
-                <Card className={styles.homePage__logos}>
-                    <img src={SberLogo} alt="SberAI" width={200}/>
-                </Card>
             </div>
         </div>
     )

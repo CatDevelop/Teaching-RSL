@@ -1,0 +1,19 @@
+.bySberAI {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    align-items: center;
+    width: 350px;
+    padding: 5px;
+}
+
+.bySberAI__title {
+    font-family: var(--main-font);
+    font-weight: var(--font-weight-l);
+    font-size: var(--font-size-xs);
+    text-align: center;
+}
+
+.bySberAI__logo {
+    width: 120px;
+}

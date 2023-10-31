@@ -18,7 +18,7 @@
     justify-content: center;
     align-items: center;
     gap: var(--space-m);
-    height: calc(100vh - 32px - var(--space-s) - 2*(var(--page-padding-m)*2 + var(--space-m)*2 + 70px));
+    height: calc(100vh - 172px - var(--space-s) - var(--page-padding-m)*2*2 - var(--space-m)*2*2);
 }
 
 .theoryCard__gif video,
