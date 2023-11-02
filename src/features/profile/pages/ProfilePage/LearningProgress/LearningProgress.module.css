@@ -1,0 +1,11 @@
+.learningProgress__themes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+    overflow: auto;
+}
+
+
+.learningProgress__title {
+    margin-bottom: var(--space-l);
+}
