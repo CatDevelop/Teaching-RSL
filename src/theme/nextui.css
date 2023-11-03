@@ -5,3 +5,15 @@
 .bg-danger {
     background-color: var(--danger-color);
 }
+
+/** Tabs **/
+div[data-slot="tabList"]{
+    padding: var(--space-s);
+}
+
+/** Tab **/
+button[data-slot="tab"]{
+    font-size: var(--font-size-m);
+    padding: var(--space-s);
+    height: auto;
+}

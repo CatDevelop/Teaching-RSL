@@ -16,7 +16,7 @@ export const ProfilePage: FC = typedMemo(function LearningCatalogPage() {
                 {/*<Suspense fallback={<Spinner className={styles.profile__loading}/>}>*/}
                 <Spinner className={styles.profile__loading}/>
                 <LevelProgress/>
-                <LearningProgress/>
+                <LearningProgress className={styles.profile__learningProgress}/>
                 {/*</Suspense>*/}
             </PageContent>
         </Page>
