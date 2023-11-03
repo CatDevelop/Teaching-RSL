@@ -24,4 +24,5 @@
 
 .learningBlock__contentContainer {
     height: 100%;
+    overflow: hidden;
 }

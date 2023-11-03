@@ -1,7 +1,13 @@
+.signVideo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .signVideo,
 .signVideo__video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-height: 100%;
+    max-width: 100%;
     border-radius: var(--border-radius-m);
 }
