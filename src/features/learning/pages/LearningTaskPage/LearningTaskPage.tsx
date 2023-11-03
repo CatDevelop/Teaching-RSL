@@ -124,7 +124,6 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     {
                         currentStep === theoryCount + practiceCount &&
                         <div className={styles.learningTask__result}>
-                            <img src={ResultImage} rel="preload" className={styles.learningTask__resultImage} alt="Your result"/>
                             <Typography variant="h2" className={styles.learningTask__resultTitle}>
                                 Конец обучения!
                             </Typography>

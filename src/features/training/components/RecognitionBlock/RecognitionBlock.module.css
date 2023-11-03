@@ -14,7 +14,6 @@
     flex-direction: column;
     align-items: center;
     gap: var(--space-m);
-    width: unset !important;
 }
 
 .recognitionBlock__titleContainer {
@@ -66,7 +65,7 @@
 
 
 .recognitionBlock__camera {
-    /*width: 100%;*/
+    width: 100%;
     height: calc( 100% - var(--space-m)*2 - 49px - 50px);
     position: relative;
 

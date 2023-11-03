@@ -90,14 +90,17 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-m);
-    width: 700px;
+    max-width: 500px;
+    width: 100%;
     height: auto;
 }
 
 .trainingTask__startCardDescription {
     font-family: var(--main-font);
-    font-size: var(--font-size-m);
-    text-align: center;
+    font-size: сalc(var(--font-size-m) * 0.9);
+    text-align: center;;
+    color: var(--disabled-button-color);
+    font-weight: var(--font-weight-s);
 }
 
 .trainingTask__recognition {
