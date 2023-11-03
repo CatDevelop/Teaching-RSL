@@ -9,10 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {TaskContinue} from "../../../../components/TaskContinue";
 import {ProgressBar} from "../../../../components/ProgressBar";
 import {PageContent} from "../../../../components/PageContent";
-import ResultImage from "../../../../assets/images/ResultTrainingImage.svg";
 import {RecognitionBlock} from "../../components/RecognitionBlock";
-import Result from "../../../../assets/images/Result.svg";
-import {ResultCard} from "../../components/ResultCard";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {StartThemeWords} from "../../../../core/data";
@@ -73,7 +70,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
                 </div>
                 {
-                    currentStep !== -1 && !isNotStartModel &&
+                    currentStep !== -1 && currentStep !== data.length && !isNotStartModel &&
                     <div className={styles.trainingTask__progressBarContainer}>
                         <ProgressBar currentStep={currentStep - 1} stepCount={data.length}/>
                     </div>
@@ -120,22 +117,22 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     {
                         currentStep === data.length &&
                         <div className={styles.trainingTask__result}>
-                            <img
-                                src={ResultImage}
-                                rel="preload"
-                                className={styles.trainingTask__resultImage}
-                                alt="Иконка результата"
-                            />
+                            {/*<img*/}
+                            {/*    src={ResultImage}*/}
+                            {/*    rel="preload"*/}
+                            {/*    className={styles.trainingTask__resultImage}*/}
+                            {/*    alt="Иконка результата"*/}
+                            {/*/>*/}
                             <Typography variant="h2" className={styles.trainingTask__resultTitle}>
-                                Конец тренировки!
+                                Поздравляем, вы освоили несколько новых жестов!<br/>Благодарим за участие!
                             </Typography>
                             <div className={styles.trainingTask__result__container}>
-                            <BySberAI/>
-                            <ResultCard
-                                title="Результат"
-                                iconUrl={Result}
-                                content={`${getTaskResult()}%`}
-                                className={styles.trainingTask__resultCard}/>
+                                <BySberAI/>
+                                {/*<ResultCard*/}
+                                {/*    title="Результат"*/}
+                                {/*    iconUrl={Result}*/}
+                                {/*    content={`${getTaskResult()}%`}*/}
+                                {/*    className={styles.trainingTask__resultCard}/>*/}
                             </div>
                         </div>
                     }
@@ -143,11 +140,11 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
 
                 <div className={styles.trainingTask__buttonsContainer}>
                     {
-                        currentStep <= data.length - 1 && !isDoneTask &&
-                        <div className={styles.trainingTask__bySberAI}>
-                            <BySberAI/>
-                        </div>
-                    }
+                         //currentStep <= data.length - 1 && !isDoneTask &&
+                         //<div className={styles.trainingTask__bySberAI}>
+                             //<BySberAI/>
+                         //</div>
+                     }
                     {
                         currentStep >= 0 && currentStep <= data.length - 1 && !isDoneTask && !isNotStartModel &&
                         <Button
