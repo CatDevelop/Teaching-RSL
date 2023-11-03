@@ -38,6 +38,7 @@
     --space-xs: calc(var(--space-m) * 0.25);
     --space-s: calc(var(--space-m) * 0.5);
     --space-l: calc(var(--space-m) * 1.6);
+
     --space-xl: calc(var(--space-m) * 3);
 
     --page-padding-m: 50px;
@@ -45,9 +46,7 @@
 
 
     /* Other */
-    --box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
-                    0px 2px 30px 0px rgba(0, 0, 0, 0.08),
-                    0px 0px 15px 0px rgba(0, 0, 0, 0.03);
+    --box-shadow: 0px 2px 10px 0px rgba(51, 142, 247, 0.2);
 
     --border-radius-xs: calc(var(--border-radius-m) / 2);
     --border-radius-s: 12px;

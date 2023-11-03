@@ -91,7 +91,7 @@
     justify-content: space-between;
     gap: var(--space-m);
     width: 700px;
-    height: 320px;
+    height: auto;
 }
 
 .trainingTask__startCardDescription {

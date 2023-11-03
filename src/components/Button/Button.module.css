@@ -1,6 +1,10 @@
 .button {
     font-family: var(--main-font);
     font-weight: var(--font-weight-xl);
+    padding: var(--space-s) calc(var(--space-l) * 2);
+    height: auto;
+    line-height: 1.5;
+    font-size: var(--font-size-s);
     --icon-size: 16px;
 }
 
