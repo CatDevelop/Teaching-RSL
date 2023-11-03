@@ -25,7 +25,7 @@
 .theoryCard__gif video,
 .theoryCard__gif {
     grid-area: gif;
-    width: 100%;
+    width: 50%;
     height: 100%;
 }
 
