@@ -141,7 +141,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                 </Typography>
                 <div className={clsx(styles.recognitionBlock__recognizedWords)}>
                     {
-                        props.signRecognizeText.slice(-15).map(word => {
+                        props.signRecognizeText.slice(-6).map(word => {
                             return (
                                 <Typography
                                     variant="span"

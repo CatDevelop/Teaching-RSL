@@ -27,7 +27,7 @@
 
 .trainingTask {
     display: grid ;
-    grid-template-columns: 230px 1fr 230px;
+    grid-template-columns: 300px 1fr 300px;
     grid-template-rows: 70px calc(100vh - 140px - var(--page-padding-m) * 2 - var(--space-m) * 2) 70px;
     grid-template-areas:
             "logo progress exit"
@@ -44,10 +44,14 @@
 .trainingTask__logoContainer {
     cursor: pointer;
     grid-area: logo;
+    justify-self: start;
 }
 
 .trainingTask__bySberAI {
     z-index: 1;
+    grid-column:1;
+    height: auto;
+    align-self: start;
 }
 
 .trainingTask__progressBarContainer {

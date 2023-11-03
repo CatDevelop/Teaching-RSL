@@ -3,13 +3,13 @@
     flex-direction: column;
     gap: var(--space-s);
     align-items: center;
-    width: 350px;
-    padding: 5px;
+    max-width: 350px;
+    padding: var(--space-m);
 }
 
 .bySberAI__title {
     font-family: var(--main-font);
-    font-weight: var(--font-weight-xl);
+    font-weight: var(--font-weight-s);
     font-size: var(--font-size-xs);
     text-align: center;
 }

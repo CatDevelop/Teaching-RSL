@@ -6,9 +6,7 @@ import startLearningSVG from '../../assets/images/StartLearning.svg'
 import startTrainingSVG from '../../assets/images/StartTraining.svg'
 import {Typography} from "../../components/Typography";
 import {Card} from "../../components/Card";
-import SberLogo from "../../assets/images/SberAI.png";
 import {typedMemo} from "../../core/utils/typedMemo";
-import {BySberAI} from "../../components/BySberAI";
 
 export const HomePage: FC = typedMemo(function HomePage() {
     const navigate = useNavigate();

@@ -25,13 +25,13 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const fireworks = getFireworks(3000)
 
     const [data] = useState(shuffleArray(StartThemeWords));
-    const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
-    const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
+    const [signRecognizeText, setSignRecognizeText] = useState<string[]>([]);
+    const [exitModalIsOpen, setExitModalIsOpen] = useState(false);
     const [countSkippedWords, setCountSkippedWords] = useState(0);
     const [isDoneTask, setIsDoneTask] = useState(false);
-    const [intervalID, setIntervalID] = useState<TimeoutId>()
-    const [currentStep, setCurrentStep] = useState(-1)
-    const [isNotStartModel, setIsNotStartModel] = useState(false)
+    const [intervalID, setIntervalID] = useState<TimeoutId>();
+    const [currentStep, setCurrentStep] = useState(-1);
+    const [isNotStartModel, setIsNotStartModel] = useState(false);
 
     const getTaskResult = () => 100 - Math.floor((countSkippedWords) / data.length * 100)
     const clearRecognizeText = () => setSignRecognizeText([])
@@ -68,6 +68,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
             <PageContent className={styles.trainingTask}>
                 <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
                     <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
+                    {/*<BySberAI/>*/}
                 </div>
                 {
                     currentStep !== -1 && currentStep !== data.length && !isNotStartModel &&
@@ -88,6 +89,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                         </Button>
                     }
                 </div>
+                {currentStep !== data.length && <BySberAI className={styles.trainingTask__bySberAI}/>}
 
 
                 <div className={styles.trainingTask__taskContainer}>
