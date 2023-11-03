@@ -140,11 +140,11 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
 
                 <div className={styles.trainingTask__buttonsContainer}>
                     {
-                        currentStep <= data.length - 1 && !isDoneTask &&
-                        <div className={styles.trainingTask__bySberAI}>
-                            <BySberAI/>
-                        </div>
-                    }
+                         //currentStep <= data.length - 1 && !isDoneTask &&
+                         //<div className={styles.trainingTask__bySberAI}>
+                             //<BySberAI/>
+                         //</div>
+                     }
                     {
                         currentStep >= 0 && currentStep <= data.length - 1 && !isDoneTask && !isNotStartModel &&
                         <Button
