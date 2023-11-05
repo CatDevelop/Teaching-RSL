@@ -58,4 +58,6 @@
     --bottom-modal-container-index: 1000;
     --webcamera-index: 200;
     --select-entity-number-index: 100;
+
+    --max-theory-card-width: 800px;
 }

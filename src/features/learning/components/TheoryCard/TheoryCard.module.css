@@ -1,6 +1,6 @@
 .theoryCard {
     width: 100%;
-    max-width: 800px;
+    max-width: var(--max-theory-card-width);
     height: 100%;
     box-sizing: border-box;
 }

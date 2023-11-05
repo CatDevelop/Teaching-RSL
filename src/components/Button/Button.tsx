@@ -13,6 +13,7 @@ export const Button: FC<Props> = typedMemo(function Button(props) {
             {...props}
             className={clsx(
                 styles.button,
+                props.variant === "solid" && props.color !== "primary" && styles.button_solid,
                 props.variant === "faded" && props.color !== "primary" && styles.button_faded,
                 props.variant === "faded" && props.color === "primary" && styles.button_primary_faded,
                 props.variant === "light" && styles.button_link,
