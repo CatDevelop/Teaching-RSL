@@ -9,6 +9,7 @@
 /** Tabs **/
 div[data-slot="tabList"]{
     padding: var(--space-s);
+    width: 100%;
 }
 
 /** Tab **/

@@ -14,9 +14,11 @@ type Props = ComponentProps & Readonly<{
 
 export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(props){
     return (
-        <Card className={clsx(props.className)}>
+        <Card className={clsx([styles.learningProgress, props.className])}>
             <Typography variant='h2' className={styles.learningProgress__title}>Прогресс прохождения</Typography>
-            <Tabs className={styles.learningProgress__tabs}>
+            <Tabs className={styles.learningProgress__tabs} classNames={{
+                panel: styles.learningProgress__tabsPanel
+            }}>
                 <Tab key="learning" title="Обучение">
                     <div className={styles.learningProgress__themes}>
                         {[0,0,0,0,0].map((_, i) => (
