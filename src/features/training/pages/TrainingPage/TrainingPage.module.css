@@ -65,6 +65,7 @@
 
 .trainingTask__progressBarContainer {
     width: 100%;
+    max-width: var(--max-theory-card-width);
     animation: showUp 0.5s ease-in;
 }
 

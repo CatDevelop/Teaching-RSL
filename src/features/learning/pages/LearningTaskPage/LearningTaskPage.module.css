@@ -60,6 +60,7 @@
 
 .learningTask__progressBarContainer {
     min-width: 678px;
+    max-width: var(--max-theory-card-width);
     animation: showUp 0.5s ease-in;
     width: 100%;
 }
