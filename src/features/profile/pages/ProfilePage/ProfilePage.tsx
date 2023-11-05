@@ -7,6 +7,7 @@ import {SideBar} from "../../../../components/SideBar";
 import {LevelProgress} from "./LevelProgress";
 import {LearningProgress} from "./LearningProgress";
 import {Statistics} from "./Statistics";
+import {Trophies} from "./Trophies";
 
 /**
  * Профиль
@@ -19,6 +20,7 @@ export const ProfilePage: FC = typedMemo(function LearningCatalogPage() {
                 <LevelProgress/>
                 <LearningProgress className={styles.profile__learningProgress}/>
                 <Statistics/>
+                <Trophies/>
             </PageContent>
         </Page>
     )

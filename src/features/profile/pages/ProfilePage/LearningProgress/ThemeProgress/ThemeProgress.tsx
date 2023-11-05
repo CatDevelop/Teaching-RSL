@@ -8,12 +8,15 @@ type Props = Readonly<{
 
 }>
 
+/**
+ * Прогресс по теме
+ */
 export const ThemeProgress: FC<Props> = typedMemo(function ThemeProgress(props){
     return (
         <div className={styles.themeProgress}>
             <div className={styles.themeProgress__text}>
-                <Typography variant='h3'>Общеупотребительные слова</Typography>
-                <Typography variant='p'>Откройте мир дома и домашних предметов</Typography>
+                <Typography variant='h3' className={styles.themeProgress__title}>Общеупотребительные слова</Typography>
+                <Typography variant='p' className={styles.themeProgress__description}>Откройте мир дома и домашних предметов</Typography>
             </div>
 
             <CircularProgress
