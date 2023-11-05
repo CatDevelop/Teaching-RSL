@@ -12,10 +12,6 @@
     padding-right: var(--space-m)
 }
 
-.learningProgress__title {
-    margin-bottom: var(--space-l);
-}
-
 .learningProgress__tabs {
     width: 100%
 }

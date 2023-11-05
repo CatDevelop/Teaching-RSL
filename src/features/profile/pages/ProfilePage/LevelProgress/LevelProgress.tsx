@@ -8,6 +8,9 @@ type Props = Readonly<{
 
 }>
 
+/**
+ * Уровень пользователя
+ */
 export const LevelProgress: FC<Props> = typedMemo(function LevelProgress(props){
     return (
         <Card className={styles.profile__levelBlock}>
