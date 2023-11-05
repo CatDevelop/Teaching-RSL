@@ -19,7 +19,7 @@
     justify-content: center;
     align-items: center;
     gap: var(--space-m);
-    height: calc(100vh - 200px - var(--space-s) - var(--page-padding-m)*2*2 - var(--space-m)*2*2);
+    height: calc(100vh - 155px - var(--space-s) - var(--page-padding-m)*2*2 - var(--space-m)*2*2);
 }
 
 .theoryCard__gif video,
@@ -45,4 +45,10 @@
     font-size: var(--font-size-xl);
     text-align: center;
     line-height: var(--font-size-xl);
+}
+
+@media(max-width: 1300px){
+    .theoryCard__images {
+        height: calc(100vh - 180px - var(--space-s) - var(--page-padding-m)*2*2 - var(--space-m)*2*2);
+    }
 }

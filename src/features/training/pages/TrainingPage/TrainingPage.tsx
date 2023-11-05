@@ -66,29 +66,32 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.trainingTask}>
-                <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
-                    <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
-                    {/*<BySberAI/>*/}
-                </div>
-                {
-                    currentStep !== -1 && currentStep !== data.length && !isNotStartModel &&
-                    <div className={styles.trainingTask__progressBarContainer}>
-                        <ProgressBar currentStep={currentStep - 1} stepCount={data.length}/>
+                <div className={styles.trainingTask__header}>
+                    <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
+                        <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
+                        {/*<BySberAI/>*/}
                     </div>
-                }
-                <div className={styles.trainingTask__exitButtonContainer}>
                     {
-                        currentStep !== data.length &&
-                        <Button
-                            variant={"faded"}
-                            color={"default"}
-                            size={"lg"}
-                            onClick={openExitModal}
-                        >
-                            В главное меню
-                        </Button>
+                        currentStep !== -1 && currentStep !== data.length && !isNotStartModel &&
+                        <div className={styles.trainingTask__progressBarContainer}>
+                            <ProgressBar currentStep={currentStep - 1} stepCount={data.length}/>
+                        </div>
                     }
+                    <div className={styles.trainingTask__exitButtonContainer}>
+                        {
+                            currentStep !== data.length &&
+                            <Button
+                                variant={"faded"}
+                                color={"default"}
+                                size={"lg"}
+                                onClick={openExitModal}
+                            >
+                                В главное меню
+                            </Button>
+                        }
+                    </div>
                 </div>
+
                 {currentStep !== data.length && <BySberAI className={styles.trainingTask__bySberAI}/>}
 
 

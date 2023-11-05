@@ -47,10 +47,15 @@
     gap: var(--space-m);
     grid-area: header;
     grid-template-columns: 230px 1fr 230px;
+    width: 100%
 }
 
 .learningTask__logoContainer {
     cursor: pointer;
+}
+
+.learningTask__exitButtonContainer {
+    grid-column: 3;
 }
 
 .learningTask__progressBarContainer {
@@ -63,7 +68,6 @@
     grid-area: task;
     width: 100%;
     height: 100%;
-    padding: var(--space-m);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,6 +167,7 @@
             "header"
             "task"
             "buttons";
+        grid-template-rows: 95px calc(100vh - 165px - var(--page-padding-m) * 2 - var(--space-m) * 2) 70px;
     }
 
     .learningTaskPage__header {
@@ -174,6 +179,10 @@
 
     .learningTask__logoContainer {
         justify-self: start;
+    }
+
+    .learningTask__exitButtonContainer {
+        grid-column: auto;
     }
 
     .learningTask__exitButtonContainer {
