@@ -15,6 +15,10 @@
     animation: showDown 0.5s ease-in;
 }
 
+.practiceMatchWordAndGIF__card {
+    max-width: 100%;
+}
+
 .practiceMatchWordAndGIF__contentContainer {
     display: flex;
     flex-direction: column;

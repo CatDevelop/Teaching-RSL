@@ -1,12 +1,20 @@
 .button {
     font-family: var(--main-font);
     font-weight: var(--font-weight-xl);
+    padding: var(--space-s) calc(var(--space-l) * 1.5);
+    height: auto;
+    line-height: 1.5;
+    font-size: var(--font-size-s);
     --icon-size: 16px;
 }
 
 .button img {
     width: var(--icon-size);
     height: var(--icon-size);
+}
+
+.button_solid {
+    color: var( --on-surface-color)
 }
 
 .button_filled {
@@ -16,12 +24,13 @@
 
 .button_faded {
     background-color: var(--on-surface-color);
-    color: var(--secondary-text-color)
+    color: var(--secondary-text-color);
 }
 
 .button_primary_faded {
     background-color: var(--on-surface-color);
-    color: var(--primary-color)
+    color: var(--primary-color);
+    border-color:var(--primary-color);
 }
 
 .button_link {

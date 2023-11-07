@@ -78,25 +78,27 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.learningTask}>
-                <div className={styles.learningTask__logoContainer} onClick={openExitModal}>
-                    <img src={Logo} rel="preload" alt="Логотип" width={230}/>
-                </div>
-
-                {
-                    currentStep !== -1 &&
-                    <div className={styles.learningTask__progressBarContainer}>
-                        <ProgressBar currentStep={currentStep - 1} stepCount={tasks.length}/>
+                <div className={styles.learningTaskPage__header}>
+                    <div className={styles.learningTask__logoContainer} onClick={openExitModal}>
+                        <img src={Logo} rel="preload" alt="Логотип" width={230}/>
                     </div>
-                }
 
-                <div className={styles.learningTask__exitButtonContainer}>
-                    <Button
-                        variant="faded"
-                        color="default"
-                        onClick={openExitModal}
-                    >
-                        В главное меню
-                    </Button>
+                    {
+                        currentStep !== -1 &&
+                        <div className={styles.learningTask__progressBarContainer}>
+                            <ProgressBar currentStep={currentStep - 1} stepCount={tasks.length}/>
+                        </div>
+                    }
+
+                    <div className={styles.learningTask__exitButtonContainer}>
+                        <Button
+                            variant="faded"
+                            color="default"
+                            onClick={openExitModal}
+                        >
+                            В главное меню
+                        </Button>
+                    </div>
                 </div>
 
                 <div className={styles.learningTask__taskContainer}>
@@ -126,7 +128,6 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     {
                         currentStep === theoryCount + practiceCount &&
                         <div className={styles.learningTask__result}>
-                            <img src={ResultImage} rel="preload" className={styles.learningTask__resultImage} alt="Your result"/>
                             <Typography variant="h2" className={styles.learningTask__resultTitle}>
                                 Конец обучения!
                             </Typography>
@@ -170,7 +171,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                         <Button
                             disabled={!taskCompleted}
                             color={taskCompleted ? "primary" : "default"}
-                            variant="faded"
+                            variant={taskCompleted ? "faded" : 'solid'}
                             size="lg"
                             onClick={() => {
                                 setTaskChecked(true)

@@ -133,7 +133,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
 
     return (
         <div className={clsx(styles.practiceMatchWordAndGIF)}>
-            <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>
+            <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"} className={styles.practiceMatchWordAndGIF__card}>
                 <div className={styles.practiceMatchWordAndGIF__contentContainer}>
                     <div className={styles.practiceMatchWordAndGIF__titleContainer}>
                         <Typography variant="h3" className={styles.practiceMatchWordAndGIF__title}>

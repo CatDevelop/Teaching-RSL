@@ -1,6 +1,7 @@
 .learningBlock {
     display: flex;
     flex-direction: column;
+    padding-bottom: var(--space-m);
 }
 
 .learningBlock__header {

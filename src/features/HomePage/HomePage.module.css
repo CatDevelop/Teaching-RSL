@@ -15,8 +15,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-l);
-    padding: var(--space-m) var(--space-xl);
-    justify-content: center;
+    padding: var(--space-xl);
     align-items: center;
 }
 
@@ -42,11 +41,11 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
-    padding: var(--space-l) !important; /* Переопределяю отступы компонента Card */
+    padding: var(--space-l) !important; /* Переопределяю отступы компонента BySberAI */
     height: 100%;
     width: 100%;
-    max-width: 525px !important; /* Переопределяю размер компонента Card */
-    max-height: 525px !important; /* Переопределяю размер компонента Card */
+    max-width: 525px !important; /* Переопределяю размер компонента BySberAI */
+    max-height: 525px !important; /* Переопределяю размер компонента BySberAI */
     box-sizing: border-box;
     transition: all 0.2s ease-in;
     cursor: pointer;
@@ -100,7 +99,7 @@
     justify-content: space-around;
     align-items: center;
     max-width: 1080px;
-    max-height: 85px !important; /* Переопределяю размер компонента Card */
+    max-height: 85px !important; /* Переопределяю размер компонента BySberAI */
     width: 100%;
     box-sizing: border-box;
 }
@@ -113,8 +112,8 @@
 
 @media (max-height: 800px)  {
     .homePage__buttonContainer {
-        max-width: 450px !important; /* Переопределяю размер компонента Card */
-        max-height: 450px !important; /* Переопределяю размер компонента Card */
+        max-width: 450px !important; /* Переопределяю размер компонента BySberAI */
+        max-height: 450px !important; /* Переопределяю размер компонента BySberAI */
     }
 
     .homePage__button__imageContainer {

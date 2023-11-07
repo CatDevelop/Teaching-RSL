@@ -6,7 +6,6 @@ import startLearningSVG from '../../assets/images/StartLearning.svg'
 import startTrainingSVG from '../../assets/images/StartTraining.svg'
 import {Typography} from "../../components/Typography";
 import {Card} from "../../components/Card";
-import SberLogo from "../../assets/images/SberAI.png";
 import {typedMemo} from "../../core/utils/typedMemo";
 import {Button} from "../../components/Button";
 
@@ -52,14 +51,8 @@ export const HomePage: FC = typedMemo(function HomePage() {
                         </div>
                     </Card>
                 </div>
-
             </div>
 
-            <div className={styles.homePage__logosContainer}>
-                <Card className={styles.homePage__logos}>
-                    <img src={SberLogo} alt="SberAI" width={200}/>
-                </Card>
-            </div>
 
             <Button className={styles.homePage__testButton}
                     variant="faded"
