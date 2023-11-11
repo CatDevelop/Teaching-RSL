@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction} from "react";
+import React, {FC} from "react";
 import {typedMemo} from "../../core/utils/typedMemo";
 import styles from "./LevelBlock.module.css";
 import {ComponentProps} from "../../core/models/ComponentProps";
@@ -11,7 +11,9 @@ type Props = ComponentProps & Readonly<{
     experienceForNextLevel: number;
 }>
 
-/** Блок с уровнем и количеством опыта. */
+/** 
+ * Блок с уровнем и количеством опыта
+ */
 export const LevelBlock: FC<Props> = typedMemo(function LevelBlock(props) {
     return (
         <div className={styles.levelBlock}>

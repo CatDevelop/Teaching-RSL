@@ -6,7 +6,9 @@ import { ComponentProps } from "../../core/models/ComponentProps";
 
 type Props = PropsWithChildren & ComponentProps;
 
-/** Карточка. */
+/** 
+ * Карточка. 
+ */
 export const Card: FC<Props> = typedMemo(function Card(props){
     return (
         <div className={clsx(styles.card, props.className)}>

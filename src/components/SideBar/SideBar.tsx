@@ -11,6 +11,9 @@ import {ExitIcon} from "../../assets/images/ExitIcon"
 import {Card} from "../Card";
 import {useLocation} from "react-router-dom";
 
+/**
+ * Боковое меню
+ */
 export const SideBar: FC = typedMemo(function SideBar() {
     const location = useLocation();
 

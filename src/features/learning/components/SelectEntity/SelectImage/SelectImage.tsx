@@ -5,7 +5,9 @@ import {Image} from "@nextui-org/react";
 import {Typography} from "../../../../../components/Typography";
 import styles from './SelectImage.module.css'
 
-/** Изображение, которое можно выбрать. */
+/** 
+ * Изображение, которое можно выбрать
+ */
 export const SelectImage: FC<SelectContainerProps> = typedMemo(function SelectImage(props) {
     return (
         <SelectContainer {...props}>

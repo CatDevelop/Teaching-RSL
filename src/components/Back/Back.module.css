@@ -1,0 +1,12 @@
+.back {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    color: var(--disabled-text-color);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-l);
+}
+
+.back__icon {
+    width: 14px;
+}

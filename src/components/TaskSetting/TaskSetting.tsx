@@ -8,7 +8,9 @@ import styles from "./TaskSetting.module.css";
 
 type Props = ComponentProps;
 
-/** Training setting. */
+/** 
+ * Настройки тренировки
+*/
 export const TaskSetting: FC<Props> = typedMemo(function TaskSetting({
     className,
 }){

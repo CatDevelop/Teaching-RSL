@@ -15,7 +15,9 @@ type Props = ComponentProps & Readonly<{
     id: number;
 }>
 
-/** User test preview. */
+/** 
+ * User test preview
+ */
 export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(props){
     const navigate = useNavigate();
 

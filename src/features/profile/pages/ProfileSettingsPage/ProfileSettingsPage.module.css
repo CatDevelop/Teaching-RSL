@@ -1,0 +1,31 @@
+.profileSettingsPage__form {
+    max-width: 700px;
+}
+
+.profileSettingsPage__form,
+.profileSettingsPage__formScroll {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-m) * 2);
+}
+
+.profileSettingsPage__formScroll {
+    overflow: auto;
+    padding-right: var(--space-m)
+}
+
+.profileSettingsPage__formHeader {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+.profileSettingsPage__submitButton {
+    align-self: start;
+}
+
+.profileSettingsPage__formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}

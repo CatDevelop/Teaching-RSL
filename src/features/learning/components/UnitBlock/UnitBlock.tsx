@@ -13,7 +13,9 @@ type Props = {
     levels: readonly GetLevelResponseDto[]
 }
 
-/* Компонент для тестов, не войдёт в прод*/
+/**
+ *  Компонент для тестов, не войдёт в прод
+ */
 export const UnitBlock: FC<Props> = typedMemo(function UnitBlock(props) {
     return (
         <div key={"unitBlock" + props.id} className={styles.unitBlock}>

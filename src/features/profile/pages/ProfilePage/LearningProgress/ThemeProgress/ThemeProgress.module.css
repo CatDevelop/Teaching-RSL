@@ -1,0 +1,41 @@
+.themeProgress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+}
+
+.themeProgress__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    width: 100%;
+    overflow: hidden;
+}
+
+.themeProgress__title,
+.themeProgress__description{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.themeProgress__chartSvg {
+    --chart-size: 80px;
+
+    width: var(--chart-size);
+    height: var(--chart-size)
+}
+
+.themeProgress__chartValue {
+    font-size: var(--font-size-s);
+    font-family: Montserrat, sans-serif;
+    font-weight: var(--font-weight-l);
+    color: var(--disabled-button-color);
+}
+
+.themeProgress__chartIndicator {
+    stroke: var(--accent-color);
+
+}

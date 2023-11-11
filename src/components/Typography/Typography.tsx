@@ -7,7 +7,9 @@ type Props = PropsWithChildren & HtmlHTMLAttributes<HTMLParagraphElement> & Read
     variant?: 'p' | 'h1' | 'h2' | 'h3' | 'span';
 }>
 
-/** Текст. */
+/** 
+ * Текст
+ */
 export const Typography = typedMemo(forwardRef<HTMLParagraphElement, Props>(function Typography(props, ref){
     const Component: ElementType = useMemo(() => props.variant ?? 'span',[props.variant]);
 

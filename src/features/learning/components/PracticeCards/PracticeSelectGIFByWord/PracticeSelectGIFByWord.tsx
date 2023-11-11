@@ -22,7 +22,9 @@ type Props = ComponentProps & Readonly<{
 }>
 
 
-/** Практика "Выбери жест". */
+/**
+ * Практика "Выбери жест"
+ */
 export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSelectGIFByWord(props) {
     const [selectGIF, setSelectGIF] = useState<Word | null>()
     const [variants] = useState(shuffleArray<Word>([props.wordObject, ...props.otherVariants]))

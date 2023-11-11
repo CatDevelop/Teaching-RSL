@@ -2,6 +2,7 @@
     font-family: var(--main-font);
     font-weight: var(--font-weight-xl);
     --icon-size: 16px;
+    min-height: 48px;
 }
 
 .button img {

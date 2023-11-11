@@ -13,7 +13,9 @@ import {Card} from "../../../../components/Card";
 
 type Props = ComponentProps;
 
-/** System tests. */
+/** 
+ * System tests
+ */
 export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
     const {data} = useQuery<GetThemeListWithUnitsResponse>("systemtests/get", ThemesService.getListWithUnits)
 

@@ -28,7 +28,9 @@ type Props = ComponentProps & Readonly<{
     items: TempItem[];
 }>
 
-/** Task feedback (modal + button). */
+/**
+ *  ОС по заданию (модальное окно + кнопка)
+ */
 export const TaskFeedback: FC<Props> = typedMemo(function TaskFeedback(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [selectedIds, setSelectedIds] = useState<TempItem['id'][]>([]);

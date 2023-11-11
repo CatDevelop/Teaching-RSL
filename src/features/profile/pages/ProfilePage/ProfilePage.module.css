@@ -2,7 +2,7 @@
     display: grid;
     grid-template-areas: "level level" "progress stats" "progress trophies";
     grid-template-rows: var(--title-block-container-height) 1fr 1fr;
-    grid-template-columns: var(--accent-block-container-width) 1fr;
+    grid-template-columns: 1.5fr 1fr;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -17,4 +17,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.profile__learningProgress {
+    grid-row: 2 / span 2;
 }

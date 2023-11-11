@@ -13,7 +13,9 @@ type Props = {
     units: GetUnitWithLevelsResponse[]
 }
 
-/* Компонент для тестов, не войдёт в прод*/
+/** 
+ * Компонент для тестов, не войдёт в прод
+ */
 export const ThemeBlock: FC<Props> = typedMemo(function ThemeBlock(props) {
     return (
         <div key={"themeBlock" + props.id} className={styles.themeBlock}>

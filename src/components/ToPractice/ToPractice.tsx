@@ -11,7 +11,9 @@ type Props = ComponentProps & Readonly<{
     rightAnswer?: string;
 }>
 
-/** Переход к режиму тренировок. */
+/** 
+ * Переход к режиму тренировок
+ */
 export const ToPractice: FC<Props> = typedMemo(function ToPractice(props) {
     return (
         <div className={clsx(styles.toPractice, props.className)}>

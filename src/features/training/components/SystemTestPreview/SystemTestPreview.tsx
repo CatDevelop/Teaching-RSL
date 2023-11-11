@@ -14,7 +14,9 @@ import { TestTypeEnum } from "../../../../core/models/themes/TestTypeEnum";
 
 type Props = ComponentProps & GetUnitResponse;
 
-/** System test preview. */
+/** 
+ * System test preview
+ */
 export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview(props){
 
     const navigate = useNavigate();
