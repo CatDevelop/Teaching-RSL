@@ -1,0 +1,28 @@
+
+.statisticsItem {
+    --icon-size: 24px;
+
+    display: grid;
+    grid-template-columns: var(--icon-size) 1fr;
+    gap:  0 var(--space-m);
+    align-items: center;
+}
+
+.statisticsItem__icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+.statisticsItem__value {
+    font-size: var(--font-size-l);
+    color: var(--disabled-button-color);
+    font-weight: var(--font-weight-xl);
+    line-height: 1;
+}
+
+.statisticsItem__description {
+    font-size: var(--font-size-s);
+    color: var(--disabled-button-color);
+    grid-column: 1 / span 2;
+    align-self: start;
+}

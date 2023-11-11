@@ -34,7 +34,9 @@ type ToDefaultStateType = () => {
 type OnWrongAnswer = (checkedWordIndex: number, checkedGIFIndex: number) => void
 type GetNewStatusMatchPractice = (checkedWordIndex: number, checkedGIFIndex: number) => SelectState
 
-/** Практика "Подбери пару к словам". */
+/** 
+ * Практика "Подбери пару к словам"
+ */
 export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMatchWordAndGIF(props) {
     const [variantsInOtherOrder] = useState(shuffleArray<Word>(props.variants))
 

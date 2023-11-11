@@ -6,7 +6,9 @@ import styles from "./Link.module.css";
 
 type Props = LinkProps;
 
-/** Link. */
+/** 
+ * Ссылка
+ */
 export const Link: FC<Props> = typedMemo(function Link(props){
     return <RouterLink {...props} className={clsx(styles.link, props.className)} />;
 });

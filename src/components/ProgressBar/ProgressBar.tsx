@@ -8,7 +8,9 @@ type Props = ComponentProps & Readonly<{
     stepCount: number
 }>;
 
-/** Прогресс-бар задания. */
+/** 
+ * Прогресс-бар задания
+ */
 export const ProgressBar: FC<Props> = typedMemo(function TaskProgress(props){
     const getProgress = useCallback(
         () => Math.round((props.currentStep + 1) / props.stepCount * 100),

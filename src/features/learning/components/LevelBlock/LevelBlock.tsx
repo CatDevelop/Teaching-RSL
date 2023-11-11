@@ -13,7 +13,9 @@ type Props = {
     allWordsCount: number
 }
 
-/* Ссылка на уровень */
+/**
+* Ссылка на уровень 
+*/
 export const LevelBlock: FC<Props> = typedMemo(function LevelBlock(props) {
     const getLevelClass = useCallback(() => {
             if (props.completeWordsCount === props.allWordsCount)

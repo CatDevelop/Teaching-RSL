@@ -8,7 +8,9 @@ type Props = ComponentProps & Readonly<{
     src: string;
 }>
 
-/** Видео жеста. */
+/** 
+ * Видео жеста
+ */
 export const SignVideo: FC<Props> = typedMemo(function SignVideo(props) {
     return (
         <div className={clsx(styles.signVideo, props.className)}>

@@ -13,7 +13,9 @@ type Props = ComponentProps & Readonly<{
     setState: React.Dispatch<React.SetStateAction<any>>;
 }>
 
-/** Кнопка, которую можно выбрать. */
+/** 
+ * Кнопка, которую можно выбрать
+ */
 export const SelectButton: FC<Props> = typedMemo(function SelectButton(props) {
     const handleClick = () => {
         props.setState(props.state === "checked" ? null : props.wordObject)

@@ -1,6 +1,6 @@
 import React, {FC} from "react";
-import {typedMemo} from "../../core/utils/typedMemo";
-import {ComponentProps} from "../../core/models/ComponentProps";
+import {typedMemo} from "core/utils/typedMemo";
+import {ComponentProps} from "core/models/ComponentProps";
 import {Link} from "react-router-dom";
 import {ArrowIcon} from "../Icons";
 import styles from "./Back.module.css"

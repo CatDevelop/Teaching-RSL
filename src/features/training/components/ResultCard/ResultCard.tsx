@@ -11,7 +11,9 @@ type Props = ComponentProps & Readonly<{
     content: string;
 }>
 
-/** Результат тренировки. */
+/** 
+ * Результат тренировки
+ */
 export const ResultCard: FC<Props> = typedMemo(function ResultCard({
     className,
     iconUrl,

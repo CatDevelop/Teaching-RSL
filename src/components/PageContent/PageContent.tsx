@@ -6,7 +6,9 @@ import styles from "./PageContent.module.css";
 
 type Props = PropsWithChildren & ComponentProps;
 
-/** Контейнер для контента на странице. */
+/** 
+ * Контейнер для контента на странице
+ */
 export const PageContent: FC<Props> = typedMemo(function PageContent(props){
     return (
         <div className={clsx(props.className, styles.pageContent)}>

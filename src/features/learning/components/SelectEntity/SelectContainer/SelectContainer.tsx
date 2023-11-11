@@ -14,7 +14,9 @@ export type SelectContainerProps = PropsWithChildren & Readonly<{
     setState: React.Dispatch<React.SetStateAction<any>>;
 }>
 
-/** Контейнер для объектов, которые можно выбрать. */
+/** 
+ * Контейнер для объектов, которые можно выбрать
+ */
 export const SelectContainer: FC<SelectContainerProps> = typedMemo(function SelectContainer(props) {
     const handleClickOnSelectObject = useCallback(() => {
         if (props.state === "default" || props.state === "checked")

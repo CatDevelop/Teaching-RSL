@@ -14,7 +14,9 @@ type Props = ComponentProps & Readonly<{
     rightAnswer?: string;
 }>
 
-/** Меню продолжения уровня. */
+/** 
+ * Меню продолжения уровня
+ */
 export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
     return (
         <div className={clsx(

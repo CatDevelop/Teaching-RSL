@@ -11,7 +11,9 @@ import {Card} from "../../../../components/Card";
 
 type Props = ComponentProps;
 
-/** Пользовательские тесты. */
+/** 
+ * Пользовательские тесты
+ */
 export const UserTests: FC<Props> = typedMemo(function UserTests(props) {
     const [tests, setTests] = useState(userTests);
 

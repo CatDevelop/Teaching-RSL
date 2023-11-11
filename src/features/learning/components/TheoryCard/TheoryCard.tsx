@@ -13,7 +13,9 @@ type Props = ComponentProps & Readonly<{
     wordObject: Word
 }>
 
-/** Карточка с теорией: GIF, изображение, слово. */
+/** 
+ * Карточка с теорией: GIF, изображение, слово
+ */
 export const TheoryCard: FC<Props> = typedMemo(function TheoryCard(props) {
     return (
         <div className={clsx(styles.theoryCard)}>

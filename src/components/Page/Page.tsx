@@ -6,6 +6,9 @@ import {ComponentProps} from "../../core/models/ComponentProps";
 
 type Props = PropsWithChildren & ComponentProps;
 
+/**
+ * Страница
+ */
 export const Page: FC<Props> = typedMemo(function Page(props) {
     return (
         <div className={clsx(styles.page, props.className)}>

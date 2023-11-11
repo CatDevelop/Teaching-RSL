@@ -9,7 +9,9 @@ type Props = PropsWithChildren & Readonly <{
     title: string;
 }>
 
-/** Learning block. */
+/** 
+ * Learning block. 
+ */
 export const LearningBlock: FC<Props> = typedMemo(function LearningBlock(props){
     return (
         <Card className={styles.learningBlock}>

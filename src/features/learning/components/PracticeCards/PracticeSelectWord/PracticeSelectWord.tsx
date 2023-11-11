@@ -21,7 +21,9 @@ type Props = ComponentProps & Readonly<{
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }>
 
-/** Практика "Выбери слово". */
+/** 
+ * Практика "Выбери слово"
+ */
 export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWord(props) {
     const [selectWord, setSelectWord] = useState<Word | null>()
     const [variants] = useState(shuffleArray<Word>([props.wordObject, ...props.otherVariants]))

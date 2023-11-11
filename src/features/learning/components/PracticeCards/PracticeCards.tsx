@@ -16,7 +16,9 @@ type Props = ComponentProps & Readonly<{
     setTaskCompleted: Dispatch<SetStateAction<boolean>>
 }>
 
-/** Карточки практик для обучения. */
+/** 
+ * Карточки практик для обучения 
+ */
 export const PracticeCards: FC<Props> = typedMemo(function PracticeCards(props) {
     if (props.type === "SelectWord")
         return <PracticeSelectWord
