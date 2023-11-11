@@ -3,6 +3,12 @@ import { CONFIG } from "./config";
 /** API ссылки приложения. */
 export namespace ApiUrlsConfig {
 	const apiUrl = CONFIG.apiUrl;
+	const apiAuthUrl = CONFIG.apiAuthUrl;
+
+	/** API ссылки авторизации. */
+	export const auth = {
+		register: toAuthApi('register'),
+	};
 
 	/** API ссылки тем. */
 	export const themes = {
@@ -28,5 +34,13 @@ export namespace ApiUrlsConfig {
 	 */
 	function toApi(path: string): string {
 		return new URL(path, apiUrl).toString();
+	}
+
+	/**
+	 * Получить полную API ссылку авторизации.
+	 * @param path Относительная API ссылка.
+	 */
+	function toAuthApi(path: string): string {
+		return new URL(path, apiAuthUrl).toString();
 	}
 }

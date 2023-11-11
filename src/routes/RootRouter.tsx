@@ -9,6 +9,8 @@ import {adminRoutes} from "../features/admin/routes";
 import { authRoutes } from '../features/auth/routes';
 import {profileRoutes} from "../features/profile/routes";
 import {dictionaryRoutes} from "../features/dictionary/routes";
+import { AuthGuard } from './guards/authGuard';
+import { NotAuthGuard } from './guards/notAuthGuard';
 
 const routes: RouteObject[] = [
     {
@@ -21,12 +23,22 @@ const routes: RouteObject[] = [
            } ,
         ]
     },
-    ...authRoutes,
-    ...profileRoutes,
-    ...learningRoutes,
-    ...trainingRoutes,
-    ...dictionaryRoutes,
-    ...adminRoutes,
+    {
+        element: <NotAuthGuard/>,
+        children: [
+            ...authRoutes,
+        ]
+    },
+    {
+        element: <AuthGuard/>,
+        children: [
+            ...profileRoutes,
+            ...learningRoutes,
+            ...trainingRoutes,
+            ...dictionaryRoutes,
+            ...adminRoutes,
+        ]
+    },
     ...errorsRouts
 ];
 
