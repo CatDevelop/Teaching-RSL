@@ -4,11 +4,16 @@ import { CONFIG } from "./config";
 export namespace ApiUrlsConfig {
 	const apiUrl = CONFIG.apiUrl;
 	const apiUserUrl = CONFIG.apiUserUrl;
-
+	const apiAuthUrl = CONFIG.apiAuthUrl;
 
 	/** API ссылки пользователя. */
 	export const user = {
-		register: toUserApi('user/register')
+		register: toUserApi('user/register'),
+	}
+
+	/** API ссылки авторизации (sso) */
+	export const auth = {
+		connect: toAuthApi('connect/token')
 	}
 
 	/** API ссылки тем. */
@@ -43,5 +48,21 @@ export namespace ApiUrlsConfig {
 	 */
 	function toUserApi(path: string): string {
 		return new URL(path, apiUserUrl).toString();
+	}
+
+	/**
+	 * Получить полную API ссылку авторизации (sso).
+	 * @param path Относительная API ссылка.
+	 */
+	function toAuthApi(path: string): string {
+		return new URL(path, apiAuthUrl).toString();
+	}
+
+	/**
+	 * Является ли запрос авторизационным
+	 * @param url Ссылка запроса
+	 */
+	export function isAuthUrl(url: string): boolean {
+		return url.includes(apiAuthUrl);
 	}
 }
