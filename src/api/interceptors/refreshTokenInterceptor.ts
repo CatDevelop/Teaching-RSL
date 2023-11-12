@@ -1,7 +1,7 @@
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ApiUrlsConfig } from '../apiUrlsConfig';
-import { UserSecretService } from '../services/userSecret';
-import { AuthService } from '../services/auth';
+import { UserSecretService } from 'api/services/userSecret';
+import { AuthService } from 'api/services/auth';
 
 export type RefreshResult = Promise<AxiosResponse<unknown, unknown>>;
 
