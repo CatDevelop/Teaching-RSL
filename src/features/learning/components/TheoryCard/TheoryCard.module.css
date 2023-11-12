@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+.theoryCard__title {
+    font-size: var(--font-size-l);
+    line-height: var(--font-size-l);
+}
+
 .theoryCard__contentContainer {
     display: flex;
     flex-direction: column;
@@ -18,7 +23,7 @@
     justify-content: center;
     align-items: center;
     gap: var(--space-m);
-    height: calc(100vh - 32px - var(--space-s) - 2*(var(--page-padding-m)*2 + var(--space-m)*2 + 70px));
+    height: calc(100vh - (var(--page-padding-m)*2 + 153px + var(--space-l) + var(--space-m)*6 + var(--font-size-l) + 48px));
 }
 
 .theoryCard__gif video,

@@ -18,7 +18,8 @@
 }
 
 .learningBlock__title {
-    color: var(--text-color);
+    font-size: var(--font-size-l);
+    line-height: var(--font-size-l);
 }
 
 .learningBlock__contentContainer {

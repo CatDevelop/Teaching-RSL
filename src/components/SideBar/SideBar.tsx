@@ -32,7 +32,7 @@ export const SideBar: FC = typedMemo(function SideBar() {
         },
         {
             id: 2,
-            label: "Тренировки",
+            label: "Практика",
             icon: TrainingIcon,
             link: "/training"
         },
