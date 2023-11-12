@@ -14,7 +14,7 @@ import VK from "../../../../assets/images/VK.svg";
 import Yandex from "../../../../assets/images/Yandex.svg";
 import { RegisterUserRequest } from "core/models/auth/RegisterUserRequest";
 import { useMutation } from "react-query";
-import { AuthService } from "api/services/auth";
+import { UserService } from "api/services/user";
 import { useDispatch } from "react-redux"
 import { login } from "../../../../store/auth/authSlice";
 
@@ -30,7 +30,7 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
 
     const dispatch = useDispatch();
 
-    const {isLoading: isFetching, mutate: logup} = useMutation('auth/register', AuthService.register, {
+    const {isLoading: isFetching, mutate: logup} = useMutation('auth/register', UserService.register, {
         onSuccess: () => {
             dispatch(login())
         }
