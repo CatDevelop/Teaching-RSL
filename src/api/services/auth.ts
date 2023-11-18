@@ -3,7 +3,7 @@ import { ApiUrlsConfig } from "../apiUrlsConfig";
 import { LoginUserRequestMapper } from "core/mappers/auth/LoginUserRequestMapper";
 import { AuthClientResponseDto } from "core/dtos/auth/AuthClientResponseDto";
 import { UserSecretService } from "./userSecret";
-import { authHttp } from "api/authHttp";
+import { http } from "api/http";
 
 export namespace AuthService {
     export async function connect(form: LoginUserRequest): Promise<void> {
@@ -13,7 +13,7 @@ export namespace AuthService {
             client_secret: 'pin-code',
             grant_type: 'password',
         }
-        const {data} = await authHttp.post<AuthClientResponseDto>(ApiUrlsConfig.auth.connect, body);
+        const {data} = await http.post<AuthClientResponseDto>(ApiUrlsConfig.auth.connect, body);
         UserSecretService.saveToken({access: data.access_token, refresh: data.refresh_token});
     }
 
