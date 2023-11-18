@@ -1,5 +1,8 @@
 import { IllustrationWordResponseDto } from "./IllustrationWordResponseDto";
 
+/**
+ * Модель слова
+ */
 export type GetWordResponseDto = Readonly<{
     /**
      * Ответ со словами

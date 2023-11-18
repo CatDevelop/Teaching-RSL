@@ -1,5 +1,8 @@
 import { IllustrationWordResponse } from "./IllustrationWordResponse";
 
+/**
+ * Модель слова
+ */
 export class GetWordResponse {
     /**
      * Ответ со словами
