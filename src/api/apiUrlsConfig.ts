@@ -6,12 +6,12 @@ export namespace ApiUrlsConfig {
 
 	/** API ссылки пользователя. */
 	export const user = {
-		register: toApi('user/register'),
+		register: toUserApi('user/register'),
 	}
 
 	/** API ссылки авторизации (sso) */
 	export const auth = {
-		connect: toApi('connect/token')
+		connect: toAuthApi('connect/token')
 	}
 
 	/** API ссылки тем. */
@@ -37,7 +37,23 @@ export namespace ApiUrlsConfig {
 	 * @param path Относительная API ссылка.
 	 */
 	function toApi(path: string): string {
-		return new URL(path, apiUrl).toString();
+		return new URL(path, `${apiUrl}/learning/api/v1/public/`).toString();
+	}
+
+	/**
+	 * Получить полную API ссылку(sso).
+	 * @param path Относительная API ссылка.
+	 */
+	function toAuthApi(path: string): string {
+		return new URL(path, `${apiUrl}/sso/api/v1/public/`).toString();
+	}
+
+	/**
+	 * Получить полную API ссылку(lk).
+	 * @param path Относительная API ссылка.
+	 */
+	function toUserApi(path: string): string {
+		return new URL(path, `${apiUrl}/lk/api/v1/public/`).toString();
 	}
 
 	/**
@@ -45,6 +61,6 @@ export namespace ApiUrlsConfig {
 	 * @param url Ссылка запроса
 	 */
 	export function isAuthUrl(url: string): boolean {
-		return url.includes('connect');
+		return url.includes('sso');
 	}
 }
