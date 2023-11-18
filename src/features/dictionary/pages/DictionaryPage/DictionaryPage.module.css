@@ -7,13 +7,12 @@
 .dictionary__pageContent {
     position: relative;
     display: grid;
-    grid-template-areas: "title title" "systems other";
     grid-template-rows: var(--title-block-container-height) 1fr;
-    grid-template-columns: var(--accent-block-container-width) 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .dictionary__titleContainer {
-    grid-area: title;
+    grid-column: span 2;
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
