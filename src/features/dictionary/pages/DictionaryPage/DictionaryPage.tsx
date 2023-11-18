@@ -7,7 +7,8 @@ import {PageContent} from "../../../../components/PageContent";
 import {SideBar} from "../../../../components/SideBar";
 import {Card} from "../../../../components/Card";
 import {Spinner} from "@nextui-org/react";
-import { SelectDictionaryDisplay } from "./SelectDictionaryDisplay";
+import { SelectThemeDictionary } from "./SelectThemeDictionary";
+import { ThemeDictionary } from "./ThemeDictionary";
 
 const tempData = {
     themes: [
@@ -33,26 +34,10 @@ const tempData = {
             ]
         }
     ],
-    letters: [
-        {
-            name: 'Б',
-            words: [
-                {
-                    word: 'Бука'
-                },
-                {
-                    word: 'Бука'
-                },
-                {
-                    word: 'Бука'
-                },
-            ]
-        }
-    ]
 }
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
-    const [openedSection, setOpenedSection] = useState<any>(null)
+    const [openedTheme, setOpenedTheme] = useState<any>(null)
 
     return (
         <Page className={styles.dictionary}>
@@ -73,12 +58,14 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                             Здесь можно найти абсолютно все жесты
                         </Typography>
                     </Card>
-                    <SelectDictionaryDisplay 
+                    
+                    <SelectThemeDictionary 
                         themes={tempData.themes} 
-                        letters={tempData.letters} 
                         className={styles.dictionary__selectDictionaryDisplay}
-                        onSectionClick={setOpenedSection}
+                        onThemeClick={setOpenedTheme}
                     />
+
+                    <ThemeDictionary theme={openedTheme}/>
                 </Suspense>
             </PageContent>
         </Page>
