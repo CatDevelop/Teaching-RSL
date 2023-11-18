@@ -1,18 +1,18 @@
-/** Local storage service. */
+/** Local storage. */
 export namespace LocalStorageService {
 
 	/**
-	 * Set data to localStorage.
-	 * @param key Key.
-	 * @param value Value.
+	 * Сохранить данные в localStorage.
+	 * @param key Ключ.
+	 * @param value Значение.
 	 */
 	export function set<T>(key: string, value: T): void {
 		return localStorage.setItem(key, JSON.stringify(value));
 	}
 
 	/**
-	 * Get data from localStorage.
-	 * @param key Store key.
+	 * Получить данные из localStorage.
+	 * @param key Ключ.
 	 */
 	export function get<T>(key: string): T | null {
 		const value = localStorage.getItem(key);
@@ -24,8 +24,8 @@ export namespace LocalStorageService {
 	}
 
 	/**
-	 * Remove data from localStorage.
-	 * @param key Store key.
+	 * Удалить данные из localStorage.
+	 * @param key Ключ.
 	 */
 	export function remove(key: string): void {
 		localStorage.removeItem(key);

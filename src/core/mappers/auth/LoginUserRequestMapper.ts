@@ -9,7 +9,7 @@ export namespace LoginUserRequestMapper {
 	export function toDto(model: LoginUserRequest): LoginUserRequestDto {
 		return {
 			username: model.email,
-            password: model.password,
+			password: model.password,
 		};
 	}
 }

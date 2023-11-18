@@ -40,7 +40,7 @@ const refreshSecret = async(requestError: AxiosError)/*RefreshResult*/ => {
 };
 
 /**
- * Checks request should be intercepted.
+ * Проверка запроса на необходимость токена авторизации.
  * @param config Request config.
  */
 export function shouldRefreshSecretForUrl(config: AxiosRequestConfig): boolean {

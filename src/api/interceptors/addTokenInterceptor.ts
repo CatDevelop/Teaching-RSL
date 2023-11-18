@@ -21,7 +21,7 @@ export function addTokenInterceptor(config: InternalAxiosRequestConfig): Interna
 }
 
 /**
- *Проверить, нужно ли добавлять токен в запрос
+ * Проверить, нужно ли добавлять токен в запрос
  * @param config Конфиг запроса
  *
  */
