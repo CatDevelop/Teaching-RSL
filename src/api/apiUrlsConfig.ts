@@ -37,7 +37,7 @@ export namespace ApiUrlsConfig {
 	 * @param path Относительная API ссылка.
 	 */
 	function toApi(path: string): string {
-		return new URL(path, `${apiUrl}/learning/api/v1/public/`).toString();
+		return new URL(path, `${apiUrl}learning/api/v1/public/`).toString();
 	}
 
 	/**
@@ -45,7 +45,7 @@ export namespace ApiUrlsConfig {
 	 * @param path Относительная API ссылка.
 	 */
 	function toAuthApi(path: string): string {
-		return new URL(path, `${apiUrl}/sso/api/v1/public/`).toString();
+		return new URL(path, `${apiUrl}sso/`).toString();
 	}
 
 	/**
@@ -53,7 +53,7 @@ export namespace ApiUrlsConfig {
 	 * @param path Относительная API ссылка.
 	 */
 	function toUserApi(path: string): string {
-		return new URL(path, `${apiUrl}/lk/api/v1/public/`).toString();
+		return new URL(path, `${apiUrl}lk/api/v1/public/`).toString();
 	}
 
 	/**
