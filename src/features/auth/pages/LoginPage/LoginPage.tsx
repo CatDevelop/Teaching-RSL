@@ -56,7 +56,7 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
     return (
         <AuthFormPage>
             <Typography variant="h3">Вход</Typography>
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.loginPage__form}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <Input
                     label="Почта"
                     isInvalid={errors.email !== undefined}
@@ -66,6 +66,7 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
                 />
                 <Input
                     label="Пароль"
+                    type="password"
                     isInvalid={errors.password !== undefined}
                     color={errors.password !== undefined ? "danger" : "default"}
                     errorMessage={errors.password?.message}
