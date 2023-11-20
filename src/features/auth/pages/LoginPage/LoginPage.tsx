@@ -12,11 +12,11 @@ import { Button } from "../../../../components/Button";
 import { FormLink } from "../../components/FormLink";
 import VK from "../../../../assets/images/VK.svg"
 import Yandex from "../../../../assets/images/Yandex.svg"
-
-type LoginTemp = {
-    email: string;
-    password:string;
-}
+import { useDispatch } from "react-redux";
+import { useMutation } from "react-query";
+import { UserService } from "api/services/user";
+import { login as loginDispatch } from "store/auth/authSlice";
+import { LoginUserRequest } from "core/models/auth/LoginUserRequest";
 
 /**
  * Страница входа
@@ -26,10 +26,18 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<LoginTemp>({resolver: yupResolver(schema)})
+    } = useForm<LoginUserRequest>({resolver: yupResolver(schema)})
 
-    const onSubmit = () =>{
-        console.log(errors)
+    const dispatch = useDispatch();
+
+    const {isLoading: isFetching, mutate: login} = useMutation('auth/login', UserService.login, {
+        onSuccess: () => {
+            dispatch(loginDispatch())
+        }
+    })
+
+    const onSubmit = (form: LoginUserRequest) => {
+        login(form);
     }
 
     const socialLinks = [
@@ -48,7 +56,7 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
     return (
         <AuthFormPage>
             <Typography variant="h3">Вход</Typography>
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.loginPage__form}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <Input
                     label="Почта"
                     isInvalid={errors.email !== undefined}
@@ -58,12 +66,19 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
                 />
                 <Input
                     label="Пароль"
+                    type="password"
                     isInvalid={errors.password !== undefined}
                     color={errors.password !== undefined ? "danger" : "default"}
                     errorMessage={errors.password?.message}
                     {...register('password')}
                 />
-                <Button color="primary" type="submit" onClick={handleSubmit(onSubmit)}>
+                <Button 
+                    color="primary" 
+                    type="submit" 
+                    onClick={handleSubmit(onSubmit)}
+                    isLoading={isFetching}
+                    isDisabled={isFetching}
+                >
                     Войти
                 </Button>
             </form>

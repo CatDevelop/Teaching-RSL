@@ -12,12 +12,11 @@ import { SocialBlock } from "../../components/SocialBlock";
 import { FormLink } from "../../components/FormLink";
 import VK from "../../../../assets/images/VK.svg";
 import Yandex from "../../../../assets/images/Yandex.svg";
-
-type LogupTemp = {
-    email: string;
-    password:string;
-    repeatPassword:string;
-}
+import { RegisterUserRequest } from "core/models/auth/RegisterUserRequest";
+import { useMutation } from "react-query";
+import { UserService } from "api/services/user";
+import { useDispatch } from "react-redux"
+import { login } from "../../../../store/auth/authSlice";
 
 /**
  * Страница регистрации
@@ -27,9 +26,19 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<LogupTemp>({resolver: yupResolver(schema)})
+    } = useForm<RegisterUserRequest>({resolver: yupResolver<RegisterUserRequest>(schema)})
 
-    const onSubmit = () => {}
+    const dispatch = useDispatch();
+
+    const {isLoading: isFetching, mutate: logup} = useMutation('auth/register', UserService.register, {
+        onSuccess: () => {
+            dispatch(login())
+        }
+    })
+
+    const onSubmit = (form: RegisterUserRequest) => {
+        logup(form);
+    }
 
     const socialLinks = [
         {
@@ -47,7 +56,21 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
     return (
         <AuthFormPage>
             <Typography variant="h3">Новый аккаунт</Typography>
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.logupPage__form}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <Input
+                    label="Имя"
+                    isInvalid={errors.name !== undefined}
+                    color={errors.name !== undefined ? "danger" : "default"}
+                    errorMessage={errors.name?.message}
+                    {...register('name')}
+                />
+                <Input
+                    label="Фамилия"
+                    isInvalid={errors.surname !== undefined}
+                    color={errors.surname !== undefined ? "danger" : "default"}
+                    errorMessage={errors.surname?.message}
+                    {...register('surname')}
+                />
                 <Input
                     label="Почта"
                     isInvalid={errors.email !== undefined}
@@ -57,6 +80,7 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
                 />
                 <Input
                     label="Пароль"
+                    type="password"
                     isInvalid={errors.password !== undefined}
                     color={errors.password !== undefined ? "danger" : "default"}
                     errorMessage={errors.password?.message}
@@ -64,12 +88,13 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
                 />
                 <Input
                     label="Повторите пароль"
-                    isInvalid={errors.repeatPassword !== undefined}
-                    color={errors.repeatPassword !== undefined ? "danger" : "default"}
-                    errorMessage={errors.repeatPassword?.message}
-                    {...register('repeatPassword')}
+                    type="password"
+                    isInvalid={errors.confirmPassword !== undefined}
+                    color={errors.confirmPassword !== undefined ? "danger" : "default"}
+                    errorMessage={errors.confirmPassword?.message}
+                    {...register('confirmPassword')}
                 />
-                <Button color="primary" type="submit">
+                <Button color="primary" type="submit" isLoading={isFetching} isDisabled={isFetching}>
                     Создать аккаунт
                 </Button>
             </form>
