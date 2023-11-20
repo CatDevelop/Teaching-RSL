@@ -43,13 +43,13 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
     }, [selectGIF, props.setIsTaskReadyToCheck])
 
     return (
-        <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>
+        <div >
             <div className={styles.practiceSelectGif__titleContainer}>
-                <Typography variant="h3" className={styles.practiceSelectGif__title}>
+                <Typography variant="h2" className={styles.practiceSelectGif__title}>
                     Выбери жест
                 </Typography>
                 <Typography
-                    variant="h3"
+                    variant="h2"
                     className={clsx(styles.practiceSelectGif__title, styles.practiceSelectGif__titleSignText)}
                 >
                     {props.wordObject.text}
@@ -70,6 +70,6 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
                     })
                 }
             </div>
-        </LearningBlock>
+        </div>
     );
 });

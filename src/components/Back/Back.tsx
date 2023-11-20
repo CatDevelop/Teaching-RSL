@@ -9,9 +9,9 @@ type Props = ComponentProps & Readonly<{
     to: string;
 }>
 
-/**
- * Ссылка Назад
- */
+/*
+    Ссылка назад
+*/
 export const Back: FC<Props> = typedMemo(function Back(props) {
     return (
         <Link to={props.to} className={styles.back}>

@@ -9,23 +9,22 @@ type Props = PropsWithChildren & Readonly <{
     title: string;
 }>
 
-/** 
- * Learning block. 
+/**
+ * Learning block.
  */
 export const LearningBlock: FC<Props> = typedMemo(function LearningBlock(props){
     return (
-        <Card className={styles.learningBlock}>
+        <div className={styles.learningBlock}>
             <div className={styles.learningBlock__header}>
-                <img src={props.iconUrl} alt={`${props.title} icon`} className={styles.learningBlock__icon} />
                 <Typography
-                    variant="h3"
-                    className={styles.taskContinue__textBlock}>
+                    variant="h2"
+                    className={styles.learningBlock__title}>
                     {props.title}
                 </Typography>
             </div>
             <div className={styles.learningBlock__contentContainer}>
                 {props.children}
             </div>
-        </Card>
+        </div>
     );
 });

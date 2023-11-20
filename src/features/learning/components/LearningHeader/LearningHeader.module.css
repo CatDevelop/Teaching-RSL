@@ -1,0 +1,27 @@
+.learningHeader {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    max-height: 154px;
+    /*max-width: var(--learning-center-block-width);*/
+}
+
+.learningHeader__type {
+    color: var(--thirdly-text-color);
+}
+
+.learningHeader__nameContainer {
+    display: flex;
+    gap: var(--space-m);
+    align-items: end;
+}
+
+.learningHeader__name {
+    line-height: var(--font-size-m);
+}
+
+.learningHeader__wordsCount {
+    font-size: var(--font-size-xs);
+    line-height: var(--font-size-xs);
+    color: var(--thirdly-text-color);
+}
