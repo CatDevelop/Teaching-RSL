@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 import { Link } from "@nextui-org/react";
 
 type Props = ComponentProps & Readonly<{
+    // TODO прописать тип
     theme: any | null;
 }>
 

@@ -26,7 +26,8 @@ export const DictionaryWordPage: FC= typedMemo(function DictionaryWordPage(){
                 <Card className={styles.dictionaryWordPage__word}>
                     <Typography
                         variant="h3"
-                        className={styles.dictionaryWordPage__wordName}>
+                        className={styles.dictionaryWordPage__wordName}
+                        >
                         {word.word}
                     </Typography>
                     <div className={styles.dictionaryWordPage__illustrations}>
