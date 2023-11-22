@@ -9,10 +9,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {TaskContinue} from "../../../../components/TaskContinue";
 import {ProgressBar} from "../../../../components/ProgressBar";
 import {PageContent} from "../../../../components/PageContent";
-import ResultImage from "../../../../assets/images/ResultTrainingImage.svg";
 import {RecognitionBlock} from "../../components/RecognitionBlock";
-import Result from "../../../../assets/images/Result.svg";
-import {ResultCard} from "../../components/ResultCard";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
@@ -21,6 +18,7 @@ import {TrainingService} from "../../../../api/services/training";
 import {StartTraining} from "../../components/StartTraining/StartTraining";
 import {ModelWarning} from "../../components/ModelWarning/ModelWarning";
 import {socket} from "../../../../core/utils/connectToModal";
+import {BySberAI} from "../../../../components/BySberAI";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
@@ -74,36 +72,47 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
             fireworks()
     }, [currentStep, countSkippedWords, data, fireworks]);
 
+    useEffect(() => {
+        socket.on('connect_error', () => setIsNotStartModel(true))
+        socket.on('connect_failed', () => setIsNotStartModel(true))
+        socket.on('connect', () => setIsNotStartModel(false))
+    }, []);
+
+
     if(!data){
         return null
     }
-
     return (
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.trainingTask}>
-                <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
-                    <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
-                </div>
-                {
-                    currentStep !== -1 && !isNotStartModel &&
-                    <div className={styles.trainingTask__progressBarContainer}>
-                        <ProgressBar currentStep={currentStep - 1} stepCount={data.words.length}/>
+                <div className={styles.trainingTask__header}>
+                    <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
+                        <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
+                        {/*<BySberAI/>*/}
                     </div>
-                }
-                <div className={styles.trainingTask__exitButtonContainer}>
                     {
-                        currentStep !== data.words.length &&
-                        <Button
-                            variant={"faded"}
-                            color={"default"}
-                            size={"lg"}
-                            onClick={openExitModal}
-                        >
-                            В главное меню
-                        </Button>
+                        currentStep !== -1 && currentStep !== data.words.length && !isNotStartModel &&
+                        <div className={styles.trainingTask__progressBarContainer}>
+                            <ProgressBar currentStep={currentStep - 1} stepCount={data.words.length}/>
+                        </div>
                     }
+                    <div className={styles.trainingTask__exitButtonContainer}>
+                        {
+                            currentStep !== data.words.length &&
+                            <Button
+                                variant={"faded"}
+                                color={"default"}
+                                size={"lg"}
+                                onClick={openExitModal}
+                            >
+                                В главное меню
+                            </Button>
+                        }
+                    </div>
                 </div>
+
+                {currentStep !== data.words.length && <BySberAI className={styles.trainingTask__bySberAI}/>}
 
 
                 <div className={styles.trainingTask__taskContainer}>
@@ -132,20 +141,23 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     {
                         currentStep === data.words.length &&
                         <div className={styles.trainingTask__result}>
-                            <img
-                                src={ResultImage}
-                                rel="preload"
-                                className={styles.trainingTask__resultImage}
-                                alt="Иконка результата"
-                            />
+                            {/*<img*/}
+                            {/*    src={ResultImage}*/}
+                            {/*    rel="preload"*/}
+                            {/*    className={styles.trainingTask__resultImage}*/}
+                            {/*    alt="Иконка результата"*/}
+                            {/*/>*/}
                             <Typography variant="h2" className={styles.trainingTask__resultTitle}>
-                                Конец тренировки!
+                                Поздравляем, вы освоили несколько новых жестов!<br/>Благодарим за участие!
                             </Typography>
-                            <ResultCard
-                                title="Результат"
-                                iconUrl={Result}
-                                content={`${getTaskResult()}%`}
-                                className={styles.trainingTask__resultCard}/>
+                            <div className={styles.trainingTask__result__container}>
+                                <BySberAI/>
+                                {/*<ResultCard*/}
+                                {/*    title="Результат"*/}
+                                {/*    iconUrl={Result}*/}
+                                {/*    content={`${getTaskResult()}%`}*/}
+                                {/*    className={styles.trainingTask__resultCard}/>*/}
+                            </div>
                         </div>
                     }
                 </div>

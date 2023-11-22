@@ -15,13 +15,16 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-m);
-    width: 700px;
-    height: 350px;
+    max-width: 500px;
+    width: 100%;
+    height: auto;
     animation: showDown 0.5s ease-in;
 }
 
 .startLearning__description {
     font-family: var(--main-font);
-    font-size: var(--font-size-m);
+    font-size: calc(var(--font-size-m) * 0.9);
     text-align: center;
+    color: var(--disabled-button-color);
+    font-weight: var(--font-weight-s);
 }

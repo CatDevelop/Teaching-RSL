@@ -21,6 +21,9 @@ const routes: RouteObject[] = [
             path: '',
             element: <HomePage/>
            } ,
+
+           ...learningRoutes,
+           ...trainingRoutes,
         ]
     },
     {
