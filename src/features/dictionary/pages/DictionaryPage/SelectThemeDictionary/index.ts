@@ -1,0 +1,1 @@
+export { SelectThemeDictionary } from "./SelectThemeDictionary";

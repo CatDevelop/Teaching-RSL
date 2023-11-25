@@ -40,7 +40,7 @@ export const navigationItems = [
         id: 3,
         label: "Словарь",
         icon: DictionaryIcon,
-        link: "/dictionary/by-theme"
+        link: "/dictionary"
     },
 ]
 

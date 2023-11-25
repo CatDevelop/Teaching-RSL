@@ -35,10 +35,12 @@ const routes: RouteObject[] = [
     {
         element: <AuthGuard/>,
         children: [
-            ...profileRoutes,
-            ...adminRoutes,
+            /*...profileRoutes,
+            ...adminRoutes,*/
         ]
     },
+    ...profileRoutes,
+    ...adminRoutes,
     ...learningRoutes,
     ...trainingRoutes,
     ...dictionaryRoutes,
