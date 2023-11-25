@@ -1,3 +1,5 @@
+import { FileType } from "./FileType";
+
 /**
  * Иллюстрация к слову
  */
@@ -10,7 +12,7 @@ export class IllustrationWordResponse {
     /**
      * Тип файла
      */
-    public readonly fileType: string | null;
+    public readonly fileType: FileType | null;
 
     public constructor({path, fileType}:IllustrationWordResponseProps){
         this.path = path;
