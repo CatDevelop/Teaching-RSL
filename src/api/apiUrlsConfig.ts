@@ -7,6 +7,7 @@ export namespace ApiUrlsConfig {
 	/** API ссылки пользователя. */
 	export const user = {
 		register: toUserApi('user/register'),
+		getTestHistory: toUserApi('testhistory'),
 	}
 
 	/** API ссылки авторизации (sso) */

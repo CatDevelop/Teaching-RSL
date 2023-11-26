@@ -4,6 +4,9 @@ import { RegisterUserRequestMapper } from "core/mappers/auth/RegisterUserRequest
 import { AuthService } from "./auth";
 import { LoginUserRequest } from "core/models/auth/LoginUserRequest";
 import { http } from "api/http";
+import { UserTestHistoryRecordResponse } from "core/models/user/UserTestHistoryRecordResponse";
+import { UserTestHistoryRecordResponseDto } from "core/dtos/user/UserTestHistoryRecordResponseDto";
+import { UserTestHistoryRecordResponseMapper } from "core/mappers/user/UserTestHistoryRecordResponseMapper";
 
 export namespace UserService {
     export async function register(form: RegisterUserRequest): Promise<void> {
@@ -17,5 +20,10 @@ export namespace UserService {
 
     export async function logout(): Promise<void> {
         await AuthService.disconnect();
+    }
+
+    export async function getTestHistory(): Promise<UserTestHistoryRecordResponse[]> {
+        return http.get<UserTestHistoryRecordResponseDto[]>(ApiUrlsConfig.user.getTestHistory)
+            .then(({data}) => data.map(item => UserTestHistoryRecordResponseMapper.fromDto(item)));
     }
 }
