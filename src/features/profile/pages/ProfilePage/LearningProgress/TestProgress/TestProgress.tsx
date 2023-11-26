@@ -17,7 +17,9 @@ export const TestProgress: FC<Props> = typedMemo(function TestProgress(props){
         <div className={styles.testProgress}>
             <div className={styles.testProgress__header}>
                 <Typography variant="p" className={styles.testProgress__name}>{props.name}</Typography>
-                <Typography variant="span" className={styles.testProgress__progress}>{props.wordsCount}/{props.wordsCompletedCount}</Typography>
+                <Typography variant="span" className={styles.testProgress__progress}>
+                    {props.wordsCompletedCount}/{props.wordsCount}
+                </Typography>
             </div>
             <div className={styles.testProgress__dates}>
                 <Typography variant="span" className={styles.testProgress__time}>{completedDate.format('HH:mm')}</Typography>

@@ -24,12 +24,8 @@ export const ProfilePage: FC = typedMemo(function LearningCatalogPage() {
                         <LevelBlock level={33} experience={1236} experienceForNextLevel={3000}/>
                     </Card>
 
-                    
-                        <LearningProgress className={styles.profile__learningProgress}/>
-                    
-
+                    <LearningProgress className={styles.profile__learningProgress}/>
                     <Statistics/>
-
                     <Trophies/>
                 </Suspense>
             </PageContent>
