@@ -14,6 +14,9 @@ import { AuthService } from "api/services/auth";
 
 type Props = Readonly<{}>
 
+/**
+ * Страница Подтверждение пароля
+ */
 export const ConfirmEmailPage: FC<Props> = typedMemo(function ConfirmEmailPage(props){
     const navigate = useNavigate()
     const toMainPage = useCallback(() => navigate("/"), [navigate])
