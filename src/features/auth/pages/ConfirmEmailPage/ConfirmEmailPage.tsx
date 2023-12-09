@@ -1,0 +1,41 @@
+import { Page } from "components/Page";
+import { PageContent } from "components/PageContent";
+import { typedMemo } from "core/utils/typedMemo";
+import React, { FC, useCallback, useEffect } from "react";
+import Logo from "../../../../assets/images/Logo.svg";
+
+import styles from "./ConfirmEmailPage.module.css";
+import { Card, CardHeader } from "components/Card";
+import { Button } from "components/Button";
+import { useNavigate, useParams } from "react-router";
+import { Typography } from "components/Typography";
+import { useMutation } from "react-query";
+import { AuthService } from "api/services/auth";
+
+type Props = Readonly<{}>
+
+export const ConfirmEmailPage: FC<Props> = typedMemo(function ConfirmEmailPage(props){
+    const navigate = useNavigate()
+    const toMainPage = useCallback(() => navigate("/"), [navigate])
+    const {mutate: confirmEmail} = useMutation(AuthService.confirmEmail);
+    const {token} = useParams<{token: string}>();
+
+    useEffect(() => {
+        confirmEmail(token ?? '');
+    }, [])
+
+    return (
+        <Page>
+            <PageContent className={styles.confirmPage}>
+                <img
+                    className={styles.confirmPage__logo}
+                    src={Logo}
+                    alt={"Логотип сервиса \"Изучение русского жестового языка\""}
+                    onClick={toMainPage}
+                />
+                <Typography variant="h2" className={styles.confirmPage__header}>Почта подтверждена</Typography>
+                <Button color="primary" variant="solid" onClick={toMainPage}>На главную</Button>
+            </PageContent>
+        </Page>
+    )
+})

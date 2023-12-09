@@ -4,6 +4,7 @@ import { LoginPage } from './pages/LoginPage';
 import { LogupPage } from './pages/LogupPage';
 import { RestorePasswordPage } from './pages/RestorePasswordPage';
 import { ChangePasswordPage } from './pages/ChangePasswordPage';
+import { ConfirmEmailPage } from './pages/ConfirmEmailPage';
 
 export const authRoutes: RouteObject[] = [
     {
@@ -21,5 +22,9 @@ export const authRoutes: RouteObject[] = [
     {
         path: 'changepassword',
         element: <ChangePasswordPage/>,
+    },
+    {
+        path: 'confirmemail/:token',
+        element: <ConfirmEmailPage/>,
     }
 ]
