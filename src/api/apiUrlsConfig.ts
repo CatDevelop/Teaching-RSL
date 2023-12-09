@@ -7,6 +7,14 @@ export namespace ApiUrlsConfig {
 	/** API ссылки пользователя. */
 	export const user = {
 		register: toUserApi('user/register'),
+		changePassword: toUserApi('user/password'),
+		restorePassword: (email: string) => toUserApi(`user/password/${email}`)
+	}
+	
+	/** API ссылки пользователя. */
+	export const userHistory = {
+		getThemes: toUserApi('userhistory/themes'),
+		getStatistics: toUserApi('userhistory/levels'),
 	}
 
 	/** API ссылки авторизации (sso) */

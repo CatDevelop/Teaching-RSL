@@ -4,6 +4,8 @@ import { RegisterUserRequestMapper } from "core/mappers/auth/RegisterUserRequest
 import { AuthService } from "./auth";
 import { LoginUserRequest } from "core/models/auth/LoginUserRequest";
 import { http } from "api/http";
+import { ChangePasswordRequest } from "core/models/user/ChangePasswordRequest";
+import { ChangePasswordRequestMapper } from "core/mappers/user/ChangePasswordRequestMapper";
 
 export namespace UserService {
     export async function register(form: RegisterUserRequest): Promise<void> {
@@ -17,5 +19,13 @@ export namespace UserService {
 
     export async function logout(): Promise<void> {
         await AuthService.disconnect();
+    }
+
+    export async function changePassword(form: ChangePasswordRequest): Promise<void> {
+        await http.patch(ApiUrlsConfig.user.changePassword, ChangePasswordRequestMapper.toDto(form));
+    }
+
+    export async function restorePassword(email: string): Promise<void> {
+        await http.patch(ApiUrlsConfig.user.restorePassword(email));
     }
 }
