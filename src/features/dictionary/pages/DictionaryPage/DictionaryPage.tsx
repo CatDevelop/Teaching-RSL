@@ -6,7 +6,7 @@ import {Page} from "../../../../components/Page";
 import {PageContent} from "../../../../components/PageContent";
 import {SideBar} from "../../../../components/SideBar";
 import {Card} from "../../../../components/Card";
-import {Spinner} from "@nextui-org/react";
+import {Input, Spinner} from "@nextui-org/react";
 import { SelectThemeDictionary } from "./SelectThemeDictionary";
 import { ThemeDictionary } from "./ThemeDictionary";
 
@@ -58,14 +58,24 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                             Здесь можно найти абсолютно все жесты
                         </Typography>
                     </Card>
+
+                    <div className={styles.dictionary__chooseWordBlock}>
+                        <Input 
+                            placeholder="Поиск" 
+                            classNames={{
+                                inputWrapper: [styles.dictionary__wordSearch],
+                                input: [styles.dictionary__wordSearchInput],
+                            }} 
+                            variant="faded"
+                        />
+                        <ThemeDictionary theme={openedTheme}/>
+                    </div>
                     
                     <SelectThemeDictionary 
-                        themes={tempData.themes} 
-                        className={styles.dictionary__selectDictionaryDisplay}
-                        onThemeClick={setOpenedTheme}
-                    />
-
-                    <ThemeDictionary theme={openedTheme}/>
+                            themes={tempData.themes} 
+                            className={styles.dictionary__selectDictionaryDisplay}
+                            onThemeClick={setOpenedTheme}
+                        />
                 </Suspense>
             </PageContent>
         </Page>
