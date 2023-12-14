@@ -12,7 +12,8 @@ export namespace ApiUrlsConfig {
 
 	/** API ссылки авторизации (sso) */
 	export const auth = {
-		connect: toAuthApi('connect/token')
+		connect: toAuthApi('connect/token'),
+		confirmEmail: (token: string) => toAuthApi(`api/v1/public/User/confirm-email/${token}`)
 	}
 
 	/** API ссылки тем. */
