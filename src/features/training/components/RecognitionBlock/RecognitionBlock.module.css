@@ -10,23 +10,36 @@
 }
 
 .recognitionBlock {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-m);
+    --max-camera-width: 650px;
+
+    display: grid;
+    grid-template-columns: var(--max-camera-width) 1fr;
+    grid-gap: var(--space-l);
 }
 
-.recognitionBlock__titleContainer {
+.recognitionBlock__header {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: var(--max-camera-width) 1fr;
+    grid-gap: var(--space-xl);
+}
+
+.recognitionBlock__wordHeader {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+    gap:  var(--space-l);
+    width: 100%;
+}
+
+.recognitionBlock__errorButton {
+    margin-left: auto;
+}
+
+.recognitionBlock__cameraSettingsButton {
+    margin-left: auto;
 }
 
 .recognitionBlock__title {
-    font-weight: var(--font-weight-s);
-    font-size: var(--font-size-m);
-    line-height: var(--font-size-m);
+    font-size: var(--font-size-s);
 }
 
 .recognitionBlock__gesture {
@@ -38,10 +51,12 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-self: start;
 }
 
 .recognitionBlock__recognized {
     line-height: var(--font-size-m);
+    font-size: calc(var(--font-size-m)*0.9)
 }
 
 .recognitionBlock__recognizedWords {
@@ -52,7 +67,7 @@
 }
 
 .recognitionBlock__recognizedWord {
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-s);
     font-weight: var(--font-weight-s);
     line-height: var(--font-size-m);
 
@@ -66,12 +81,19 @@
 
 .recognitionBlock__camera {
     width: 100%;
-    height: calc( 100% - var(--space-m)*2 - 49px - 50px);
+    height: 100%;
     position: relative;
 
     /*display: inline-block;*/
     /*align-items: center;*/
     /*justify-content: center;*/
+}
+
+.recognitionBlock__cameraSettingsButton,
+.recognitionBlock__errorButton {
+    min-height: auto;
+    color: var(--thirdly-text-color);
+    text-decoration: underline;
 }
 
 .recognitionBlock__cameraLoading {

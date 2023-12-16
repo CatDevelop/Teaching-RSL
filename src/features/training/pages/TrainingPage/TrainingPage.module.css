@@ -56,13 +56,6 @@
     justify-self: start;
 }
 
-.trainingTask__bySberAI {
-    z-index: 1;
-    grid-column:1;
-    height: auto;
-    align-self: start;
-}
-
 .trainingTask__progressBarContainer {
     width: 100%;
     max-width: var(--max-theory-card-width);
@@ -202,7 +195,7 @@
     transform: translateX(-50%);
 }
 
-@media(max-width: 1300px) {
+@media(max-width: 1600px) {
     .trainingTask{
         grid-template-areas:
         "header header header"

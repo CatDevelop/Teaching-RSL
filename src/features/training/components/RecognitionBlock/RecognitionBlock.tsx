@@ -1,6 +1,6 @@
 import {Card} from "../../../../components/Card";
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import React, {Dispatch, FC, SetStateAction, useCallback, useEffect} from "react";
+import React, {Dispatch, FC, ReactElement, SetStateAction, useCallback, useEffect} from "react";
 import styles from "./RecognitionBlock.module.css";
 import {Typography} from "../../../../components/Typography";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
@@ -11,6 +11,7 @@ import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types"
 import { WordInTest } from "../../../../core/models/training/GetTestResponse";
 import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
 import {socket} from "../../../../core/utils/connectToModal";
+import {Button} from "../../../../components/Button";
 
 type Props = ComponentProps & Readonly<{
     word: WordInTest;
@@ -18,7 +19,8 @@ type Props = ComponentProps & Readonly<{
     intervalID: TimeoutId | undefined;
     setIntervalID: Dispatch<SetStateAction<TimeoutId | undefined>>;
     signRecognizeText: string[]
-    setSignRecognizeText: Dispatch<SetStateAction<string[]>>
+    setSignRecognizeText: Dispatch<SetStateAction<string[]>>;
+    buttons: ReactElement;
 }>
 
 export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props) {
@@ -121,13 +123,17 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     return (
         <Card className={clsx(styles.recognitionBlock, props.className)}>
-            <div className={styles.recognitionBlock__titleContainer}>
-                <Typography variant="span" className={styles.recognitionBlock__title}>
-                    Покажите жест в камеру
-                </Typography>
-                <Typography variant="h2" className={styles.recognitionBlock__gesture}>
-                    {props.word.word}
-                </Typography>
+            <div className={styles.recognitionBlock__header}>
+                <div className={styles.recognitionBlock__wordHeader}>
+                    <Typography variant="h2" className={styles.recognitionBlock__gesture}>
+                        {props.word.word}
+                    </Typography>
+                    <Typography variant="span" className={styles.recognitionBlock__title}>
+                        Покажите жест в камеру
+                    </Typography>
+                    <Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>
+                </div>
+                <Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>
             </div>
 
             <div className={styles.recognitionBlock__camera}>
@@ -157,6 +163,8 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                     }
                 </div>
             </div>
+
+            {props.buttons}
         </Card>
     );
 });
