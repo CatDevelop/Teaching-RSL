@@ -24,7 +24,7 @@ export const authRoutes: RouteObject[] = [
         element: <ChangePasswordPage/>,
     },
     {
-        path: 'confirm-email/:token*',
+        path: 'confirm-email/:token',
         element: <ConfirmEmailPage/>,
     }
 ]
