@@ -34,6 +34,12 @@ export namespace ApiUrlsConfig {
 		getTest: (id: string) => toApi(`training/${id}`)
 	};
 
+	/** API ссылки слов. */
+	export const words = {
+		getById: (id: string) => toApi(`words/${id}`),
+		getBySearch: (search: string) => toApi(`words/search?query=${search}`),
+	};
+
 	/**
 	 * Получить полную API ссылку.
 	 * @param path Относительная API ссылка.

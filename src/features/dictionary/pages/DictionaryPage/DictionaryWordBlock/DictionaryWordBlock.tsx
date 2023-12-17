@@ -8,15 +8,15 @@ import clsx from "clsx";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { GetWordResponse } from "core/models/words/GetWordResponse";
+import { WordsService } from "api/services/words";
 
 type Props = ComponentProps & Readonly<{}>
 
 export const DictionaryWordBlock: FC<Props> = typedMemo(function DictionaryWordBlock(props){
     const {wordId} = useParams<{wordId: string}>();
-    /*const {data: word} = useQuery<GetWordResponse>(['word', wordId]);*/
-    const word:GetWordResponse| null = null
+    const {data: word} = useQuery<GetWordResponse>(['word', wordId],() => WordsService.getWordById(wordId ?? ''));
 
-    if(word === null){
+    if(!word){
         return (
             <Card className={clsx(styles.themeDictionary_empty, props.className)}>
                 <Typography variant='p' className={styles.themeDictionary_empty__title}>Вы пока не выбрали слово</Typography>
@@ -25,7 +25,7 @@ export const DictionaryWordBlock: FC<Props> = typedMemo(function DictionaryWordB
     }
     return (
         <Card className={clsx(props.className)}>
-            {word}
+            {word.word}
         </Card>
     )
 })
