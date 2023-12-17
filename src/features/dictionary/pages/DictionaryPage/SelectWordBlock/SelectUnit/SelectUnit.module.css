@@ -19,6 +19,9 @@
 .selectUnit__themeTitle {
     margin-bottom: var(--space-xs);
     cursor: pointer;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-l);
+    color: #000;
 }
 
 .selectUnit__section {

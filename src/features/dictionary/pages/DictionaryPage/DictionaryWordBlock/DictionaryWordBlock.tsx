@@ -14,7 +14,11 @@ type Props = ComponentProps & Readonly<{}>
 
 export const DictionaryWordBlock: FC<Props> = typedMemo(function DictionaryWordBlock(props){
     const {wordId} = useParams<{wordId: string}>();
-    const {data: word} = useQuery<GetWordResponse>(['word', wordId],() => WordsService.getWordById(wordId ?? ''));
+    const {data: word} = useQuery<GetWordResponse>(['word', wordId], () => WordsService.getWordById(wordId ?? ''), {
+        onError: () => {},
+        useErrorBoundary: false,
+        retry: false,
+    });
 
     if(!word){
         return (

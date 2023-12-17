@@ -1,0 +1,1 @@
+export { SelectThemeWord } from "./SelectThemeWord";
