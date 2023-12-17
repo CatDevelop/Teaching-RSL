@@ -12,11 +12,25 @@ export const dictionaryRoutes: RouteObject[] = [
             {
                 path: '',
                 element: <DictionaryPage/>,
+                children: [
+                    {
+                        path: ':themeId',
+                        children: [
+                            {
+                                path: 'word/:wordId'
+                            },
+                            {
+                                path: ':sectionId',
+                                children: [
+                                    {
+                                        path: 'word/:wordId'
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                ]
             },
         ],
     },
-    {
-        path:'dictionary/:id',
-        element: <DictionaryWordPage/>
-    }
 ]

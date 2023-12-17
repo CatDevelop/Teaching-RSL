@@ -1,28 +1,30 @@
 import { typedMemo } from "core/utils/typedMemo";
 import React, { FC } from "react";
-import styles from './SelectThemeDictionary.module.css';
+import styles from './SelectUnit.module.css';
 import { Typography } from "components/Typography";
 import { Card } from "components/Card";
 import { ComponentProps } from "core/models/ComponentProps";
 import clsx from "clsx";
 import { ScrollBox } from "components/ScrollBox";
+import { useNavigate } from "react-router-dom";
 
 type Props = ComponentProps & Readonly<{
     themes: any[];
-    onThemeClick: (section:any) => void;
 }>
 
-export const SelectThemeDictionary: FC<Props> = typedMemo(function SelectThemeDictionary(props){
+export const SelectUnit: FC<Props> = typedMemo(function SelectUnit(props){
+    const navigate = useNavigate();
+
     return (
-        <Card className={clsx(styles.selectThemeDictionary, props.className)}>
-            <Typography variant='h2' className={styles.selectThemeDictionary__title}>Темы</Typography>
-            <ScrollBox className={styles.selectThemeDictionary__themesScroll}>
+        <Card className={clsx(styles.selectUnit, props.className)}>
+            <Typography variant='h2' className={styles.selectUnit__title}>Темы</Typography>
+            <ScrollBox className={styles.selectUnit__themesScroll}>
                 {props.themes.map((theme, i) => (
-                    <div className={styles.selectThemeDictionary__theme} key={i }>
+                    <div className={styles.selectUnit__theme} key={i }>
                         <Typography 
                             variant='h3' 
-                            className={styles.selectThemeDictionary__themeTitle}
-                            onClick={() => props.onThemeClick(theme)}
+                            className={styles.selectUnit__themeTitle}
+                            onClick={() => navigate(theme.id)}
                         >
                                 {theme.name}
                             </Typography>
@@ -31,7 +33,8 @@ export const SelectThemeDictionary: FC<Props> = typedMemo(function SelectThemeDi
                                 <Typography 
                                     variant='p' 
                                     key={i} 
-                                    className={styles.selectThemeDictionary__section}
+                                    onClick={() => navigate(`${theme.id}/${section.id}`)}
+                                    className={styles.selectUnit__section}
                                 >
                                     {section.name}
                                     </Typography>

@@ -7,8 +7,8 @@ import {PageContent} from "../../../../components/PageContent";
 import {SideBar} from "../../../../components/SideBar";
 import {Card} from "../../../../components/Card";
 import {Input, Spinner} from "@nextui-org/react";
-import { SelectThemeDictionary } from "./SelectThemeDictionary";
-import { ThemeDictionary } from "./ThemeDictionary";
+import { SelectWordBlock } from "./SelectWordBlock";
+import { DictionaryWordBlock } from "./DictionaryWordBlock";
 
 const tempData = {
     themes: [
@@ -37,8 +37,6 @@ const tempData = {
 }
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
-    const [openedTheme, setOpenedTheme] = useState<any>(null)
-
     return (
         <Page className={styles.dictionary}>
             <SideBar/>
@@ -68,14 +66,13 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                             }} 
                             variant="faded"
                         />
-                        <ThemeDictionary theme={openedTheme}/>
+                        <DictionaryWordBlock/>
                     </div>
                     
-                    <SelectThemeDictionary 
-                            themes={tempData.themes} 
-                            className={styles.dictionary__selectDictionaryDisplay}
-                            onThemeClick={setOpenedTheme}
-                        />
+                    <SelectWordBlock 
+                        themes={tempData.themes} 
+                        className={styles.dictionary__selectDictionaryDisplay}
+                    />
                 </Suspense>
             </PageContent>
         </Page>
