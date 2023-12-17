@@ -98,10 +98,10 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
                     Создать аккаунт
                 </Button>
             </form>
-            <SocialBlock
-                label="Или создать аккаунт с помощью"
-                links={socialLinks}
-            />
+            {/*<SocialBlock*/}
+            {/*    label="Или создать аккаунт с помощью"*/}
+            {/*    links={socialLinks}*/}
+            {/*/>*/}
             <FormLink
                 className={styles.logupPage__link}
                 label="У вас уже есть аккаунт?"

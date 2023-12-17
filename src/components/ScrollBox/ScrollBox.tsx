@@ -8,8 +8,8 @@ import {ScrollShadow} from "@nextui-org/react";
 type Props = PropsWithChildren & ComponentProps;
 
 /*
-    Контейнер со скроллом
-*/
+ * Контейнер со скроллом
+ */
 export const ScrollBox: FC<Props> = typedMemo(function ScrollBox(props){
     return (
         <div className={styles.container}>

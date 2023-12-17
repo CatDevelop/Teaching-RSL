@@ -72,9 +72,9 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
                     errorMessage={errors.password?.message}
                     {...register('password')}
                 />
-                <Button 
-                    color="primary" 
-                    type="submit" 
+                <Button
+                    color="primary"
+                    type="submit"
                     onClick={handleSubmit(onSubmit)}
                     isLoading={isFetching}
                     isDisabled={isFetching}
@@ -82,10 +82,10 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
                     Войти
                 </Button>
             </form>
-            <SocialBlock
-                label="Или войти с помощью"
-                links={socialLinks}
-            />
+            {/*<SocialBlock*/}
+            {/*    label="Или войти с помощью"*/}
+            {/*    links={socialLinks}*/}
+            {/*/>*/}
             <div className={styles.loginPage__links}>
                 <FormLink
                     label="Забыли пароль?"
