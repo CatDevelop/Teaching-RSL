@@ -15,11 +15,13 @@ export namespace ApiUrlsConfig {
 	export const userHistory = {
 		getThemes: toUserApi('userhistory/themes'),
 		getStatistics: toUserApi('userhistory/levels'),
+		getTestHistory: toUserApi('testhistory'),
 	}
 
 	/** API ссылки авторизации (sso) */
 	export const auth = {
-		connect: toAuthApi('connect/token')
+		connect: toAuthApi('connect/token'),
+		confirmEmail: (token: string) => toAuthApi(`api/v1/public/User/confirm-email/${token}`)
 	}
 
 	/** API ссылки тем. */
