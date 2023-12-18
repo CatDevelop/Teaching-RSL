@@ -16,6 +16,12 @@ type Props = ComponentProps & Readonly<{
      * Поиск
      */
     search: string;
+
+    /**
+     * Выбрать слово
+     * @param wordId id слова
+     */
+    selectWord: (wordId: string) => void;
 }>
 
 /**
@@ -35,7 +41,6 @@ export const SelectFoundWord: FC<Props> = typedMemo(function SelectFoundWord(pro
         return `/dictionary/word/${wordId}`
     },[themeId, sectionId])
 
-    console.log(words,words!.slice(0, Math.ceil(words!.length / 2)) )
     return (
         <Card className={clsx(props.className, styles.selectFoundWord)}>
             <div className={styles.selectFoundWord__header}>
@@ -45,16 +50,26 @@ export const SelectFoundWord: FC<Props> = typedMemo(function SelectFoundWord(pro
             <ScrollBox className={styles.selectFoundWord__scroll}>
             <div className={styles.selectFoundWord__sectionWords}>
                 {words!.slice(0, Math.ceil(words!.length / 2)).map((word: any, i: number) => (
-                    <Link as={NavLink} to={getWordLink(word.id)}>
-                        <Typography variant='p' className={styles.selectFoundWord__word} key={i}>{word.word}</Typography>
-                    </Link>
+                    <Typography
+                        variant='p'
+                        className={styles.selectFoundWord__word}
+                        onClick={() => props.selectWord(word.id)}
+                        key={i}
+                    >
+                        {word.word}
+                    </Typography>
                 ))}
             </div>
             <div className={styles.selectFoundWord__sectionWords}>
                 {words!.slice(Math.ceil(words!.length / 2)).map((word: any, i: number) => (
-                    <Link as={NavLink} to={getWordLink(word.id)}>
-                        <Typography variant='p' className={styles.selectFoundWord__word} key={i}>{word.word}</Typography>
-                    </Link>
+                    <Typography
+                        variant='p'
+                        className={styles.selectFoundWord__word}
+                        onClick={() => props.selectWord(word.id)}
+                        key={i}
+                    >
+                        {word.word}
+                    </Typography>
                 ))}
             </div>
             </ScrollBox>

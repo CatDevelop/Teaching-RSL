@@ -11,7 +11,16 @@ import { Link } from "@nextui-org/react";
 import { ArrowIcon } from "components/Icons";
 
 type Props = ComponentProps & Readonly<{
+    /**
+     * Темы со словами
+     */
     themes: any[];
+
+    /**
+     * Выбрать слово
+     * @param wordId id слова
+     */
+    selectWord: (wordId: string) => void;
 }>
 
 /**
@@ -35,16 +44,26 @@ export const SelectSectionWord: FC<Props> = typedMemo(function SelectSectionWord
             <ScrollBox className={styles.selectSectionWord__scroll}>
             <div className={styles.selectSectionWord__sectionWords}>
                 {section.words.slice(0, Math.ceil(section.words.length / 2)).map((word: any, i: number) => (
-                    <Link as={NavLink} to={`/dictionary/${themeId}/${sectionId}/word/${word.id}`}>
-                        <Typography variant='p' className={styles.selectSectionWord__word} key={i}>{word.word}</Typography>
-                    </Link>
+                    <Typography
+                        variant='p'
+                        className={styles.selectSectionWord__word}
+                        onClick={() => props.selectWord(word.id)}
+                        key={i}
+                    >
+                        {word.word}
+                    </Typography>
                 ))}
             </div>
             <div className={styles.selectSectionWord__sectionWords}>
                 {section.words.slice(Math.ceil(section.words.length / 2)).map((word: any, i: number) => (
-                    <Link as={NavLink} to={`/dictionary/${themeId}/${sectionId}/word/${word.id}`}>
-                        <Typography variant='p' className={styles.selectSectionWord__word} key={i}>{word.word}</Typography>
-                    </Link>
+                    <Typography
+                        variant='p'
+                        className={styles.selectSectionWord__word}
+                        onClick={() => props.selectWord(word.id)}
+                        key={i}
+                    >
+                        {word.word}
+                    </Typography>
                 ))}
             </div>
             </ScrollBox>

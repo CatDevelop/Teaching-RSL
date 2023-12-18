@@ -11,7 +11,16 @@ import { Link } from "@nextui-org/react";
 import { ArrowIcon } from "components/Icons";
 
 type Props = ComponentProps & Readonly<{
+    /**
+     * Темы со словами
+     */
     themes: any[];
+
+    /**
+     * Выбрать слово
+     * @param wordId id слова
+     */
+    selectWord: (wordId: string) => void;
 }>
 
 /**
@@ -43,16 +52,26 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
                             </Link>
                             <div className={styles.selectThemeWord__sectionWords}>
                                 {section.words.slice(0, Math.ceil(section.words.length / 2)).map((word: any, i: number) => (
-                                    <Link as={NavLink} to={`/dictionary/${themeId}/word/${word.id}`}>
-                                        <Typography variant='p' className={styles.selectThemeWord__word} key={i}>{word.word}</Typography>
-                                    </Link>
+                                    <Typography
+                                        variant='p'
+                                        className={styles.selectThemeWord__word}
+                                        onClick={() => props.selectWord(word.id)}
+                                        key={i}
+                                    >
+                                        {word.word}
+                                    </Typography>
                                 ))}
                             </div>
                             <div className={styles.selectThemeWord__sectionWords}>
                                 {section.words.slice(Math.ceil(section.words.length / 2)).map((word: any, i: number) => (
-                                    <Link as={NavLink} to={`/dictionary/${themeId}/word/${word.id}`}>
-                                        <Typography variant='p' className={styles.selectThemeWord__word} key={i}>{word.word}</Typography>
-                                    </Link>
+                                    <Typography
+                                        variant='p'
+                                        className={styles.selectThemeWord__word}
+                                        onClick={() => props.selectWord(word.id)}
+                                        key={i}
+                                    >
+                                        {word.word}
+                                    </Typography>
                                 ))}
                             </div>
                         </div>

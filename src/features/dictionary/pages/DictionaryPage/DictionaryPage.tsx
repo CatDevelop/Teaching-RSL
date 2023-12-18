@@ -52,6 +52,7 @@ const tempData = {
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
     const [search, setSearch] = useState('');
+    const [selectedWordId, setSelectedWordId] = useState<string | null>(null);
 
     const changeSearch: ChangeEventHandler<HTMLInputElement> = useCallback(event => {
         setSearch(event.target.value);
@@ -92,11 +93,12 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                             onBlur={blurSearch}
                             variant="faded"
                         />
-                        <DictionaryWordBlock/>
+                        <DictionaryWordBlock selectedWordId={selectedWordId}/>
                     </div>
 
                     <Suspense fallback={<Spinner/>}>
                         <SelectWordBlock
+                            selectWord={setSelectedWordId}
                             search={search}
                             themes={tempData.themes}
                             className={styles.dictionary__selectDictionaryDisplay}

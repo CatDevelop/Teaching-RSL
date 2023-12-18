@@ -35,5 +35,5 @@
 .dictionaryWordPage__actions {
     display: flex;
     gap: var(--space-xl);
-    margin-top: var(--sapce-xl);
+    margin-top: var(--space-xl);
 }
