@@ -1,4 +1,13 @@
-import React, {FC, Suspense, useState} from "react";
+import React, {
+    ChangeEvent,
+    FC,
+    Suspense,
+    useCallback,
+    useState,
+    FocusEvent,
+    FocusEventHandler,
+    ChangeEventHandler
+} from "react";
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import styles from "./DictionaryPage.module.css";
 import {Typography} from "../../../../components/Typography";
@@ -42,6 +51,16 @@ const tempData = {
 }
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
+    const [search, setSearch] = useState('');
+
+    const changeSearch: ChangeEventHandler<HTMLInputElement> = useCallback(event => {
+        setSearch(event.target.value);
+    }, [])
+
+    const blurSearch: FocusEventHandler<Element> = useCallback(event => {
+        setSearch((event.target as HTMLInputElement).value.trim());
+    }, [])
+
     return (
         <Page className={styles.dictionary}>
             <SideBar/>
@@ -68,16 +87,21 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                             classNames={{
                                 inputWrapper: [styles.dictionary__wordSearch],
                                 input: [styles.dictionary__wordSearchInput],
-                            }} 
+                            }}
+                            onChange={changeSearch}
+                            onBlur={blurSearch}
                             variant="faded"
                         />
                         <DictionaryWordBlock/>
                     </div>
-                    
-                    <SelectWordBlock 
-                        themes={tempData.themes} 
-                        className={styles.dictionary__selectDictionaryDisplay}
-                    />
+
+                    <Suspense fallback={<Spinner/>}>
+                        <SelectWordBlock
+                            search={search}
+                            themes={tempData.themes}
+                            className={styles.dictionary__selectDictionaryDisplay}
+                        />
+                    </Suspense>
                 </Suspense>
             </PageContent>
         </Page>

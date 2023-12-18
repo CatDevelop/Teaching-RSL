@@ -28,13 +28,13 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
                     <ArrowIcon className={styles.selectThemeWord__backIcon}/>
                 </NavLink>
                 
-                <Typography variant='h2' className={styles.selectThemeWord__name}>{theme.name}</Typography>
+                <Typography variant='h2'>{theme.name}</Typography>
             </div>
             
             <ScrollBox className={styles.selectThemeWord__scroll}>
                 {
                     theme.sections.map((section:any, i: number) => (
-                        <div className={styles.selectThemeWord__section} key={i}>
+                        <div key={i}>
                             <Link 
                                 as={NavLink}
                                 to={`/dictionary/${themeId}/${section.id}`}

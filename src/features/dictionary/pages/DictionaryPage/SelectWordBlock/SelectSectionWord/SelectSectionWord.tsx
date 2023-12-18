@@ -29,7 +29,7 @@ export const SelectSectionWord: FC<Props> = typedMemo(function SelectSectionWord
                     <ArrowIcon className={styles.selectSectionWord__backIcon}/>
                 </NavLink>
                 
-                <Typography variant='h2' className={styles.selectThemeWord__name}>{theme.name}: {section.name}</Typography>
+                <Typography variant='h2'>{theme.name}: {section.name}</Typography>
             </div>
 
             <ScrollBox className={styles.selectSectionWord__scroll}>
@@ -42,7 +42,7 @@ export const SelectSectionWord: FC<Props> = typedMemo(function SelectSectionWord
             </div>
             <div className={styles.selectSectionWord__sectionWords}>
                 {section.words.slice(Math.ceil(section.words.length / 2)).map((word: any, i: number) => (
-                    <Link as={NavLink} to={`word/${word.id}`}>
+                    <Link as={NavLink} to={`/dictionary/${themeId}/${sectionId}/word/${word.id}`}>
                         <Typography variant='p' className={styles.selectSectionWord__word} key={i}>{word.word}</Typography>
                     </Link>
                 ))}

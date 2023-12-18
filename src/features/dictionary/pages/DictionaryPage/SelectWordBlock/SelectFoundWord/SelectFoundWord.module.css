@@ -1,38 +1,40 @@
-.selectSectionWord {
+.selectFoundWord {
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
-.selectSectionWord__header {
+.selectFoundWord__header {
     display:flex;
     align-items: center;
     margin-bottom: var(--space-xl);
     gap: var(--space-m)
 }
 
-.selectSectionWord__backIcon {
+.selectFoundWord__backIcon {
     fill: var(--thirdly-text-color);
     cursor: pointer
 }
 
-.selectSectionWord__scroll {
+.selectFoundWord__scroll {
     display: flex;
-    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
     gap: var(--space-l);
 }
 
-.selectSectionWord__sectionWords {
+.selectFoundWord__sectionWords {
     display: flex;
     flex-direction: column;
     font-size:var(--font-size-xs);
     gap: calc(var(--space-m) * 0.75);
 }
 
-.selectSectionWord__word {
+.selectFoundWord__word {
     color: var(--disabled-button-color);
 }
 
-.selectSectionWord__word:hover {
+.selectFoundWord__word:hover {
     color: var(--primary-color);
 }
