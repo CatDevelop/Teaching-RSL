@@ -1,10 +1,8 @@
 import React, {
-    ChangeEvent,
     FC,
     Suspense,
     useCallback,
     useState,
-    FocusEvent,
     FocusEventHandler,
     ChangeEventHandler
 } from "react";
@@ -18,8 +16,6 @@ import {Card} from "../../../../components/Card";
 import {Input, Spinner} from "@nextui-org/react";
 import { SelectWordBlock } from "./SelectWordBlock";
 import { DictionaryWordBlock } from "./DictionaryWordBlock";
-import {ThemesService} from "../../../../api/services/themes";
-import {useQuery} from "react-query";
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
     const [search, setSearch] = useState('');

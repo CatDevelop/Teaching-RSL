@@ -20,7 +20,7 @@ type Props = ComponentProps & Readonly<{
     setIntervalID: Dispatch<SetStateAction<TimeoutId | undefined>>;
     signRecognizeText: string[]
     setSignRecognizeText: Dispatch<SetStateAction<string[]>>;
-    buttons: ReactElement;
+    buttons?: ReactElement;
 }>
 
 export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(props) {

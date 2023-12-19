@@ -14,6 +14,7 @@
 
     display: grid;
     grid-template-columns: var(--max-camera-width) 1fr;
+    grid-template-rows: 50px 1fr;
     grid-gap: var(--space-l);
 }
 
@@ -22,6 +23,7 @@
     display: grid;
     grid-template-columns: var(--max-camera-width) 1fr;
     grid-gap: var(--space-xl);
+    align-items: start;
 }
 
 .recognitionBlock__wordHeader {
