@@ -1,4 +1,4 @@
-import { ApiUrlsConfig } from "../apiUrlsConfig";
+import {ApiUrlsConfig} from "../apiUrlsConfig";
 import { RegisterUserRequest } from "core/models/auth/RegisterUserRequest";
 import { RegisterUserRequestMapper } from "core/mappers/auth/RegisterUserRequestMapper";
 import { AuthService } from "./auth";
@@ -31,9 +31,9 @@ export namespace UserService {
     export async function restorePassword(email: string): Promise<void> {
         await http.patch(ApiUrlsConfig.user.restorePassword(email));
     }
-  
+
     export async function getTestHistory(): Promise<UserTestHistoryRecordResponse[]> {
-        return http.get<UserTestHistoryRecordResponseDto[]>(ApiUrlsConfig.user.getTestHistory)
+        return http.get<UserTestHistoryRecordResponseDto[]>(ApiUrlsConfig.userHistory.getTestHistory)
             .then(({data}) => data.map(item => UserTestHistoryRecordResponseMapper.fromDto(item)));
     }
 }
