@@ -22,8 +22,15 @@
     gap: var(--space-s);
 }
 
+.dictionary__titleContainer__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .dictionary__titleContainer__title {
     color: var(--text-color);
+    margin-bottom: var(--space-s);
     line-height: var(--font-size-xl);
 }
 

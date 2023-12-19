@@ -16,6 +16,7 @@ import {Card} from "../../../../components/Card";
 import {Input, Spinner} from "@nextui-org/react";
 import { SelectWordBlock } from "./SelectWordBlock";
 import { DictionaryWordBlock } from "./DictionaryWordBlock";
+import {Button} from "../../../../components/Button";
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
     const [search, setSearch] = useState('');
@@ -41,12 +42,16 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                         >
                             Словарь
                         </Typography>
-                        <Typography
-                            variant="p"
-                            className={styles.dictionary__titleContainer__description}
-                        >
-                            Здесь можно найти абсолютно все жесты
-                        </Typography>
+                        <div className={styles.dictionary__titleContainer__content}>
+                            <Typography
+                                variant="p"
+                                className={styles.dictionary__titleContainer__description}
+                            >
+                                Здесь можно найти абсолютно все жесты
+                            </Typography>
+
+                            <Button color="primary" variant="light">Создать тест</Button>
+                        </div>
                     </Card>
 
                     <div className={styles.dictionary__chooseWordBlock}>

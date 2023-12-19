@@ -9,6 +9,7 @@ import {useParams} from "react-router-dom";
 import {useQuery} from "react-query";
 import {WordsService} from "../../../../api/services/words";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
+import {Button} from "../../../../components/Button";
 
 type Props = Readonly<{}>
 
@@ -30,6 +31,11 @@ export const DictionaryLearningPage: FC<Props> = typedMemo(function DictionaryLe
                     intervalID={intervalID}
                     signRecognizeText={signRecognizeText}
                     setSignRecognizeText={setSignRecognizeText}
+                    buttons={
+                        <div className={styles.dictionaryLearningPage__buttons}>
+                            <Button color="primary" variant="bordered">Посмотреть жест</Button>
+                        </div>
+                    }
                 />
             </PageContent>
         </Page>
