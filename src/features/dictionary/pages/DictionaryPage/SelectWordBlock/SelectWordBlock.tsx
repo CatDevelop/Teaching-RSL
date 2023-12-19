@@ -9,11 +9,6 @@ import {SelectFoundWord} from "./SelectFoundWord";
 
 type Props = ComponentProps & Readonly<{
     /**
-     * Темы со словами
-     */
-    themes: any[];
-
-    /**
      * Поиск по словам
      */
     search: string;
@@ -37,11 +32,11 @@ export const SelectWordBlock: FC<Props> = typedMemo(function SelectThemeDictiona
     }
     return (
         <Routes>
-            <Route path="" element={<SelectUnit themes={props.themes}/>}/>
+            <Route path="" element={<SelectUnit/>}/>
             <Route path=":themeId">
-                <Route path="" element={<SelectThemeWord themes={props.themes} selectWord={props.selectWord}/>}/>
+                <Route path="" element={<SelectThemeWord selectWord={props.selectWord}/>}/>
                 <Route path=":sectionId">
-                    <Route path="" element={<SelectSectionWord themes={props.themes} selectWord={props.selectWord}/>}/>
+                    <Route path="" element={<SelectSectionWord selectWord={props.selectWord}/>}/>
                 </Route>
             </Route>
         </Routes>

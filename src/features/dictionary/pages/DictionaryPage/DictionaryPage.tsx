@@ -18,37 +18,8 @@ import {Card} from "../../../../components/Card";
 import {Input, Spinner} from "@nextui-org/react";
 import { SelectWordBlock } from "./SelectWordBlock";
 import { DictionaryWordBlock } from "./DictionaryWordBlock";
-
-const tempData = {
-    themes: [
-        {
-            name:'Theme1',
-            id: '0',
-            sections: [
-                {
-                    name: 'Section1',
-                    id:'0',
-                    words: [
-                        {
-                            word: 'Word1',
-                            id:'0527d08e-1db9-46bd-a556-b2c458619816',
-                        }
-                    ]
-                },
-                {
-                    name: 'Section2',
-                    id: '1',
-                    words: [
-                        {
-                            word: 'Word1',
-                            id:'0527d08e-1db9-46bd-a556-b2c458619816',
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-}
+import {ThemesService} from "../../../../api/services/themes";
+import {useQuery} from "react-query";
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
     const [search, setSearch] = useState('');
@@ -100,7 +71,6 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                         <SelectWordBlock
                             selectWord={setSelectedWordId}
                             search={search}
-                            themes={tempData.themes}
                             className={styles.dictionary__selectDictionaryDisplay}
                         />
                     </Suspense>

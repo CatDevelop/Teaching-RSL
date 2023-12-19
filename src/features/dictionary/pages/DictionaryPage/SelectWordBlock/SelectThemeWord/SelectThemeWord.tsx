@@ -1,21 +1,19 @@
-import { Card } from "components/Card";
-import { ScrollBox } from "components/ScrollBox";
-import { typedMemo } from "core/utils/typedMemo";
-import React, { FC, useMemo } from "react";
+import {Card} from "components/Card";
+import {ScrollBox} from "components/ScrollBox";
+import {typedMemo} from "core/utils/typedMemo";
+import React, {FC} from "react";
 import styles from "./SelectThemeWord.module.css";
-import { Typography } from "components/Typography";
-import { ComponentProps } from "core/models/ComponentProps";
+import {Typography} from "components/Typography";
+import {ComponentProps} from "core/models/ComponentProps";
 import clsx from "clsx";
-import { NavLink, useParams } from "react-router-dom";
-import { Link } from "@nextui-org/react";
-import { ArrowIcon } from "components/Icons";
+import {NavLink, useParams} from "react-router-dom";
+import {Link} from "@nextui-org/react";
+import {ArrowIcon} from "components/Icons";
+import {useQuery} from "react-query";
+import {WordsService} from "../../../../../../api/services/words";
+import {BlockType} from "../../../../../../core/models/words/BlockType";
 
 type Props = ComponentProps & Readonly<{
-    /**
-     * Темы со словами
-     */
-    themes: any[];
-
     /**
      * Выбрать слово
      * @param wordId id слова
@@ -28,20 +26,20 @@ type Props = ComponentProps & Readonly<{
  */
 export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(props){
     const {themeId} = useParams<{themeId: string}>();
-    const theme = useMemo(() => props.themes.find(theme => theme.id === themeId), [themeId, props.themes]);
+    const {data:theme} = useQuery(['words-list', themeId], () => WordsService.getWordsByBlock(BlockType.Theme, themeId ?? ''))
 
     return (
-        <Card className={clsx(props.className)}>
+        <Card className={clsx(props.className, styles.selectThemeWord)}>
             <div className={styles.selectThemeWord__header}>
                 <NavLink to={`/dictionary`}>
                     <ArrowIcon className={styles.selectThemeWord__backIcon}/>
                 </NavLink>
                 
-                <Typography variant='h2'>{theme.name}</Typography>
+                <Typography variant='h2'>{theme!.name}</Typography>
             </div>
             
             <ScrollBox className={styles.selectThemeWord__scroll}>
-                {
+                {/*
                     theme.sections.map((section:any, i: number) => (
                         <div key={i}>
                             <Link 
@@ -76,7 +74,7 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
                             </div>
                         </div>
                     ))
-                }
+                */}
             </ScrollBox>
         </Card>
     )

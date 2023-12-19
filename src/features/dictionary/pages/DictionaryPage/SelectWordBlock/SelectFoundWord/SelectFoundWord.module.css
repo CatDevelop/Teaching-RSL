@@ -33,6 +33,7 @@
 
 .selectFoundWord__word {
     color: var(--disabled-button-color);
+    cursor: pointer;
 }
 
 .selectFoundWord__word:hover {

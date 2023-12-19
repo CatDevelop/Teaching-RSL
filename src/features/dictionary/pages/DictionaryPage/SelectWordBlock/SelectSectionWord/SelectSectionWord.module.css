@@ -18,7 +18,9 @@
 
 .selectSectionWord__scroll {
     display: flex;
-    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
     gap: var(--space-l);
 }
 
@@ -31,6 +33,7 @@
 
 .selectSectionWord__word {
     color: var(--disabled-button-color);
+    cursor: pointer;
 }
 
 .selectSectionWord__word:hover {
