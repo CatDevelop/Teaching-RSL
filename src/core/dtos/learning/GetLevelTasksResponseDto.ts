@@ -1,4 +1,4 @@
-import {LevelSingleTaskTypeEnum} from "../../models/learning/LevelTaskTypeEnum";
+import {MultiLevelTaskTypeEnum, SingleLevelTaskTypeEnum} from "../../models/learning/LevelTaskTypeEnum";
 
 /**
  * Полученные задания.
@@ -7,34 +7,65 @@ export type GetLevelTasksResponseDto = Readonly<{
     /**
      * Задания с одним ответом.
      */
-    singleTasks: LevelSingleTaskDto[];
+    singleTasks: SingleLevelTaskDto[];
 
     /**
      * Задания с множеством ответов.
      */
-    multiTasks: string;
+    multiTasks: MultiLevelTaskDto[];
 }>
 
 /**
  * Задание с одним ответом.
  */
-export type LevelSingleTaskDto = Readonly<{
+export type SingleLevelTaskDto = Readonly<{
     /**
      * Тип задания.
      */
-    type: LevelSingleTaskTypeEnum;
+    type: SingleLevelTaskTypeEnum;
 
     /**
      * Правильный ответ.
      */
-    rightSelect: {
-        "wordId": string,
-        "firstRepresentation": string,
-        "secondRepresentation": string
-    };
+    rightSelect: WordRepresentationsDto;
 
     /**
-     * Остальные ответы.
+     * Другие варианты ответа.
      */
-    otherSelects: string[];
+    otherSelects: (string | undefined)[];
+}>
+
+/**
+ * Задание с множеством ответов.
+ */
+export type MultiLevelTaskDto = Readonly<{
+    /**
+     * Тип задания.
+     */
+    type: MultiLevelTaskTypeEnum;
+
+    /**
+     * Условия задания.
+     */
+    conditions: WordRepresentationsDto[];
+}>
+
+/**
+ * Представления слова.
+ */
+export type WordRepresentationsDto = Readonly<{
+    /**
+     * Id слова.
+     */
+    wordId: string;
+
+    /**
+     * Первое представление.
+     */
+    firstRepresentation: string | null;
+
+    /**
+     * Второе представление
+     */
+    secondRepresentation: string | null;
 }>

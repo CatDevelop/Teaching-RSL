@@ -26,6 +26,11 @@ export namespace ApiUrlsConfig {
 		getListWithLevels: () => toApi('unit/list/with-levels'),
 	};
 
+	/** API ссылки обучения. */
+	export const learning = {
+		getLevelTasks: (levelId: string) => toApi(`level/tasks/${levelId}`)
+	};
+
 	/** API ссылки тренировок. */
 	export const training = {
 		postTestCreate: toApi('training'),

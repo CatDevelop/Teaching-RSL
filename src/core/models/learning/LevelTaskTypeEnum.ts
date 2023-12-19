@@ -1,8 +1,8 @@
-export enum LevelSingleTaskTypeEnum {
+export enum SingleLevelTaskTypeEnum {
     SelectWordByGif = 'SelectWordByGif',
     SelectGifByWord = 'SelectGifByWord',
 }
 
-export enum LevelMultiTaskTypeEnum {
+export enum MultiLevelTaskTypeEnum {
     MatchWordAndGIF = 'MatchWordAndGIF',
 }

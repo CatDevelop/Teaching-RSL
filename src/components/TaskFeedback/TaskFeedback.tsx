@@ -45,7 +45,7 @@ export const TaskFeedback: FC<Props> = typedMemo(function TaskFeedback(props) {
                 className={clsx(styles.taskFeedback__open, props.className)}
                 variant="faded"
                 onClick={onOpen}
-                endContent={<img src={Feedback} alt="Отправить отзыв"/>}
+                // endContent={<img src={Feedback} alt="Отправить отзыв"/>}
             >
                 {props.text}
             </Button>
@@ -78,9 +78,9 @@ export const TaskFeedback: FC<Props> = typedMemo(function TaskFeedback(props) {
                                 />
                             </ModalBody>
                             <ModalFooter className={styles.taskFeedback__actions}>
-                                <Button variant="faded" onPress={onClose}>
-                                    Назад
-                                </Button>
+                                {/*<Button variant="faded" onPress={onClose}>*/}
+                                {/*    Назад*/}
+                                {/*</Button>*/}
                                 <Button color="primary" onPress={onClose}>
                                     Отправить
                                 </Button>

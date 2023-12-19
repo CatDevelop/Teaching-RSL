@@ -10,11 +10,11 @@ import {LearningBlock} from "../LearningBlock";
 import {Word} from "../../../../core/models/Word";
 
 type Props = ComponentProps & Readonly<{
-    wordObject: Word
+    wordObject: any
 }>
 
 /**
- * Карточка с теорией: GIF, изображение, слово
+ * Карточка с теорией: GIF, слово
  */
 export const TheoryCard: FC<Props> = typedMemo(function TheoryCard(props) {
     return (
@@ -22,24 +22,16 @@ export const TheoryCard: FC<Props> = typedMemo(function TheoryCard(props) {
             <div>
                 <Typography
                     variant="h2"
-                    className={styles.theoryCard__title}>
-                    {props.wordObject.text}
+                    className={styles.theoryCard__title}
+                >
+                    {props.wordObject.firstRepresentation}
                 </Typography>
                 <div className={styles.theoryCard__contentContainer}>
                     <div className={styles.theoryCard__images}>
                         <SignVideo
-                            src={props.wordObject.gifSource}
+                            src={props.wordObject.secondRepresentation}
                             className={styles.theoryCard__gif}
                         />
-                        {
-                            props.wordObject.imageSource &&
-                            <img
-                                rel="preload"
-                                src={props.wordObject.imageSource}
-                                alt={"Изображение для жеста"}
-                                className={styles.theoryCard__image}
-                            />
-                        }
                     </div>
                 </div>
             </div>

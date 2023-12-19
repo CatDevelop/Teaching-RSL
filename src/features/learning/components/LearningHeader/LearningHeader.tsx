@@ -6,7 +6,7 @@ import {Typography} from "../../../../components/Typography";
 import {ProgressBar} from "../../../../components/ProgressBar";
 
 type Props = Readonly <{
-    type: "theory" | "practice";
+    type: string;
     name: string;
     currentStep: number;
     stepCount: number
@@ -19,24 +19,26 @@ export const LearningHeader: FC<Props> = typedMemo(function LearningHeader(props
     console.log(props.type)
     return (
         <Card className={styles.learningHeader}>
-            <Typography
-                variant="p"
-                className={styles.learningHeader__type}
-            >
-                {props.type === "theory" ? "Теория" : "Практика"}
-            </Typography>
-            <div className={styles.learningHeader__nameContainer}>
-                <Typography
-                    variant="h3"
-                    className={styles.learningHeader__name}
-                >
-                    {props.name}
-                </Typography>
+            <div className={styles.learningHeader__info}>
+                <div className={styles.learningHeader__nameContainer}>
+                    <Typography
+                        variant="h3"
+                        className={styles.learningHeader__name}
+                    >
+                        {props.name}
+                    </Typography>
+                    <Typography
+                        variant="p"
+                        className={styles.learningHeader__wordsCount}
+                    >
+                        {10} из {12} слов пройдено
+                    </Typography>
+                </div>
                 <Typography
                     variant="p"
-                    className={styles.learningHeader__wordsCount}
+                    className={styles.learningHeader__type}
                 >
-                    {10} из {12} слов пройдено
+                    {props.type === "theory" ? "Теория" : "Практика"}
                 </Typography>
             </div>
             <div className={styles.learningHeader__progressBarContainer}>

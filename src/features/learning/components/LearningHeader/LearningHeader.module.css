@@ -2,8 +2,14 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
-    max-height: 154px;
+    height: min-content;
     /*max-width: var(--learning-center-block-width);*/
+}
+
+.learningHeader__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .learningHeader__type {

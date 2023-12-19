@@ -5,58 +5,61 @@ import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
 import PracticeIconSVG from "../../../../../assets/images/PracticeIcon.svg"
 import {LearningBlock} from "../../LearningBlock";
-import {Word} from "../../../../../core/models/Word";
+import {WordFormServer} from "../../../../../core/models/Word";
 import {SignVideo} from "../../../../../components/SignVideo";
 import {SelectButton} from "../../SelectEntity/SelectButton";
-import {Typography} from "../../../../../components/Typography";
 import {StepStatus} from "../../../../../core/models/StepStatus";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {getSelectEntityStatus} from "../../SelectEntity/SelectContainer/SelectContainer";
 
 type Props = ComponentProps & Readonly<{
-    wordObject: Word;
-    otherVariants: Word[];
+    rightSelect: WordFormServer;
+    otherSelects: (string | null)[];
+
     checked: boolean;
     setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
 }>
 
-/** 
+/**
  * Практика "Выбери слово"
  */
-export const PracticeSelectWord: FC<Props> = typedMemo(function PracticeSelectWord(props) {
-    const [selectWord, setSelectWord] = useState<Word | null>()
-    const [variants] = useState(shuffleArray<Word>([props.wordObject, ...props.otherVariants]))
+export const PracticeSelectWordByGIF: FC<Props> = typedMemo(function PracticeSelectWordByGIF(props) {
+    const [allVariants] = useState<(string | null)[]>(
+        shuffleArray<(string | null)>([props.rightSelect.firstRepresentation, ...props.otherSelects])
+    )
+    const [currentSelect, setCurrentSelect] = useState<string | null>()
+
 
     useEffect(() => {
         if (props.checked) {
-            if (selectWord?.id === props.wordObject.id)
+            if (currentSelect === props.rightSelect.firstRepresentation)
                 props.setStatus({status: "success"})
             else
-                props.setStatus({status: "error", message: props.wordObject.text})
+                props.setStatus({status: "error", message: props.rightSelect.firstRepresentation || ""})
         }
-    }, [props, selectWord])
+    }, [props, currentSelect])
 
     useEffect(() => {
-        props.setIsTaskReadyToCheck(!!selectWord)
-    }, [selectWord, props.setIsTaskReadyToCheck])
+        props.setIsTaskReadyToCheck(!!currentSelect)
+    }, [currentSelect, props.setIsTaskReadyToCheck])
 
     return (
         <div className={clsx(styles.practiceSelectWord)}>
-            <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"}>
+            <LearningBlock iconUrl={PracticeIconSVG} title={"Выберите верное слово"}>
                 <div className={styles.practiceSelectWord__contentContainer}>
-                    <SignVideo src={props.wordObject.gifSource}/>
+                    <SignVideo src={props.rightSelect.secondRepresentation}/>
 
                     <div className={styles.practiceSelectWord__buttonsContainer}>
-                        <Typography variant="h3" className={styles.practiceSelectWord__title}>
-                            Выбери верное слово
-                        </Typography>
+                        {/*<Typography variant="h3" className={styles.practiceSelectWord__title}>*/}
+                        {/*    Выбери верное слово*/}
+                        {/*</Typography>*/}
                         {
-                            variants?.map(variant => (
+                            allVariants?.map(variant => (
                                 <SelectButton
-                                    wordObject={variant}
-                                    setState={setSelectWord}
-                                    state={getSelectEntityStatus(props.checked, selectWord, variant, props.wordObject)}
+                                    text={variant}
+                                    setState={setCurrentSelect}
+                                    state={getSelectEntityStatus(props.checked, currentSelect, variant, props.rightSelect.firstRepresentation)}
                                 />
                             ))
                         }

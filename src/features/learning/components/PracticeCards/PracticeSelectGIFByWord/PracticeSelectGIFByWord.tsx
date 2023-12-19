@@ -5,7 +5,7 @@ import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
 import PracticeIconSVG from "../../../../../assets/images/PracticeIcon.svg"
 import {LearningBlock} from "../../LearningBlock";
-import {Word} from "../../../../../core/models/Word";
+import {Word, WordFormServer} from "../../../../../core/models/Word";
 import {Typography} from "../../../../../components/Typography";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
@@ -14,8 +14,8 @@ import {getSelectEntityStatus} from "../../SelectEntity/SelectContainer/SelectCo
 
 
 type Props = ComponentProps & Readonly<{
-    wordObject: Word;
-    otherVariants: Word[];
+    wordObject: WordFormServer;
+    otherVariants: (string | null)[];
     checked: boolean;
     setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,17 +26,20 @@ type Props = ComponentProps & Readonly<{
  * Практика "Выбери жест"
  */
 export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSelectGIFByWord(props) {
-    const [selectGIF, setSelectGIF] = useState<Word | null>()
-    const [variants] = useState(shuffleArray<Word>([props.wordObject, ...props.otherVariants]))
+    const [selectGIF, setSelectGIF] = useState<string | undefined | null>()
+    const [variants] = useState(shuffleArray<(string | null)>([props.wordObject.secondRepresentation, ...props.otherVariants]))
 
     useEffect(() => {
         if (props.checked) {
-            if (selectGIF?.id === props.wordObject.id)
+            if (selectGIF === props.wordObject.secondRepresentation)
                 props.setStatus({status: "success"})
             else
-                props.setStatus({status: "error", message: props.wordObject.text})
+                props.setStatus({
+                    status: "error",
+                    message: `${variants.findIndex(variant => variant === props.wordObject.secondRepresentation) + 1} картинка`
+                })
         }
-    }, [props, selectGIF?.id])
+    }, [props, selectGIF])
 
     useEffect(() => {
         props.setIsTaskReadyToCheck(!!selectGIF)
@@ -52,18 +55,20 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
                     variant="h2"
                     className={clsx(styles.practiceSelectGif__title, styles.practiceSelectGif__titleSignText)}
                 >
-                    {props.wordObject.text}
+                    {props.wordObject.firstRepresentation}
                 </Typography>
             </div>
 
             <div className={styles.practiceSelectGif__gifsContainer}>
                 {
                     variants.map((variant, index) => {
+                        console.log(getSelectEntityStatus(props.checked, selectGIF, variant, props.wordObject.secondRepresentation))
                         return <div className={styles.practiceSelectGif__gif}>
                             <SelectGIF
                                 key={"SelectGIF" + index}
-                                wordObject={variant}
-                                state={getSelectEntityStatus(props.checked, selectGIF, variant, props.wordObject)}
+                                gif={variant || ""}
+                                text={variant || ""}
+                                state={getSelectEntityStatus(props.checked, selectGIF, variant, props.wordObject.secondRepresentation)}
                                 setState={setSelectGIF}
                                 number={index + 1}/>
                         </div>

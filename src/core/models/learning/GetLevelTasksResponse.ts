@@ -1,55 +1,103 @@
+import {MultiLevelTaskTypeEnum, SingleLevelTaskTypeEnum} from "./LevelTaskTypeEnum";
+
 /**
  * Полученный тест.
  */
-export class GetTestResponse {
+export class GetLevelTasksResponse {
     /**
-     * Id.
+     * Задания с одним ответом.
      */
-    public readonly id: string;
+    public readonly singleTasks: SingleLevelTask[];
 
     /**
-     * Название.
+     * Задания с множеством ответов.
      */
-    public readonly name: string;
+    public readonly multiTasks: MultiLevelTask[];
 
-    /**
-     * Слова в тесте.
-     */
-    public readonly words: readonly WordInTest[];
-
-    public constructor({id, name, words}: GetTestResponseProps) {
-        this.id = id;
-        this.name = name;
-        this.words = words;
+    public constructor({singleTasks, multiTasks}: GetLevelTasksResponseProps) {
+        this.singleTasks = singleTasks;
+        this.multiTasks = multiTasks;
     }
 }
 
-type GetTestResponseProps = GetTestResponse;
+type GetLevelTasksResponseProps = GetLevelTasksResponse;
 
 /**
- * Слово в тесте.
+ * Задание с одним ответом.
  */
-export class WordInTest {
+export class SingleLevelTask {
+    /**
+     * Тип задания.
+     */
+    public readonly type: SingleLevelTaskTypeEnum;
 
     /**
-     * Id.
+     * Правильный ответ.
      */
-    public readonly id: string;
+    public readonly rightSelect: WordRepresentations;
 
     /**
-     * Слово.
+     * Другие варианты ответа.
      */
-    public readonly word: string;
+    public readonly otherSelects: (string | undefined)[];
 
-    /**
-     * Распознанные слова
-     */
-    public recognitionText?: string;
-
-    public constructor({id, word}: WordInTestProps) {
-        this.id = id;
-        this.word = word;
+    public constructor({type, rightSelect, otherSelects}: SingleLevelTaskProps) {
+        this.type = type;
+        this.rightSelect = rightSelect;
+        this.otherSelects = otherSelects;
     }
 }
 
-type WordInTestProps = WordInTest;
+type SingleLevelTaskProps = SingleLevelTask;
+
+/**
+ * Задание с множеством ответом.
+ */
+export class MultiLevelTask {
+    /**
+     * Тип задания.
+     */
+    public readonly type: MultiLevelTaskTypeEnum;
+
+    /**
+     * Условия задания.
+     */
+    public readonly conditions: WordRepresentations[];
+
+    public constructor({type, conditions}: MultiLevelTaskProps) {
+        this.type = type;
+        this.conditions = conditions;
+    }
+}
+
+type MultiLevelTaskProps = MultiLevelTask;
+
+
+/**
+ * Представления слова.
+ */
+export class WordRepresentations {
+    /**
+     * Id слова.
+     */
+    public readonly wordId: string;
+
+    /**
+     * Первое представление.
+     */
+    public readonly firstRepresentation: string | null;
+
+    /**
+     * Второе представление
+     */
+    public readonly secondRepresentation: string | null;
+
+    public constructor({wordId, firstRepresentation, secondRepresentation}: WordRepresentationsProps) {
+        this.wordId = wordId;
+        this.firstRepresentation = firstRepresentation;
+        this.secondRepresentation = secondRepresentation;
+    }
+}
+
+type WordRepresentationsProps = WordRepresentations;
+

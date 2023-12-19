@@ -1,18 +1,13 @@
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import React, {FC, useCallback, useState} from "react";
 import styles from "./LearningTaskBlock.module.css";
-import clsx from "clsx";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
-import TheoryIconSVG from "../../../../assets/images/TheoryIcon.svg"
-import {Typography} from "../../../../components/Typography";
-import {SignVideo} from "../../../../components/SignVideo";
-import {LearningBlock} from "../LearningBlock";
-import {Word} from "../../../../core/models/Word";
 import {Card} from "../../../../components/Card";
 import {TheoryCard} from "../TheoryCard";
 import {Button} from "../../../../components/Button";
 import {PracticeCards} from "../PracticeCards";
 import {StepStatus} from "../../../../core/models/StepStatus";
+import {TaskFeedback} from "../../../../components/TaskFeedback";
 
 type Props = ComponentProps & Readonly<{
     task: any;
@@ -25,25 +20,32 @@ type Props = ComponentProps & Readonly<{
     Общий контейнер для заданий в обучении: теория + практика + управляющие кнопки
 */
 export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock(props) {
-    console.log(props.task)
+    console.log(props)
     const [taskCompleted, setTaskCompleted] = useState<boolean>(false)
     const [taskChecked, setTaskChecked] = useState<boolean>(false)
     const [currentStepStatus, setCurrentStepStatus] = useState<StepStatus>({status: "default"})
 
+    const resetBlock = useCallback(() => {
+        setTaskCompleted(false)
+        setTaskChecked(false)
+        setCurrentStepStatus({status: "default"})
+    }, [])
 
+    console.log(taskChecked, taskCompleted, currentStepStatus)
     return (
         <Card className={styles.learningTaskBlock}>
             {
                 props.task.type === "theory" &&
-                <TheoryCard wordObject={props.task.task?.wordObject}/>
+                <TheoryCard wordObject={props.task.task}/>
             }
             {
-                props.task.type === "practice" &&
-                <PracticeCards type={props.task.task.type}
-                               task={props.task.task}
-                               checked={taskChecked}
-                               setStatus={setCurrentStepStatus}
-                               setTaskCompleted={setTaskCompleted}
+                props.task.type !== "theory" &&
+                <PracticeCards
+                    task={props.task.task}
+                    checked={taskChecked}
+                    setStatus={setCurrentStepStatus}
+                    setTaskCompleted={setTaskCompleted}
+                    setTaskChecked={setTaskChecked}
                 />
             }
             <div className={styles.learningTaskBlock__buttonContainer}>
@@ -59,9 +61,12 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                     </Button>
                 }
                 {
-                    (props.task.type === "theory" || (props.task.type === "practice" && taskChecked))  &&
+                    (props.task.type === "theory" || (props.task.type !== "theory" && taskChecked)) &&
                     <Button
-                        onClick={props.nextStep}
+                        onClick={() => {
+                            props.nextStep()
+                            resetBlock()
+                        }}
                         size="lg"
                         variant="solid"
                         color="primary"
@@ -70,20 +75,34 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                     </Button>
                 }
                 {
-                    props.task.type === "practice" && taskChecked &&
-                    <Button
-                        onClick={props.nextStep}
-                        size="lg"
-                        variant="faded"
-                        color="primary"
-                    >
-                        Сообщить об ошибке
-                    </Button>
+                    props.task.type !== "theory" && taskChecked &&
+                    <TaskFeedback
+                        text="Сообщить об ошибке"
+                        items={
+                        [
+                            {
+                                id: "123123",
+                                label: "123123"
+                            },
+                            {
+                                id: "123",
+                                label: "12312322222"
+                            }
+                        ]
+                    }/>
+                    // <Button
+                    //     onClick={props.nextStep}
+                    //     size="lg"
+                    //     variant="faded"
+                    //     color="primary"
+                    // >
+                    //     Сообщить об ошибке
+                    // </Button>
                 }
                 {
-                    props.task.type === "practice" && !taskChecked &&
+                    props.task.type !== "theory" && !taskChecked && taskCompleted &&
                     <Button
-                        onClick={props.nextStep}
+                        onClick={() => setTaskChecked(true)}
                         size="lg"
                         variant="solid"
                         color="primary"
