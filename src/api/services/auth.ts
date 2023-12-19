@@ -28,4 +28,8 @@ export namespace AuthService {
     export async function disconnect(): Promise<void> {
         await UserSecretService.destroyToken();
     }
+
+    export async function confirmEmail(token: string): Promise<void> {
+        return await http.post(ApiUrlsConfig.auth.confirmEmail(token));
+    }
 }

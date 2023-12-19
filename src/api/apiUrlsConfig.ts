@@ -7,11 +7,21 @@ export namespace ApiUrlsConfig {
 	/** API ссылки пользователя. */
 	export const user = {
 		register: toUserApi('user/register'),
+		changePassword: toUserApi('user/password'),
+		restorePassword: (email: string) => toUserApi(`user/password/${email}`)
+	}
+	
+	/** API ссылки пользователя. */
+	export const userHistory = {
+		getThemes: toUserApi('userhistory/themes'),
+		getStatistics: toUserApi('userhistory/levels'),
+		getTestHistory: toUserApi('testhistory'),
 	}
 
 	/** API ссылки авторизации (sso) */
 	export const auth = {
-		connect: toAuthApi('connect/token')
+		connect: toAuthApi('connect/token'),
+		confirmEmail: (token: string) => toAuthApi(`api/v1/public/User/confirm-email/${token}`)
 	}
 
 	/** API ссылки тем. */

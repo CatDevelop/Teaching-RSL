@@ -3,8 +3,10 @@ import {typedMemo} from "../../../../core/utils/typedMemo";
 import React, {FC, PropsWithChildren} from "react";
 import styles from "./LearningBlock.module.css"
 import {Typography} from "../../../../components/Typography";
+import {ComponentProps} from "../../../../core/models/ComponentProps";
+import clsx from "clsx";
 
-type Props = PropsWithChildren & Readonly <{
+type Props = PropsWithChildren & ComponentProps & Readonly <{
     iconUrl: string;
     title: string;
 }>

@@ -1,14 +1,44 @@
-import React, {FC, Suspense} from "react";
+import React, {FC, Suspense, useState} from "react";
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import styles from "./DictionaryByThemePage.module.css";
+import styles from "./DictionaryPage.module.css";
 import {Typography} from "../../../../components/Typography";
 import {Page} from "../../../../components/Page";
 import {PageContent} from "../../../../components/PageContent";
 import {SideBar} from "../../../../components/SideBar";
 import {Card} from "../../../../components/Card";
 import {Spinner} from "@nextui-org/react";
+import { SelectThemeDictionary } from "./SelectThemeDictionary";
+import { ThemeDictionary } from "./ThemeDictionary";
 
-export const DictionaryByThemePage: FC = typedMemo(function DictionaryByThemePage() {
+const tempData = {
+    themes: [
+        {
+            name:'Theme1',
+            sections: [
+                {
+                    name: 'Section1',
+                    words: [
+                        {
+                            word: 'Word1'
+                        }
+                    ]
+                },
+                {
+                    name: 'Section2',
+                    words: [
+                        {
+                            word: 'Word1'
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+}
+
+export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
+    const [openedTheme, setOpenedTheme] = useState<any>(null)
+
     return (
         <Page className={styles.dictionary}>
             <SideBar/>
@@ -28,6 +58,14 @@ export const DictionaryByThemePage: FC = typedMemo(function DictionaryByThemePag
                             Здесь можно найти абсолютно все жесты
                         </Typography>
                     </Card>
+                    
+                    <SelectThemeDictionary 
+                        themes={tempData.themes} 
+                        className={styles.dictionary__selectDictionaryDisplay}
+                        onThemeClick={setOpenedTheme}
+                    />
+
+                    <ThemeDictionary theme={openedTheme}/>
                 </Suspense>
             </PageContent>
         </Page>

@@ -289,6 +289,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
 
                     {/*<div className={styles.learningTask__taskContainer}>*/}
 
+
                     {/*    {*/}
                     {/*        currentStep >= 0 && currentStep <= theoryCount - 1 &&*/}
                     {/*        (*/}

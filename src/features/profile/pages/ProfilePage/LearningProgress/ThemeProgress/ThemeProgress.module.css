@@ -5,6 +5,11 @@
     gap: var(--space-m);
 }
 
+.themeProgress__title {
+    font-size:var(--font-size-s);
+    font-weight:var(--font-weight-l);
+}
+
 .themeProgress__text {
     display: flex;
     flex-direction: column;
@@ -19,6 +24,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
+}
+
+.themeProgress__description {
+    font-size: calc(var(--font-size-m) * 0.7);
 }
 
 .themeProgress__chartSvg {

@@ -12,7 +12,7 @@ type Props = PropsWithChildren & ComponentProps;
  */
 export const ScrollBox: FC<Props> = typedMemo(function ScrollBox(props){
     return (
-        <div className={styles.container}>
+        <div className={clsx(styles.container, props.className)}>
             <ScrollShadow size={10} className={clsx(styles.scrollBox, props.className)}>
                 {props.children}
             </ScrollShadow>

@@ -1,7 +1,8 @@
 import React from 'react';
 import {RouteObject} from "react-router-dom";
 import WithSideBarLayout from "../../components/WithSideBarLayout";
-import {DictionaryByThemePage} from "./pages/DictionaryByThemePage";
+import {DictionaryPage} from "./pages/DictionaryPage";
+import { DictionaryWordPage } from './pages/DictionaryWordPage';
 
 export const dictionaryRoutes: RouteObject[] = [
     {
@@ -9,9 +10,13 @@ export const dictionaryRoutes: RouteObject[] = [
         element: <WithSideBarLayout/>,
         children: [
             {
-                path: 'by-theme',
-                element: <DictionaryByThemePage/>,
+                path: '',
+                element: <DictionaryPage/>,
             },
         ],
+    },
+    {
+        path:'dictionary/:id',
+        element: <DictionaryWordPage/>
     }
 ]
