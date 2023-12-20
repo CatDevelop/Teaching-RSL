@@ -19,7 +19,6 @@ type Props = ComponentProps & Readonly<{
  * Карточки практик для обучения
  */
 export const PracticeCards: FC<Props> = typedMemo(function PracticeCards(props) {
-    console.log("PracticeCards", props)
     if (props.task.type === "SelectWordByGif")
         return <PracticeSelectWordByGIF
             rightSelect={props.task.rightSelect}

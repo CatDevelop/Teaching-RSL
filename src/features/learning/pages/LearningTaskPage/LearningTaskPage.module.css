@@ -125,6 +125,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: var(--learning-center-block-width);
 }
 
 .learningTask__taskContinueContainer {

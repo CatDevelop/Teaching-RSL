@@ -46,7 +46,7 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
     }, [selectGIF, props.setIsTaskReadyToCheck])
 
     return (
-        <div >
+        <div className={styles.practiceSelectGif}>
             <div className={styles.practiceSelectGif__titleContainer}>
                 <Typography variant="h2" className={styles.practiceSelectGif__title}>
                     Выбери жест

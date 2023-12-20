@@ -49,6 +49,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
     console.log(props, variantsInOtherOrder, words, gifs, isBlocked, countOfCompleted)
 
     useEffect(() => {
+        console.log(1111)
         setVariantsInOtherOrder(shuffleArray<WordFormServer>(props.variants))
         setGifs(getInitialSelectObjectsState(props.variants))
     }, [props.variants]);

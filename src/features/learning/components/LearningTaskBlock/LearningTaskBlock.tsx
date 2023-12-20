@@ -20,7 +20,6 @@ type Props = ComponentProps & Readonly<{
     Общий контейнер для заданий в обучении: теория + практика + управляющие кнопки
 */
 export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock(props) {
-    console.log(props)
     const [taskCompleted, setTaskCompleted] = useState<boolean>(false)
     const [taskChecked, setTaskChecked] = useState<boolean>(false)
     const [currentStepStatus, setCurrentStepStatus] = useState<StepStatus>({status: "default"})
@@ -31,7 +30,6 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
         setCurrentStepStatus({status: "default"})
     }, [])
 
-    console.log(taskChecked, taskCompleted, currentStepStatus)
     return (
         <Card className={styles.learningTaskBlock}>
             {

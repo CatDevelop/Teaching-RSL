@@ -190,7 +190,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
             theoryCount: 5
         }
     }
-    const [currentStep, setCurrentStep] = useState(-1)
+    const [currentStep, setCurrentStep] = useState(0)
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
 
     const tasks = levelController.level.tasks

@@ -11,7 +11,7 @@
 
 .practiceSelectWord {
     box-sizing: border-box;
-    height: 100%;
+    height: calc(100% - 70px);
     width: 100%;
     animation: showDown 0.5s ease-in;
 }
