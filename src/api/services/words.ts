@@ -9,17 +9,21 @@ import { WordResponseMapper } from "core/mappers/words/WordResponseMapper";
 import {BlockType} from "../../core/models/words/BlockType";
 import {GetAllWordsResponse} from "../../core/models/words/GetAllWordsResponse";
 import {GetAllWordsResponseMapper} from "../../core/mappers/words/GetAllWordsResponseMapper";
+import {GetAllWordsResponseDto} from "../../core/dtos/words/GetAllWordsResponseDto";
 
 export namespace WordsService {
     export async function getWordById(wordId: string): Promise<GetWordResponse> {
-        return await http.get<GetWordResponseDto>(ApiUrlsConfig.words.getById(wordId)).then(res => GetWordResponseMapper.fromDto(res.data));
+        return await http.get<GetWordResponseDto>(ApiUrlsConfig.words.getById(wordId))
+            .then(res => GetWordResponseMapper.fromDto(res.data));
     }
 
     export async function getWordsBySearch(search: string): Promise<WordResponse[]> {
-        return await http.get<WordResponseDto[]>(ApiUrlsConfig.words.getBySearch(search)).then(res => res.data.map(dto => WordResponseMapper.fromDto(dto)));
+        return await http.get<WordResponseDto[]>(ApiUrlsConfig.words.getBySearch(search))
+            .then(res => res.data.map(dto => WordResponseMapper.fromDto(dto)));
     }
 
-    export async function getWordsByBlock(blockType: BlockType, id: string): Promise<GetAllWordsResponse> {
-        return await http.get<GetAllWordsResponse>(ApiUrlsConfig.words.getByBlock(blockType, id)).then(res => GetAllWordsResponseMapper.fromDto(res.data));
+    export async function getWordsByBlock(blockType?: BlockType, id?: string): Promise<GetAllWordsResponse[]> {
+        return await http.get<GetAllWordsResponseDto[]>(ApiUrlsConfig.words.getByBlock(blockType, id))
+            .then(res => res.data.map(theme => GetAllWordsResponseMapper.fromDto(theme)));
     }
 }

@@ -39,7 +39,7 @@ export namespace ApiUrlsConfig {
 	export const words = {
 		getById: (id: string) => toApi(`words/${id}`),
 		getBySearch: (search: string) => toApi(`words/search?query=${search}`),
-		getByBlock: (type: BlockType, id: string) => toApi(`words/list?BlockType=${type}&BlockId=${id}`)
+		getByBlock: (type?: BlockType, id?: string) => toApi(`words/list?BlockType=${type}&BlockId=${id}`)
 	};
 
 	/**
