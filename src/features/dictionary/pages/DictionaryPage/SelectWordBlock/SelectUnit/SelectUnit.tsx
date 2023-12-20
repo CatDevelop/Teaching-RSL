@@ -14,7 +14,7 @@ import {ThemesService} from "../../../../../../api/services/themes";
 type Props = ComponentProps & Readonly<{}>
 
 export const SelectUnit: FC<Props> = typedMemo(function SelectUnit(props){
-    const {data: themes} = useQuery('themes-with-units', ThemesService.getListWithUnits);
+    const {data: themes} = useQuery(['themes-with-units'], () => ThemesService.getListWithUnits());
 
     return (
         <Card className={clsx(styles.selectUnit, props.className)}>

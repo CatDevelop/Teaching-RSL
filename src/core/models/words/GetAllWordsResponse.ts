@@ -1,15 +1,9 @@
-import {BlockType} from "./BlockType";
-import {WordResponse} from "./WordResponse";
+import {UnitResponse} from "../unit/UnitResponse";
 
 /**
  * Модель получения всех слов
  */
 export class GetAllWordsResponse {
-    /**
-     * Тип блока
-     */
-    public readonly blockType: BlockType;
-
     /**
      * Id темы/раздела
      */
@@ -23,13 +17,12 @@ export class GetAllWordsResponse {
     /**
      * Слова
      */
-    public readonly words: readonly WordResponse[];
+    public readonly units: readonly UnitResponse[];
 
-    public constructor({blockType, id, name, words}: GetAllWordsResponseProps){
-        this.blockType = blockType;
+    public constructor({units, id, name}: GetAllWordsResponseProps){
         this.id = id;
         this.name = name;
-        this.words = words;
+        this.units = units;
     }
 }
 

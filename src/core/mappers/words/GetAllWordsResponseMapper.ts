@@ -1,6 +1,6 @@
 import {GetAllWordsResponseDto} from "../../dtos/words/GetAllWordsResponseDto";
 import {GetAllWordsResponse} from "../../models/words/GetAllWordsResponse";
-import {WordResponseMapper} from "./WordResponseMapper";
+import {UnitResponseMapper} from "./UnitResponseMapper";
 
 export namespace GetAllWordsResponseMapper {
 	/**
@@ -9,9 +9,8 @@ export namespace GetAllWordsResponseMapper {
 	 */
 	export function fromDto(dto: GetAllWordsResponseDto): GetAllWordsResponse {
 		return new GetAllWordsResponse({
-			blockType: dto.blockType,
             id:dto.id,
-            words:dto.words.map(word => WordResponseMapper.fromDto(word)),
+            units:dto.units.map(word => UnitResponseMapper.fromDto(word)),
             name:dto.name,
 		});
 	}

@@ -1,7 +1,7 @@
 import { Card } from "components/Card";
 import { ScrollBox } from "components/ScrollBox";
 import { typedMemo } from "core/utils/typedMemo";
-import React, { FC } from "react";
+import React, {FC, useMemo} from "react";
 import styles from "./SelectSectionWord.module.css";
 import { Typography } from "components/Typography";
 import { ComponentProps } from "core/models/ComponentProps";
@@ -25,7 +25,8 @@ type Props = ComponentProps & Readonly<{
  */
 export const SelectSectionWord: FC<Props> = typedMemo(function SelectSectionWord(props){
     const {themeId, sectionId} = useParams<{themeId: string, sectionId: string}>();
-    const {data: section} = useQuery(['words-list', themeId, sectionId], () => WordsService.getWordsByBlock(BlockType.Unit, sectionId ?? ''))
+    const {data: themes} = useQuery(['words-list', themeId, sectionId], () => WordsService.getWordsByBlock(BlockType.Unit, sectionId ?? ''))
+    const unit = useMemo(() => themes![0].units[0], [themes])
 
     return (
         <Card className={clsx(props.className, styles.selectSectionWord)}>
@@ -34,12 +35,12 @@ export const SelectSectionWord: FC<Props> = typedMemo(function SelectSectionWord
                     <ArrowIcon className={styles.selectSectionWord__backIcon}/>
                 </NavLink>
                 
-                <Typography variant='h2'>{section!.name}</Typography>
+                <Typography variant='h2'>{unit.name}</Typography>
             </div>
 
             <ScrollBox className={styles.selectSectionWord__scroll}>
             <div className={styles.selectSectionWord__sectionWords}>
-                {section!.words.slice(0, Math.ceil(section!.words.length / 2)).map((word: any, i: number) => (
+                {unit.words?.slice(0, Math.ceil(unit.words?.length / 2)).map((word: any, i: number) => (
                     <Typography
                         variant='p'
                         className={styles.selectSectionWord__word}
@@ -51,7 +52,7 @@ export const SelectSectionWord: FC<Props> = typedMemo(function SelectSectionWord
                 ))}
             </div>
             <div className={styles.selectSectionWord__sectionWords}>
-                {section!.words.slice(Math.ceil(section!.words.length / 2)).map((word: any, i: number) => (
+                {unit.words?.slice(Math.ceil(unit.words?.length / 2)).map((word: any, i: number) => (
                     <Typography
                         variant='p'
                         className={styles.selectSectionWord__word}

@@ -1,14 +1,13 @@
-import {BlockType} from "../../models/words/BlockType";
-import {WordResponseDto} from "./WordResponseDto";
+import {UnitResponseDto} from "../unit/UnitResponseDto";
 
 /**
  * Модель получения всех слов
  */
 export type GetAllWordsResponseDto = {
     /**
-     * Тип блока
+     * Разделы
      */
-    blockType: BlockType;
+    units: UnitResponseDto[];
 
     /**
      * Id темы/раздела
@@ -19,9 +18,4 @@ export type GetAllWordsResponseDto = {
      * Название темы/раздела
      */
     name: string | null;
-
-    /**
-     * Слова
-     */
-    words: readonly WordResponseDto[];
 }

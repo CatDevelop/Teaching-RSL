@@ -26,7 +26,7 @@ type Props = ComponentProps & Readonly<{
  */
 export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(props){
     const {themeId} = useParams<{themeId: string}>();
-    const {data:theme} = useQuery(['words-list', themeId], () => WordsService.getWordsByBlock(BlockType.Theme, themeId ?? ''))
+    const {data:themes} = useQuery(['words-list', themeId], () => WordsService.getWordsByBlock(BlockType.Theme, themeId ?? ''))
 
     return (
         <Card className={clsx(props.className, styles.selectThemeWord)}>
@@ -35,21 +35,21 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
                     <ArrowIcon className={styles.selectThemeWord__backIcon}/>
                 </NavLink>
                 
-                <Typography variant='h2'>{theme!.name}</Typography>
+                <Typography variant='h2'>{themes![0].name}</Typography>
             </div>
             
             <ScrollBox className={styles.selectThemeWord__scroll}>
-                {/*
-                    theme.sections.map((section:any, i: number) => (
+                {
+                    themes![0].units.map((unit, i) => (
                         <div key={i}>
                             <Link 
                                 as={NavLink}
-                                to={`/dictionary/${themeId}/${section.id}`}
+                                to={`/dictionary/${themeId}/${unit.id}`}
                                 className={styles.selectThemeWord__sectionName}>
-                                    {section.name}
+                                    {unit.name}
                             </Link>
                             <div className={styles.selectThemeWord__sectionWords}>
-                                {section.words.slice(0, Math.ceil(section.words.length / 2)).map((word: any, i: number) => (
+                                {unit.words?.slice(0, Math.ceil(unit.words?.length / 2)).map((word: any, i: number) => (
                                     <Typography
                                         variant='p'
                                         className={styles.selectThemeWord__word}
@@ -61,7 +61,7 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
                                 ))}
                             </div>
                             <div className={styles.selectThemeWord__sectionWords}>
-                                {section.words.slice(Math.ceil(section.words.length / 2)).map((word: any, i: number) => (
+                                {unit.words?.slice(Math.ceil(unit.words?.length / 2)).map((word: any, i: number) => (
                                     <Typography
                                         variant='p'
                                         className={styles.selectThemeWord__word}
@@ -74,7 +74,7 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
                             </div>
                         </div>
                     ))
-                */}
+                }
             </ScrollBox>
         </Card>
     )
