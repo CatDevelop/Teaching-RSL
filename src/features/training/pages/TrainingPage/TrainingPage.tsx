@@ -88,7 +88,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
             <PageContent className={styles.trainingTask}>
                 <div className={styles.trainingTask__header}>
                     <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
-                        <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
+                        <img src={Logo} rel="preload" alt={"Логотип"} width={218}/>
                     </div>
                     {
                         currentStep !== -1 && currentStep !== data.words.length && !isNotStartModel &&

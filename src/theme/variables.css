@@ -4,13 +4,14 @@
     --on-surface-color: rgba(255, 255, 255, 1);
     --on-surface-opacity-color: rgba(255, 255, 255, 0.85);
     --dark-on-surface-color: rgba(228, 228, 231, 1);
-    --primary-color: rgba(51, 142, 247, 1);
+    --primary-color: rgb(51, 142, 247, 1);
+    --disabled-primary-color: rgb(51, 142, 247, 0.6);
     --accent-color: rgba(174, 126, 222, 1);
     --light-primary-color: rgba(82, 133, 242, 0.2);
     --success-color: rgba(23, 201, 100, 1);
     --danger-color: rgb(243, 18, 96, 1);
     --light-danger-color: rgba(242, 82, 82, 0.2);
-    --text-color: rgba(39, 39, 42, 1);
+    --text-color: rgba(63, 63, 70, 1);
     --secondary-text-color: rgba(82, 82, 91, 1);
     --thirdly-text-color: rgba(161, 161, 170, 1);
     --disabled-text-color: rgba(212, 212, 216, 1);
@@ -43,7 +44,7 @@
     --space-xxl: calc(var(--space-m) * 3);
     --space-xxxl: calc(var(--space-m) * 3.75);
 
-    --page-padding-m: 50px;
+    --page-padding-m: 40px;
     --page-padding-l: calc(var(--page-padding-m) * 2);
 
     /* Index */
@@ -64,6 +65,7 @@
 
     --sidebar-width: 320px;
     --accent-block-container-width: 620px;
+    --learning-center-block-width: 1074px;
 
     --title-block-container-height: 160px;
 

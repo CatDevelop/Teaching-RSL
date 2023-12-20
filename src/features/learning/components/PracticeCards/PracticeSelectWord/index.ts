@@ -1,1 +1,0 @@
-export { PracticeSelectWord } from "./PracticeSelectWord";

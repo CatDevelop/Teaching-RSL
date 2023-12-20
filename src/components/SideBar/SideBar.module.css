@@ -14,5 +14,5 @@
 
 
 .sidebar__logo {
-    margin: 0 auto;
+    margin: 9.5px var(--page-padding-m); /* Странное значение, но нужно для бесшовного перехода между страницами*/
 }
