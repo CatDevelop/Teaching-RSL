@@ -20,7 +20,7 @@ export const CreateDictionaryForm: FC<Props> = typedMemo(function CreateDictiona
                         <>
                             <ModalHeader className="flex flex-col gap-1">Создание теста</ModalHeader>
                             <ModalBody>
-                                <Range min={MIN_WORDS_COUNT} max={props.maxWordsCount} value={wordsCount} onChange={handleWordsChange} />
+                                {/*<Range min={MIN_WORDS_COUNT} max={props.maxWordsCount} value={wordsCount} onChange={handleWordsChange} />*/}
                             </ModalBody>
                             <ModalFooter>
                                 <Button variant="faded" onPress={onClose}>

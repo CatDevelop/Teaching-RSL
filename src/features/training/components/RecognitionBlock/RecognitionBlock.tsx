@@ -8,7 +8,7 @@ import clsx from "clsx";
 import {WebCamera} from "../WebCamera/WebCamera";
 import {Spinner} from "@nextui-org/react";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
-import { WordInTest } from "../../../../core/models/training/GetTestResponse";
+import {WordInTest} from "../../../../core/models/training/GetTestResponse";
 import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
 import {socket} from "../../../../core/utils/connectToModal";
 import {Button} from "../../../../components/Button";
@@ -123,44 +123,46 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     return (
         <Card className={clsx(styles.recognitionBlock, props.className)}>
-            <div className={styles.recognitionBlock__header}>
-                <div className={styles.recognitionBlock__wordHeader}>
-                    <Typography variant="h2" className={styles.recognitionBlock__gesture}>
-                        {props.word.word}
-                    </Typography>
-                    <Typography variant="span" className={styles.recognitionBlock__title}>
-                        Покажите жест в камеру
-                    </Typography>
-                    <Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>
-                </div>
-                <Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>
-            </div>
-
-            <div className={styles.recognitionBlock__camera}>
-                <Spinner className={styles.recognitionBlock__cameraLoading}/>
-                <WebCamera/>
-            </div>
-
-            <div className={styles.recognitionBlock__recognizedContainer}>
-                <Typography variant="h3" className={styles.recognitionBlock__recognized}>
-                    Распознанные жесты
+            {/*<div className={styles.recognitionBlock__header}>*/}
+            <div className={styles.recognitionBlock__wordHeader}>
+                <Typography variant="h2" className={styles.recognitionBlock__gesture}>
+                    {props.word.word}
                 </Typography>
-                <div className={clsx(styles.recognitionBlock__recognizedWords)}>
-                    {
-                        props.signRecognizeText.slice(-6).map(word => {
-                            return (
-                                <Typography
-                                    variant="span"
-                                    className={clsx(
-                                        styles.recognitionBlock__recognizedWord,
-                                        word.toLowerCase() === props.word.recognitionText?.toLowerCase() && styles.recognitionBlock__rightWord
-                                    )}
-                                >
-                                    {word}
-                                </Typography>
-                            )
-                        })
-                    }
+                <Typography variant="span" className={styles.recognitionBlock__title}>
+                    Покажите жест в камеру
+                </Typography>
+                {/*<Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>*/}
+            </div>
+            {/*<Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>*/}
+            {/*</div>*/}
+
+            <div className={styles.recognitionBlock__cameraAndRec}>
+                <div className={styles.recognitionBlock__camera}>
+                    <Spinner className={styles.recognitionBlock__cameraLoading}/>
+                    <WebCamera/>
+                </div>
+
+                <div className={styles.recognitionBlock__recognizedContainer}>
+                    <Typography variant="h3" className={styles.recognitionBlock__recognized}>
+                        Распознанные жесты
+                    </Typography>
+                    <div className={clsx(styles.recognitionBlock__recognizedWords)}>
+                        {
+                            props.signRecognizeText.slice(-6).map(word => {
+                                return (
+                                    <Typography
+                                        variant="span"
+                                        className={clsx(
+                                            styles.recognitionBlock__recognizedWord,
+                                            word.toLowerCase() === props.word.recognitionText?.toLowerCase() && styles.recognitionBlock__rightWord
+                                        )}
+                                    >
+                                        {word}
+                                    </Typography>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>
 
