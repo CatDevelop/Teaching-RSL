@@ -1,4 +1,11 @@
-import React, {FC, Suspense, useState} from "react";
+import React, {
+    FC,
+    Suspense,
+    useCallback,
+    useState,
+    FocusEventHandler,
+    ChangeEventHandler
+} from "react";
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import styles from "./DictionaryPage.module.css";
 import {Typography} from "../../../../components/Typography";
@@ -6,38 +13,22 @@ import {Page} from "../../../../components/Page";
 import {PageContent} from "../../../../components/PageContent";
 import {SideBar} from "../../../../components/SideBar";
 import {Card} from "../../../../components/Card";
-import {Spinner} from "@nextui-org/react";
-import { SelectThemeDictionary } from "./SelectThemeDictionary";
-import { ThemeDictionary } from "./ThemeDictionary";
-
-const tempData = {
-    themes: [
-        {
-            name:'Theme1',
-            sections: [
-                {
-                    name: 'Section1',
-                    words: [
-                        {
-                            word: 'Word1'
-                        }
-                    ]
-                },
-                {
-                    name: 'Section2',
-                    words: [
-                        {
-                            word: 'Word1'
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-}
+import {Input, Spinner} from "@nextui-org/react";
+import { SelectWordBlock } from "./SelectWordBlock";
+import { DictionaryWordBlock } from "./DictionaryWordBlock";
+import {Button} from "../../../../components/Button";
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
-    const [openedTheme, setOpenedTheme] = useState<any>(null)
+    const [search, setSearch] = useState('');
+    const [selectedWordId, setSelectedWordId] = useState<string | null>(null);
+
+    const changeSearch: ChangeEventHandler<HTMLInputElement> = useCallback(event => {
+        setSearch(event.target.value);
+    }, [])
+
+    const blurSearch: FocusEventHandler<Element> = useCallback(event => {
+        setSearch((event.target as HTMLInputElement).value.trim());
+    }, [])
 
     return (
         <Page className={styles.dictionary}>
@@ -51,21 +42,39 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                         >
                             Словарь
                         </Typography>
-                        <Typography
-                            variant="p"
-                            className={styles.dictionary__titleContainer__description}
-                        >
-                            Здесь можно найти абсолютно все жесты
-                        </Typography>
-                    </Card>
-                    
-                    <SelectThemeDictionary 
-                        themes={tempData.themes} 
-                        className={styles.dictionary__selectDictionaryDisplay}
-                        onThemeClick={setOpenedTheme}
-                    />
+                        <div className={styles.dictionary__titleContainer__content}>
+                            <Typography
+                                variant="p"
+                                className={styles.dictionary__titleContainer__description}
+                            >
+                                Здесь можно найти абсолютно все жесты
+                            </Typography>
 
-                    <ThemeDictionary theme={openedTheme}/>
+                            <Button color="primary" variant="light">Создать тест</Button>
+                        </div>
+                    </Card>
+
+                    <div className={styles.dictionary__chooseWordBlock}>
+                        <Input 
+                            placeholder="Поиск" 
+                            classNames={{
+                                inputWrapper: [styles.dictionary__wordSearch],
+                                input: [styles.dictionary__wordSearchInput],
+                            }}
+                            onChange={changeSearch}
+                            onBlur={blurSearch}
+                            variant="faded"
+                        />
+                        <DictionaryWordBlock selectedWordId={selectedWordId}/>
+                    </div>
+
+                    <Suspense fallback={<Spinner/>}>
+                        <SelectWordBlock
+                            selectWord={setSelectedWordId}
+                            search={search}
+                            className={styles.dictionary__selectDictionaryDisplay}
+                        />
+                    </Suspense>
                 </Suspense>
             </PageContent>
         </Page>

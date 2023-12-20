@@ -21,7 +21,7 @@ export const Button: FC<Props> = typedMemo(function Button(props) {
                 props.variant === "light" && styles.button_link,
                 props.variant === undefined && styles.button_filled,
                 props.disabled && props.color === "primary" &&props.variant === "solid" && styles.button_primary_solid_disabled,
-                props.className
+                props.className ?? ''
             )}
         />
     )

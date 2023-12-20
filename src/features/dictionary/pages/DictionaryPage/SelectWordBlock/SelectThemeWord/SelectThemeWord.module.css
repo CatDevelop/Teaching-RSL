@@ -1,0 +1,48 @@
+.selectThemeWord {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.selectThemeWord__header {
+    display:flex;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    gap: var(--space-m)
+}
+
+.selectThemeWord__backIcon {
+    fill: var(--thirdly-text-color);
+    cursor: pointer
+}
+
+.selectThemeWord__scroll {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+    gap: var(--space-l);
+}
+
+.selectThemeWord__sectionName {
+    margin-bottom: var(--space-m);
+    font-weight: var(--font-weight-l);
+    font-size: var(--font-size-m);
+    color: #000;
+}
+
+.selectThemeWord__sectionWords {
+    display: flex;
+    flex-direction: column;
+    font-size:var(--font-size-xs);
+    gap: calc(var(--space-m) * 0.75);
+}
+
+.selectThemeWord__word {
+    color: var(--disabled-button-color);
+    cursor: pointer;
+}
+
+.selectThemeWord__word:hover {
+    color: var(--primary-color);
+}

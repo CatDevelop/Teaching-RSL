@@ -89,7 +89,6 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                 <div className={styles.trainingTask__header}>
                     <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
                         <img src={Logo} rel="preload" alt={"Логотип"} width={218}/>
-                        {/*<BySberAI/>*/}
                     </div>
                     {
                         currentStep !== -1 && currentStep !== data.words.length && !isNotStartModel &&
@@ -112,9 +111,6 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     </div>
                 </div>
 
-                {currentStep !== data.words.length && <BySberAI className={styles.trainingTask__bySberAI}/>}
-
-
                 <div className={styles.trainingTask__taskContainer}>
                     {
                         currentStep === -1 &&
@@ -130,6 +126,18 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                             intervalID={intervalID}
                             signRecognizeText={signRecognizeText}
                             setSignRecognizeText={setSignRecognizeText}
+                            buttons={<div className={styles.trainingTask__buttonsContainer}>
+                                {
+                                    currentStep >= 0 && currentStep <= data.words.length - 1 && !isDoneTask && !isNotStartModel &&
+                                    <Button
+                                        size={"lg"}
+                                        variant="faded"
+                                        onClick={skip}
+                                    >
+                                        Пропустить
+                                    </Button>
+                                }
+                            </div>}
                         />
                     }
                     {
@@ -159,19 +167,6 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                                 {/*    className={styles.trainingTask__resultCard}/>*/}
                             </div>
                         </div>
-                    }
-                </div>
-
-                <div className={styles.trainingTask__buttonsContainer}>
-                    {
-                        currentStep >= 0 && currentStep <= data.words.length - 1 && !isDoneTask && !isNotStartModel &&
-                        <Button
-                            size={"lg"}
-                            variant="faded"
-                            onClick={skip}
-                        >
-                            Пропустить
-                        </Button>
                     }
                 </div>
 

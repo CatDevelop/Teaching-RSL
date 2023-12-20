@@ -1,37 +1,40 @@
-.selectThemeDictionary {
+.selectUnit {
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: hidden;
 }
 
-.selectThemeDictionary__title {
+.selectUnit__title {
     margin-bottom:var(--space-l);
 }
 
-.selectThemeDictionary__theme {
+.selectUnit__theme {
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: calc(var(--space-m) * 0.75);
 }
 
-.selectThemeDictionary__themeTitle {
+.selectUnit__themeTitle {
     margin-bottom: var(--space-xs);
     cursor: pointer;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-l);
+    color: #000;
 }
 
-.selectThemeDictionary__section {
+.selectUnit__section {
     cursor: pointer;
     color: var(--disabled-button-color);
 }
 
-.selectThemeDictionary__section:hover,
-.selectThemeDictionary__themeTitle:hover {
+.selectUnit__section:hover,
+.selectUnit__themeTitle:hover {
     color: var(--primary-color);
 }
 
-.selectThemeDictionary__themesScroll {
+.selectUnit__themesScroll {
     display: flex;
     flex-direction: column;
     gap: var(--space-xl)
