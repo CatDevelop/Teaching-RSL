@@ -41,7 +41,7 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
             <ScrollBox className={styles.selectThemeWord__scroll}>
                 {
                     themes![0].units.map((unit, i) => (
-                        <div key={i}>
+                        <div key={i} className={styles.selectThemeWord__theme}>
                             <Link 
                                 as={NavLink}
                                 to={`/dictionary/${themeId}/${unit.id}`}
