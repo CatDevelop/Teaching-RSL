@@ -2,6 +2,20 @@
     padding: var(--space-xs);
     /*width: calc(16px + var(--space-s) * 2);*/
     min-width: 0;
+    color: var(--thirdly-text-color);
+    text-decoration: underline ;
+    text-underline-offset: 8px;
+    text-underline-color: var(--thirdly-text-color);
+}
+
+.taskFeedback__open:hover {
+    background: none;
+}
+
+.taskFeedback__header {
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-xl);
+    color: var(--text-color);
 }
 
 .taskFeedback__feedback {
@@ -16,6 +30,7 @@
 
 .taskFeedback__aboutFeedback {
     color: var(--thirdly-text-color) !important;
+    line-height: 130%;
 }
 
 .taskFeedback__checkbox > span,

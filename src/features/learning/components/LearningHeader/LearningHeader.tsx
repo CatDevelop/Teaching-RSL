@@ -4,6 +4,8 @@ import React, {FC} from "react";
 import styles from "./LearningHeader.module.css"
 import {Typography} from "../../../../components/Typography";
 import {ProgressBar} from "../../../../components/ProgressBar";
+import {Button} from "../../../../components/Button";
+import {Back} from "../../../../components/Back";
 
 type Props = Readonly <{
     type: string;
@@ -27,12 +29,12 @@ export const LearningHeader: FC<Props> = typedMemo(function LearningHeader(props
                     >
                         {props.name}
                     </Typography>
-                    <Typography
-                        variant="p"
-                        className={styles.learningHeader__wordsCount}
-                    >
-                        {10} из {12} слов пройдено
-                    </Typography>
+                    {/*<Typography*/}
+                    {/*    variant="p"*/}
+                    {/*    className={styles.learningHeader__wordsCount}*/}
+                    {/*>*/}
+                    {/*    {10} из {12} слов пройдено*/}
+                    {/*</Typography>*/}
                 </div>
                 <Typography
                     variant="p"

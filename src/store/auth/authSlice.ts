@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
+import {LocalStorageService} from "../../api/services/localStorageService";
 
 export type AuthState = Readonly<{
     isAuth: boolean;
@@ -16,7 +17,9 @@ export const authSlice = createSlice({
             state.isAuth = true;
         },
         logout: (state) => {
+            console.log("Logout")
             state.isAuth = false;
+            LocalStorageService.remove("SECRET")
         },
     },
 })

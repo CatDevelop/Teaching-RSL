@@ -3,8 +3,6 @@ import React, {FC, Suspense, useCallback, useEffect, useState} from "react";
 import styles from "./LearningTaskPage.module.css";
 import {Page} from "../../../../components/Page";
 import Logo from "../../../../assets/images/Logo.svg"
-import {shuffleArray} from "../../../../core/utils/shuffleArray";
-import {StartThemeTasks, StartThemeWords} from "../../../../core/data";
 import {Button} from "../../../../components/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {clsx} from "clsx";
@@ -12,15 +10,14 @@ import {PageContent} from "../../../../components/PageContent";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {StartLearning} from "../../components/StartLearning";
-import {generateTasks} from "../../../../core/utils/generateTasks";
-import {TasksType} from "../../../../core/models/Tasks";
-import {Word} from "../../../../core/models/Word";
 import {LearningHeader} from "../../components/LearningHeader";
 import {LearningTaskBlock} from "../../components/LearningTaskBlock";
-import {useQuery} from "react-query";
-import {LearningService} from "../../../../api/services/learning";
 import {Spinner} from "@nextui-org/react";
-import useLearningLevel from "../../../../core/hooks/use-learning-level";
+import {Typography} from "../../../../components/Typography";
+import {ResultCard} from "../../../training/components/ResultCard";
+import Result from "../../../../assets/images/Result.svg"
+import ResultLearning from "../../../../assets/images/ResultLearningImage.svg"
+import {Back} from "../../../../components/Back";
 
 enum taskType {
     THEORY = "theory",
@@ -144,6 +141,23 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     id: 7,
                     type: "practice",
                     task: {
+                        type: "SelectGifByWord",
+                        rightSelect: {
+                            wordId: "fbcae8dd-9c1c-42f2-a6e5-f5007047b17e",
+                            firstRepresentation: "Фиолетовый",
+                            secondRepresentation: "https://media.spreadthesign.com/video/mp4/12/14691.mp4"
+                        },
+                        otherSelects: [
+                            "https://media.spreadthesign.com/video/mp4/12/349233.mp4",
+                            "https://media.spreadthesign.com/video/mp4/12/5717.mp4",
+                            "https://media.spreadthesign.com/video/mp4/12/7655.mp4"
+                        ]
+                    }
+                },
+                {
+                    id: 8,
+                    type: "practice",
+                    task: {
                         type: "MatchWordAndGif",
                         conditions: [
                             {
@@ -166,23 +180,6 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                                 firstRepresentation: "Зелёный",
                                 secondRepresentation: "https://media.spreadthesign.com/video/mp4/12/5717.mp4",
                             },
-                        ]
-                    }
-                },
-                {
-                    id: 8,
-                    type: "practice",
-                    task: {
-                        type: "SelectGifByWord",
-                        rightSelect: {
-                            wordId: "fbcae8dd-9c1c-42f2-a6e5-f5007047b17e",
-                            firstRepresentation: "Фиолетовый",
-                            secondRepresentation: "https://media.spreadthesign.com/video/mp4/12/14691.mp4"
-                        },
-                        otherSelects: [
-                            "https://media.spreadthesign.com/video/mp4/12/349233.mp4",
-                            "https://media.spreadthesign.com/video/mp4/12/5717.mp4",
-                            "https://media.spreadthesign.com/video/mp4/12/7655.mp4"
                         ]
                     }
                 },
@@ -212,7 +209,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
 
     const openExitModal = useCallback(() => setExitModalIsOpen(true), [setExitModalIsOpen])
     const toMainPage = useCallback(() => navigate("/"), [navigate])
-    const toTrainingPage = useCallback(() => navigate("/training"), [navigate])
+    const toProfilePage = useCallback(() => navigate("/profile"), [navigate])
 
     console.log(currentStep, theoryCount, practiceCount)
     if (levelController.isLoading)
@@ -233,7 +230,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                             currentStep !== -1 && currentStep < theoryCount + practiceCount &&
                             <LearningHeader
                                 type={tasks[currentStep].type}
-                                name={"123"}
+                                name={"Входное тестирование для абитуриентов"}
                                 currentStep={currentStep}
                                 stepCount={tasks.length}
                             />
@@ -262,8 +259,26 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                                             nextStep={nextStep}
                                             prevStep={prevStep}
                                         />
+                                        <div className={styles.learningTask__back}>
+                                            <Back to="/learning"/>
+                                        </div>
                                     </div>
                                 )
+                            }
+
+
+                            {
+                                currentStep === theoryCount + practiceCount &&
+                                <div className={styles.learningTask__result}>
+                                    <img src={ResultLearning} alt={"Конец обучения!"} className={styles.learningTask__resultImage}/>
+                                    <Typography variant="p" className={styles.learningTask__resultDescription}>
+                                        Вы выучили {theoryCount} жестов.<br/>Теперь можно перейти к следующему этапу<br/>
+                                        и попробовать их на практике.
+                                    </Typography>
+                                    <Button variant={"solid"} color={"primary"} onClick={toProfilePage}>
+                                        В меню
+                                    </Button>
+                                </div>
                             }
                         </div>
 

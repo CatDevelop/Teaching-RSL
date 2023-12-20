@@ -6,13 +6,14 @@ import {SideBarItem} from "../SideBarItem";
 import {ExitIcon} from "../../assets/images/ExitIcon"
 import {Card} from "../Card";
 import {useLocation} from "react-router-dom";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { RootState } from "store/store";
 
 import {LKIcon} from "../../assets/images/LKIcon"
 import {LearningIcon} from "../../assets/images/LearningIcon"
 import {TrainingIcon} from "../../assets/images/TrainingIcon"
 import {DictionaryIcon} from "../../assets/images/DictionaryIcon"
+import {logout} from "../../store/auth/authSlice";
 
 /**
  * Навигационные ссылки
@@ -49,12 +50,13 @@ export const navigationItems = [
  */
 export const SideBar: FC = typedMemo(function SideBar() {
     const location = useLocation();
-
+    const dispatch = useDispatch()
     const exitItem = {
         id: 4,
         label: "Выйти",
         icon: ExitIcon,
-        link: "/"
+        link: "/",
+        onClick: () => dispatch(logout())
     }
 
     return (

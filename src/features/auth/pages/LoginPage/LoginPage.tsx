@@ -17,6 +17,7 @@ import { useMutation } from "react-query";
 import { UserService } from "api/services/user";
 import { login as loginDispatch } from "store/auth/authSlice";
 import { LoginUserRequest } from "core/models/auth/LoginUserRequest";
+import {toast} from "react-toastify";
 
 /**
  * Страница входа
@@ -33,6 +34,13 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
     const {isLoading: isFetching, mutate: login} = useMutation('auth/login', UserService.login, {
         onSuccess: () => {
             dispatch(loginDispatch())
+        },
+        onError: (error) => {
+            // @ts-ignore
+            if(error.response.data.error_description === "invalid_username_or_password")
+                toast.error('Неверный логин или пароль!');
+            else
+                toast.error('Ошибка!');
         }
     })
 

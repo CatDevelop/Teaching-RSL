@@ -4,6 +4,7 @@
     gap: var(--space-m);
     height: min-content;
     max-width: var(--learning-center-block-width);
+    position: relative;
 }
 
 .learningHeader__info {

@@ -126,6 +126,13 @@
     justify-content: center;
     align-items: center;
     max-width: var(--learning-center-block-width);
+    position: relative;
+}
+
+.learningTask__back {
+    position: absolute;
+    top: 30px;
+    left: -50px;
 }
 
 .learningTask__taskContinueContainer {

@@ -28,7 +28,7 @@
 .practiceSelectGif__titleContainer {
     display: flex;
     flex-direction: row;
-    gap: var(--space-xs);
+    gap: var(--space-s);
 }
 
 .practiceSelectGif__title {

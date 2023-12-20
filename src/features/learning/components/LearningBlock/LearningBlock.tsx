@@ -5,6 +5,7 @@ import styles from "./LearningBlock.module.css"
 import {Typography} from "../../../../components/Typography";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
 import clsx from "clsx";
+import {TaskFeedback} from "../../../../components/TaskFeedback";
 
 type Props = PropsWithChildren & ComponentProps & Readonly <{
     iconUrl: string;
@@ -23,6 +24,29 @@ export const LearningBlock: FC<Props> = typedMemo(function LearningBlock(props){
                     className={styles.learningBlock__title}>
                     {props.title}
                 </Typography>
+
+                <TaskFeedback
+                    text="Сообщить об ошибке"
+                    items={
+                        [
+                            {
+                                id: "0",
+                                label: "Мой ответ следовало принять"
+                            },
+                            {
+                                id: "1",
+                                label: "Изображение отсутствует"
+                            },
+                            {
+                                id: "2",
+                                label: "Задание некорректное"
+                            },
+                            {
+                                id: "3",
+                                label: "Что-то ещё пошло не так"
+                            }
+                        ]
+                    }/>
             </div>
             <div className={styles.learningBlock__contentContainer}>
                 {props.children}

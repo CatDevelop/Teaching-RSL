@@ -43,7 +43,7 @@ export const TaskFeedback: FC<Props> = typedMemo(function TaskFeedback(props) {
         <>
             <Button
                 className={clsx(styles.taskFeedback__open, props.className)}
-                variant="faded"
+                variant="light"
                 onClick={onOpen}
                 // endContent={<img src={Feedback} alt="Отправить отзыв"/>}
             >
@@ -53,7 +53,7 @@ export const TaskFeedback: FC<Props> = typedMemo(function TaskFeedback(props) {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Обратная связь</ModalHeader>
+                            <ModalHeader className={styles.taskFeedback__header}>Обратная связь</ModalHeader>
                             <ModalBody className={styles.taskFeedback__feedback}>
                                 <Typography variant="span" className={styles.taskFeedback__aboutFeedback}>
                                     Ваши отзывы помогут нам улучшить работу сервиса. Пожалуйста, дайте нам знать, что

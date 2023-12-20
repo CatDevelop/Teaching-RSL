@@ -34,6 +34,12 @@
     border-color: var(--primary-color);
 }
 
+.button_primary_solid_disabled {
+    background-color: var(--disabled-primary-color);
+    color: var(--on-surface-color);
+    border-color: var(--disabled-primary-color);
+}
+
 .button_link {
     height: auto;
     font-weight: var(--font-weight-m);

@@ -1,5 +1,5 @@
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import React, {FC, useCallback, useState} from "react";
+import React, {FC, useCallback, useEffect, useState} from "react";
 import styles from "./LearningTaskBlock.module.css";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
 import {Card} from "../../../../components/Card";
@@ -8,6 +8,7 @@ import {Button} from "../../../../components/Button";
 import {PracticeCards} from "../PracticeCards";
 import {StepStatus} from "../../../../core/models/StepStatus";
 import {TaskFeedback} from "../../../../components/TaskFeedback";
+import {toast} from "react-toastify";
 
 type Props = ComponentProps & Readonly<{
     task: any;
@@ -29,6 +30,16 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
         setTaskChecked(false)
         setCurrentStepStatus({status: "default"})
     }, [])
+
+    useEffect(() => {
+        console.log(taskCompleted, taskChecked, currentStepStatus)
+        if(taskCompleted && taskChecked) {
+            if(currentStepStatus.status === "success")
+                toast.success("Вы отлично справились!")
+            if(currentStepStatus.status === "error")
+                toast.error("Неверный ответ\nПравильный ответ:\n"+currentStepStatus.message)
+        }
+    }, [taskChecked, taskCompleted, currentStepStatus]);
 
     return (
         <Card className={styles.learningTaskBlock}>
@@ -59,7 +70,11 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                     </Button>
                 }
                 {
-                    (props.task.type === "theory" || (props.task.type !== "theory" && taskChecked)) &&
+                    (
+                        props.task.type === "theory" ||
+                        (props.task.type !== "theory" && taskChecked) ||
+                        (props.task.task.type === "MatchWordAndGif")
+                    ) &&
                     <Button
                         onClick={() => {
                             props.nextStep()
@@ -68,73 +83,24 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                         size="lg"
                         variant="solid"
                         color="primary"
+                        disabled={!taskChecked && props.task.type !== "theory"}
                     >
                         Далее
                     </Button>
                 }
                 {
-                    props.task.type !== "theory" && taskChecked &&
-                    <TaskFeedback
-                        text="Сообщить об ошибке"
-                        items={
-                        [
-                            {
-                                id: "123123",
-                                label: "123123"
-                            },
-                            {
-                                id: "123",
-                                label: "12312322222"
-                            }
-                        ]
-                    }/>
-                    // <Button
-                    //     onClick={props.nextStep}
-                    //     size="lg"
-                    //     variant="faded"
-                    //     color="primary"
-                    // >
-                    //     Сообщить об ошибке
-                    // </Button>
-                }
-                {
-                    props.task.type !== "theory" && !taskChecked && taskCompleted &&
+                    props.task.type !== "theory" && props.task.task.type !== "MatchWordAndGif" && !taskChecked &&
                     <Button
                         onClick={() => setTaskChecked(true)}
                         size="lg"
                         variant="solid"
                         color="primary"
+                        disabled={!taskCompleted}
                     >
                         Проверить
                     </Button>
                 }
             </div>
         </Card>
-        // <div className={clsx(styles.theoryCard)}>
-        //     <LearningBlock iconUrl={TheoryIconSVG} title={"Теория"}>
-        //         <div className={styles.theoryCard__contentContainer}>
-        //             <div className={styles.theoryCard__images}>
-        //                 <SignVideo
-        //                     src={props.wordObject.gifSource}
-        //                     className={styles.theoryCard__gif}
-        //                 />
-        //
-        //                 {
-        //                     props.wordObject.imageSource &&
-        //                     <img
-        //                         rel="preload"
-        //                         src={props.wordObject.imageSource}
-        //                         alt={"Изображение для жеста"}
-        //                         className={styles.theoryCard__image}
-        //                     />
-        //                 }
-        //             </div>
-        //
-        //             <Typography variant="h1" className={styles.theoryCard__word}>
-        //                 {props.wordObject.text}
-        //             </Typography>
-        //         </div>
-        //     </LearningBlock>
-        // </div>
     );
 });
