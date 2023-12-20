@@ -146,6 +146,17 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                                         Пропустить
                                     </Button>
                                 }
+                                {
+                                    currentStep >= 0 && currentStep <= data.words.length - 1 && isDoneTask && !isNotStartModel &&
+                                    <Button
+                                        size={"lg"}
+                                        variant="faded"
+                                        color="primary"
+                                        onClick={next}
+                                    >
+                                        Далее
+                                    </Button>
+                                }
                             </div>}
                         />
                     }
@@ -180,10 +191,10 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                 </div>
 
                 <div className={styles.trainingTask__taskContinueContainer}>
-                    {
-                        isDoneTask &&
-                        <TaskContinue next={next} isRightAnswer={true}/>
-                    }
+                    {/*{*/}
+                    {/*    isDoneTask &&*/}
+                    {/*    <TaskContinue next={next} isRightAnswer={true}/>*/}
+                    {/*}*/}
                     {
                         currentStep === data.words.length &&
                         <div className={styles.trainingTask__toHome}>

@@ -254,7 +254,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                                 currentStep >= 0 && currentStep < theoryCount + practiceCount &&
                                 (
                                     <div
-                                        className={clsx(styles.learningTask__theory, styles.learningTask__startAnimation)}>
+                                        className={clsx(styles.learningTask__theory, styles.learningTask__startAnimation, tasks[currentStep]?.task?.type === "MatchWordAndGif" && styles.learningTask__short)}>
                                         <LearningTaskBlock
                                             task={tasks[currentStep]}
                                             currentStep={currentStep}
@@ -296,15 +296,15 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     {/*    </div>*/}
                     {/*}*/}
 
-                    <div className={styles.learningTask__exitButtonContainer}>
-                        <Button
-                            variant="faded"
-                            color="default"
-                            onClick={openExitModal}
-                        >
-                            В главное меню
-                        </Button>
-                    </div>
+                    {/*<div className={styles.learningTask__exitButtonContainer}>*/}
+                    {/*    <Button*/}
+                    {/*        variant="faded"*/}
+                    {/*        color="default"*/}
+                    {/*        onClick={openExitModal}*/}
+                    {/*    >*/}
+                    {/*        В главное меню*/}
+                    {/*    </Button>*/}
+                    {/*</div>*/}
 
                     {/*<div className={styles.learningTask__taskContainer}>*/}
 

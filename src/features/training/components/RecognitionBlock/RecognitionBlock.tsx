@@ -118,8 +118,12 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     }, [props.intervalID])
 
     useEffect(() => {
-        if (props.signRecognizeText.includes(props.word.recognitionText?.toLowerCase() ?? ''))
+        console.log(props.signRecognizeText, props)
+        if (props.signRecognizeText.includes(props.word.word?.toLowerCase() ?? '')) {
+            console.log("SUCCESS")
             props.onSuccess()
+        }
+
     }, [props.signRecognizeText])
 
     if (!props)
@@ -158,7 +162,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                                         variant="span"
                                         className={clsx(
                                             styles.recognitionBlock__recognizedWord,
-                                            word.toLowerCase() === props.word.recognitionText?.toLowerCase() && styles.recognitionBlock__rightWord
+                                            word.toLowerCase() === props.word.word?.toLowerCase() && styles.recognitionBlock__rightWord
                                         )}
                                     >
                                         {word}

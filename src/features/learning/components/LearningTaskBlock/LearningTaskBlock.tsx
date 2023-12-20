@@ -18,8 +18,8 @@ type Props = ComponentProps & Readonly<{
 }>
 
 /*
-    Общий контейнер для заданий в обучении: теория + практика + управляющие кнопки
-*/
+ * Общий контейнер для заданий в обучении: теория + практика + управляющие кнопки
+ */
 export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock(props) {
     const [taskCompleted, setTaskCompleted] = useState<boolean>(false)
     const [taskChecked, setTaskChecked] = useState<boolean>(false)
@@ -33,11 +33,11 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
 
     useEffect(() => {
         console.log(taskCompleted, taskChecked, currentStepStatus)
-        if(taskCompleted && taskChecked) {
-            if(currentStepStatus.status === "success")
+        if (taskCompleted && taskChecked) {
+            if (currentStepStatus.status === "success")
                 toast.success("Вы отлично справились!")
-            if(currentStepStatus.status === "error")
-                toast.error("Неверный ответ\nПравильный ответ:\n"+currentStepStatus.message)
+            if (currentStepStatus.status === "error")
+                toast.error("Неверный ответ\nПравильный ответ:\n" + currentStepStatus.message)
         }
     }, [taskChecked, taskCompleted, currentStepStatus]);
 

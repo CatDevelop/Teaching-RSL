@@ -67,6 +67,9 @@
     max-width: 100%;
 }
 
+.learningTask__short {
+    height: unset !important;
+}
 
 .learningTask__progressBarContainer {
     width: 678px;

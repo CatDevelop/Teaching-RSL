@@ -16,6 +16,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
+    max-width: var(--learning-center-block-width);
     /*display: grid;*/
     /*grid-template-columns: var(--max-camera-width) 1fr;*/
     /*grid-template-rows: 50px 1fr 100px;*/
