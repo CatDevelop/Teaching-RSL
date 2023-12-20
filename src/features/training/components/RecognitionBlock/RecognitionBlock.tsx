@@ -34,11 +34,15 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     const onDisconnectFromModal = useCallback(() => {
         console.log("Disconnect");
+        socket.connect()
     }, [])
 
     const onReceiveText = useCallback((text: string) => {
         console.log(text)
-        props.setSignRecognizeText([...props.signRecognizeText, text.toLowerCase()])
+        let results: string[] = Object.values(JSON.parse(text))
+        console.log(results)
+        if(props.signRecognizeText.at(-1) !== results[0].toLowerCase())
+            props.setSignRecognizeText([...props.signRecognizeText, results[0].toLowerCase()])
     }, [props.setSignRecognizeText, props.signRecognizeText, props])
 
     useEffect(() => {
