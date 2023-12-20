@@ -50,7 +50,10 @@ export const DictionaryWordBlock: FC<Props> = typedMemo(function DictionaryWordB
         <Card className={clsx(props.className, styles.dictionaryWordBlock)}>
             <Typography variant="h3">{word.word}</Typography>
             <div className={styles.dictionaryWordBlock__imageContainer}>
-                <img src={word.illustrations[0]?.path ?? ''} className={styles.dictionaryWordBlock__image}/>
+                {word.illustrations[0].fileType === 'Jpeg' ?
+                    <img src={word.illustrations[0]?.path ?? ''} className={styles.dictionaryWordBlock__image}/> :
+                    <video src={word.illustrations[0]?.path ?? ''} className={styles.dictionaryWordBlock__image} autoPlay loop muted/>
+                }
             </div>
             <div className={styles.dictionaryWordBlock__actions}>
                 <Button color="primary" variant="solid" onClick={() => navigate(`/dictionary/learning/${props.selectedWordId}`)}>Потренироваться</Button>
