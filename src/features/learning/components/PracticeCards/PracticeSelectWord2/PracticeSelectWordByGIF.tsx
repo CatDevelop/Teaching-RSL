@@ -11,6 +11,7 @@ import {SelectButton} from "../../SelectEntity/SelectButton";
 import {StepStatus} from "../../../../../core/models/StepStatus";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {getSelectEntityStatus} from "../../SelectEntity/SelectContainer/SelectContainer";
+import {getInitialSelectObjectsState} from "../../../../../core/utils/getInitialSelectObjectsState";
 
 type Props = ComponentProps & Readonly<{
     rightSelect: WordFormServer;
@@ -25,11 +26,20 @@ type Props = ComponentProps & Readonly<{
  * Практика "Выбери слово"
  */
 export const PracticeSelectWordByGIF: FC<Props> = typedMemo(function PracticeSelectWordByGIF(props) {
-    const [allVariants] = useState<(string | null)[]>(
+    const [allVariants, setAllVariants] = useState<(string | null)[]>(
         shuffleArray<(string | null)>([props.rightSelect.firstRepresentation, ...props.otherSelects])
     )
     const [currentSelect, setCurrentSelect] = useState<string | null>()
 
+    useEffect(() => {
+        setAllVariants(shuffleArray<(string | null)>([props.rightSelect.firstRepresentation, ...props.otherSelects]))
+    }, [props.rightSelect, props.otherSelects]);
+
+    useEffect(() => {
+        setCurrentSelect(null)
+        props.setIsTaskReadyToCheck(false)
+        props.setStatus({status: "default"})
+    }, [allVariants]);
 
     useEffect(() => {
         if (props.checked) {
