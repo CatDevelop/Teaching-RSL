@@ -12,14 +12,14 @@ root.render(
             <MyApp/>
         </NextUIProvider>
         <ToastContainer
+            style={{borderRadius: "16px"}}
             position="bottom-right"
-            autoClose={3000}
+            autoClose={5000}
             hideProgressBar
             newestOnTop={false}
             closeOnClick
             rtl={false}
             pauseOnFocusLoss={false}
-            draggable
             pauseOnHover
             theme="light"
         />

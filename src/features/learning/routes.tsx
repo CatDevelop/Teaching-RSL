@@ -1,15 +1,32 @@
 import React from 'react';
 import {RouteObject} from "react-router-dom";
 import {LearningTaskPage} from "./pages/LearningTaskPage";
+import {LearningCatalogPage} from "./pages/LearningCatalogPage";
+import HomeLayout from "../../components/WelcomeLayout";
+import {TrainingPage} from "../training/pages/TrainingPage";
+import WithSideBarLayout from "../../components/WithSideBarLayout";
 
 export const learningRoutes: RouteObject[] = [
     {
         path: 'learning',
-        children:[
+        element: <WithSideBarLayout/>,
+        children: [
             {
                 path: '',
-                element: <LearningTaskPage />,
-            }
+                element: <LearningCatalogPage/>,
+            },
+
         ],
-    }
+    },
+    {
+        path: 'learning',
+        element: <HomeLayout/>,
+        children: [
+            {
+                path: ':id',
+                element: <LearningTaskPage/>,
+            },
+
+        ],
+    },
 ]

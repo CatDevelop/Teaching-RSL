@@ -27,12 +27,12 @@
 
 .learningTask {
     display: grid !important;
-    grid-template-columns: 230px 1fr 230px;
+    grid-template-columns: 218px 1fr 218px;
     grid-template-rows: 70px calc(100vh - 140px - var(--page-padding-m) * 2 - var(--space-m) * 2) 70px;
     grid-template-areas:
-            "header header header"
-            "b task c"
-            "d buttons e";
+            "logo content exit"
+            "b content c"
+            "d content e";
     align-items: center !important;
     justify-items: center;
     gap: var(--space-m);
@@ -52,6 +52,26 @@
 
 .learningTask__logoContainer {
     cursor: pointer;
+    grid-area: logo;
+}
+
+.learningTask__contentContainer {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: start;
+    gap: var(--space-l);
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+
+
+.learningTask__progressBarContainer {
+    width: 678px;
+    grid-area: progress;
+    animation: showUp 0.5s ease-in;
 }
 
 .learningTask__exitButtonContainer {
@@ -105,6 +125,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: var(--learning-center-block-width);
+    position: relative;
+}
+
+.learningTask__back {
+    position: absolute;
+    top: 30px;
+    left: -50px;
 }
 
 .learningTask__taskContinueContainer {

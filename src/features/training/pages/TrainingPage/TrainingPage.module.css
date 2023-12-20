@@ -101,7 +101,7 @@
 
 .trainingTask__startCardDescription {
     font-family: var(--main-font);
-    font-size: сalc(var(--font-size-m) * 0.9);
+    font-size: calc(var(--font-size-m) * 0.9);
     text-align: center;;
     color: var(--disabled-button-color);
     font-weight: var(--font-weight-s);

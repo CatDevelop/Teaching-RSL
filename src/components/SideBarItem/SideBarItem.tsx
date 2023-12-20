@@ -10,7 +10,8 @@ type Props = {
         id: number,
         label: string,
         icon: React.JSX.Element,
-        link: string
+        link: string,
+        onClick?: () => void
     },
     isActive: boolean,
 };
@@ -19,6 +20,7 @@ export const SideBarItem: FC<Props> = typedMemo(function SideBarItem(props) {
     return (
         <NavLink
             to={props.item.link}
+            onClick={props.item.onClick}
             className={clsx(styles.sideBarItem__container, props.isActive && styles.sideBarItem_active)}
         >
             {props.item.icon}

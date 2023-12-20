@@ -8,6 +8,14 @@ export namespace ApiUrlsConfig {
 	/** API ссылки пользователя. */
 	export const user = {
 		register: toUserApi('user/register'),
+		changePassword: toUserApi('user/password'),
+		restorePassword: (email: string) => toUserApi(`user/password/${email}`)
+	}
+	
+	/** API ссылки пользователя. */
+	export const userHistory = {
+		getThemes: toUserApi('userhistory/themes'),
+		getStatistics: toUserApi('userhistory/levels'),
 		getTestHistory: toUserApi('testhistory'),
 	}
 
@@ -27,6 +35,11 @@ export namespace ApiUrlsConfig {
 	export const unit = {
 		getList: toApi('unit/list'),
 		getListWithLevels: () => toApi('unit/list/with-levels'),
+	};
+
+	/** API ссылки обучения. */
+	export const learning = {
+		getLevelTasks: (levelId: string) => toApi(`level/tasks/${levelId}`)
 	};
 
 	/** API ссылки тренировок. */
