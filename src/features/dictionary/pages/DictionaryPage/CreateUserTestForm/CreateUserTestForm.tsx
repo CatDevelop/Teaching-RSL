@@ -11,6 +11,7 @@ import { useMutation } from "react-query";
 import { TrainingService } from "api/services/training";
 import { useNavigate } from "react-router-dom";
 import { SelectUserTestWords } from "./SelectUserTestWords";
+import { UserTestStorageService } from "api/services/userTestStorageService";
 
 type Props = Readonly<{
     triggerComponent: (onOpen: () => void) => ReactElement;
@@ -28,7 +29,6 @@ export const CreateUserTestForm: FC<Props> = typedMemo(function CreateUserTestFo
         handleSubmit,
         setValue,
         reset,
-        resetField,
         formState: { errors },
     } = useForm<CreateUserTestRequest>({resolver: yupResolver(validationSchema) as Resolver<CreateUserTestRequest>})
 
@@ -41,6 +41,7 @@ export const CreateUserTestForm: FC<Props> = typedMemo(function CreateUserTestFo
 
     const onSubmit = useCallback((data: CreateUserTestRequest) => {
         create(data)
+        data.wordIdList?.forEach(id => UserTestStorageService.deleteWord(id));
     }, [create]) 
 
     useEffect(() => {

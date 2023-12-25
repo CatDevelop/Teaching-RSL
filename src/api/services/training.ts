@@ -23,7 +23,7 @@ export namespace TrainingService {
     }
 
     export async function createUserTest(formData: CreateUserTestRequest): Promise<CreateTestResponse> {
-        const {data} = await http.post<CreateTestResponseDto>(ApiUrlsConfig.training.postTestCreate, CreateUserTestRequestMapper.toDto(formData));
+        const {data} = await http.post<CreateTestResponseDto>(ApiUrlsConfig.training.postUserTestCreate, CreateUserTestRequestMapper.toDto(formData));
         return CreateTestResponseMapper.fromDto(data);
     }
 }
