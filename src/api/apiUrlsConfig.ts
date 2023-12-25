@@ -9,7 +9,8 @@ export namespace ApiUrlsConfig {
 	export const user = {
 		register: toUserApi('user/register'),
 		changePassword: toUserApi('user/password'),
-		restorePassword: (email: string) => toUserApi(`user/password/${email}`)
+		restorePassword: (email: string) => toUserApi(`user/password/${email}`),
+		getWelcomeUserInfo: toUserApi('user'),
 	}
 	
 	/** API ссылки пользователя. */

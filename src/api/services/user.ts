@@ -9,6 +9,8 @@ import { ChangePasswordRequestMapper } from "core/mappers/user/ChangePasswordReq
 import { UserTestHistoryRecordResponse } from "core/models/user/UserTestHistoryRecordResponse";
 import { UserTestHistoryRecordResponseDto } from "core/dtos/user/UserTestHistoryRecordResponseDto";
 import { UserTestHistoryRecordResponseMapper } from "core/mappers/user/UserTestHistoryRecordResponseMapper";
+import { GetWelcomeBackInfoResponse } from "core/models/user/GetWelcomeBackInfoResponse";
+import { GetWelcomeBackInfoResponseMapper } from "core/mappers/user/GetWelcomeBackInfoResponseMapper";
 
 export namespace UserService {
     export async function register(form: RegisterUserRequest): Promise<void> {
@@ -35,5 +37,10 @@ export namespace UserService {
     export async function getTestHistory(): Promise<UserTestHistoryRecordResponse[]> {
         return http.get<UserTestHistoryRecordResponseDto[]>(ApiUrlsConfig.userHistory.getTestHistory)
             .then(({data}) => data.map(item => UserTestHistoryRecordResponseMapper.fromDto(item)));
+    }
+
+    export async function getWelcomeUserInfo(): Promise<GetWelcomeBackInfoResponse> {
+        return http.get<GetWelcomeBackInfoResponse>(ApiUrlsConfig.user.getWelcomeUserInfo)
+            .then(({data}) => GetWelcomeBackInfoResponseMapper.fromDto(data));
     }
 }
