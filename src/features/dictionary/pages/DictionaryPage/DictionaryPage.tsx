@@ -17,7 +17,7 @@ import {Input, Spinner} from "@nextui-org/react";
 import { SelectWordBlock } from "./SelectWordBlock";
 import { DictionaryWordBlock } from "./DictionaryWordBlock";
 import {Button} from "../../../../components/Button";
-import {CreateDictionaryForm} from "./CreateDictionaryForm";
+import { CreateUserTestForm } from "./CreateUserTestForm";
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
     const [search, setSearch] = useState('');
@@ -51,7 +51,7 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                                 Здесь можно найти абсолютно все жесты
                             </Typography>
 
-                            <CreateDictionaryForm
+                            <CreateUserTestForm
                                 triggerComponent={onOpen => <Button color="primary" variant="light" onClick={onOpen}>
                                     Создать тест
                                 </Button>}

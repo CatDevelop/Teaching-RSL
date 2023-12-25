@@ -1,9 +1,9 @@
 export class SelectItemType<TValue> {
-    public readonly key: string;
+    public readonly label: string;
     public readonly value: TValue;
 
-    public constructor({key, value}: SelectItemTypeProps<TValue>) {
-        this.key = key;
+    public constructor({label, value}: SelectItemTypeProps<TValue>) {
+        this.label = label;
         this.value = value;
     }
 }
