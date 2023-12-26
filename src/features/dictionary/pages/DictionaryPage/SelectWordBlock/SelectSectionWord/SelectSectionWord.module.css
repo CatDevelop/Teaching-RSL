@@ -26,6 +26,8 @@
 
 .selectSectionWord__sectionWords {
     display: flex;
+    width: calc((100% - var(--space-s))/2);
+    overflow: hidden;
     flex-direction: column;
     font-size:var(--font-size-xs);
     gap: calc(var(--space-m) * 0.75);
@@ -34,6 +36,9 @@
 .selectSectionWord__word {
     color: var(--disabled-button-color);
     cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .selectSectionWord__word:hover {
