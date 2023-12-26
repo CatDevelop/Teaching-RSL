@@ -36,7 +36,7 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
                     </Typography>
                     <div className={styles.userTestPreview__info}>
                         <Typography className={styles.userTestPreview__description}>{props.wordsCount} слов</Typography>
-                        <div className={styles.userTestPreview__separator}></div>
+                        {/*<div className={styles.userTestPreview__separator}></div>*/}
                         {/*<Button color="primary" variant="light" className={styles.userTestPreview__button} onClick={() => {}}>*/}
                         {/*    Скопировать ссылку*/}
                         {/*</Button>*/}
