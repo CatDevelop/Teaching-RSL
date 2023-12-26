@@ -11,12 +11,13 @@ export namespace ApiUrlsConfig {
 		changePassword: toUserApi('user/password'),
 		restorePassword: (email: string) => toUserApi(`user/password/${email}`)
 	}
-	
+
 	/** API ссылки пользователя. */
 	export const userHistory = {
 		getThemes: toUserApi('userhistory/themes'),
 		getStatistics: toUserApi('userhistory/levels'),
 		getTestHistory: toUserApi('testhistory'),
+		sendLevelResult: toUserApi('userhistory/send-level-result'),
 	}
 
 	/** API ссылки авторизации (sso) */

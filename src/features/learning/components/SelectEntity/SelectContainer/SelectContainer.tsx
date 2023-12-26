@@ -2,7 +2,6 @@ import {typedMemo} from "../../../../../core/utils/typedMemo";
 import React, {FC, PropsWithChildren, useCallback} from "react";
 import styles from "./SelectContainer.module.css";
 import clsx from "clsx";
-import {WordFormServer} from "../../../../../core/models/Word";
 import {motion} from "framer-motion"
 import {SelectState} from "../../../../../core/models/SelectState";
 
@@ -42,7 +41,6 @@ export const SelectContainer: FC<SelectContainerProps> = typedMemo(function Sele
 });
 
 export const getSelectEntityStatus = (checked: boolean, selectEntity: string | undefined | null, currentVariant: string | null, rightVariant: string | null) => {
-    console.log("GET", checked, selectEntity, currentVariant, rightVariant)
     let result: SelectState = "disabled";
     if (!checked) {
         result = selectEntity === currentVariant ? "checked" : "default"

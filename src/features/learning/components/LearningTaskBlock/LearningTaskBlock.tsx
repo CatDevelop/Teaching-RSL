@@ -15,6 +15,8 @@ type Props = ComponentProps & Readonly<{
     currentStep: number;
     nextStep: () => void;
     prevStep: () => void;
+    rightWords: string[];
+    setRightWords: React.Dispatch<React.SetStateAction<string[]>>;
 }>
 
 /*
@@ -31,15 +33,30 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
         setCurrentStepStatus({status: "default"})
     }, [])
 
+    const addRightWord = () => {
+        if (props.task.task.type === "MatchWordAndGif")
+            props.task.task.conditions.map((condition: { wordId: string; }) => {
+                if (!props.rightWords.includes(condition.wordId))
+                    props.setRightWords([...props.rightWords, condition.wordId])
+            })
+        else {
+            if (!props.rightWords.includes(props.task.task.rightSelect.wordId))
+                props.setRightWords([...props.rightWords, props.task.task.rightSelect.wordId])
+        }
+    }
+
     useEffect(() => {
-        console.log(taskCompleted, taskChecked, currentStepStatus)
+        console.log(taskCompleted, taskChecked, currentStepStatus, props.currentStep)
         if (taskCompleted && taskChecked) {
-            if (currentStepStatus.status === "success")
+            if (currentStepStatus.status === "success") {
+                addRightWord()
                 toast.success("Вы отлично справились!")
+            }
+
             if (currentStepStatus.status === "error")
                 toast.error("Неверный ответ\nПравильный ответ:\n" + currentStepStatus.message)
         }
-    }, [taskChecked, taskCompleted, currentStepStatus]);
+    }, [taskChecked, taskCompleted, currentStepStatus, props.currentStep]);
 
     return (
         <Card className={styles.learningTaskBlock}>
@@ -77,8 +94,8 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                     ) &&
                     <Button
                         onClick={() => {
-                            props.nextStep()
                             resetBlock()
+                            props.nextStep()
                         }}
                         size="lg"
                         variant="solid"
@@ -91,7 +108,10 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                 {
                     props.task.type !== "theory" && props.task.task.type !== "MatchWordAndGif" && !taskChecked &&
                     <Button
-                        onClick={() => setTaskChecked(true)}
+                        onClick={() => {
+                            setTaskChecked(true)
+                            // checkTask()
+                        }}
                         size="lg"
                         variant="solid"
                         color="primary"

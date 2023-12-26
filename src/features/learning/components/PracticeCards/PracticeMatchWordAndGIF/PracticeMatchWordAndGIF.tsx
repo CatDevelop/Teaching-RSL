@@ -76,7 +76,6 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
         if (clickWordObject) {
             toDefaultState()
             let objectIndexInState = selectObjectState.findIndex(word => word.wordObject.firstRepresentation === clickWordObject)
-            console.log(selectObjectState, objectIndexInState)
             if (selectObjectState[objectIndexInState].state === "default")
                 setSelectObjectState(toDefaultState().with(objectIndexInState, {
                     wordObject: selectObjectState[objectIndexInState].wordObject,
@@ -141,12 +140,13 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
 
     const checkTaskStatus = useCallback(() => {
         console.log(countOfCompleted)
-        if (countOfCompleted === 4) {
+        if (countOfCompleted >= 4) {
             props.setIsTaskReadyToCheck(true)
             props.setStatus({status: "success"})
             props.setTaskChecked(true)
         } else {
             props.setIsTaskReadyToCheck(false)
+            props.setStatus({status: "default"})
             props.setTaskChecked(false)
         }
     }, [props.setIsTaskReadyToCheck, props.setStatus, countOfCompleted, props.setTaskChecked])
@@ -160,12 +160,6 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
         <div className={clsx(styles.practiceMatchWordAndGIF)}>
             <LearningBlock iconUrl={PracticeIconSVG} title={"Соотнесите слова и жесты"} className={styles.practiceMatchWordAndGIF__card}>
                 <div className={styles.practiceMatchWordAndGIF__contentContainer}>
-                    {/*<div className={styles.practiceMatchWordAndGIF__titleContainer}>*/}
-                    {/*    <Typography variant="h3" className={styles.practiceMatchWordAndGIF__title}>*/}
-                    {/*        Соотнесите слова и жесты*/}
-                    {/*    </Typography>*/}
-                    {/*</div>*/}
-
                     <div className={styles.practiceMatchWordAndGIF__taskContainer}>
                         <div className={styles.practiceMatchWordAndGIF__taskContainer_buttons}>
                             {

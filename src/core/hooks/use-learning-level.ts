@@ -4,11 +4,8 @@ import {LearningService} from "../../api/services/learning";
 import generateLearningLevel from "../utils/generateLearningLevel";
 
 export type level = {
-    theory: {
-        wordId: string;
-        firstRepresentation: string | null;
-        secondRepresentation: string | null;
-    }[];
+    theoryCount: number,
+    practiceCount: number,
     tasks: any[]
 }
 

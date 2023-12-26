@@ -3,7 +3,6 @@ import React, {FC} from "react";
 import {Button} from "../../../../../components/Button";
 import styles from "./SelectButton.module.css";
 import clsx from "clsx";
-import {Word, WordFormServer} from "../../../../../core/models/Word";
 import {colorsByState, SelectState} from "../../../../../core/models/SelectState";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
 

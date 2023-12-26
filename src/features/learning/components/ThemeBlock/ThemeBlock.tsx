@@ -13,7 +13,7 @@ type Props = {
     units: GetUnitWithLevelsResponse[]
 }
 
-/** 
+/**
  * Компонент для тестов, не войдёт в прод
  */
 export const ThemeBlock: FC<Props> = typedMemo(function ThemeBlock(props) {
@@ -24,16 +24,24 @@ export const ThemeBlock: FC<Props> = typedMemo(function ThemeBlock(props) {
                     {props.name}
                 </Typography>
                 <Typography variant="p" className={styles.themeBlock__titleContainer__wordCount}>
-                    33 / 100
+                    0 / {props.allWordsCount}
                 </Typography>
             </div>
 
             <div className={styles.themeBlock__units}>
                 {
                     props.units ?
-                    props.units.map(unit => {
-                            return <UnitBlock id={unit.id} name={unit.name} completeWordsCount={0} allWordsCount={unit.wordsCount} levels={unit.levels}/>
-                    })
+                        props.units.map(unit => {
+                            return (
+                                <UnitBlock
+                                    id={unit.id}
+                                    name={unit.name}
+                                    completeWordsCount={0}
+                                    allWordsCount={unit.wordsCount}
+                                    levels={unit.levels}
+                                />
+                            )
+                        })
                         :
                         <p>Нет разделов!</p>
                 }

@@ -22,20 +22,14 @@ export const LearningHeader: FC<Props> = typedMemo(function LearningHeader(props
     return (
         <Card className={styles.learningHeader}>
             <div className={styles.learningHeader__info}>
-                <div className={styles.learningHeader__nameContainer}>
-                    <Typography
-                        variant="h3"
-                        className={styles.learningHeader__name}
-                    >
-                        {props.name}
-                    </Typography>
-                    {/*<Typography*/}
-                    {/*    variant="p"*/}
-                    {/*    className={styles.learningHeader__wordsCount}*/}
-                    {/*>*/}
-                    {/*    {10} из {12} слов пройдено*/}
-                    {/*</Typography>*/}
-                </div>
+                {/*<div className={styles.learningHeader__nameContainer}>*/}
+                {/*    <Typography*/}
+                {/*        variant="h3"*/}
+                {/*        className={styles.learningHeader__name}*/}
+                {/*    >*/}
+                {/*        {props.name}*/}
+                {/*    </Typography>*/}
+                {/*</div>*/}
                 <Typography
                     variant="p"
                     className={styles.learningHeader__type}

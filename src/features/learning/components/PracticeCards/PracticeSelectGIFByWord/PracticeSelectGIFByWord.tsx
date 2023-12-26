@@ -3,9 +3,7 @@ import React, {FC, useEffect, useState} from "react";
 import styles from "./PracticeSelectGIFByWord.module.css";
 import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
-import PracticeIconSVG from "../../../../../assets/images/PracticeIcon.svg"
-import {LearningBlock} from "../../LearningBlock";
-import {Word, WordFormServer} from "../../../../../core/models/Word";
+import {WordFormServer} from "../../../../../core/models/Word";
 import {Typography} from "../../../../../components/Typography";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";

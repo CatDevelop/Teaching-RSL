@@ -20,6 +20,7 @@ import {ModelWarning} from "../../components/ModelWarning/ModelWarning";
 import {socket} from "../../../../core/utils/connectToModal";
 import {BySberAI} from "../../../../components/BySberAI";
 import {LearningHeader} from "../../../learning/components/LearningHeader";
+import ResultImage from "../../../../assets/images/ResultTrainingImage.svg"
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
@@ -32,7 +33,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const [countSkippedWords, setCountSkippedWords] = useState(0);
     const [isDoneTask, setIsDoneTask] = useState(false);
     const [intervalID, setIntervalID] = useState<TimeoutId>()
-    const [currentStep, setCurrentStep] = useState(-1)
+    const [currentStep, setCurrentStep] = useState(0)
     const [isNotStartModel, setIsNotStartModel] = useState(false)
 
     const getTaskResult = useCallback(() => {
@@ -169,12 +170,12 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     {
                         currentStep === data.words.length &&
                         <div className={styles.trainingTask__result}>
-                            {/*<img*/}
-                            {/*    src={ResultImage}*/}
-                            {/*    rel="preload"*/}
-                            {/*    className={styles.trainingTask__resultImage}*/}
-                            {/*    alt="Иконка результата"*/}
-                            {/*/>*/}
+                            <img
+                                src={ResultImage}
+                                rel="preload"
+                                className={styles.trainingTask__resultImage}
+                                alt="Иконка результата"
+                            />
                             <Typography variant="h2" className={styles.trainingTask__resultTitle}>
                                 Поздравляем, вы освоили несколько новых жестов!<br/>Благодарим за участие!
                             </Typography>

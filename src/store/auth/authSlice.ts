@@ -19,7 +19,7 @@ export const authSlice = createSlice({
         logout: (state) => {
             console.log("Logout")
             state.isAuth = false;
-            LocalStorageService.remove("SECRET")
+            LocalStorageService.remove("Teaching-RSL-SECRET")
         },
     },
 })

@@ -1,10 +1,9 @@
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import React, {Dispatch, FC, SetStateAction} from "react";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
-import {taskType} from "../../../../core/data";
-import {PracticeSelectWordByGIF} from "./PracticeSelectWord2";
+import {PracticeSelectWordByGIF} from "./PracticeSelectWord";
 import {PracticeSelectGIFByWord} from "./PracticeSelectGIFByWord";
-import {PracticeMatchWordAndGIF} from "./PracticeMatchWordAndGIF2";
+import {PracticeMatchWordAndGIF} from "./PracticeMatchWordAndGIF";
 import {StepStatus} from "../../../../core/models/StepStatus";
 
 type Props = ComponentProps & Readonly<{

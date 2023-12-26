@@ -4,11 +4,24 @@
     gap: var(--space-m);
 }
 
+.unitBlock__titleContainer {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-m);
+    align-items: center;
+}
+
 .unitBlock__name {
     font-family: var(--main-font);
     font-weight: var(--font-weight-s);
     font-size: var(--font-size-m);
     line-height: var(--font-size-m);
+}
+
+.unitBlock__titleContainer__wordCount {
+    line-height: var(--font-size-m);
+    color: var(--thirdly-text-color);
+    font-weight: var(--font-weight-m);
 }
 
 .unitBlock__levels {

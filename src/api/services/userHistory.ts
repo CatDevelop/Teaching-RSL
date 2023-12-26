@@ -4,6 +4,9 @@ import { UserThemeHistoryRecordResponseDto } from "core/dtos/userHistory/UserThe
 import { GetUserLevelStatisticResponseMapper } from "core/mappers/userHistory/GetUserLevelStatisticResponseMapper";
 import { UserThemeHistoryRecordResponseMapper } from "core/mappers/userHistory/UserThemeHistoryRecordResponseMapper";
 import { GetUserLevelStatisticResponse } from "core/models/userHistory/GetUserLevelStatisticResponse";
+import {SendLevelResultRequestMapper} from "../../core/mappers/userHistory/SendLevelResultRequestMapper";
+import {SendLevelResultRequest} from "../../core/models/userHistory/SendLevelResultRequest";
+import {SendLevelResultRequestDto} from "../../core/dtos/userHistory/SendLevelResultResponseDto";
 
 export namespace UserHistoryService {
     export async function getThemes(){
@@ -14,5 +17,10 @@ export namespace UserHistoryService {
     export async function getStatistics(){
         const {data} = await http.get<GetUserLevelStatisticResponse>(ApiUrlsConfig.userHistory.getStatistics);
         return GetUserLevelStatisticResponseMapper.fromDto(data);
+    }
+
+    export async function sendLevelResult(formData: SendLevelResultRequest){
+        const {data} = await http.post<SendLevelResultRequestDto>(ApiUrlsConfig.userHistory.sendLevelResult, SendLevelResultRequestMapper.toDTO(formData));
+        return;
     }
 }

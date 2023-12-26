@@ -11,7 +11,6 @@ import {SelectButton} from "../../SelectEntity/SelectButton";
 import {StepStatus} from "../../../../../core/models/StepStatus";
 import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {getSelectEntityStatus} from "../../SelectEntity/SelectContainer/SelectContainer";
-import {getInitialSelectObjectsState} from "../../../../../core/utils/getInitialSelectObjectsState";
 
 type Props = ComponentProps & Readonly<{
     rightSelect: WordFormServer;
@@ -61,9 +60,6 @@ export const PracticeSelectWordByGIF: FC<Props> = typedMemo(function PracticeSel
                     <SignVideo src={props.rightSelect.secondRepresentation} className={styles.practiceSelectWord__signVideo}/>
 
                     <div className={styles.practiceSelectWord__buttonsContainer}>
-                        {/*<Typography variant="h3" className={styles.practiceSelectWord__title}>*/}
-                        {/*    Выбери верное слово*/}
-                        {/*</Typography>*/}
                         {
                             allVariants?.map(variant => (
                                 <SelectButton
