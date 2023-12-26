@@ -48,6 +48,14 @@ export const SelectFoundWord: FC<Props> = typedMemo(function SelectFoundWord(pro
             </div>
 
             <ScrollBox className={styles.selectFoundWord__scroll}>
+                {
+                    words!.slice(Math.ceil(words!.length / 2)).length === 0 &&
+                    <Typography
+                        variant='p'
+                    >
+                        Ничего не найдено
+                    </Typography>
+                }
             <div className={styles.selectFoundWord__sectionWords}>
                 {words!.slice(0, Math.ceil(words!.length / 2)).map((word: any, i: number) => (
                     <Typography
