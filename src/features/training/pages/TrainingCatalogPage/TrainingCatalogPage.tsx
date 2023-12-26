@@ -35,7 +35,7 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
                         >
                             Потренируйся в воспроизведении жестов, а мы поможем
                         </Typography>
-                        <Button color="primary" variant="light">Начать случайный тест</Button>
+                        {/*<Button color="primary" variant="light">Начать случайный тест</Button>*/}
                     </div>
                 </Card>
                 <Suspense fallback={<Spinner className={styles.trainingCatalog__loading}/>}>
