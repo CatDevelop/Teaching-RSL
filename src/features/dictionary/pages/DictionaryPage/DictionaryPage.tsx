@@ -59,21 +59,22 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
 
                     </div>
                 </Card>
-                <Suspense fallback={<Spinner className={styles.dictionary__loading}/>}>
-                    <div className={styles.dictionary__chooseWordBlock}>
-                        <Input
-                            placeholder="Поиск"
-                            classNames={{
-                                inputWrapper: [styles.dictionary__wordSearch],
-                                input: [styles.dictionary__wordSearchInput],
-                            }}
-                            onChange={changeSearch}
-                            onBlur={blurSearch}
-                            variant="faded"
-                        />
+
+                <div className={styles.dictionary__chooseWordBlock}>
+                    <Input
+                        placeholder="Поиск"
+                        classNames={{
+                            inputWrapper: [styles.dictionary__wordSearch],
+                            input: [styles.dictionary__wordSearchInput],
+                        }}
+                        onChange={changeSearch}
+                        onBlur={blurSearch}
+                        variant="faded"
+                    />
+                    <Suspense fallback={<Spinner className={styles.dictionary__loading}/>}>
                         <DictionaryWordBlock selectedWordId={selectedWordId}/>
-                    </div>
-                </Suspense>
+                    </Suspense>
+                </div>
                 <Suspense fallback={<Spinner/>}>
                     <SelectWordBlock
                         selectWord={setSelectedWordId}
