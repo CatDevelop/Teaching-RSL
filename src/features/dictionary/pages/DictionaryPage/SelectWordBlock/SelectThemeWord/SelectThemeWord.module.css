@@ -18,21 +18,31 @@
 
 .selectThemeWord__scroll {
     display: flex;
-    align-items: start;
-    justify-content: space-between;
+    flex-direction: column;
     width: 100%;
     gap: var(--space-l);
+}
+
+.selectThemeWord__theme {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-s);
 }
 
 .selectThemeWord__sectionName {
     margin-bottom: var(--space-m);
     font-weight: var(--font-weight-l);
     font-size: var(--font-size-m);
+    width: 100%;
     color: #000;
 }
 
 .selectThemeWord__sectionWords {
     display: flex;
+    width: calc((100% - var(--space-s))/2);
+    overflow: hidden;
     flex-direction: column;
     font-size:var(--font-size-xs);
     gap: calc(var(--space-m) * 0.75);
@@ -41,6 +51,9 @@
 .selectThemeWord__word {
     color: var(--disabled-button-color);
     cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .selectThemeWord__word:hover {

@@ -1,0 +1,49 @@
+.selectUserTestWords {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--nextui-default-200) / var(--nextui-default-200-opacity, var(--tw-border-opacity)));
+}
+
+.selectUserTestWords__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    margin-bottom: var(--space-s);
+}
+
+.selectUserTestWords__title {
+    font-size: calc(var(--font-size-s) * 0.85);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.selectUserTestWords__listTitle {
+    font-weight: var(--font-weight-l)
+}
+
+.selectUserTestWords__wordCount {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.selectUserTestWords__wordCount::before {
+    content: '';
+    width: 2px;
+    height: 2px;
+    background-color: var(--secondary-text-color);
+    border-radius: 100%; 
+}
+
+.selectUserTestWords__resetButton {
+    height: auto;
+    font-size: var(--font-size-s);
+}
+
+.selectUserTestWords__words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    align-items: center;
+}
