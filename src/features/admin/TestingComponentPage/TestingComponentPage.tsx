@@ -142,7 +142,7 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                 <Range/>
 
                 <h2 className={styles.componentTitle}>Карточка пользовательского теста</h2>
-                <UserTestPreview name={"ДЗ №12 от 31.08.2023"} wordsCount={12} id={1}/>
+                <UserTestPreview name={"ДЗ №12 от 31.08.2023"} wordsCount={12} id={"1"}/>
 
                 <h2 className={styles.componentTitle}>Карточка системного теста</h2>
                 <SystemTestPreview id={"1"} name={"Название"} wordsCount={10}/>

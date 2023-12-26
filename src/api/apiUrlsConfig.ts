@@ -47,6 +47,7 @@ export namespace ApiUrlsConfig {
 	export const training = {
 		postTestCreate: toApi('training'),
 		postUserTestCreate: toApi('training/user'),
+		allUserTest: toApi('training/user/list'),
 		getTest: (id: string) => toApi(`training/${id}`)
 	};
 

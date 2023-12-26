@@ -12,10 +12,10 @@ import { useNavigate } from "react-router-dom";
 type Props = ComponentProps & Readonly<{
     name: string;
     wordsCount: number;
-    id: number;
+    id: string;
 }>
 
-/** 
+/**
  * User test preview
  */
 export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(props){
@@ -37,14 +37,14 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
                     <div className={styles.userTestPreview__info}>
                         <Typography className={styles.userTestPreview__description}>{props.wordsCount} слов</Typography>
                         <div className={styles.userTestPreview__separator}></div>
-                        <Button color="primary" variant="light" className={styles.userTestPreview__button} onClick={() => {}}>
-                            Скопировать ссылку
-                        </Button>
+                        {/*<Button color="primary" variant="light" className={styles.userTestPreview__button} onClick={() => {}}>*/}
+                        {/*    Скопировать ссылку*/}
+                        {/*</Button>*/}
                     </div>
                 </div>
-                <button className={styles.userTestPreview__settings} onClick={(e) => {e.stopPropagation()}} type="button">
-                    <img src={Setting} alt="Edit user test" className={styles.userTestPreview__startIcon} />
-                </button>
+                {/*<button className={styles.userTestPreview__settings} onClick={(e) => {e.stopPropagation()}} type="button">*/}
+                {/*    <img src={Setting} alt="Edit user test" className={styles.userTestPreview__startIcon} />*/}
+                {/*</button>*/}
             </div>
         )
     },[props])

@@ -10,6 +10,9 @@ import { GetTestResponseDto } from "../../core/dtos/training/GetTestResponseDto"
 import { GetTestResponseMapper } from "../../core/mappers/training/GetTestResponseMapper";
 import { CreateUserTestRequest } from "core/models/training/CreateUserTestRequest";
 import { CreateUserTestRequestMapper } from "core/mappers/training/CreateUserTestRequestMapper";
+import {GetUserTestsResponseDto} from "../../core/dtos/training/GetUserTestsResponseDto";
+import {GetUserTestsResponseMapper} from "../../core/mappers/training/GetUserTestsResponseMapper";
+import {GetUserTestsResponse} from "../../core/models/training/GetUserTestsResponse";
 
 export namespace TrainingService {
     export async function postTrainingCreate(body: CreateTestRequest): Promise<CreateTestResponse> {
@@ -20,6 +23,11 @@ export namespace TrainingService {
     export async function getTraining(id: string): Promise<GetTestResponse> {
         const {data} = await http.get<GetTestResponseDto>(ApiUrlsConfig.training.getTest(id));
         return GetTestResponseMapper.fromDto(data);
+    }
+
+    export async function getUserTests(): Promise<GetUserTestsResponse> {
+        const {data} = await http.get<GetUserTestsResponseDto>(ApiUrlsConfig.training.allUserTest);
+        return GetUserTestsResponseMapper.fromDto(data);
     }
 
     export async function createUserTest(formData: CreateUserTestRequest): Promise<CreateTestResponse> {
