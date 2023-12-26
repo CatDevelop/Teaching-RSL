@@ -40,7 +40,7 @@ export const LearningHeader: FC<Props> = typedMemo(function LearningHeader(props
                     variant="p"
                     className={styles.learningHeader__type}
                 >
-                    {props.type === "theory" ? "Теория" : "Практика"}
+                    {props.type === "theory" ? "Теория" : props.type === "test" ? "Тест" : "Практика"}
                 </Typography>
             </div>
             <div className={styles.learningHeader__progressBarContainer}>

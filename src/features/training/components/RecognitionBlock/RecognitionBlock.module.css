@@ -12,13 +12,20 @@
 .recognitionBlock {
     --max-camera-width: 650px;
 
-    display: grid;
-    grid-template-columns: var(--max-camera-width) 1fr;
-    grid-template-rows: 50px 1fr;
-    grid-gap: var(--space-l);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    max-width: var(--learning-center-block-width);
+    /*display: grid;*/
+    /*grid-template-columns: var(--max-camera-width) 1fr;*/
+    /*grid-template-rows: 50px 1fr 100px;*/
+    /*grid-template-areas: "header header" "camera recognized" "buttons buttons";*/
+    /*grid-gap: var(--space-l);*/
 }
 
 .recognitionBlock__header {
+    grid-area: header;
     grid-column: span 2;
     display: grid;
     grid-template-columns: var(--max-camera-width) 1fr;
@@ -26,7 +33,16 @@
     align-items: start;
 }
 
+.recognitionBlock__cameraAndRec {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    gap: var(--space-l);
+}
+
 .recognitionBlock__wordHeader {
+    grid-area: header;
     display: flex;
     gap:  var(--space-l);
     width: 100%;
@@ -49,6 +65,7 @@
 }
 
 .recognitionBlock__recognizedContainer {
+    grid-area: recognized;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -85,10 +102,8 @@
     width: 100%;
     height: 100%;
     position: relative;
-
-    /*display: inline-block;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
+    grid-area: camera;
+    align-self: start;
 }
 
 .recognitionBlock__cameraSettingsButton,

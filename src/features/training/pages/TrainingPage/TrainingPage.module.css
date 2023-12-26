@@ -26,13 +26,13 @@
 }
 
 .trainingTask {
-    display: grid ;
-    grid-template-columns: 300px 1fr 300px;
+    display: grid !important;
+    grid-template-columns: 218px 1fr 218px;
     grid-template-rows: 70px calc(100vh - 140px - var(--page-padding-m) * 2 - var(--space-m) * 2) 70px;
     grid-template-areas:
-            "header header header"
-            "b task c"
-            "sber buttons e";
+            "logo content exit"
+            "b content c"
+            "d content e";
     align-items: center ;
     justify-content: center;
     justify-items: center;
@@ -44,7 +44,7 @@
 .trainingTask__header {
     display: grid ;
     grid-area: header;
-    grid-template-columns: 300px 1fr 300px;
+    grid-template-columns: 230px 1fr 230px;
     width: 100%;
     align-items: center;
     justify-items: center;
@@ -53,7 +53,19 @@
 
 .trainingTask__logoContainer {
     cursor: pointer;
-    justify-self: start;
+    grid-area: logo;
+}
+
+.trainingTask__contentContainer {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: start;
+    gap: var(--space-l);
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
 }
 
 .trainingTask__progressBarContainer {
@@ -195,30 +207,30 @@
     transform: translateX(-50%);
 }
 
-@media(max-width: 1600px) {
-    .trainingTask{
-        grid-template-areas:
-        "header header header"
-        "task task task"
-        "sber buttons e";
-        grid-template-rows: 90px calc(100vh - 190px - var(--page-padding-m) * 2 - var(--space-m) * 2) 100px;;
-    }
+/*@media(max-width: 1600px) {*/
+/*    .trainingTask{*/
+/*        grid-template-areas:*/
+/*        "header header header"*/
+/*        "task task task"*/
+/*        "sber buttons e";*/
+/*        grid-template-rows: 90px calc(100vh - 190px - var(--page-padding-m) * 2 - var(--space-m) * 2) 100px;;*/
+/*    }*/
 
-    .trainingTask__header {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-flow: dense;
-    }
+/*    .trainingTask__header {*/
+/*        grid-template-columns: 1fr 1fr;*/
+/*        grid-auto-flow: dense;*/
+/*    }*/
 
-    .trainingTask__exitButtonContainer{
-        grid-column: auto;
-    }
+/*    .trainingTask__exitButtonContainer{*/
+/*        grid-column: auto;*/
+/*    }*/
 
-    .trainingTask__progressBarContainer{
-        grid-column: 1 / span 2;
-        max-width: var(--max-theory-card-width);
-    }
+/*    .trainingTask__progressBarContainer{*/
+/*        grid-column: 1 / span 2;*/
+/*        max-width: var(--max-theory-card-width);*/
+/*    }*/
 
-    .trainingTask__progressBarContainer {
-        width: 100%;
-    }
-}
+/*    .trainingTask__progressBarContainer {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
