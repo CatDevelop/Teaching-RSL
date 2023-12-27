@@ -17,10 +17,7 @@ type Props = ComponentProps;
  * Пользовательские тесты
  */
 export const UserTests: FC<Props> = typedMemo(function UserTests(props) {
-    const [tests, setTests] = useState(userTests);
-
-    const {data} = useQuery(['training/getusertests'], () => TrainingService.getUserTests());
-    console.log(data)
+    const userTests = useQuery(['training/getusertests'], () => TrainingService.getUserTests());
 
     return (
         <Card className={styles.userTests}>
@@ -29,7 +26,7 @@ export const UserTests: FC<Props> = typedMemo(function UserTests(props) {
             </div>
 
             <ScrollBox className={clsx(styles.userTests__container)}>
-                {data?.userTestList.map(test => <UserTestPreview
+                {userTests.data?.userTestList.map(test => <UserTestPreview
                     // @ts-ignore
                     name={test.testName}
                     wordsCount={test.words.length}

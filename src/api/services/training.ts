@@ -26,8 +26,13 @@ export namespace TrainingService {
     }
 
     export async function getUserTests(): Promise<GetUserTestsResponse> {
-        const {data} = await http.get<GetUserTestsResponseDto>(ApiUrlsConfig.training.allUserTest);
-        return GetUserTestsResponseMapper.fromDto(data);
+        try {
+            const {data} = await http.get<GetUserTestsResponseDto>(ApiUrlsConfig.training.allUserTest);
+            return GetUserTestsResponseMapper.fromDto(data);
+
+        } catch (error) {
+            return GetUserTestsResponseMapper.fromDto({userTestList: []})
+        }
     }
 
     export async function createUserTest(formData: CreateUserTestRequest): Promise<CreateTestResponse> {
