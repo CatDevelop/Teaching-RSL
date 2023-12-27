@@ -74,13 +74,6 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
             fireworks()
     }, [currentStep, countSkippedWords, data, fireworks]);
 
-    useEffect(() => {
-        socket.on('connect_error', () => setIsNotStartModel(true))
-        socket.on('connect_failed', () => setIsNotStartModel(true))
-        socket.on('connect', () => setIsNotStartModel(false))
-    }, []);
-
-
     if (!data) {
         return null
     }

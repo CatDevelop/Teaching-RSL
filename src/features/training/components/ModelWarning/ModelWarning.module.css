@@ -1,7 +1,7 @@
 .modelWarning__container {
     outline: 3px var(--danger-color) solid;
     height: 140px;
-    width: 570px;
+    width: 500px;
     z-index: var(--bottom-modal-container-index);
     animation: showFade 1s ease-in;
     display: flex;
@@ -28,7 +28,6 @@
     margin: 0 5px;
     font-size: var(--font-size-s);
     color: var(--primary-color);
-    text-transform: uppercase;
 }
 
 .modelWarning__gitLink:hover {
