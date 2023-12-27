@@ -1,5 +1,3 @@
-import {useCallback} from "react";
-
 export const stopAllTracks = (stream: MediaStream) => {
     stream &&
     stream.getTracks().forEach((track: MediaStreamTrack) => {

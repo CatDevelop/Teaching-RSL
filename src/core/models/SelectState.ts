@@ -1,10 +1,10 @@
 import {ButtonProps} from "@nextui-org/react";
-import {Word} from "./Word";
+import {WordFormServer} from "./Word";
 
 export type SelectState = Readonly<"default" | "checked" | "success" | "error" | "disabled">
 
 export type SelectObjectState = {
-    wordObject: Readonly<Word>;
+    wordObject: Readonly<WordFormServer>;
     state: SelectState;
 }
 

@@ -1,8 +1,13 @@
 .theoryCard {
     width: 100%;
-    max-width: var(--max-theory-card-width);
+    /*max-width: var(--max-theory-card-width);*/
     height: 100%;
     box-sizing: border-box;
+}
+
+.theoryCard__title {
+    font-size: var(--font-size-l);
+    line-height: var(--font-size-l);
 }
 
 .theoryCard__contentContainer {

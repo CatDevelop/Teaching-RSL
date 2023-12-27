@@ -39,7 +39,7 @@ export class WordInTest {
     /**
      * Слово.
      */
-    public readonly word: string;
+    public readonly word: string | null;
 
     /**
      * Распознанные слова

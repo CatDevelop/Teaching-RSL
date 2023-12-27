@@ -1,4 +1,5 @@
 import { CONFIG } from "./config";
+import {BlockType} from "../core/models/words/BlockType";
 
 /** API ссылки приложения. */
 export namespace ApiUrlsConfig {
@@ -36,10 +37,23 @@ export namespace ApiUrlsConfig {
 		getListWithLevels: () => toApi('unit/list/with-levels'),
 	};
 
+	/** API ссылки обучения. */
+	export const learning = {
+		getLevelTasks: (levelId: string) => toApi(`level/tasks/${levelId}`)
+	};
+
 	/** API ссылки тренировок. */
 	export const training = {
 		postTestCreate: toApi('training'),
+		postUserTestCreate: toApi('training/user'),
 		getTest: (id: string) => toApi(`training/${id}`)
+	};
+
+	/** API ссылки слов. */
+	export const words = {
+		getById: (id: string) => toApi(`words/${id}`),
+		getBySearch: (search: string) => toApi(`words/search?query=${search}`),
+		getByBlock: (type?: BlockType, id?: string) => toApi(`words/list?BlockType=${type}&BlockId=${id}`)
 	};
 
 	/**

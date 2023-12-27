@@ -1,0 +1,1 @@
+export {SelectFoundWord} from './SelectFoundWord'

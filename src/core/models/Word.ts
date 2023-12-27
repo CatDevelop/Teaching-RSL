@@ -6,3 +6,10 @@ export type Word = Readonly<{
     altGifSource?: string;
     imageSource?: string;
 }>
+
+
+export type WordFormServer = Readonly<{
+    wordId: number;
+    firstRepresentation: string | null;
+    secondRepresentation: string | null;
+}>

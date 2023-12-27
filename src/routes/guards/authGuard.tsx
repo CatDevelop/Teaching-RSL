@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, Outlet, To, useLocation } from 'react-router-dom';
 import { RootState } from 'store/store';
 
-/** 
+/**
  * Гуард авторизованного пользователя
  */
 export const AuthGuard: FC = () => {

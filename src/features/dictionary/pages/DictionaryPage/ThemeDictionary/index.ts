@@ -1,1 +1,0 @@
-export { ThemeDictionary } from "./ThemeDictionary";

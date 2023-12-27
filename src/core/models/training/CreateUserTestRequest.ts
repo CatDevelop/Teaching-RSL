@@ -10,7 +10,7 @@ export class CreateUserTestRequest {
     /**
      * Слова теста
      */
-    public readonly wordIdList: readonly string[];
+    public wordIdList?: readonly string[];
 
     public constructor({testName, wordIdList}:CreateUserTestRequestProps){
         this.testName = testName;

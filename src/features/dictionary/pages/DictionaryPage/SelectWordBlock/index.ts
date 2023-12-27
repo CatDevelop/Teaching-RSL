@@ -1,0 +1,1 @@
+export { SelectWordBlock } from "./SelectWordBlock";

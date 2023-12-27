@@ -7,14 +7,13 @@ import styles from "./LearningProgress.module.css";
 import {Tabs, Tab} from "@nextui-org/react";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
 import {clsx} from "clsx";
+import {ScrollBox} from "../../../../../components/ScrollBox";
 import { TestProgress } from "./TestProgress";
 import { useQuery } from "react-query";
 import { UserService } from "api/services/user";
 import { UserTestHistoryRecordResponse } from "core/models/user/UserTestHistoryRecordResponse";
 
-type Props = ComponentProps & Readonly<{
-
-}>
+type Props = ComponentProps & Readonly<{}>
 
 /**
  * Прогресс обучения пользователя
@@ -47,11 +46,13 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                 panel: styles.learningProgress__tabsPanel
             }}>
                 <Tab key="learning" title="Обучение">
-                    <div className={styles.learningProgress__themes}>
-                        {[0,0,0,0,0].map((_, i) => (
-                            <ThemeProgress key={i}/>
-                        ))}
-                    </div>
+                    <ScrollBox>
+                        <div className={styles.learningProgress__themes}>
+                            {[0, 0, 0, 0, 0].map((_, i) => (
+                                <ThemeProgress key={i}/>
+                            ))}
+                        </div>
+                    </ScrollBox>
                 </Tab>
                 <Tab key="training" title="Тренировки">
                     <div className={styles.learningProgress__themes}>

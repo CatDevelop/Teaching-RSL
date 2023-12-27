@@ -1,1 +1,0 @@
-export { SelectThemeDictionary } from "./SelectThemeDictionary";

@@ -8,6 +8,8 @@ import { CreateTestResponseMapper } from "../../core/mappers/training/CreateTest
 import { GetTestResponse } from "../../core/models/training/GetTestResponse";
 import { GetTestResponseDto } from "../../core/dtos/training/GetTestResponseDto";
 import { GetTestResponseMapper } from "../../core/mappers/training/GetTestResponseMapper";
+import { CreateUserTestRequest } from "core/models/training/CreateUserTestRequest";
+import { CreateUserTestRequestMapper } from "core/mappers/training/CreateUserTestRequestMapper";
 
 export namespace TrainingService {
     export async function postTrainingCreate(body: CreateTestRequest): Promise<CreateTestResponse> {
@@ -20,8 +22,8 @@ export namespace TrainingService {
         return GetTestResponseMapper.fromDto(data);
     }
 
-    export async function createUserTest(id: string): Promise<GetTestResponse> {
-        const {data} = await http.get<GetTestResponseDto>(ApiUrlsConfig.training.getTest(id));
-        return GetTestResponseMapper.fromDto(data);
+    export async function createUserTest(formData: CreateUserTestRequest): Promise<CreateTestResponse> {
+        const {data} = await http.post<CreateTestResponseDto>(ApiUrlsConfig.training.postUserTestCreate, CreateUserTestRequestMapper.toDto(formData));
+        return CreateTestResponseMapper.fromDto(data);
     }
 }

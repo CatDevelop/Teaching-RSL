@@ -1,0 +1,46 @@
+.selectSectionWord {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.selectSectionWord__header {
+    display:flex;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    gap: var(--space-m)
+}
+
+.selectSectionWord__backIcon {
+    fill: var(--thirdly-text-color);
+    cursor: pointer
+}
+
+.selectSectionWord__scroll {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+    gap: var(--space-l);
+}
+
+.selectSectionWord__sectionWords {
+    display: flex;
+    width: calc((100% - var(--space-s))/2);
+    overflow: hidden;
+    flex-direction: column;
+    font-size:var(--font-size-xs);
+    gap: calc(var(--space-m) * 0.75);
+}
+
+.selectSectionWord__word {
+    color: var(--disabled-button-color);
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.selectSectionWord__word:hover {
+    color: var(--primary-color);
+}

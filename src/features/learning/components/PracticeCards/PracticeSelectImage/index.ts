@@ -1,1 +1,0 @@
-export { PracticeSelectImage } from "./PracticeSelectImage";

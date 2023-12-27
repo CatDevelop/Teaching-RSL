@@ -2,7 +2,7 @@ import {typedMemo} from "../../../../../core/utils/typedMemo";
 import React, {FC, PropsWithChildren, useCallback} from "react";
 import styles from "./SelectContainer.module.css";
 import clsx from "clsx";
-import {Word} from "../../../../../core/models/Word";
+import {WordFormServer} from "../../../../../core/models/Word";
 import {motion} from "framer-motion"
 import {SelectState} from "../../../../../core/models/SelectState";
 
@@ -10,17 +10,18 @@ export type SelectContainerProps = PropsWithChildren & Readonly<{
     state: SelectState;
     number: number;
 
-    wordObject: Word;
+    gif?:string;
+    text: string;
     setState: React.Dispatch<React.SetStateAction<any>>;
 }>
 
-/** 
+/**
  * Контейнер для объектов, которые можно выбрать
  */
 export const SelectContainer: FC<SelectContainerProps> = typedMemo(function SelectContainer(props) {
     const handleClickOnSelectObject = useCallback(() => {
         if (props.state === "default" || props.state === "checked")
-            props.setState(props.state === "checked" ? null : props.wordObject)
+            props.setState(props.state === "checked" ? null : props.text)
     }, [props])
 
     return (
@@ -40,12 +41,13 @@ export const SelectContainer: FC<SelectContainerProps> = typedMemo(function Sele
     );
 });
 
-export const getSelectEntityStatus = (checked: boolean, selectEntity: Word | undefined | null, currentVariant: Word, rightVariant: Word) => {
+export const getSelectEntityStatus = (checked: boolean, selectEntity: string | undefined | null, currentVariant: string | null, rightVariant: string | null) => {
+    console.log("GET", checked, selectEntity, currentVariant, rightVariant)
     let result: SelectState = "disabled";
     if (!checked) {
-        result = selectEntity?.id === currentVariant.id ? "checked" : "default"
-    } else if (currentVariant.id === selectEntity?.id) {
-        result = selectEntity?.id === rightVariant.id ? "success" : "error"
+        result = selectEntity === currentVariant ? "checked" : "default"
+    } else if (currentVariant === selectEntity) {
+        result = selectEntity === rightVariant ? "success" : "error"
     }
     return result;
 }

@@ -11,10 +11,7 @@ import {WorkOnMistakes} from "../../training/components/WorkOnMistakes";
 import {TheoryCard} from "../../learning/components/TheoryCard";
 import {LearningBlock} from "../../learning/components/LearningBlock";
 import TheoryIconSVG from "../../../assets/images/TheoryIcon.svg"
-import {SelectButton} from "../../learning/components/SelectEntity/SelectButton";
 import {Word} from "../../../core/models/Word";
-import {SelectGIF} from "../../learning/components/SelectEntity/SelectGIF";
-import {SelectImage} from "../../learning/components/SelectEntity/SelectImage";
 import {StartThemeWords as words} from "../../../core/data";
 import {Range} from "../../../components/Range"
 import {UserTestPreview} from "../../training/components/UserTestPreview";
@@ -169,83 +166,83 @@ export const TestingComponentPage: FC = typedMemo(function TestingComponentPage(
                 <TheoryCard wordObject={words[0]}/>
                 <TheoryCard wordObject={words[1]}/>
 
-                <h2 className={styles.componentTitle}>Кнопка выбора</h2>
-                <div className={styles.componentRow}>
-                    <SelectButton state={selectWord?.id === words[0].id ? "checked" : "default"}
-                                  setState={setSelectWord}
-                                  wordObject={words[0]}
+                {/*<h2 className={styles.componentTitle}>Кнопка выбора</h2>*/}
+                {/*<div className={styles.componentRow}>*/}
+                {/*    <SelectButton state={selectWord?.id === words[0].id ? "checked" : "default"}*/}
+                {/*                  setState={setSelectWord}*/}
+                {/*                  wordObject={words[0]}*/}
 
-                    />
-                    <SelectButton state={"success"}
-                                  setState={setSelectWord}
-                                  wordObject={words[1]}
-                    />
-                    <SelectButton state={"disabled"}
-                                  setState={setSelectWord}
-                                  wordObject={words[2]}
+                {/*    />*/}
+                {/*    <SelectButton state={"success"}*/}
+                {/*                  setState={setSelectWord}*/}
+                {/*                  wordObject={words[1]}*/}
+                {/*    />*/}
+                {/*    <SelectButton state={"disabled"}*/}
+                {/*                  setState={setSelectWord}*/}
+                {/*                  wordObject={words[2]}*/}
 
-                    />
-                    <SelectButton state={"error"}
-                                  setState={setSelectWord}
-                                  wordObject={words[3]}
-                    />
-                </div>
+                {/*    />*/}
+                {/*    <SelectButton state={"error"}*/}
+                {/*                  setState={setSelectWord}*/}
+                {/*                  wordObject={words[3]}*/}
+                {/*    />*/}
+                {/*</div>*/}
 
-                <h2 className={styles.componentTitle}>GIF с выбором</h2>
-                <div className={styles.componentRow}>
-                    <SelectGIF state={selectGIF?.id === words[0].id ? "checked" : "default"}
-                               wordObject={words[0]}
-                               setState={setSelectGIF}
-                               number={1}
-                               key={"selectGIF1"}
-                    />
-                    <SelectGIF state={"success"}
-                               wordObject={words[1]}
-                               setState={setSelectGIF}
-                               number={2}
-                               key={"selectGIF2"}
-                    />
-                    <SelectGIF state={"disabled"}
-                               wordObject={words[2]}
-                               setState={setSelectGIF}
-                               number={3}
-                               key={"selectGIF3"}
-                    />
-                    <SelectGIF state={"error"}
-                               wordObject={words[3]}
-                               setState={setSelectGIF}
-                               number={4}
-                               key={"selectGIF4"}
-                    />
-                </div>
+                {/*<h2 className={styles.componentTitle}>GIF с выбором</h2>*/}
+                {/*<div className={styles.componentRow}>*/}
+                {/*    <SelectGIF state={selectGIF?.id === words[0].id ? "checked" : "default"}*/}
+                {/*               wordObject={words[0]}*/}
+                {/*               setState={setSelectGIF}*/}
+                {/*               number={1}*/}
+                {/*               key={"selectGIF1"}*/}
+                {/*    />*/}
+                {/*    <SelectGIF state={"success"}*/}
+                {/*               wordObject={words[1]}*/}
+                {/*               setState={setSelectGIF}*/}
+                {/*               number={2}*/}
+                {/*               key={"selectGIF2"}*/}
+                {/*    />*/}
+                {/*    <SelectGIF state={"disabled"}*/}
+                {/*               wordObject={words[2]}*/}
+                {/*               setState={setSelectGIF}*/}
+                {/*               number={3}*/}
+                {/*               key={"selectGIF3"}*/}
+                {/*    />*/}
+                {/*    <SelectGIF state={"error"}*/}
+                {/*               wordObject={words[3]}*/}
+                {/*               setState={setSelectGIF}*/}
+                {/*               number={4}*/}
+                {/*               key={"selectGIF4"}*/}
+                {/*    />*/}
+                {/*</div>*/}
 
-                <h2 className={styles.componentTitle}>Изображение с выбором</h2>
-                <div className={styles.componentRow}>
-                    <SelectImage state={selectImage?.id === words[0].id ? "checked" : "default"}
-                                 wordObject={words[0]}
-                                 setState={setSelectImage}
-                                 number={1}
-                                 key={"selectImage1"}
-                    />
-                    <SelectImage state={"success"}
-                                 wordObject={words[1]}
-                                 setState={setSelectImage}
-                                 number={2}
-                                 key={"selectImage2"}
-                    />
-                    <SelectImage state={"disabled"}
-                                 wordObject={words[2]}
-                                 setState={setSelectImage}
-                                 number={3}
-                                 key={"selectImage3"}
-                    />
-                    <SelectImage state={"error"}
-                                 wordObject={words[3]}
-                                 setState={setSelectImage}
-                                 number={3}
-                                 key={"selectImage4"}
-                    />
-                </div>
+                {/*<h2 className={styles.componentTitle}>Изображение с выбором</h2>*/}
+                {/*<div className={styles.componentRow}>*/}
+                {/*    <SelectImage state={selectImage?.id === words[0].id ? "checked" : "default"}*/}
+                {/*                 wordObject={words[0]}*/}
+                {/*                 setState={setSelectImage}*/}
+                {/*                 number={1}*/}
+                {/*                 key={"selectImage1"}*/}
+                {/*    />*/}
+                {/*    <SelectImage state={"success"}*/}
+                {/*                 wordObject={words[1]}*/}
+                {/*                 setState={setSelectImage}*/}
+                {/*                 number={2}*/}
+                {/*                 key={"selectImage2"}*/}
+                {/*    />*/}
+                {/*    <SelectImage state={"disabled"}*/}
+                {/*                 wordObject={words[2]}*/}
+                {/*                 setState={setSelectImage}*/}
+                {/*                 number={3}*/}
+                {/*                 key={"selectImage3"}*/}
+                {/*    />*/}
+                {/*    <SelectImage state={"error"}*/}
+                {/*                 wordObject={words[3]}*/}
+                {/*                 setState={setSelectImage}*/}
+                {/*                 number={3}*/}
+                {/*                 key={"selectImage4"}*/}
+                {/*    />*/}
+                {/*</div>*/}
             </div>
         </Suspense>
     )

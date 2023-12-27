@@ -19,11 +19,12 @@ import {StartTraining} from "../../components/StartTraining/StartTraining";
 import {ModelWarning} from "../../components/ModelWarning/ModelWarning";
 import {socket} from "../../../../core/utils/connectToModal";
 import {BySberAI} from "../../../../components/BySberAI";
+import {LearningHeader} from "../../../learning/components/LearningHeader";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
     const fireworks = getFireworks(3000)
-    const {id} = useParams<{id: string}>();
+    const {id} = useParams<{ id: string }>();
     const {data} = useQuery(['training/gettest', id], () => TrainingService.getTraining(id ?? ''));
 
     const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
@@ -35,7 +36,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const [isNotStartModel, setIsNotStartModel] = useState(false)
 
     const getTaskResult = useCallback(() => {
-        if(!data){
+        if (!data) {
             return 0
         }
         return 100 - Math.floor((countSkippedWords) / data.words.length * 100)
@@ -65,7 +66,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     }, []);
 
     useEffect(() => {
-        if(!data){
+        if (!data) {
             return;
         }
         if (currentStep === data.words.length && countSkippedWords !== data.words.length)
@@ -79,43 +80,47 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     }, []);
 
 
-    if(!data){
+    if (!data) {
         return null
     }
     return (
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
             <PageContent className={styles.trainingTask}>
-                <div className={styles.trainingTask__header}>
-                    <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
-                        <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
-                        {/*<BySberAI/>*/}
-                    </div>
+                {/*<div className={styles.trainingTask__header}>*/}
+                <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
+                    <img src={Logo} rel="preload" alt={"Логотип"} width={218}/>
+                </div>
+                {/*</div>*/}
+                <div className={styles.trainingTask__contentContainer}>
                     {
                         currentStep !== -1 && currentStep !== data.words.length && !isNotStartModel &&
-                        <div className={styles.trainingTask__progressBarContainer}>
-                            <ProgressBar currentStep={currentStep - 1} stepCount={data.words.length}/>
-                        </div>
+                        <LearningHeader
+                            type="Test"
+                            name={"Входное тестирование для абитуриентов"}
+                            currentStep={currentStep}
+                            stepCount={data.words.length}
+                        />
+                        // <div className={styles.trainingTask__progressBarContainer}>
+                        //     <ProgressBar currentStep={currentStep - 1} stepCount={data.words.length}/>
+                        // </div>
                     }
-                    <div className={styles.trainingTask__exitButtonContainer}>
-                        {
-                            currentStep !== data.words.length &&
-                            <Button
-                                variant={"faded"}
-                                color={"default"}
-                                size={"lg"}
-                                onClick={openExitModal}
-                            >
-                                В главное меню
-                            </Button>
-                        }
-                    </div>
-                </div>
+                    {/*<div className={styles.trainingTask__exitButtonContainer}>*/}
+                    {/*    {*/}
+                    {/*        currentStep !== data.words.length &&*/}
+                    {/*        <Button*/}
+                    {/*            variant={"faded"}*/}
+                    {/*            color={"default"}*/}
+                    {/*            size={"lg"}*/}
+                    {/*            onClick={openExitModal}*/}
+                    {/*        >*/}
+                    {/*            В главное меню*/}
+                    {/*        </Button>*/}
+                    {/*    }*/}
+                    {/*</div>*/}
+                {/*</div>*/}
 
-                {currentStep !== data.words.length && <BySberAI className={styles.trainingTask__bySberAI}/>}
-
-
-                <div className={styles.trainingTask__taskContainer}>
+                {/*<div className={styles.trainingTask__taskContainer}>*/}
                     {
                         currentStep === -1 &&
                         <StartTraining onStart={() => setCurrentStep(0)}/>
@@ -130,6 +135,29 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                             intervalID={intervalID}
                             signRecognizeText={signRecognizeText}
                             setSignRecognizeText={setSignRecognizeText}
+                            buttons={<div className={styles.trainingTask__buttonsContainer}>
+                                {
+                                    currentStep >= 0 && currentStep <= data.words.length - 1 && !isDoneTask && !isNotStartModel &&
+                                    <Button
+                                        size={"lg"}
+                                        variant="faded"
+                                        onClick={skip}
+                                    >
+                                        Пропустить
+                                    </Button>
+                                }
+                                {
+                                    currentStep >= 0 && currentStep <= data.words.length - 1 && isDoneTask && !isNotStartModel &&
+                                    <Button
+                                        size={"lg"}
+                                        variant="faded"
+                                        color="primary"
+                                        onClick={next}
+                                    >
+                                        Далее
+                                    </Button>
+                                }
+                            </div>}
                         />
                     }
                     {
@@ -162,24 +190,11 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     }
                 </div>
 
-                <div className={styles.trainingTask__buttonsContainer}>
-                    {
-                        currentStep >= 0 && currentStep <= data.words.length - 1 && !isDoneTask && !isNotStartModel &&
-                        <Button
-                            size={"lg"}
-                            variant="faded"
-                            onClick={skip}
-                        >
-                            Пропустить
-                        </Button>
-                    }
-                </div>
-
                 <div className={styles.trainingTask__taskContinueContainer}>
-                    {
-                        isDoneTask &&
-                        <TaskContinue next={next} isRightAnswer={true}/>
-                    }
+                    {/*{*/}
+                    {/*    isDoneTask &&*/}
+                    {/*    <TaskContinue next={next} isRightAnswer={true}/>*/}
+                    {/*}*/}
                     {
                         currentStep === data.words.length &&
                         <div className={styles.trainingTask__toHome}>

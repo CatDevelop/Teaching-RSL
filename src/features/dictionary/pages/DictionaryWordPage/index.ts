@@ -1,1 +1,0 @@
-export { DictionaryWordPage } from "./DictionaryWordPage";

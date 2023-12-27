@@ -1,0 +1,10 @@
+.learningTaskBlock {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+.learningTaskBlock__buttonContainer {
+    display: flex;
+    gap: var(--space-m);
+}
