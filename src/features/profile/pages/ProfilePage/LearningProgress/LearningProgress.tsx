@@ -18,7 +18,8 @@ type Props = ComponentProps & Readonly<{}>
  * Прогресс обучения пользователя
  */
 export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(props){
-    const {data} = useQuery('user-test-history', UserService.getTestHistory)
+    const {data: testHistory} = useQuery('user-test-history', UserService.getTestHistory)
+    const {data: themesHistory} = useQuery('user-themes-history', UserService.getThemesHistory)
 
     return (
         <Card className={clsx([styles.learningProgress, props.className])}>
@@ -29,15 +30,15 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                 <Tab key="learning" title="Обучение">
                     <ScrollBox>
                         <div className={styles.learningProgress__themes}>
-                            {[0, 0, 0, 0, 0].map((_, i) => (
-                                <ThemeProgress key={i}/>
+                            {themesHistory!.map(theme => (
+                                <ThemeProgress key={theme.themeId} {...theme}/>
                             ))}
                         </div>
                     </ScrollBox>
                 </Tab>
                 <Tab key="training" title="Тренировки">
                     <div className={styles.learningProgress__themes}>
-                        {data!.map((item, i) => (
+                        {testHistory!.map((item, i) => (
                             <TestProgress {...item} key={i}/>
                         ))}
                     </div>
