@@ -7,7 +7,6 @@ import {TheoryCard} from "../TheoryCard";
 import {Button} from "../../../../components/Button";
 import {PracticeCards} from "../PracticeCards";
 import {StepStatus} from "../../../../core/models/StepStatus";
-import {TaskFeedback} from "../../../../components/TaskFeedback";
 import {toast} from "react-toastify";
 
 type Props = ComponentProps & Readonly<{

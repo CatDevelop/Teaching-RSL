@@ -25,7 +25,7 @@ export const SelectButton: FC<Props> = typedMemo(function SelectButton(props) {
             variant={"bordered"}
             color={colorsByState[props.state]}
             size={"lg"}
-            disabled={props.state === "error" || props.state === "success" || props.state === "disabled"}
+            disabled={props.state !== "default" && props.state !== "checked"}
             className={clsx(styles.selectButton, props.state === "disabled" && styles.selectButton__disabled)}
             onClick={handleClick}
         >

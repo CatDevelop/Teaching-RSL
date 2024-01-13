@@ -30,6 +30,7 @@ export const SelectWordBlock: FC<Props> = typedMemo(function SelectThemeDictiona
     if(trimmedSearch){
         return <SelectFoundWord search={trimmedSearch} selectWord={props.selectWord}/>
     }
+
     return (
         <Routes>
             <Route path="" element={<SelectUnit/>}/>

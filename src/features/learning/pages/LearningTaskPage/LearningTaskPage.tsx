@@ -1,31 +1,25 @@
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import React, {FC, Suspense, useCallback, useEffect, useState} from "react";
+import React, {FC, Suspense, useCallback, useState} from "react";
 import styles from "./LearningTaskPage.module.css";
 import {Page} from "../../../../components/Page";
 import Logo from "../../../../assets/images/Logo.svg"
-import {Button} from "../../../../components/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {clsx} from "clsx";
 import {PageContent} from "../../../../components/PageContent";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
-import {StartLearning} from "../../components/StartLearning";
 import {LearningHeader} from "../../components/LearningHeader";
 import {LearningTaskBlock} from "../../components/LearningTaskBlock";
 import {Spinner} from "@nextui-org/react";
-import {Typography} from "../../../../components/Typography";
-import ResultLearning from "../../../../assets/images/ResultLearningImage.svg"
 import {Back} from "../../../../components/Back";
 import useLearningLevel from "../../../../core/hooks/use-learning-level";
-import {useMutation, useQuery} from "react-query";
-import {LearningService} from "../../../../api/services/learning";
+import {useMutation} from "react-query";
 import {UserHistoryService} from "../../../../api/services/userHistory";
 
 
 export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const {id} = useParams<{ id: string }>();
     const navigate = useNavigate()
-    const fireworks = getFireworks(3000)
 
     const levelController = useLearningLevel(id || '')
 
@@ -175,6 +169,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     //         theoryCount: 5
     //     }
     // }
+
     const [currentStep, setCurrentStep] = useState(0)
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
     const [rightWords, setRightWords] = useState<string[]>([])
@@ -194,7 +189,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const nextStep = useCallback(() => {
         if (currentStep + 1 === theoryCount + practiceCount) {
             sendResult.mutate()
-            fireworks()
+            navigate("result/?count=" + theoryCount)
         }
         setCurrentStep(currentStep + 1)
     }, [currentStep, setCurrentStep])
@@ -204,7 +199,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     }, [currentStep, setCurrentStep])
 
     const openExitModal = useCallback(() => setExitModalIsOpen(true), [setExitModalIsOpen])
-    const toProfilePage = useCallback(() => navigate("/profile"), [navigate])
+    const toLearningPage = useCallback(() => navigate("/learning"), [navigate])
 
     if (levelController.isLoading)
         return <Spinner/>
@@ -212,61 +207,39 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     return (
         <Suspense fallback={<Spinner/>}>
             <Page>
-                <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
+                <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen} onExit={toLearningPage}/>
                 <PageContent className={styles.learningTask}>
                     <div className={styles.learningTask__logoContainer} onClick={openExitModal}>
                         <img src={Logo} rel="preload" alt="Логотип" width={218}/>
                     </div>
 
                     <div className={styles.learningTask__contentContainer}>
-                        {
-                            currentStep !== -1 && currentStep < theoryCount + practiceCount &&
-                            <LearningHeader
-                                type={tasks[currentStep].type}
-                                name={"Входное тестирование для абитуриентов"}
-                                currentStep={currentStep}
-                                stepCount={tasks.length}
-                            />
-                        }
+                        <LearningHeader
+                            type={tasks[currentStep].type}
+                            name={"Входное тестирование для абитуриентов"}
+                            currentStep={currentStep}
+                            stepCount={tasks.length}
+                        />
                         <div className={styles.learningTask__taskContainer}>
-                            {
-                                currentStep === -1 &&
-                                <StartLearning onStart={nextStep}/>
-                            }
-                            {
-                                currentStep >= 0 && currentStep < theoryCount + practiceCount &&
-                                (
-                                    <div
-                                        className={clsx(styles.learningTask__theory, styles.learningTask__startAnimation, tasks[currentStep]?.task?.type === "MatchWordAndGif" && styles.learningTask__short)}>
-                                        <LearningTaskBlock
-                                            task={tasks[currentStep]}
-                                            currentStep={currentStep}
-                                            nextStep={nextStep}
-                                            prevStep={prevStep}
-                                            rightWords={rightWords}
-                                            setRightWords={setRightWords}
-                                        />
-                                        <div className={styles.learningTask__back}>
-                                            <Back to="/learning"/>
-                                        </div>
-                                    </div>
-                                )
-                            }
-                            {
-                                currentStep === theoryCount + practiceCount &&
-                                <div className={styles.learningTask__result}>
-                                    <img src={ResultLearning} alt={"Конец обучения!"}
-                                         className={styles.learningTask__resultImage}/>
-                                    <Typography variant="p" className={styles.learningTask__resultDescription}>
-                                        Вы выучили {theoryCount} жестов.<br/>
-                                        Теперь можно перейти к следующему этапу<br/>
-                                        и попробовать их на практике.
-                                    </Typography>
-                                    <Button variant={"solid"} color={"primary"} onClick={toProfilePage}>
-                                        В меню
-                                    </Button>
+                            <div className={
+                                clsx(
+                                    styles.learningTask__theory,
+                                    styles.learningTask__startAnimation,
+                                    tasks[currentStep]?.task?.type === "MatchWordAndGif" && styles.learningTask__short
+                                )}
+                            >
+                                <LearningTaskBlock
+                                    task={tasks[currentStep]}
+                                    currentStep={currentStep}
+                                    nextStep={nextStep}
+                                    prevStep={prevStep}
+                                    rightWords={rightWords}
+                                    setRightWords={setRightWords}
+                                />
+                                <div className={styles.learningTask__back}>
+                                    <Back to="/learning"/>
                                 </div>
-                            }
+                            </div>
                         </div>
                     </div>
                 </PageContent>

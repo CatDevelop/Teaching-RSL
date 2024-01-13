@@ -8,6 +8,7 @@
     font-size: var(--font-size-l);
     font-weight: var(--font-weight-l);
     color: var(--thirdly-text-color);
+    text-align: center;
 }
 
 .dictionaryWordBlock {
@@ -26,7 +27,7 @@
 
 .dictionaryWordBlock__image {
     object-fit: cover;
-    height: calc(100vh - 500px) !important;
+    height: calc(100vh - 525px) !important;
     aspect-ratio: 4 / 3;
 }
 

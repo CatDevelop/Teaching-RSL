@@ -46,7 +46,6 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
     const [gifs, setGifs] = useState<SelectObjectState[]>(getInitialSelectObjectsState(props.variants))
     const [isBlocked, setIsBlocked] = useState<boolean>(false)
     const [countOfCompleted, setCountOfCompleted] = useState(0)
-    console.log(props, variantsInOtherOrder, words, gifs, isBlocked, countOfCompleted)
 
     useEffect(() => {
         setVariantsInOtherOrder(shuffleArray<WordFormServer>(props.variants))
@@ -139,7 +138,6 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
     }, [words, gifs, setIsBlocked, setWords, setGifs, getNewStatusMatchPractice]);
 
     const checkTaskStatus = useCallback(() => {
-        console.log(countOfCompleted)
         if (countOfCompleted >= 4) {
             props.setIsTaskReadyToCheck(true)
             props.setStatus({status: "success"})

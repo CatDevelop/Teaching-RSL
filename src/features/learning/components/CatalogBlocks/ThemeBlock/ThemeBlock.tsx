@@ -1,8 +1,8 @@
 import React, {FC} from "react";
-import {typedMemo} from "../../../../core/utils/typedMemo";
-import {Typography} from "../../../../components/Typography";
+import {typedMemo} from "../../../../../core/utils/typedMemo";
+import {Typography} from "../../../../../components/Typography";
 import {UnitBlock} from "../UnitBlock/UnitBlock";
-import {GetUnitWithLevelsResponse} from "../../../../core/models/unit/GetUnitListWithLevelsResponse";
+import {GetUnitWithLevelsResponse} from "../../../../../core/models/unit/GetUnitListWithLevelsResponse";
 import styles from "./ThemeBlock.module.css"
 
 type Props = {

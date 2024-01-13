@@ -7,7 +7,9 @@ import { Typography } from "../../../../components/Typography";
 import { ComponentProps } from "../../../../core/models/ComponentProps";
 import { TestWordsModal } from "../TestWordsModal";
 import styles from "./UserTestPreview.module.css";
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import {normalizeCountForm} from "../../../../core/utils/normalizeCountForm";
+import {toast} from "react-toastify";
 
 type Props = ComponentProps & Readonly<{
     name: string;
@@ -35,16 +37,23 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
                         {props.name}
                     </Typography>
                     <div className={styles.userTestPreview__info}>
-                        <Typography className={styles.userTestPreview__description}>{props.wordsCount} слов</Typography>
-                        {/*<div className={styles.userTestPreview__separator}></div>*/}
-                        {/*<Button color="primary" variant="light" className={styles.userTestPreview__button} onClick={() => {}}>*/}
-                        {/*    Скопировать ссылку*/}
-                        {/*</Button>*/}
+                        <Typography className={styles.userTestPreview__description}>
+                            {props.wordsCount} {normalizeCountForm(props.wordsCount, ["слово", "слова", "слов"])}
+                        </Typography>
+                        <Button
+                            color="primary"
+                            variant="light"
+                            className={styles.userTestPreview__button}
+                            onClick={() => {
+                                navigator.clipboard.writeText("http://изучение-ржя.рф/training/"+props.id).then(() => {
+                                    toast.success("Ссылка успешно скопирована!")
+                                })
+                            }}
+                        >
+                            Скопировать ссылку
+                        </Button>
                     </div>
                 </div>
-                {/*<button className={styles.userTestPreview__settings} onClick={(e) => {e.stopPropagation()}} type="button">*/}
-                {/*    <img src={Setting} alt="Edit user test" className={styles.userTestPreview__startIcon} />*/}
-                {/*</button>*/}
             </div>
         )
     },[props])

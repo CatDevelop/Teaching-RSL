@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import {ThemeBlock} from "../ThemeBlock/ThemeBlock";
+import {ThemeBlock} from "../CatalogBlocks/ThemeBlock/ThemeBlock";
 import {useQuery} from "react-query";
 import {GetThemeListWithUnitsResponse} from "../../../../core/models/themes/GetThemeListWithUnitsResponse";
 import {ThemesService} from "../../../../api/services/themes";
@@ -31,8 +31,15 @@ export const ThemesList: FC = typedMemo(function ThemesList() {
                             return unitListWithLevels.data.units.find(unit => unit.id === themeUnit.id)!
                         })
 
-                        return <ThemeBlock id={theme.id} name={theme.name} completeWordsCount={0}
-                                           allWordsCount={theme.wordsCount} units={unitsWithLevel}/>
+                        return (
+                            <ThemeBlock
+                                id={theme.id}
+                                name={theme.name}
+                                completeWordsCount={0}
+                                allWordsCount={theme.wordsCount}
+                                units={unitsWithLevel}
+                            />
+                        )
                     })
                 }
             </ScrollBox>

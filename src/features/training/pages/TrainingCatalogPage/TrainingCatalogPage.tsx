@@ -11,7 +11,6 @@ import {SideBar} from "../../../../components/SideBar";
 import {Card} from "../../../../components/Card";
 import {Spinner} from "@nextui-org/react";
 import {clsx} from "clsx";
-import {Button} from "../../../../components/Button";
 
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() {
     let missingWordsCount = 0; // temp

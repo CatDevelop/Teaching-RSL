@@ -10,6 +10,7 @@ import {Typography} from "../Typography";
 type Props = ComponentProps & Readonly<{
     isOpen: boolean;
     setIsOpen: Dispatch<SetStateAction<boolean>>
+    onExit: () => void
 }>
 
 /**
@@ -46,7 +47,7 @@ export const ExitConfirmation: FC<Props> = typedMemo(function ExitConfirmation(p
                         <Button
                             size="lg"
                             color="primary"
-                            onClick={toMainPage}
+                            onClick={props.onExit}
                         >
                             Выйти
                         </Button>

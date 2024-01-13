@@ -60,7 +60,6 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
             <div className={styles.practiceSelectGif__gifsContainer}>
                 {
                     variants.map((variant, index) => {
-                        console.log(getSelectEntityStatus(props.checked, selectGIF, variant, props.wordObject.secondRepresentation))
                         return <div className={styles.practiceSelectGif__gif}>
                             <SelectGIF
                                 key={"SelectGIF" + index}

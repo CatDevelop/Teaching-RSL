@@ -46,7 +46,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const clearRecognizeText = () => setSignRecognizeText([])
 
     const openExitModal = useCallback(() => setExitModalIsOpen(true), [setExitModalIsOpen])
-    const toMainPage = useCallback(() => navigate("/"), [navigate])
+    const toTrainingPage = useCallback(() => navigate("/training"), [navigate])
 
     const skip = useCallback(() => {
         setCurrentStep(currentStep => currentStep + 1)
@@ -77,9 +77,10 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     if (!data) {
         return null
     }
+
     return (
         <Page>
-            <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
+            <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen} onExit={toTrainingPage}/>
             <PageContent className={styles.trainingTask}>
                 {/*<div className={styles.trainingTask__header}>*/}
                 <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
@@ -90,7 +91,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                     {
                         currentStep !== -1 && currentStep !== data.words.length && !isNotStartModel &&
                         <LearningHeader
-                            type="Test"
+                            type="test"
                             name={"Входное тестирование для абитуриентов"}
                             currentStep={currentStep}
                             stepCount={data.words.length}
@@ -195,7 +196,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                             <Button
                                 size={'lg'}
                                 color="primary"
-                                onClick={toMainPage}
+                                onClick={toTrainingPage}
                             >
                                 В главное меню
                             </Button>

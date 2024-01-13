@@ -1,6 +1,6 @@
 .userTestPreview {
-    border-radius: var(--border-radius-xs);
-    padding: var(--space-m);
+    /*border-radius: var(--border-radius-xs);*/
+    /*padding: var(--space-m);*/
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -8,12 +8,13 @@
     cursor: pointer;
     width: 100%;
     background-color: var(--on-surface-color);
-    border: 2px solid var(--dark-on-surface-color);
+    border: 2px solid transparent;
+    /*transition: all 0.1s ease;*/
 }
 
-.userTestPreview:hover {
-    box-shadow: var(--box-shadow);
-}
+/*.userTestPreview:hover {*/
+/*    border: 2px solid var(--dark-on-surface-color);*/
+/*}*/
 
 .userTestPreview__name {
     color: var(--text-color);
@@ -45,6 +46,8 @@
 
 .userTestPreview__button {
     font-size: var(--font-size-xs);
+    height: var(--font-size-s);
+    min-height: var(--font-size-s);
 }
 
 .userTestPreview__startIcon{

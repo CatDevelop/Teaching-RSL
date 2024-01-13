@@ -33,7 +33,7 @@ export const navigationItems = [
     },
     {
         id: 2,
-        label: "Тренировки",
+        label: "Практика",
         icon: TrainingIcon,
         link: "/training"
     },

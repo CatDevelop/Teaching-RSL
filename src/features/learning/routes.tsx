@@ -5,6 +5,7 @@ import {LearningCatalogPage} from "./pages/LearningCatalogPage";
 import HomeLayout from "../../components/WelcomeLayout";
 import {TrainingPage} from "../training/pages/TrainingPage";
 import WithSideBarLayout from "../../components/WithSideBarLayout";
+import {LearningResultPage} from "./pages/LearningResultPage";
 
 export const learningRoutes: RouteObject[] = [
     {
@@ -26,7 +27,10 @@ export const learningRoutes: RouteObject[] = [
                 path: ':id',
                 element: <LearningTaskPage/>,
             },
-
+            {
+                path: ':id/result',
+                element: <LearningResultPage/>,
+            },
         ],
     },
 ]

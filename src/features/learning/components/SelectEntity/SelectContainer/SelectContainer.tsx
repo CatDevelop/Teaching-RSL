@@ -14,6 +14,14 @@ export type SelectContainerProps = PropsWithChildren & Readonly<{
     setState: React.Dispatch<React.SetStateAction<any>>;
 }>
 
+const stylesByState = {
+    success: styles.selectContainer__success,
+    checked: styles.selectContainer__selected,
+    error: styles.selectContainer__danger,
+    disabled: styles.selectContainer__disabled,
+    default: ""
+}
+
 /**
  * Контейнер для объектов, которые можно выбрать
  */
@@ -27,10 +35,7 @@ export const SelectContainer: FC<SelectContainerProps> = typedMemo(function Sele
         <motion.div
             className={clsx(
                 styles.selectContainer,
-                props.state === "success" && styles.selectContainer__success,
-                props.state === "checked" && styles.selectContainer__selected,
-                props.state === "error" && styles.selectContainer__danger,
-                props.state === "disabled" && styles.selectContainer__disabled,
+                stylesByState[props.state]
             )}
             onClick={handleClickOnSelectObject}
         >
