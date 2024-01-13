@@ -4,8 +4,6 @@ import React, {FC} from "react";
 import styles from "./LearningHeader.module.css"
 import {Typography} from "../../../../components/Typography";
 import {ProgressBar} from "../../../../components/ProgressBar";
-import {Button} from "../../../../components/Button";
-import {Back} from "../../../../components/Back";
 
 type Props = Readonly <{
     type: string;

@@ -17,6 +17,7 @@
 .profileSettingsPage__formHeader {
     display: flex;
     flex-direction: column;
+    align-items: start;
     gap: var(--space-m);
 }
 

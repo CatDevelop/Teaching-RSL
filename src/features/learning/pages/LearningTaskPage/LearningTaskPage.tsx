@@ -14,31 +14,12 @@ import {LearningHeader} from "../../components/LearningHeader";
 import {LearningTaskBlock} from "../../components/LearningTaskBlock";
 import {Spinner} from "@nextui-org/react";
 import {Typography} from "../../../../components/Typography";
-import {ResultCard} from "../../../training/components/ResultCard";
-import Result from "../../../../assets/images/Result.svg"
 import ResultLearning from "../../../../assets/images/ResultLearningImage.svg"
 import {Back} from "../../../../components/Back";
 
-enum taskType {
-    THEORY = "theory",
-    PRACTICE = "practice"
-}
-
-// TODO написать нормальные типы
-type task = {
-    id: number,
-    task: any,
-    type: taskType
-}
-
 export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
-    const {id} = useParams<{
-        id: string
-    }>();
     const navigate = useNavigate()
     const fireworks = getFireworks(3000)
-
-    // const levelController = useLearningLevel(id || '')
 
 
     const levelController = {
@@ -260,7 +241,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                                             prevStep={prevStep}
                                         />
                                         <div className={styles.learningTask__back}>
-                                            <Back to="/learning"/>
+                                            <Back to="/learning" type="icon"/>
                                         </div>
                                     </div>
                                 )
