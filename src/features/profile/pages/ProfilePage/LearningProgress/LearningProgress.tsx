@@ -36,7 +36,7 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                         </div>
                     </ScrollBox>
                 </Tab>
-                <Tab key="training" title="Тренировки">
+                <Tab key="training" title="Практики">
                     <div className={styles.learningProgress__themes}>
                         {testHistory!.map((item, i) => (
                             <TestProgress {...item} key={i}/>
