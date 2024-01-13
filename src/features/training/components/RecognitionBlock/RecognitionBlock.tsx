@@ -1,6 +1,6 @@
 import {Card} from "../../../../components/Card";
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import React, {Dispatch, FC, ReactElement, SetStateAction, useCallback, useEffect} from "react";
+import React, {Dispatch, FC, ReactElement, SetStateAction, useCallback, useEffect, useState} from "react";
 import styles from "./RecognitionBlock.module.css";
 import {Typography} from "../../../../components/Typography";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
@@ -27,6 +27,12 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     let videoElement: any;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
+    const [isWasSuccess, setIsWasSuccess] = useState(false)
+
+
+    useEffect(() => {
+        setIsWasSuccess(false)
+    }, [props.word]);
 
     const onConnectToModal = useCallback(() => {
         console.log("Connected to server");
@@ -38,9 +44,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     }, [])
 
     const onReceiveText = useCallback((text: string) => {
-        console.log(text)
         let results: string[] = Object.values(JSON.parse(text))
-        console.log(results)
         if(props.signRecognizeText.at(-1) !== results[0].toLowerCase())
             props.setSignRecognizeText([...props.signRecognizeText, results[0].toLowerCase()])
     }, [props.setSignRecognizeText, props.signRecognizeText, props])
@@ -97,7 +101,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
         socket.on("connect", onConnectToModal);
         socket.on("disconnect", onDisconnectFromModal);
-        // socket.on("send_not_normalize_text", onReceiveText);
 
         videoElement = document.getElementById('webcam');
         if (videoElement)
@@ -106,7 +109,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
         return () => {
             socket.off("connect", onConnectToModal);
             socket.off("disconnect", onDisconnectFromModal);
-            // socket.off("send_not_normalize_text", onReceiveText);
             socket.disconnect();
             videoElement.removeEventListener('play', addFrameSender);
             stopAllTracks(videoElement.srcObject)
@@ -119,11 +121,11 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     useEffect(() => {
         console.log(props.signRecognizeText, props)
-        if (props.signRecognizeText.includes(props.word.word?.toLowerCase() ?? '')) {
+        if (!isWasSuccess && props.signRecognizeText.includes(props.word.word?.toLowerCase() ?? '') ) {
             console.log("SUCCESS")
             props.onSuccess()
+            setIsWasSuccess(true)
         }
-
     }, [props.signRecognizeText])
 
     if (!props)
@@ -131,17 +133,22 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     return (
         <Card className={clsx(styles.recognitionBlock, props.className)}>
-            {/*<div className={styles.recognitionBlock__header}>*/}
             <div className={styles.recognitionBlock__wordHeader}>
-                <Typography variant="h2" className={styles.recognitionBlock__gesture}>
-                    {props.word.word}
-                </Typography>
-                <Typography variant="span" className={styles.recognitionBlock__title}>
-                    Покажите жест в камеру
-                </Typography>
-                {/*<Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>*/}
+                <div className={styles.recognitionBlock__wordHeader__title}>
+                    <Typography variant="h2" className={styles.recognitionBlock__gesture}>
+                        {props.word.word}
+                    </Typography>
+                    <Typography variant="span" className={styles.recognitionBlock__title}>
+                        Покажите жест в камеру
+                    </Typography>
+                </div>
+                <div className={styles.recognitionBlock__wordHeader__buttons}>
+                    <Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>
+                    <Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>
+                </div>
             </div>
-            {/*<Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>*/}
+
+
             {/*</div>*/}
 
             <div className={styles.recognitionBlock__cameraAndRec}>

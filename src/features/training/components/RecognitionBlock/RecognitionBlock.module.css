@@ -45,7 +45,14 @@
     grid-area: header;
     display: flex;
     gap:  var(--space-l);
+    justify-content: space-between;
     width: 100%;
+}
+
+.recognitionBlock__wordHeader__buttons,
+.recognitionBlock__wordHeader__title {
+    display: flex;
+    gap:  var(--space-l);
 }
 
 .recognitionBlock__errorButton {
