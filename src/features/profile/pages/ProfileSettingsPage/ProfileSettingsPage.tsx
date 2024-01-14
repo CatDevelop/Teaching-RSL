@@ -32,8 +32,7 @@ type TempSettings = {
  * Настройки пользователя
  */
 export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettingsPage(props){
-    const [nameWatcher, setNameWatcher] = useState(false)
-    const { mutate: changeName} = useMutation(['user/changename', nameWatcher], UserService.changeName, {
+    const { mutate: changeName} = useMutation('user/changename', UserService.changeName, {
         onSuccess: () => {
             toast.success("Вы успешно сменили имя и фамилию")
         }
@@ -49,7 +48,6 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
     const onSubmit = useCallback((payload: TempSettings) => {
         if(payload.name !== user?.firstName || payload.surname !== user?.lastName) {
             changeName({name: payload.name, surname: payload.surname})
-            setNameWatcher(!nameWatcher)
         }
     }, [user])
 

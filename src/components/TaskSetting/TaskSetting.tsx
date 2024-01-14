@@ -43,6 +43,7 @@ export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(
 
     const selectDevice: ChangeEventHandler<HTMLSelectElement> = useCallback((e) => {
         LocalStorageService.set('deviceID', e.target.value)
+        window.location.reload();
     }, [LocalStorageService])
 
     useEffect(() => {
