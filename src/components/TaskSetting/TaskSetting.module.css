@@ -7,3 +7,9 @@
     border-radius: var(--border-radius-m);
     background-color: red;
 }
+
+.taskSetting__openBtn {
+    min-height: auto;
+    color: var(--thirdly-text-color);
+    text-decoration: underline;
+}

@@ -12,6 +12,7 @@ import {WordInTest} from "../../../../core/models/training/GetTestResponse";
 import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
 import {socket} from "../../../../core/utils/connectToModal";
 import {Button} from "../../../../components/Button";
+import { TaskSetting } from "components/TaskSetting";
 
 type Props = ComponentProps & Readonly<{
     word: WordInTest;
@@ -143,7 +144,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                     </Typography>
                 </div>
                 <div className={styles.recognitionBlock__wordHeader__buttons}>
-                    <Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>
+                    <TaskSetting className={styles.recognitionBlock__cameraSettingsButton}/>
                     <Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>
                 </div>
             </div>
