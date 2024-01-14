@@ -12,4 +12,6 @@
     min-height: auto;
     color: var(--thirdly-text-color);
     text-decoration: underline;
+    text-underline-offset: 3px;
+    text-underline-color: var(--thirdly-text-color);
 }

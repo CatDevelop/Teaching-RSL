@@ -76,7 +76,7 @@ export const TaskFeedback: FC<Props> = typedMemo(function TaskFeedback(props) {
                                 />
                             </ModalBody>
                             <ModalFooter className={styles.taskFeedback__actions}>
-                                <Button color="primary" onPress={onClose}>
+                                <Button color="primary" onPress={onClose} onBlur={(e) => e.stopPropagation()}>
                                     Отправить
                                 </Button>
                             </ModalFooter>

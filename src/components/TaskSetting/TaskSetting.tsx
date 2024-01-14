@@ -1,25 +1,59 @@
-import React, { FC } from "react";
-import { ComponentProps } from "../../core/models/ComponentProps";
-import { typedMemo } from "../../core/utils/typedMemo";
-import Setting from "../../assets/images/Settings.svg";
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Select, SelectItem, useDisclosure } from "@nextui-org/react";
-import { Button } from "../Button";
+import React, {ChangeEventHandler, FC, useCallback, useEffect} from "react";
+import {ComponentProps} from "../../core/models/ComponentProps";
+import {typedMemo} from "../../core/utils/typedMemo";
+import {
+    Modal,
+    ModalBody,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    Select,
+    SelectItem,
+    useDisclosure
+} from "@nextui-org/react";
+import {Button} from "../Button";
 import styles from "./TaskSetting.module.css";
 import clsx from "clsx";
+import {LocalStorageService} from "../../api/services/localStorageService";
 
 type Props = ComponentProps;
 
-/** 
+/**
  * Настройки тренировки
-*/
-export const TaskSetting: FC<Props> = typedMemo(function TaskSetting({
-    className,
-}){
+ */
+export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(
+    {
+        className,
+    }
+) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [devices, setDevices] = React.useState<MediaDeviceInfo[]>([]);
+    const [defaultDevice, setDefaultDevice] = React.useState<string | null>();
 
+    const handleDevices = React.useCallback((mediaDevices: MediaDeviceInfo[]) => {
+        setDevices(mediaDevices.filter(({kind, label}) => kind === "videoinput" && label))
+    }, [setDevices]);
+
+    React.useEffect(
+        () => {
+            navigator.mediaDevices.enumerateDevices().then(handleDevices);
+        },
+        [handleDevices]
+    );
+
+    const selectDevice: ChangeEventHandler<HTMLSelectElement> = useCallback((e) => {
+        LocalStorageService.set('deviceID', e.target.value)
+    }, [LocalStorageService])
+
+    useEffect(() => {
+        setDefaultDevice(LocalStorageService.get('deviceID'))
+    }, []);
+
+    if (devices.length === 0)
+        return;
     return (
         <>
-            <Button 
+            <Button
                 className={clsx(styles.taskSetting__openBtn, className)}
                 variant="light"
                 onClick={onOpen}
@@ -30,26 +64,31 @@ export const TaskSetting: FC<Props> = typedMemo(function TaskSetting({
                 <ModalContent>
                     {(onClose) => (
                         <>
-                        <ModalHeader className="flex flex-col gap-1">Настройка камеры</ModalHeader>
-                        <ModalBody>
-                          <div className={styles.taskSetting__camera}></div>
-                          <Select label="Камера">
-                            {[0,0,0].map((_, i) => (
-                                <SelectItem key={i} value={i}>
-                                    Камера
-                                </SelectItem>
-                            ))}
-                        </Select>
-                        </ModalBody>
-                        <ModalFooter className={styles.taskFeedback__actions}>
-                            <Button variant="faded" onPress={onClose}>
-                                Назад
-                            </Button>
-                        </ModalFooter>
+                            <ModalHeader className="flex flex-col gap-1">Настройка камеры</ModalHeader>
+                            <ModalBody>
+                                <div className={styles.taskSetting__camera}></div>
+                                <Select
+                                    label="Камера"
+                                    defaultSelectedKeys={[defaultDevice || devices[0].deviceId]}
+                                    onChange={selectDevice}
+                                >
+                                    {devices.map((device, i) => {
+                                        console.log(device)
+                                        return <SelectItem key={device.deviceId} value={device.deviceId}>
+                                            {device.label}
+                                        </SelectItem>
+                                    })}
+                                </Select>
+                            </ModalBody>
+                            <ModalFooter className={styles.taskFeedback__actions}>
+                                <Button variant="faded" onPress={onClose}>
+                                    Назад
+                                </Button>
+                            </ModalFooter>
                         </>
                     )}
-                </ModalContent> 
+                </ModalContent>
             </Modal>
-        </>  
+        </>
     );
 });

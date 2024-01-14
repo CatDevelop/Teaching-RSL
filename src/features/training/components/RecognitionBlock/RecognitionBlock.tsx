@@ -14,6 +14,7 @@ import {socket} from "../../../../core/utils/connectToModal";
 import {Button} from "../../../../components/Button";
 import {TaskSetting} from "components/TaskSetting";
 import {TaskFeedback} from "../../../../components/TaskFeedback";
+import {LocalStorageService} from "../../../../api/services/localStorageService";
 
 type Props = ComponentProps & Readonly<{
     word: WordInTest;
@@ -30,7 +31,11 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     const [isWasSuccess, setIsWasSuccess] = useState(false)
+    const [defaultDevice, setDefaultDevice] = React.useState<string | null>();
 
+    useEffect(() => {
+
+    }, []);
 
     useEffect(() => {
         setIsWasSuccess(false)
@@ -59,10 +64,10 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     }, [onReceiveText]);
 
 
-    const startWebcam = useCallback(async (addFrameSender: () => void) => {
+    const startWebcam = useCallback(async (addFrameSender: () => void, device: string) => {
         try {
             stopAllTracks(videoElement.srcObject)
-            videoElement.srcObject = await navigator.mediaDevices.getUserMedia({video: {facingMode: "user"}});
+            videoElement.srcObject = await navigator.mediaDevices.getUserMedia({video: {deviceId: device || ""}});
             videoElement.addEventListener('play', addFrameSender, {once: true});
         } catch (error) {
             console.error('Error accessing webcam:', error);
@@ -72,7 +77,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
             videoElement.removeEventListener('play', addFrameSender, {once: true});
             stopAllTracks(videoElement.srcObject)
         }
-    }, [videoElement, props.intervalID])
+    }, [videoElement, props.intervalID, defaultDevice])
 
     const addFrameSender = useCallback(() => {
         let id = setInterval(() => {
@@ -105,8 +110,9 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
         socket.on("disconnect", onDisconnectFromModal);
 
         videoElement = document.getElementById('webcam');
+        const device: string = LocalStorageService.get('deviceID') || ""
         if (videoElement)
-            startWebcam(addFrameSender);
+            startWebcam(addFrameSender, device);
 
         return () => {
             socket.off("connect", onConnectToModal);

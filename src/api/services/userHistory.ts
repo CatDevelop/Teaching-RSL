@@ -7,6 +7,9 @@ import { GetUserLevelStatisticResponse } from "core/models/userHistory/GetUserLe
 import {SendLevelResultRequestMapper} from "../../core/mappers/userHistory/SendLevelResultRequestMapper";
 import {SendLevelResultRequest} from "../../core/models/userHistory/SendLevelResultRequest";
 import {SendLevelResultRequestDto} from "../../core/dtos/userHistory/SendLevelResultResponseDto";
+import {SendTestResultRequest} from "../../core/models/userHistory/SendTestResultRequest";
+import {SendTestResultRequestDto} from "../../core/dtos/userHistory/SendTestResultResponseDto";
+import {SendTestResultRequestMapper} from "../../core/mappers/userHistory/SendTestResultRequestMapper";
 
 export namespace UserHistoryService {
     export async function getThemes(){
@@ -21,6 +24,11 @@ export namespace UserHistoryService {
 
     export async function sendLevelResult(formData: SendLevelResultRequest): Promise<void>{
         const {data} = await http.post<SendLevelResultRequestDto>(ApiUrlsConfig.userHistory.sendLevelResult, SendLevelResultRequestMapper.toDTO(formData));
+        return;
+    }
+
+    export async function sendTestResult(formData: SendTestResultRequest): Promise<void>{
+        const {data} = await http.post<SendTestResultRequestDto>(ApiUrlsConfig.userHistory.sendTestResult, SendTestResultRequestMapper.toDTO(formData));
         return;
     }
 }

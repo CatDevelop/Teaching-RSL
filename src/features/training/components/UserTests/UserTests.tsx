@@ -37,7 +37,6 @@ export const UserTests: FC<Props> = typedMemo(function UserTests(props) {
                 />
 
                 {userTests.data?.userTestList.map(test => <UserTestPreview
-                    // @ts-ignore
                     name={test.testName}
                     wordsCount={test.words.length}
                     id={test.id}

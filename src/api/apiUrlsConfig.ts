@@ -19,6 +19,7 @@ export namespace ApiUrlsConfig {
 		getStatistics: toUserApi('userhistory/levels'),
 		getTestHistory: toUserApi('testhistory'),
 		sendLevelResult: toUserApi('userhistory/send-level-result'),
+		sendTestResult: toUserApi('testhistory/send-result/'),
 	}
 
 	/** API ссылки авторизации (sso) */
