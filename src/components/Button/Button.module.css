@@ -46,10 +46,13 @@
 }
 
 .button_link {
-    height: auto;
+    min-height: auto;
     font-weight: var(--font-weight-m);
     padding: 0 var(--space-xs);
     color: var(--thirdly-text-color);
-    text-decoration: underline;
+}
+
+.button_primary_link {
+    color: var(--primary-color)
 }
 

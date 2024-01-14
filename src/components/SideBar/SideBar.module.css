@@ -23,6 +23,7 @@
 .sidebar__toSettingsBtn {
     min-height: auto;
     margin-left: 35px;
+    text-decoration: underline;
 }
 
 .sidebar__footer {
