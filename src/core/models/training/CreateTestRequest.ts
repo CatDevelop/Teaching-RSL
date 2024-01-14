@@ -7,7 +7,7 @@ export class CreateTestRequest {
     /**
      * Id.
      */
-    public readonly id: string;
+    public readonly id?: string;
 
     /**
      * Тип теста.

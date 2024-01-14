@@ -12,6 +12,7 @@ import {WordInTest} from "../../../../core/models/training/GetTestResponse";
 import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
 import {socket} from "../../../../core/utils/connectToModal";
 import {Button} from "../../../../components/Button";
+import {TaskSetting} from "components/TaskSetting";
 import {TaskFeedback} from "../../../../components/TaskFeedback";
 
 type Props = ComponentProps & Readonly<{
@@ -144,8 +145,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                     </Typography>
                 </div>
                 <div className={styles.recognitionBlock__wordHeader__buttons}>
-                    <Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>
-                    {/*<Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>*/}
+                    <TaskSetting className={styles.recognitionBlock__cameraSettingsButton}/>
                     <TaskFeedback
                         className={styles.recognitionBlock__errorButton}
                         text="Сообщить об ошибке"
@@ -171,9 +171,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                         }/>
                 </div>
             </div>
-
-
-            {/*</div>*/}
 
             <div className={styles.recognitionBlock__cameraAndRec}>
                 <div className={styles.recognitionBlock__camera}>

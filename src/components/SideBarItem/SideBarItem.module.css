@@ -7,6 +7,7 @@
     border-left: 4px transparent solid;
     transition: all 0.1s ease-in;
     align-items: center;
+    width: 100%;
 }
 
 .sideBarItem__label {

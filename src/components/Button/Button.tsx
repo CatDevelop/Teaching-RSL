@@ -4,7 +4,7 @@ import {Button as ButtonNextUI, ButtonProps} from "@nextui-org/react";
 import {typedMemo} from "../../core/utils/typedMemo";
 import styles from "./Button.module.css";
 
-type Props = ButtonProps;
+type Props = ButtonProps & {[key: string]: unknown};
 
 
 /**
@@ -20,8 +20,9 @@ export const Button: FC<Props> = typedMemo(function Button(props) {
                 props.variant === "faded" && props.color !== "primary" && styles.button_faded,
                 props.variant === "faded" && props.color === "primary" && styles.button_primary_faded,
                 props.variant === "light" && styles.button_link,
+                props.variant === "light" && props.color === 'primary' && styles.button_primary_link,
                 props.variant === undefined && styles.button_filled,
-                props.disabled && props.color === "primary" &&props.variant === "solid" && styles.button_primary_solid_disabled,
+                props.disabled && props.color === "primary" && props.variant === "solid" && styles.button_primary_solid_disabled,
                 props.className ?? ''
             )}
         />

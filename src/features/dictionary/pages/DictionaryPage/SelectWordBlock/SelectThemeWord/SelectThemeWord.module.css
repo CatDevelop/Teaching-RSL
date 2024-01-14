@@ -1,9 +1,3 @@
-.selectThemeWord {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
 .selectThemeWord__header {
     display:flex;
     align-items: center;

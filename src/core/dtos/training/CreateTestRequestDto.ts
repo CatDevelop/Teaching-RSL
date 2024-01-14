@@ -8,7 +8,7 @@ export type CreateTestRequestDto = Readonly<{
     /**
      * Id.
      */
-    id: string;
+    id?: string;
 
     /**
      * Тип теста.

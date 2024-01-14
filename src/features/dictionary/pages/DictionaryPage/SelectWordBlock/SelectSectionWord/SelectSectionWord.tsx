@@ -29,7 +29,7 @@ export const SelectSectionWord: FC<Props> = typedMemo(function SelectSectionWord
     const unit = useMemo(() => themes![0].units[0], [themes])
 
     return (
-        <Card className={clsx(props.className, styles.selectSectionWord)}>
+        <>
             <div className={styles.selectSectionWord__header}>
                 <NavLink to={`/dictionary/${themeId}`}>
                     <ArrowIcon className={styles.selectSectionWord__backIcon}/>
@@ -64,6 +64,6 @@ export const SelectSectionWord: FC<Props> = typedMemo(function SelectSectionWord
                 ))}
             </div>
             </ScrollBox>
-        </Card>
+        </>
     )
 })

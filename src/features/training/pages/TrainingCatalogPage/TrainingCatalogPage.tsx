@@ -11,6 +11,7 @@ import {SideBar} from "../../../../components/SideBar";
 import {Card} from "../../../../components/Card";
 import {Spinner} from "@nextui-org/react";
 import {clsx} from "clsx";
+import { RandomTestButton } from "features/training/components/RandomTestButton";
 
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() {
     let missingWordsCount = 0; // temp
@@ -34,7 +35,7 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
                         >
                             Потренируйся в воспроизведении жестов, а мы поможем
                         </Typography>
-                        {/*<Button color="primary" variant="light">Начать случайный тест</Button>*/}
+                        <RandomTestButton/>
                     </div>
                 </Card>
                 <Suspense fallback={<Spinner className={styles.trainingCatalog__loading}/>}>

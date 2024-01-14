@@ -5,7 +5,7 @@ import Logo from "../../assets/images/Logo.svg";
 import {SideBarItem} from "../SideBarItem";
 import {ExitIcon} from "../../assets/images/ExitIcon"
 import {Card} from "../Card";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "store/store";
 
@@ -14,6 +14,10 @@ import {LearningIcon} from "../../assets/images/LearningIcon"
 import {TrainingIcon} from "../../assets/images/TrainingIcon"
 import {DictionaryIcon} from "../../assets/images/DictionaryIcon"
 import {logout} from "../../store/auth/authSlice";
+import { useQuery } from "react-query";
+import { UserService } from "api/services/user";
+import { Typography } from "components/Typography";
+import { Button } from "components/Button";
 
 /**
  * Навигационные ссылки
@@ -51,6 +55,7 @@ export const navigationItems = [
 export const SideBar: FC = typedMemo(function SideBar() {
     const location = useLocation();
     const dispatch = useDispatch()
+    const {data: user} = useQuery('user-welcome-info', UserService.getWelcomeUserInfo)
 
     const exitItem = {
         id: 4,
@@ -76,7 +81,23 @@ export const SideBar: FC = typedMemo(function SideBar() {
                 }
             </div>
 
-            <SideBarItem item={exitItem} isActive={false}/>
+            <div className={styles.sidebar__footer}>
+                <Typography 
+                    variant="p" 
+                    className={styles.sidebar__username}
+                >
+                    {user!.lastName} {user!.firstName}
+                    </Typography>
+                <Button 
+                    variant="light" 
+                    as={Link} 
+                    to="/profile/settings" 
+                    className={styles.sidebar__toSettingsBtn}
+                >
+                    Редактировать профиль
+                    </Button>
+                <SideBarItem item={exitItem} isActive={false}/>
+            </div>
         </Card>
     );
 })

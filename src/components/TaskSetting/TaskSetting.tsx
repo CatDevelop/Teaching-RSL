@@ -5,6 +5,7 @@ import Setting from "../../assets/images/Settings.svg";
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Select, SelectItem, useDisclosure } from "@nextui-org/react";
 import { Button } from "../Button";
 import styles from "./TaskSetting.module.css";
+import clsx from "clsx";
 
 type Props = ComponentProps;
 
@@ -19,12 +20,11 @@ export const TaskSetting: FC<Props> = typedMemo(function TaskSetting({
     return (
         <>
             <Button 
-                className={className}
-                variant="faded"
+                className={clsx(styles.taskSetting__openBtn, className)}
+                variant="light"
                 onClick={onOpen}
-                endContent={<img src={Setting} alt="Change training setting"/>}
             >
-                Настройки
+                Настройки камеры
             </Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
