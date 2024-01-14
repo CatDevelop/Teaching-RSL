@@ -14,7 +14,7 @@ export namespace UserTestStorageService {
         }
 
         const wordIds: string[] = getWords();
-        LocalStorageService.set('userTestWordIds', JSON.stringify([...wordIds, wordId]))    
+        LocalStorageService.set('userTestWordIds', JSON.stringify([...wordIds, wordId]))
     }
 
     /**
@@ -27,14 +27,14 @@ export namespace UserTestStorageService {
         }
 
         const filteredWordIds = getWords().filter(id => id !== wordId);
-        LocalStorageService.set('userTestWordIds', JSON.stringify(filteredWordIds))    
+        LocalStorageService.set('userTestWordIds', JSON.stringify(filteredWordIds))
     }
 
     /**
      * Метод удаления всех id слов из хранилища
      */
     export function resetWords(): void {
-        LocalStorageService.set('userTestWordIds', '[]')   
+        LocalStorageService.set('userTestWordIds', '[]')
     }
 
     /**
@@ -48,7 +48,7 @@ export namespace UserTestStorageService {
      * Метод проверки id слова в хранилище
      * @param wordId id слова
      */
-    function checkWordIdInStorage(wordId: string): boolean {
+    export function checkWordIdInStorage(wordId: string): boolean {
         return getWords().find(id => id === wordId) !== undefined;
     }
 }

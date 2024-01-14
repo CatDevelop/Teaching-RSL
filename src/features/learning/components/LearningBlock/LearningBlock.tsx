@@ -26,6 +26,7 @@ export const LearningBlock: FC<Props> = typedMemo(function LearningBlock(props){
                 </Typography>
 
                 <TaskFeedback
+                    className={styles.learningBlock__taskFeedback}
                     text="Сообщить об ошибке"
                     items={
                         [

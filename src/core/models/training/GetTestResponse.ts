@@ -10,16 +10,16 @@ export class GetTestResponse {
     /**
      * Название.
      */
-    public readonly name: string;
+    public readonly testName: string;
 
     /**
      * Слова в тесте.
      */
     public readonly words: readonly WordInTest[];
 
-    public constructor({id, name, words}: GetTestResponseProps) {
+    public constructor({id, testName, words}: GetTestResponseProps) {
         this.id = id;
-        this.name = name;
+        this.testName = testName;
         this.words = words;
     }
 }

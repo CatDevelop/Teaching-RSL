@@ -10,14 +10,16 @@ type Props = ComponentProps & Readonly<{
     type?: 'icon' | 'text'
 }>
 
-/*
-    Ссылка назад
-*/
-export const Back: FC<Props> = typedMemo(function Back({
-    type = 'text',
-    ...props
-}) {
-    if(type === 'icon'){
+/**
+ * Ссылка назад
+ */
+export const Back: FC<Props> = typedMemo(function Back(
+    {
+        type = 'text',
+        ...props
+    }
+) {
+    if (type === 'icon') {
         return (
             <Link to={props.to} className={styles.back_type_icon}>
                 <ArrowIcon className={styles.back__icon}/>

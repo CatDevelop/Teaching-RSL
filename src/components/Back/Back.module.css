@@ -5,7 +5,7 @@
     color: var(--text-color);
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-l);
-    background: var(--on-surface-color);
+    background-color: var(--on-surface-color);
 }
 
 .back__icon {
@@ -14,9 +14,12 @@
 }
 
 .back_type_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 32px;
     height: 32px;
     border-radius: 100%;
     border: 1px solid var(--dark-on-surface-color);
-    justify-content: center;
+    background-color: var(--on-surface-color);
 }

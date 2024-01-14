@@ -79,7 +79,7 @@ export const userTests: any[] = [];
 
 export const testTemp: GetTestResponse = {
     id:'0',
-    name: 'Тест 1',
+    testName: 'Тест 1',
     words: [
         {
             id: '0',

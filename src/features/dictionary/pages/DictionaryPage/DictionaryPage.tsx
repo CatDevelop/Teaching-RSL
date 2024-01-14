@@ -18,10 +18,12 @@ import {SelectWordBlock} from "./SelectWordBlock";
 import {DictionaryWordBlock} from "./DictionaryWordBlock";
 import {Button} from "../../../../components/Button";
 import {CreateUserTestForm} from "./CreateUserTestForm";
+import {UserTestStorageService} from "../../../../api/services/userTestStorageService";
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
     const [search, setSearch] = useState('');
     const [selectedWordId, setSelectedWordId] = useState<string | null>(null);
+    const [isWordInTest, setIsWordInTest] = useState(false)
 
     const changeSearch: ChangeEventHandler<HTMLInputElement> = useCallback(event => {
         setSearch(event.target.value);
@@ -55,6 +57,9 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                             triggerComponent={onOpen => <Button color="primary" variant="light" onClick={onOpen}>
                                 Создать тест
                             </Button>}
+                            onChangeWords={() => {
+                                setIsWordInTest(UserTestStorageService.checkWordIdInStorage(selectedWordId || ""))
+                            }}
                         />
 
                     </div>
@@ -72,7 +77,11 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                         variant="faded"
                     />
                     <Suspense fallback={<Spinner className={styles.dictionary__loading}/>}>
-                        <DictionaryWordBlock selectedWordId={selectedWordId}/>
+                        <DictionaryWordBlock
+                            selectedWordId={selectedWordId}
+                            isWordInTest={isWordInTest}
+                            setIsWordInTest={setIsWordInTest}
+                        />
                     </Suspense>
                 </div>
                 <Suspense fallback={<Spinner/>}>

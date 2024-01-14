@@ -9,9 +9,9 @@ import {Statistics} from "./Statistics";
 import {Trophies} from "./Trophies";
 import { Card } from "components/Card";
 import { LevelBlock } from "components/LevelBlock";
-import { Loader } from "@mantine/core";
 import { useQuery } from "react-query";
 import { UserService } from "api/services/user";
+import {Spinner} from "@nextui-org/react";
 
 /**
  * Профиль
@@ -23,7 +23,7 @@ export const ProfilePage: FC = typedMemo(function LearningCatalogPage() {
         <Page>
             <SideBar/>
             <PageContent className={styles.profile__pageContent}>
-                <Suspense fallback={<Loader/>}>
+                <Suspense fallback={<Spinner/>}>
                     <Card className={styles.profile__levelBlock}>
                         <LevelBlock level={user!.level} experience={user!.scoresCount} experienceForNextLevel={user!.level * 100}/>
                     </Card>

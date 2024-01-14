@@ -1,6 +1,3 @@
-import {SingleLevelTask} from "./SingleLevelTask";
-import {MultiLevelTask} from "./MultiLevelTask";
-
 /**
  * Полученный уровень.
  */

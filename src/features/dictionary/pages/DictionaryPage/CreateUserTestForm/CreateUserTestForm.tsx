@@ -15,6 +15,7 @@ import { UserTestStorageService } from "api/services/userTestStorageService";
 
 type Props = Readonly<{
     triggerComponent: (onOpen: () => void) => ReactElement;
+    onChangeWords?: () => void;
 }>
 
 const validationSchema = Yup.object({
@@ -42,7 +43,7 @@ export const CreateUserTestForm: FC<Props> = typedMemo(function CreateUserTestFo
     const onSubmit = useCallback((data: CreateUserTestRequest) => {
         create(data)
         data.wordIdList?.forEach(id => UserTestStorageService.deleteWord(id));
-    }, [create]) 
+    }, [create])
 
     useEffect(() => {
         reset();
@@ -51,7 +52,7 @@ export const CreateUserTestForm: FC<Props> = typedMemo(function CreateUserTestFo
     return (
         <>
             {props.triggerComponent(onOpen)}
-            {isOpen && 
+            {isOpen &&
                 <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                     <ModalContent>
                         {(onClose) => (
@@ -65,7 +66,10 @@ export const CreateUserTestForm: FC<Props> = typedMemo(function CreateUserTestFo
                                         errorMessage={errors.testName?.message}
                                         {...register('testName')}
                                     />
-                                    <SelectUserTestWords onChangeWordIds={ids => setValue('wordIdList', ids)}/>
+                                    <SelectUserTestWords onChangeWordIds={ids => {
+                                        setValue('wordIdList', ids)
+                                        props.onChangeWords?.()
+                                    }}/>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button variant="faded" onPress={onClose}>
