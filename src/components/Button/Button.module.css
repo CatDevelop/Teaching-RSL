@@ -18,6 +18,11 @@
     color: var( --on-surface-color)
 }
 
+.button__light {
+    color: var(--thirdly-text-color);
+    text-decoration: underline;
+}
+
 .button_filled {
     --min-width: 150px;
     min-width: var(--min-width);
@@ -44,4 +49,7 @@
     height: auto;
     font-weight: var(--font-weight-m);
     padding: 0 var(--space-xs);
+    color: var(--thirdly-text-color);
+    text-decoration: underline;
 }
+

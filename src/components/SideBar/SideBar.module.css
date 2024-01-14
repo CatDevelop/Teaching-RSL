@@ -12,7 +12,22 @@
     border-radius: 0 var(--border-radius-xs) var(--border-radius-xs) 0;
 }
 
-
 .sidebar__logo {
     margin: 9.5px var(--page-padding-m); /* Странное значение, но нужно для бесшовного перехода между страницами*/
+}
+
+.sidebar__username {
+    margin-left: 40px;
+}
+
+.sidebar__toSettingsBtn {
+    min-height: auto;
+    margin-left: 35px;
+}
+
+.sidebar__footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    align-items: start;
 }
