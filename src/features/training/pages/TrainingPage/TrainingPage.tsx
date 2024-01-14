@@ -4,10 +4,7 @@ import styles from "./TrainingPage.module.css";
 import {Page} from "../../../../components/Page";
 import Logo from "../../../../assets/images/Logo.svg"
 import {Button} from "../../../../components/Button";
-import {Typography} from "../../../../components/Typography";
 import {useNavigate, useParams} from "react-router-dom";
-import {TaskContinue} from "../../../../components/TaskContinue";
-import {ProgressBar} from "../../../../components/ProgressBar";
 import {PageContent} from "../../../../components/PageContent";
 import {RecognitionBlock} from "../../components/RecognitionBlock";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
@@ -15,15 +12,15 @@ import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 import {useQuery} from "react-query";
 import {TrainingService} from "../../../../api/services/training";
-import {StartTraining} from "../../components/StartTraining/StartTraining";
 import {ModelWarning} from "../../components/ModelWarning/ModelWarning";
 import {socket} from "../../../../core/utils/connectToModal";
-import {BySberAI} from "../../../../components/BySberAI";
+import {LearningHeader} from "../../../learning/components/LearningHeader";
+import {toast} from "react-toastify";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
     const fireworks = getFireworks(3000)
-    const {id} = useParams<{id: string}>();
+    const {id} = useParams<{ id: string }>();
     const {data} = useQuery(['training/gettest', id], () => TrainingService.getTraining(id ?? ''));
 
     const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
@@ -31,32 +28,31 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const [countSkippedWords, setCountSkippedWords] = useState(0);
     const [isDoneTask, setIsDoneTask] = useState(false);
     const [intervalID, setIntervalID] = useState<TimeoutId>()
-    const [currentStep, setCurrentStep] = useState(-1)
+    const [currentStep, setCurrentStep] = useState(0)
     const [isNotStartModel, setIsNotStartModel] = useState(false)
-
-    const getTaskResult = useCallback(() => {
-        if(!data){
-            return 0
-        }
-        return 100 - Math.floor((countSkippedWords) / data.words.length * 100)
-    }, [data, countSkippedWords])
 
     const clearRecognizeText = () => setSignRecognizeText([])
 
     const openExitModal = useCallback(() => setExitModalIsOpen(true), [setExitModalIsOpen])
-    const toMainPage = useCallback(() => navigate("/"), [navigate])
+    const toTrainingPage = useCallback(() => navigate("/training"), [navigate])
 
     const skip = useCallback(() => {
+        if (currentStep + 1 === data?.words.length) {
+            navigate("result/?skiped=" + countSkippedWords+1 + "&all=" + data.words.length)
+        }
         setCurrentStep(currentStep => currentStep + 1)
         setCountSkippedWords(count => count + 1);
         clearRecognizeText()
-    }, [setCountSkippedWords, setCurrentStep]);
+    }, [setCountSkippedWords, setCurrentStep, currentStep, data, countSkippedWords]);
 
     const next = useCallback(() => {
+        if (currentStep + 1 === data?.words.length) {
+            navigate("result/?skiped=" + countSkippedWords + "&all=" + data.words.length)
+        }
         setCurrentStep(currentStep => currentStep + 1)
         setIsDoneTask(false);
         clearRecognizeText()
-    }, [setCurrentStep, setIsDoneTask])
+    }, [setCurrentStep, setIsDoneTask, currentStep, data, countSkippedWords])
 
     useEffect(() => {
         socket.on('connect_error', () => setIsNotStartModel(true))
@@ -65,138 +61,74 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     }, []);
 
     useEffect(() => {
-        if(!data){
+        if (!data) {
             return;
         }
-        if (currentStep === data.words.length && countSkippedWords !== data.words.length)
-            fireworks()
-    }, [currentStep, countSkippedWords, data, fireworks]);
+    }, [data]);
 
-    useEffect(() => {
-        socket.on('connect_error', () => setIsNotStartModel(true))
-        socket.on('connect_failed', () => setIsNotStartModel(true))
-        socket.on('connect', () => setIsNotStartModel(false))
-    }, []);
-
-
-    if(!data){
+    if (!data) {
         return null
     }
+
     return (
         <Page>
-            <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen}/>
+            <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen} onExit={toTrainingPage}/>
             <PageContent className={styles.trainingTask}>
-                <div className={styles.trainingTask__header}>
-                    <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
-                        <img src={Logo} rel="preload" alt={"Логотип"} width={230}/>
-                        {/*<BySberAI/>*/}
-                    </div>
-                    {
-                        currentStep !== -1 && currentStep !== data.words.length && !isNotStartModel &&
-                        <div className={styles.trainingTask__progressBarContainer}>
-                            <ProgressBar currentStep={currentStep - 1} stepCount={data.words.length}/>
-                        </div>
-                    }
-                    <div className={styles.trainingTask__exitButtonContainer}>
-                        {
-                            currentStep !== data.words.length &&
-                            <Button
-                                variant={"faded"}
-                                color={"default"}
-                                size={"lg"}
-                                onClick={openExitModal}
-                            >
-                                В главное меню
-                            </Button>
-                        }
-                    </div>
+                <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
+                    <img src={Logo} rel="preload" alt={"Логотип"} width={218}/>
                 </div>
-
-                {currentStep !== data.words.length && <BySberAI className={styles.trainingTask__bySberAI}/>}
-
-
-                <div className={styles.trainingTask__taskContainer}>
+                <div className={styles.trainingTask__contentContainer}>
                     {
-                        currentStep === -1 &&
-                        <StartTraining onStart={() => setCurrentStep(0)}/>
+                        !isNotStartModel &&
+                        <LearningHeader
+                            type="test"
+                            name={"Входное тестирование для абитуриентов"}
+                            currentStep={currentStep}
+                            stepCount={data.words.length}
+                        />
                     }
                     {
-                        currentStep >= 0 && currentStep <= data.words.length - 1 && !isNotStartModel &&
+                        !isNotStartModel &&
                         <RecognitionBlock
                             word={data.words[currentStep]}
                             className={styles.trainingTask__recognition}
-                            onSuccess={() => setIsDoneTask(true)}
+                            onSuccess={() => {
+                                setIsDoneTask(true)
+                                toast.success("Вы отлично справились!")
+                            }}
                             setIntervalID={setIntervalID}
                             intervalID={intervalID}
                             signRecognizeText={signRecognizeText}
                             setSignRecognizeText={setSignRecognizeText}
+                            buttons={<div className={styles.trainingTask__buttonsContainer}>
+                                {
+                                    !isNotStartModel && isDoneTask ?
+                                        <Button
+                                            size={"lg"}
+                                            variant="faded"
+                                            color="primary"
+                                            onClick={next}
+                                        >
+                                            Далее
+                                        </Button> :
+                                        <Button
+                                            size={"lg"}
+                                            variant="faded"
+                                            onClick={skip}
+                                        >
+                                            Пропустить
+                                        </Button>
+                                }
+                            </div>}
                         />
                     }
                     {
-                        currentStep >= 0 && currentStep <= data.words.length - 1 && isNotStartModel &&
+                        isNotStartModel &&
                         <div className={styles.trainingPage__warningContainer}>
                             <ModelWarning/>
                         </div>
                     }
-                    {
-                        currentStep === data.words.length &&
-                        <div className={styles.trainingTask__result}>
-                            {/*<img*/}
-                            {/*    src={ResultImage}*/}
-                            {/*    rel="preload"*/}
-                            {/*    className={styles.trainingTask__resultImage}*/}
-                            {/*    alt="Иконка результата"*/}
-                            {/*/>*/}
-                            <Typography variant="h2" className={styles.trainingTask__resultTitle}>
-                                Поздравляем, вы освоили несколько новых жестов!<br/>Благодарим за участие!
-                            </Typography>
-                            <div className={styles.trainingTask__result__container}>
-                                <BySberAI/>
-                                {/*<ResultCard*/}
-                                {/*    title="Результат"*/}
-                                {/*    iconUrl={Result}*/}
-                                {/*    content={`${getTaskResult()}%`}*/}
-                                {/*    className={styles.trainingTask__resultCard}/>*/}
-                            </div>
-                        </div>
-                    }
                 </div>
-
-                <div className={styles.trainingTask__buttonsContainer}>
-                    {
-                        currentStep >= 0 && currentStep <= data.words.length - 1 && !isDoneTask && !isNotStartModel &&
-                        <Button
-                            size={"lg"}
-                            variant="faded"
-                            onClick={skip}
-                        >
-                            Пропустить
-                        </Button>
-                    }
-                </div>
-
-                <div className={styles.trainingTask__taskContinueContainer}>
-                    {
-                        isDoneTask &&
-                        <TaskContinue next={next} isRightAnswer={true}/>
-                    }
-                    {
-                        currentStep === data.words.length &&
-                        <div className={styles.trainingTask__toHome}>
-                            <Button
-                                size={'lg'}
-                                color="primary"
-                                onClick={toMainPage}
-                            >
-                                В главное меню
-                            </Button>
-                        </div>
-                    }
-                </div>
-                {
-                    currentStep === -1 && isNotStartModel &&
-                    <ModelWarning className={styles.trainingPage__warning}/>
-                }
             </PageContent>
         </Page>
     )

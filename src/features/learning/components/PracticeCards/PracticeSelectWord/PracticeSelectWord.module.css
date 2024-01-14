@@ -11,14 +11,13 @@
 
 .practiceSelectWord {
     box-sizing: border-box;
-    height: 100%;
+    height: calc(100% - 70px);
     width: 100%;
     animation: showDown 0.5s ease-in;
 }
 
 .practiceSelectWord__contentContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: var(--space-m);
     height: 100%;
     padding-top: var(--space-m);
@@ -35,4 +34,10 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
+    max-width: 400px;
+    width: 100%;
+}
+
+.practiceSelectWord__signVideo {
+    width: 100%;
 }

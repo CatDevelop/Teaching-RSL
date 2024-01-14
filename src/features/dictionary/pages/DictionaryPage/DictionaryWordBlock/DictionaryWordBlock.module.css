@@ -1,0 +1,38 @@
+.dictionaryWordBlock_empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dictionaryWordBlock_empty__title {
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-l);
+    color: var(--thirdly-text-color);
+    text-align: center;
+}
+
+.dictionaryWordBlock {
+    display: flex;
+    flex:1;
+    gap: var(--space-l);
+    flex-direction: column;
+}
+
+.dictionaryWordBlock__imageContainer {
+    flex: 1;
+    border-radius: var(--border-radius-m);
+    overflow: hidden;
+    width: fit-content;
+}
+
+.dictionaryWordBlock__image {
+    object-fit: cover;
+    height: calc(100vh - 525px) !important;
+    aspect-ratio: 4 / 3;
+}
+
+.dictionaryWordBlock__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-l);
+}

@@ -21,7 +21,7 @@
 }
 
 .statisticsItem__description {
-    font-size: var(--font-size-s);
+    font-size: calc(var(--font-size-s) * 0.9);
     color: var(--disabled-button-color);
     grid-column: 1 / span 2;
     align-self: start;

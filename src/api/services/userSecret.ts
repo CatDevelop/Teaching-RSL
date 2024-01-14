@@ -3,7 +3,7 @@ import { LocalStorageService } from './localStorageService';
 
 export namespace UserSecretService {
 
-	const SECRET_KEY = 'SECRET';
+	const SECRET_KEY = 'Teaching-RSL-SECRET';
 
 	/** Get user secret from local storage. */
 	export function hasToken(): boolean {

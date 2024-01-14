@@ -17,6 +17,7 @@ import { useMutation } from "react-query";
 import { UserService } from "api/services/user";
 import { login as loginDispatch } from "store/auth/authSlice";
 import { LoginUserRequest } from "core/models/auth/LoginUserRequest";
+import {toast} from "react-toastify";
 
 /**
  * Страница входа
@@ -33,6 +34,12 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
     const {isLoading: isFetching, mutate: login} = useMutation('auth/login', UserService.login, {
         onSuccess: () => {
             dispatch(loginDispatch())
+        },
+        onError: (error: {response: {data: Object}}) => {
+            if("error_description" in error.response.data && error.response.data.error_description === "invalid_username_or_password")
+                toast.error('Неверный логин или пароль!');
+            else
+                toast.error('Ошибка!');
         }
     })
 
@@ -72,9 +79,9 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
                     errorMessage={errors.password?.message}
                     {...register('password')}
                 />
-                <Button 
-                    color="primary" 
-                    type="submit" 
+                <Button
+                    color="primary"
+                    type="submit"
                     onClick={handleSubmit(onSubmit)}
                     isLoading={isFetching}
                     isDisabled={isFetching}
@@ -82,10 +89,10 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
                     Войти
                 </Button>
             </form>
-            <SocialBlock
-                label="Или войти с помощью"
-                links={socialLinks}
-            />
+            {/*<SocialBlock*/}
+            {/*    label="Или войти с помощью"*/}
+            {/*    links={socialLinks}*/}
+            {/*/>*/}
             <div className={styles.loginPage__links}>
                 <FormLink
                     label="Забыли пароль?"

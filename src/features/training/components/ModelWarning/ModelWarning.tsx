@@ -15,11 +15,11 @@ export const ModelWarning: FC<ComponentProps> = typedMemo(function ModelWarning(
                 Произошла ошибка 🤖💔
             </Typography>
             <Typography variant={"p"} className={styles.modelWarning__description}>
-                Распознавание работает только при запущенной на локальной машине модели распознавания.
-                Чтобы развернуть её, скачайте архив и запустите .exe файл:
+                Распознавание работает только при запущенной на сервере модели распознавания.
+                Чтобы запустить её обратитесь к
                 <div className={styles.modelWarning__gitLink}>
-                    <a href={"https://drive.google.com/file/d/17o-jI42XvbdJuj8Ap_oINbbuQvxtwEEx/view?usp=sharing"} target={"_blank"} rel="noreferrer">
-                        Скачать архив
+                    <a href={"https://t.me/roma_cheby"} target={"_blank"} rel="noreferrer">
+                        @roma_cheby
                     </a>
                 </div>
             </Typography>

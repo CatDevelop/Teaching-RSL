@@ -1,0 +1,69 @@
+.fact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-l);
+    width: 390px;
+    height: 250px;
+    min-width: 370px;
+    border-radius: var(--border-radius-m);
+    box-sizing: border-box;
+}
+
+.fact__factContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fact__source {
+    width: 100%;
+    font-size: calc(var(--font-size-s)*0.69);
+    font-weight: var(--font-weight-l);
+    color: var(--on-surface-opacity-color);
+}
+
+.fact__title {
+    text-align: center;
+    font-size: calc(var(--font-size-xl) * 1.1);
+}
+
+.fact__description {
+    text-align: center;
+    font-size: var(--font-size-m);
+    white-space: pre-line;
+}
+
+
+.fact__blue {
+    background: var(--fact-blue-background-color);
+}
+
+.fact__blue .fact__title,
+.fact__blue .fact__description,
+.fact__blue .fact__source {
+    color: var(--fact-blue-text-color);
+}
+
+.fact__grape {
+    background: var(--fact-grape-background-color);
+}
+
+.fact__grape .fact__title,
+.fact__grape .fact__description,
+.fact__grape .fact__source {
+    color: var(--fact-grape-text-color);
+}
+
+.fact__green {
+    background:var(--fact-green-background-color);
+}
+
+.fact__green .fact__title,
+.fact__green .fact__description,
+.fact__green .fact__source {
+    color: var(--fact-green-text-color);
+}

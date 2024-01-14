@@ -7,42 +7,35 @@ import TheoryIconSVG from "../../../../assets/images/TheoryIcon.svg"
 import {Typography} from "../../../../components/Typography";
 import {SignVideo} from "../../../../components/SignVideo";
 import {LearningBlock} from "../LearningBlock";
-import {Word} from "../../../../core/models/Word";
+import {Word, WordFormServer2} from "../../../../core/models/Word";
+import {IllustrationWordResponseDto} from "../../../../core/dtos/words/IllustrationWordResponseDto";
 
 type Props = ComponentProps & Readonly<{
-    wordObject: Word
+    wordObject: WordFormServer2
 }>
 
-/** 
- * Карточка с теорией: GIF, изображение, слово
+/**
+ * Карточка с теорией: GIF, слово
  */
 export const TheoryCard: FC<Props> = typedMemo(function TheoryCard(props) {
     return (
         <div className={clsx(styles.theoryCard)}>
-            <LearningBlock iconUrl={TheoryIconSVG} title={"Теория"}>
+            <div>
+                <Typography
+                    variant="h2"
+                    className={styles.theoryCard__title}
+                >
+                    {props.wordObject.word}
+                </Typography>
                 <div className={styles.theoryCard__contentContainer}>
                     <div className={styles.theoryCard__images}>
                         <SignVideo
-                            src={props.wordObject.gifSource}
+                            src={props.wordObject.illustrations[0].path}
                             className={styles.theoryCard__gif}
                         />
-
-                        {
-                            //props.wordObject.imageSource &&
-                            //<img
-                                //rel="preload"
-                                //src={props.wordObject.imageSource}
-                                //alt={"Изображение для жеста"}
-                                //className={styles.theoryCard__image}
-                            ///>
-                        }
                     </div>
-
-                    <Typography variant="h1" className={styles.theoryCard__word}>
-                        {props.wordObject.text}
-                    </Typography>
                 </div>
-            </LearningBlock>
+            </div>
         </div>
     );
 });

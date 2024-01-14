@@ -1,0 +1,49 @@
+@keyframes moving {
+    from   { left: 0; }
+    to { left: -100% }
+}
+
+@keyframes moving2 {
+    from   { left: 100% }
+    to { left: 0; }
+}
+
+.facts__shadow {
+    width: 100vw;
+    height: 100%;
+}
+.facts {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.facts__contentContainer {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-m);
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 3280px;
+    height: 100%;
+}
+
+.facts__firstContent {
+    animation: moving 70s linear infinite;
+}
+
+.facts__secondContent {
+    animation: moving2 70s linear infinite;
+}
+.facts__slide {
+    width: 350px;
+}

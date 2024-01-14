@@ -1,1 +1,1 @@
-export { PracticeSelectWord } from "./PracticeSelectWord";
+export { PracticeSelectWordByGIF } from "./PracticeSelectWordByGIF";

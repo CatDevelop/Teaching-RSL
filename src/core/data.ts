@@ -11,6 +11,9 @@ import YouSignVideo from "../assets/video/ExhibitionStand/Тебя.mp4"
 import {GetTestResponse} from "./models/training/GetTestResponse";
 
 export type taskType = "SelectWord" | "SelectImage" | "SelectGIFByWord" | "MatchWordAndGIF"
+
+export const defaultVideoSrc = "https://media.spreadthesign.com/video/mp4/12/320435.mp4";
+
 export const StartThemeWords: Word[] = [
     {
         id: 0,

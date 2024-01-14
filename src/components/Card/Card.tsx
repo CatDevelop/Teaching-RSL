@@ -6,8 +6,8 @@ import { ComponentProps } from "../../core/models/ComponentProps";
 
 type Props = PropsWithChildren & ComponentProps;
 
-/** 
- * Карточка. 
+/**
+ * Карточка
  */
 export const Card: FC<Props> = typedMemo(function Card(props){
     return (

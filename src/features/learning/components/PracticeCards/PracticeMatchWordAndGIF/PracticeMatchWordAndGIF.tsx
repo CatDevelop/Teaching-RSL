@@ -5,8 +5,7 @@ import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
 import PracticeIconSVG from "../../../../../assets/images/PracticeIcon.svg"
 import {LearningBlock} from "../../LearningBlock";
-import {Word} from "../../../../../core/models/Word";
-import {Typography} from "../../../../../components/Typography";
+import {WordFormServer, WordFormServer2} from "../../../../../core/models/Word";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
 import {SelectButton} from "../../SelectEntity/SelectButton";
 import {SelectObjectState, SelectState} from "../../../../../core/models/SelectState";
@@ -15,35 +14,51 @@ import {StepStatus} from "../../../../../core/models/StepStatus";
 import {getInitialSelectObjectsState} from "../../../../../core/utils/getInitialSelectObjectsState";
 
 type HandleClickOnSelectObject = (
-    clickWordObject: Word,
+    clickWordObject: WordFormServer2,
     selectObjectState: SelectObjectState[],
     setSelectObjectState: React.Dispatch<React.SetStateAction<SelectObjectState[]>>
 ) => void
 
-type Props = ComponentProps & Readonly<{
-    variants: Word[];
-    setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
-    setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
-}>
-
 type ToDefaultStateType = () => {
-    wordObject: Readonly<Word>;
+    wordObject: Readonly<WordFormServer2>;
     state: SelectState
 }[]
 
 type OnWrongAnswer = (checkedWordIndex: number, checkedGIFIndex: number) => void
 type GetNewStatusMatchPractice = (checkedWordIndex: number, checkedGIFIndex: number) => SelectState
 
-/** 
+type Props = ComponentProps & Readonly<{
+    variants: WordFormServer2[];
+    setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
+    setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
+    setTaskChecked: React.Dispatch<React.SetStateAction<boolean>>;
+}>
+
+
+/**
  * Практика "Подбери пару к словам"
  */
 export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMatchWordAndGIF(props) {
-    const [variantsInOtherOrder] = useState(shuffleArray<Word>(props.variants))
+    const [variantsInOtherOrder, setVariantsInOtherOrder] = useState(shuffleArray<WordFormServer2>(props.variants))
 
     const [words, setWords] = useState<SelectObjectState[]>(getInitialSelectObjectsState(variantsInOtherOrder))
     const [gifs, setGifs] = useState<SelectObjectState[]>(getInitialSelectObjectsState(props.variants))
     const [isBlocked, setIsBlocked] = useState<boolean>(false)
     const [countOfCompleted, setCountOfCompleted] = useState(0)
+
+    useEffect(() => {
+        setVariantsInOtherOrder(shuffleArray<WordFormServer2>(props.variants))
+        setGifs(getInitialSelectObjectsState(props.variants))
+    }, [props.variants]);
+
+    useEffect(() => {
+        setCountOfCompleted(0)
+        setIsBlocked(false)
+        setWords(getInitialSelectObjectsState(variantsInOtherOrder))
+        props.setIsTaskReadyToCheck(false)
+        props.setStatus({status: "default"})
+        props.setTaskChecked(false)
+    }, [variantsInOtherOrder]);
 
     const handleClickOnSelectObject: HandleClickOnSelectObject = useCallback((clickWordObject, selectObjectState, setSelectObjectState) => {
         const toDefaultState: ToDefaultStateType = () => {
@@ -66,7 +81,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
                 }))
         } else
             setSelectObjectState(toDefaultState())
-    }, [isBlocked])
+    }, [props.variants, isBlocked])
 
     const onRightAnswer: () => void = useCallback(() => {
         setCountOfCompleted(countOfCompleted + 1)
@@ -122,11 +137,16 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
     }, [words, gifs, setIsBlocked, setWords, setGifs, getNewStatusMatchPractice]);
 
     const checkTaskStatus = useCallback(() => {
-        if (countOfCompleted === 3) {
+        if (countOfCompleted >= 4) {
             props.setIsTaskReadyToCheck(true)
             props.setStatus({status: "success"})
+            props.setTaskChecked(true)
+        } else {
+            props.setIsTaskReadyToCheck(false)
+            props.setStatus({status: "default"})
+            props.setTaskChecked(false)
         }
-    }, [props.setIsTaskReadyToCheck, props.setStatus, countOfCompleted])
+    }, [props.setIsTaskReadyToCheck, props.setStatus, countOfCompleted, props.setTaskChecked])
 
     useEffect(() => {
         checkStatusOfSelectedPair()
@@ -135,14 +155,8 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
 
     return (
         <div className={clsx(styles.practiceMatchWordAndGIF)}>
-            <LearningBlock iconUrl={PracticeIconSVG} title={"Практика"} className={styles.practiceMatchWordAndGIF__card}>
+            <LearningBlock iconUrl={PracticeIconSVG} title={"Соотнесите слова и жесты"} className={styles.practiceMatchWordAndGIF__card}>
                 <div className={styles.practiceMatchWordAndGIF__contentContainer}>
-                    <div className={styles.practiceMatchWordAndGIF__titleContainer}>
-                        <Typography variant="h3" className={styles.practiceMatchWordAndGIF__title}>
-                            Подбери пару к словам
-                        </Typography>
-                    </div>
-
                     <div className={styles.practiceMatchWordAndGIF__taskContainer}>
                         <div className={styles.practiceMatchWordAndGIF__taskContainer_buttons}>
                             {

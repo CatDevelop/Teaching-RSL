@@ -9,7 +9,10 @@
     display: grid;
     grid-template-areas: "title title" "systems other";
     grid-template-rows: var(--title-block-container-height) 1fr;
-    grid-template-columns: var(--accent-block-container-width) 1fr;
+    grid-template-columns: 1.5fr 1fr;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    width: 100%;
 }
 
 .trainingCatalog__titleContainer {
@@ -17,6 +20,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
+    height: 100%;
+    justify-content: center;
 }
 
 .trainingCatalog__titleContainer__title {
@@ -24,9 +29,14 @@
     line-height: var(--font-size-xl);
 }
 
+.trainingCatalog__titleContainer__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .trainingCatalog__titleContainer__description {
     color: var(--text-color);
-    line-height: var(--font-size-s);
 }
 
 

@@ -9,7 +9,7 @@ export namespace CreateUserTestRequestMapper {
 	export function toDto(model: CreateUserTestRequest): CreateUserTestRequestDto {
 		return {
 			testName: model.testName,
-			wordIdList: model.wordIdList,
+			wordIdList: model.wordIdList ?? [],
 		};
 	}
 }

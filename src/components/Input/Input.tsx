@@ -7,10 +7,10 @@ import styles from "./Input.module.css";
  * Поле ввода
  */
 export const Input: FC<InputProps> = typedMemo(forwardRef(function Input(props, ref){
-    return <InputNextUI 
-        {...props} 
+    return <InputNextUI
+        {...props}
         variant="faded"
         ref={ref}
-        classNames={{inputWrapper: [styles.input__inputWrapper]}}
+        classNames={{inputWrapper: [styles.input__inputWrapper], input: [styles.input]}}
     />
 }))

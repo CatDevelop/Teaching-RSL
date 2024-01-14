@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import {RootRouter} from "./routes/RootRouter";
@@ -7,6 +7,8 @@ import {MantineProvider} from "@mantine/core";
 import '@mantine/core/styles.css';
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import {Spinner} from "@nextui-org/react";
+import 'react-toastify/dist/ReactToastify.css';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -23,7 +25,9 @@ export default function MyApp() {
                 <QueryClientProvider client={queryClient}>
                     <MantineProvider>
                         <BrowserRouter>
-                            <RootRouter/>
+                            <Suspense fallback={<Spinner className="mainSpinner"/>}>
+                                <RootRouter/>
+                            </Suspense>
                         </BrowserRouter>
                     </MantineProvider>
                 </QueryClientProvider>

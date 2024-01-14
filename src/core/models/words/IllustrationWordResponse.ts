@@ -1,4 +1,4 @@
-import { FileType } from "./FileType";
+import {FileType} from "./FileType";
 
 /**
  * Иллюстрация к слову
@@ -14,7 +14,7 @@ export class IllustrationWordResponse {
      */
     public readonly fileType: FileType | null;
 
-    public constructor({path, fileType}:IllustrationWordResponseProps){
+    public constructor({path, fileType}: IllustrationWordResponseProps) {
         this.path = path;
         this.fileType = fileType;
     }

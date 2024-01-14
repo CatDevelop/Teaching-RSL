@@ -27,12 +27,15 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
                     >
                         Практика
                     </Typography>
-                    <Typography
-                        variant="p"
-                        className={styles.trainingCatalog__titleContainer__description}
-                    >
-                        Потренируйся в воспроизведении жестов, а мы поможем
-                    </Typography>
+                    <div className={styles.trainingCatalog__titleContainer__content}>
+                        <Typography
+                            variant="p"
+                            className={styles.trainingCatalog__titleContainer__description}
+                        >
+                            Потренируйся в воспроизведении жестов, а мы поможем
+                        </Typography>
+                        {/*<Button color="primary" variant="light">Начать случайный тест</Button>*/}
+                    </div>
                 </Card>
                 <Suspense fallback={<Spinner className={styles.trainingCatalog__loading}/>}>
                     <div className={styles.trainingCatalog__systemTests}>

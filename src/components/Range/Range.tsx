@@ -11,8 +11,8 @@ type Props = ComponentProps & Readonly<{
     max?: number;
 }>
 
-/** 
- * Выбор значения изпромежутка 
+/**
+ * Выбор значения из промежутка
  */
 export const Range: FC<Props> = typedMemo(function Range({
                                                              onChange,
