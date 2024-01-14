@@ -13,7 +13,7 @@ export type GetTestResponseDto = Readonly<{
     /**
      * Название.
      */
-    name: string;
+    testName: string;
 
     /**
      * Слова в тесте.

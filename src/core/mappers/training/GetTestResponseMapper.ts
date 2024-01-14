@@ -24,7 +24,7 @@ export namespace GetTestResponseMapper {
 		return new GetTestResponse ({
 			id: dto.id,
 			words: dto.words.map(wordDto => WordInTestMapper.fromDto(wordDto)),
-			name: dto.name,
+			testName: dto.testName,
 		});
 	}
 }

@@ -1,22 +1,21 @@
-import React, { FC } from "react";
-import { typedMemo } from "../../../../core/utils/typedMemo";
+import React, {FC} from "react";
+import {typedMemo} from "../../../../core/utils/typedMemo";
 import styles from "./LoginPage.module.css";
-import { SocialBlock } from "../../components/SocialBlock";
-import { AuthFormPage } from "../../components/AuthFormPage";
-import { Typography } from "../../../../components/Typography";
-import { Input } from "../../../../components/Input";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "./LoginPage.settings";
-import { Button } from "../../../../components/Button";
-import { FormLink } from "../../components/FormLink";
+import {AuthFormPage} from "../../components/AuthFormPage";
+import {Typography} from "../../../../components/Typography";
+import {Input} from "../../../../components/Input";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {schema} from "./LoginPage.settings";
+import {Button} from "../../../../components/Button";
+import {FormLink} from "../../components/FormLink";
 import VK from "../../../../assets/images/VK.svg"
 import Yandex from "../../../../assets/images/Yandex.svg"
-import { useDispatch } from "react-redux";
-import { useMutation } from "react-query";
-import { UserService } from "api/services/user";
-import { login as loginDispatch } from "store/auth/authSlice";
-import { LoginUserRequest } from "core/models/auth/LoginUserRequest";
+import {useDispatch} from "react-redux";
+import {useMutation} from "react-query";
+import {UserService} from "api/services/user";
+import {login as loginDispatch} from "store/auth/authSlice";
+import {LoginUserRequest} from "core/models/auth/LoginUserRequest";
 import {toast} from "react-toastify";
 
 /**

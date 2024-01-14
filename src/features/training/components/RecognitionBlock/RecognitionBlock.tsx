@@ -12,6 +12,7 @@ import {WordInTest} from "../../../../core/models/training/GetTestResponse";
 import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
 import {socket} from "../../../../core/utils/connectToModal";
 import {Button} from "../../../../components/Button";
+import {TaskFeedback} from "../../../../components/TaskFeedback";
 
 type Props = ComponentProps & Readonly<{
     word: WordInTest;
@@ -144,7 +145,30 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                 </div>
                 <div className={styles.recognitionBlock__wordHeader__buttons}>
                     <Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>
-                    <Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>
+                    {/*<Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>*/}
+                    <TaskFeedback
+                        className={styles.recognitionBlock__errorButton}
+                        text="Сообщить об ошибке"
+                        items={
+                            [
+                                {
+                                    id: "0",
+                                    label: "Мой ответ следовало принять"
+                                },
+                                {
+                                    id: "1",
+                                    label: "Слова не распознаются"
+                                },
+                                {
+                                    id: "2",
+                                    label: "Задание некорректное"
+                                },
+                                {
+                                    id: "3",
+                                    label: "Что-то ещё пошло не так"
+                                }
+                            ]
+                        }/>
                 </div>
             </div>
 
