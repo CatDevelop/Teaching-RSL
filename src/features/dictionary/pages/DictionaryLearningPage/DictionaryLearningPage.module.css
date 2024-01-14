@@ -12,4 +12,12 @@
 .dictionaryLearningPage__buttons {
     display: flex;
     justify-content: start;
+    position: relative;
+}
+
+.dictionaryLearningPage__hint {
+    position: absolute;
+    top: -215px;
+    left: 0;
+    height: 200px;
 }

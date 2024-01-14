@@ -45,7 +45,8 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                 <Tab key="training" title="Практики">
                     <ScrollBox>
                         <div className={styles.learningProgress__themes}>
-                            {testHistory!.map((item, i) => (
+                            {/* TODO не забыть, что здесь поворачиваем массив*/}
+                            {testHistory!.toReversed().map((item, i) => (
                                 <TestProgress {...item} key={i}/>
                             ))}
                         </div>

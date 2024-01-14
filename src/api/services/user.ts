@@ -14,6 +14,8 @@ import { GetWelcomeBackInfoResponseMapper } from "core/mappers/user/GetWelcomeBa
 import { UserThemeHistoryRecordResponse } from "core/models/userHistory/UserThemeHistoryRecordResponse";
 import { UserThemeHistoryRecordResponseMapper } from "core/mappers/userHistory/UserThemeHistoryRecordResponseMapper";
 import { UserThemeHistoryRecordResponseDto } from "core/dtos/userHistory/UserThemeHistoryRecordResponseDto";
+import {ChangeNameRequestMapper} from "../../core/mappers/user/ChangeNameRequestMapper";
+import {ChangeNameRequest} from "../../core/models/user/ChangeNameRequest";
 
 export namespace UserService {
     export async function register(form: RegisterUserRequest): Promise<void> {
@@ -33,6 +35,12 @@ export namespace UserService {
         await http.patch(ApiUrlsConfig.user.changePassword, ChangePasswordRequestMapper.toDto(form));
     }
 
+    export async function changeName(form: ChangeNameRequest): Promise<void> {
+        await http.patch(ApiUrlsConfig.user.changeName, ChangeNameRequestMapper.toDto(form));
+    }
+
+
+
     export async function restorePassword(email: string): Promise<void> {
         await http.patch(ApiUrlsConfig.user.restorePassword(email));
     }
@@ -41,7 +49,7 @@ export namespace UserService {
         return http.get<UserTestHistoryRecordResponseDto[]>(ApiUrlsConfig.userHistory.getTestHistory)
             .then(({data}) => data.map(item => UserTestHistoryRecordResponseMapper.fromDto(item)));
     }
-    
+
     export async function getThemesHistory(): Promise<UserThemeHistoryRecordResponse[]> {
         return http.get<UserThemeHistoryRecordResponseDto[]>(ApiUrlsConfig.userHistory.getThemes)
             .then(({data}) => data.map(item => UserThemeHistoryRecordResponseMapper.fromDto(item)));

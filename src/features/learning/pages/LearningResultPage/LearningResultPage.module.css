@@ -29,6 +29,12 @@
     max-width: 100%;
 }
 
+.learningResult__card {
+    height: 100%;
+    max-width: var(--learning-center-block-width);
+    grid-area: content;
+}
+
 .learningResult__result {
     height: 100%;
     width: 100%;

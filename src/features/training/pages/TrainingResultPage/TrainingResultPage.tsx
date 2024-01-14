@@ -64,7 +64,7 @@ export const TrainingResultPage: FC = typedMemo(function TrainingPage() {
                         color="primary"
                         onClick={toTrainingPage}
                     >
-                        В главное меню
+                        В меню
                     </Button>
 
                     <div className={styles.trainingResult__result__container}>

@@ -11,6 +11,7 @@ import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {Typography} from "../../../../components/Typography";
 import ResultLearning from "../../../../assets/images/ResultLearningImage.svg"
 import {normalizeCountForm} from "../../../../core/utils/normalizeCountForm";
+import {Card} from "../../../../components/Card";
 
 /**
  * Результаты уровня
@@ -39,20 +40,23 @@ export const LearningResultPage: FC = typedMemo(function LearningResultPage() {
                     <img src={Logo} rel="preload" alt="Логотип" width={218}/>
                 </div>
 
-                <div className={styles.learningResult__contentContainer}>
-                    <div className={styles.learningResult__result}>
-                        <img src={ResultLearning} alt={"Конец обучения!"}
-                             className={styles.learningResult__resultImage}/>
-                        <Typography variant="p" className={styles.learningResult__resultDescription}>
-                            Вы выучили {wordsCount} {normalizeCountForm(wordsCount, ["жест", 'жеста', 'жестов'])}.<br/>
-                            Теперь можно перейти к следующему этапу<br/>
-                            и попробовать их на практике.
-                        </Typography>
-                        <Button variant={"solid"} color={"primary"} onClick={toLearningPage}>
-                            В меню
-                        </Button>
+                <Card className={styles.learningResult__card}>
+                    <div className={styles.learningResult__contentContainer}>
+                        <div className={styles.learningResult__result}>
+                            <img src={ResultLearning} alt={"Конец обучения!"}
+                                 className={styles.learningResult__resultImage}/>
+                            <Typography variant="p" className={styles.learningResult__resultDescription}>
+                                Вы
+                                выучили {wordsCount} {normalizeCountForm(wordsCount, ["жест", 'жеста', 'жестов'])}.<br/>
+                                Теперь можно перейти к следующему этапу<br/>
+                                и попробовать их на практике.
+                            </Typography>
+                            <Button variant={"solid"} color={"primary"} onClick={toLearningPage}>
+                                В меню
+                            </Button>
+                        </div>
                     </div>
-                </div>
+                </Card>
             </PageContent>
         </Page>
     )

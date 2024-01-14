@@ -1,4 +1,4 @@
-import React, {FC, useCallback} from "react";
+import React, {FC, useCallback, useState} from "react";
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import {Page} from "../../../../components/Page";
 import {PageContent} from "../../../../components/PageContent";
@@ -12,6 +12,10 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {validationSchema} from "./ProfileSettingsPage.config";
 import {Input} from "../../../../components/Input";
 import {Button} from "../../../../components/Button";
+import {useMutation, useQuery} from "react-query";
+import {UserService} from "../../../../api/services/user";
+import {login as loginDispatch} from "../../../../store/auth/authSlice";
+import {toast} from "react-toastify";
 
 type Props = Readonly<{}>
 
@@ -28,12 +32,26 @@ type TempSettings = {
  * Настройки пользователя
  */
 export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettingsPage(props){
+    const [nameWatcher, setNameWatcher] = useState(false)
+    const { mutate: changeName} = useMutation(['user/changename', nameWatcher], UserService.changeName, {
+        onSuccess: () => {
+            toast.success("Вы успешно сменили имя и фамилию")
+        }
+    })
+
+    const {data: user} = useQuery(['user-welcome-info', changeName], UserService.getWelcomeUserInfo)
+
     const {register, handleSubmit, formState: {errors}} = useForm<TempSettings>({
         resolver: yupResolver(validationSchema),
         mode: 'onChange'
     })
 
-    const onSubmit = useCallback((a: any) => {}, [])
+    const onSubmit = useCallback((payload: TempSettings) => {
+        if(payload.name !== user?.firstName || payload.surname !== user?.lastName) {
+            changeName({name: payload.name, surname: payload.surname})
+            setNameWatcher(!nameWatcher)
+        }
+    }, [user])
 
     return (
         <Page>
@@ -54,6 +72,7 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                                 errorMessage={errors.name?.message}
                                 {...register('name')}
                                 label="Имя"
+                                defaultValue={user?.firstName || ""}
                             />
                             <Input
                                 {...register('surname')}
@@ -61,6 +80,7 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                                 color={errors.surname !== undefined ? "danger" : "default"}
                                 errorMessage={errors.surname?.message}
                                 label="Фамилия"
+                                defaultValue={user?.lastName || ""}
                             />
                             <Input
                                 {...register('email')}
@@ -68,6 +88,7 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                                 color={errors.email !== undefined ? "danger" : "default"}
                                 errorMessage={errors.email?.message}
                                 label="Почта"
+                                defaultValue={user?.email || ""}
                             />
                         </div>
 
