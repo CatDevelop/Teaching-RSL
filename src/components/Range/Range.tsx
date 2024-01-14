@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useEffect, useRef} from "react";
+import React, {FC, useCallback, useEffect, useMemo, useRef} from "react";
 import {typedMemo} from "../../core/utils/typedMemo";
 import {ComponentProps} from "../../core/models/ComponentProps";
 import {Slider} from '@mantine/core';
@@ -31,6 +31,8 @@ export const Range: FC<Props> = typedMemo(function Range({
         target.style.backgroundSize = percentage + '% 100%'
     }, []);
 
+    const marks = useMemo(() => [{value: min, label: min}, {value: max, label: max}], [min, max])
+
     useEffect(() => {
         if (rangeRef.current) {
             rangeRef.current.addEventListener("input", handleRangeChange);
@@ -44,11 +46,7 @@ export const Range: FC<Props> = typedMemo(function Range({
                 min={min}
                 max={max}
                 onChange={onChange}
-                marks={[
-                    {value: min, label: min},
-                    {value: Math.round((min+max)/2), label: Math.round((min+max)/2)},
-                    {value: max, label: max},
-                ]}
+                marks={marks}
             />
         </div>
     );
