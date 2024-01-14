@@ -1,9 +1,3 @@
-.selectFoundWord {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
 .selectFoundWord__header {
     display:flex;
     align-items: center;

@@ -29,7 +29,7 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
     const {data:themes} = useQuery(['words-list', themeId], () => WordsService.getWordsByBlock(BlockType.Theme, themeId ?? ''))
 
     return (
-        <Card className={clsx(props.className, styles.selectThemeWord)}>
+        <>
             <div className={styles.selectThemeWord__header}>
                 <NavLink to={`/dictionary`}>
                     <ArrowIcon className={styles.selectThemeWord__backIcon}/>
@@ -76,6 +76,6 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
                     ))
                 }
             </ScrollBox>
-        </Card>
+        </>
     )
 })

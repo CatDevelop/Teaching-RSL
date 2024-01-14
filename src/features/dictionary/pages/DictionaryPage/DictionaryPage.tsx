@@ -75,13 +75,11 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                         <DictionaryWordBlock selectedWordId={selectedWordId}/>
                     </Suspense>
                 </div>
-                <Suspense fallback={<Spinner/>}>
-                    <SelectWordBlock
-                        selectWord={setSelectedWordId}
-                        search={search}
-                        className={styles.dictionary__selectDictionaryDisplay}
-                    />
-                </Suspense>
+                <SelectWordBlock
+                    selectWord={setSelectedWordId}
+                    search={search}
+                    className={styles.dictionary__selectDictionaryDisplay}
+                />
 
             </PageContent>
         </Page>
