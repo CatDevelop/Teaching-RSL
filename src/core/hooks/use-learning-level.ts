@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {useQuery} from "react-query";
 import {LearningService} from "../../api/services/learning";
 import generateLearningLevel from "../utils/generateLearningLevel";
-import {practiceLevelTask, theoryLevelTask} from "../models/LevelType";
 
 export type level = {
     name: string,

@@ -7,7 +7,6 @@ import {Button} from "../../../../components/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {PageContent} from "../../../../components/PageContent";
 import {RecognitionBlock} from "../../components/RecognitionBlock";
-import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 import {useQuery} from "react-query";
@@ -16,10 +15,10 @@ import {ModelWarning} from "../../components/ModelWarning/ModelWarning";
 import {socket} from "../../../../core/utils/connectToModal";
 import {LearningHeader} from "../../../learning/components/LearningHeader";
 import {toast} from "react-toastify";
+import {Back} from "../../../../components/Back";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
-    const fireworks = getFireworks(3000)
     const {id} = useParams<{ id: string }>();
     const {data} = useQuery(['training/gettest', id], () => TrainingService.getTraining(id ?? ''));
 
@@ -82,45 +81,50 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                         !isNotStartModel &&
                         <LearningHeader
                             type="test"
-                            name={"Входное тестирование для абитуриентов"}
+                            name={data.testName}
                             currentStep={currentStep}
                             stepCount={data.words.length}
                         />
                     }
                     {
                         !isNotStartModel &&
-                        <RecognitionBlock
-                            word={data.words[currentStep]}
-                            className={styles.trainingTask__recognition}
-                            onSuccess={() => {
-                                setIsDoneTask(true)
-                                toast.success("Вы отлично справились!")
-                            }}
-                            setIntervalID={setIntervalID}
-                            intervalID={intervalID}
-                            signRecognizeText={signRecognizeText}
-                            setSignRecognizeText={setSignRecognizeText}
-                            buttons={<div className={styles.trainingTask__buttonsContainer}>
-                                {
-                                    !isNotStartModel && isDoneTask ?
-                                        <Button
-                                            size={"lg"}
-                                            variant="faded"
-                                            color="primary"
-                                            onClick={next}
-                                        >
-                                            Далее
-                                        </Button> :
-                                        <Button
-                                            size={"lg"}
-                                            variant="faded"
-                                            onClick={skip}
-                                        >
-                                            Пропустить
-                                        </Button>
-                                }
-                            </div>}
-                        />
+                        <div className={styles.trainingPage__recognitionContainer}>
+                            <div className={styles.trainingPage__back}>
+                                <Back to="/training" type="icon"/>
+                            </div>
+                            <RecognitionBlock
+                                word={data.words[currentStep]}
+                                className={styles.trainingTask__recognition}
+                                onSuccess={() => {
+                                    setIsDoneTask(true)
+                                    toast.success("Вы отлично справились!")
+                                }}
+                                setIntervalID={setIntervalID}
+                                intervalID={intervalID}
+                                signRecognizeText={signRecognizeText}
+                                setSignRecognizeText={setSignRecognizeText}
+                                buttons={<div className={styles.trainingTask__buttonsContainer}>
+                                    {
+                                        !isNotStartModel && isDoneTask ?
+                                            <Button
+                                                size={"lg"}
+                                                variant="faded"
+                                                color="primary"
+                                                onClick={next}
+                                            >
+                                                Далее
+                                            </Button> :
+                                            <Button
+                                                size={"lg"}
+                                                variant="faded"
+                                                onClick={skip}
+                                            >
+                                                Пропустить
+                                            </Button>
+                                    }
+                                </div>}
+                            />
+                        </div>
                     }
                     {
                         isNotStartModel &&

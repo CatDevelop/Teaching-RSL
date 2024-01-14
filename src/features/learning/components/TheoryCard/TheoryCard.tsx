@@ -3,12 +3,9 @@ import React, {FC} from "react";
 import styles from "./TheoryCard.module.css";
 import clsx from "clsx";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
-import TheoryIconSVG from "../../../../assets/images/TheoryIcon.svg"
 import {Typography} from "../../../../components/Typography";
 import {SignVideo} from "../../../../components/SignVideo";
-import {LearningBlock} from "../LearningBlock";
-import {Word, WordFormServer2} from "../../../../core/models/Word";
-import {IllustrationWordResponseDto} from "../../../../core/dtos/words/IllustrationWordResponseDto";
+import {WordFormServer2} from "../../../../core/models/Word";
 
 type Props = ComponentProps & Readonly<{
     wordObject: WordFormServer2

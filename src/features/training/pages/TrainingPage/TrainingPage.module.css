@@ -97,7 +97,6 @@
     justify-content: space-between;
     align-items: center;
     gap: var(--space-m);
-    z-index: var(--bottom-buttons-index);
 }
 
 .trainingTask__startCard {
@@ -157,43 +156,6 @@
     animation: showFade 0.3s ease-in;
 }
 
-.trainingTask__result {
-    height: 75%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-m);
-}
-
-.trainingTask__resultTitle {
-    color: var(--primary-color);
-    text-align: center;
-    font-size: var(--font-size-xl);
-}
-
-.trainingTask__resultDescription {
-    font-family: var(--main-font);
-    font-size: var(--font-size-m);
-    text-align: center;
-}
-
-.trainingTask__result__container {
-    display: flex;
-    gap: var(--space-s)
-}
-
-.trainingTask__resultImage {
-    max-height: 70%;
-    max-width: 100%;
-}
-
-.trainingTask__resultCard {
-    background-color: var(--accent-color);
-    color: var(--accent-color);
-}
-
 .trainingPage__warningContainer {
     display: flex;
     justify-content: center;
@@ -207,30 +169,15 @@
     transform: translateX(-50%);
 }
 
-/*@media(max-width: 1600px) {*/
-/*    .trainingTask{*/
-/*        grid-template-areas:*/
-/*        "header header header"*/
-/*        "task task task"*/
-/*        "sber buttons e";*/
-/*        grid-template-rows: 90px calc(100vh - 190px - var(--page-padding-m) * 2 - var(--space-m) * 2) 100px;;*/
-/*    }*/
+.trainingPage__recognitionContainer {
+    position: relative;
+    height: calc(100% - 150px);
+    width: 100%;
+    max-width: var(--learning-center-block-width);
+}
 
-/*    .trainingTask__header {*/
-/*        grid-template-columns: 1fr 1fr;*/
-/*        grid-auto-flow: dense;*/
-/*    }*/
-
-/*    .trainingTask__exitButtonContainer{*/
-/*        grid-column: auto;*/
-/*    }*/
-
-/*    .trainingTask__progressBarContainer{*/
-/*        grid-column: 1 / span 2;*/
-/*        max-width: var(--max-theory-card-width);*/
-/*    }*/
-
-/*    .trainingTask__progressBarContainer {*/
-/*        width: 100%;*/
-/*    }*/
-/*}*/
+.trainingPage__back {
+    position: absolute;
+    top: 30px;
+    left: -50px;
+}

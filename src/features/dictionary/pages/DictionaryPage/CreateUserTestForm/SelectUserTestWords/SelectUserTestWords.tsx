@@ -1,11 +1,11 @@
-import React, {FC, useCallback, useEffect, useState, useMemo} from "react";
+import React, {FC, useCallback, useEffect, useState} from "react";
 import {typedMemo} from "../../../../../../core/utils/typedMemo";
 import {UserTestStorageService} from "../../../../../../api/services/userTestStorageService";
 import {SelectItemType} from "../../../../../../core/models/SelectItemType";
 import {WordsService} from "../../../../../../api/services/words";
 import styles from './SelectUserTestWords.module.css';
 import {Typography} from "../../../../../../components/Typography";
-import { Button, Chip } from "@nextui-org/react";
+import {Button, Chip} from "@nextui-org/react";
 import clsx from "clsx";
 
 type Props = Readonly<{
