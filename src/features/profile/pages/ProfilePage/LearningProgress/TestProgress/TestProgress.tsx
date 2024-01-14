@@ -8,7 +8,7 @@ import dayjs from 'dayjs'
 type Props = UserTestHistoryRecordResponse
 
 /**
- * Прогресс выполнененного теста2 Ъ
+ * Прогресс выполнененного теста
  */
 export const TestProgress: FC<Props> = typedMemo(function TestProgress(props){
     const completedDate = useMemo(() => dayjs(props.completedDateTime), [props.completedDateTime]);

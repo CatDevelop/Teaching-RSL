@@ -15,7 +15,6 @@ import useLearningLevel from "../../../../core/hooks/use-learning-level";
 import {useMutation} from "react-query";
 import {UserHistoryService} from "../../../../api/services/userHistory";
 
-
 /**
  * Задания уровня обучения
  */
@@ -76,6 +75,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                             stepCount={tasks.length}
                         />
                         <div className={styles.learningTask__taskContainer}>
+
                             <div className={
                                 clsx(
                                     styles.learningTask__theory,

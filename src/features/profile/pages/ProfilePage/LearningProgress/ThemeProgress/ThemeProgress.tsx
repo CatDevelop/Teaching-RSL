@@ -3,10 +3,9 @@ import {typedMemo} from "../../../../../../core/utils/typedMemo";
 import {CircularProgress} from "@nextui-org/react";
 import styles from "./ThemeProgress.module.css"
 import {Typography} from "../../../../../../components/Typography";
+import { UserThemeHistoryRecordResponse } from "core/models/userHistory/UserThemeHistoryRecordResponse";
 
-type Props = Readonly<{
-
-}>
+type Props = UserThemeHistoryRecordResponse & Readonly<{}>
 
 /**
  * Прогресс по теме
@@ -15,13 +14,12 @@ export const ThemeProgress: FC<Props> = typedMemo(function ThemeProgress(props){
     return (
         <div className={styles.themeProgress}>
             <div className={styles.themeProgress__text}>
-                <Typography variant='p' className={styles.themeProgress__title}>Общеупотребительные слова</Typography>
-                <Typography variant='p' className={styles.themeProgress__description}>Откройте мир дома и домашних предметов</Typography>
+                <Typography variant='p' className={styles.themeProgress__title}>{props.themeName}</Typography>
             </div>
 
             <CircularProgress
                 size="md"
-                value={70}
+                value={(props.wordsCompletedCount/props.wordsCompletedCount) * 100}
                 color="secondary"
                 showValueLabel
                 classNames={{

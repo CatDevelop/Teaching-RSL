@@ -9,6 +9,8 @@ import TrophySrc from "assets/images/Trophy.svg";
 import CalendarSrc from "assets/images/Calendar.svg";
 import DictionarySrc from "assets/images/Dictionary.svg";
 import { StatisticsItem } from "./StatisticsItem";
+import { useQuery } from "react-query";
+import { UserHistoryService } from "api/services/userHistory";
 
 type Props = ComponentProps & Readonly<{
 
@@ -18,15 +20,17 @@ type Props = ComponentProps & Readonly<{
  * Статистика пользователя
  */
 export const Statistics: FC<Props> = typedMemo(function Statistics(props){
+    const {data: statistics} = useQuery('user-statistics', UserHistoryService.getStatistics);
+
     return (
         <Card className={clsx(props.className, styles.statistics)}>
             <CardHeader>Статистика</CardHeader>
 
             <div className={styles.statistics__blocks}>
-                <StatisticsItem iconUrl={TargetSrc} iconAlt="Количество пройденных уроков" value="12" descriptionValue="уроков пройдено"/>
-                <StatisticsItem iconUrl={TrophySrc} iconAlt="Количество трофеев" value="6" descriptionValue="трофеев получено"/>
-                <StatisticsItem iconUrl={CalendarSrc} iconAlt="Количество дней обучения" value="10" descriptionValue="дней обучения"/>
-                <StatisticsItem iconUrl={DictionarySrc} iconAlt="Количество изученных слов" value="6" descriptionValue="слов изучено"/>
+                <StatisticsItem iconUrl={TargetSrc} iconAlt="Количество пройденных уроков" value={statistics!.completedLevelsCount} descriptionValue="уроков пройдено"/>
+                <StatisticsItem iconUrl={TrophySrc} iconAlt="Количество трофеев" value={statistics!.trophiesCount} descriptionValue="трофеев получено"/>
+                <StatisticsItem iconUrl={CalendarSrc} iconAlt="Количество дней обучения" value="1" descriptionValue="дней обучения"/>
+                <StatisticsItem iconUrl={DictionarySrc} iconAlt="Количество изученных слов" value={statistics!.completedWordsCount} descriptionValue="слов изучено"/>
             </div>
         </Card>
     )
