@@ -12,12 +12,13 @@ export namespace ApiUrlsConfig {
 		restorePassword: (email: string) => toUserApi(`user/password/${email}`),
 		getWelcomeUserInfo: toUserApi('user'),
 	}
-	
+
 	/** API ссылки пользователя. */
 	export const userHistory = {
 		getThemes: toUserApi('userhistory/themes'),
 		getStatistics: toUserApi('userhistory/levels'),
 		getTestHistory: toUserApi('testhistory'),
+		sendLevelResult: toUserApi('userhistory/send-level-result'),
 	}
 
 	/** API ссылки авторизации (sso) */
@@ -40,13 +41,15 @@ export namespace ApiUrlsConfig {
 
 	/** API ссылки обучения. */
 	export const learning = {
-		getLevelTasks: (levelId: string) => toApi(`level/tasks/${levelId}`)
+		getLevelTasks: (levelId: string) => toApi(`level/tasks/${levelId}`),
+		getLevel: (levelId: string) => toApi(`level/${levelId}`)
 	};
 
 	/** API ссылки тренировок. */
 	export const training = {
 		postTestCreate: toApi('training'),
 		postUserTestCreate: toApi('training/user'),
+		allUserTest: toApi('training/user/list'),
 		getTest: (id: string) => toApi(`training/${id}`)
 	};
 

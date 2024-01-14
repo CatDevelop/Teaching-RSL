@@ -3,13 +3,13 @@ import React, {FC} from "react";
 import {Button} from "../../../../../components/Button";
 import styles from "./SelectButton.module.css";
 import clsx from "clsx";
-import {Word, WordFormServer} from "../../../../../core/models/Word";
 import {colorsByState, SelectState} from "../../../../../core/models/SelectState";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
+import {WordFormServer2} from "../../../../../core/models/Word";
 
 type Props = ComponentProps & Readonly<{
     state: SelectState;
-    text: string | null;
+    wordObject: WordFormServer2;
     setState: React.Dispatch<React.SetStateAction<any>>;
 }>
 
@@ -18,7 +18,7 @@ type Props = ComponentProps & Readonly<{
  */
 export const SelectButton: FC<Props> = typedMemo(function SelectButton(props) {
     const handleClick = () => {
-        props.setState(props.state === "checked" ? null : props.text)
+        props.setState(props.state === "checked" ? null : props.wordObject)
     }
 
     return (
@@ -26,11 +26,11 @@ export const SelectButton: FC<Props> = typedMemo(function SelectButton(props) {
             variant={"bordered"}
             color={colorsByState[props.state]}
             size={"lg"}
-            disabled={props.state === "error" || props.state === "success" || props.state === "disabled"}
+            disabled={props.state !== "default" && props.state !== "checked"}
             className={clsx(styles.selectButton, props.state === "disabled" && styles.selectButton__disabled)}
             onClick={handleClick}
         >
-            {props.text}
+            {props.wordObject.word}
         </Button>
     );
 });

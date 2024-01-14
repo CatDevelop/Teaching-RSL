@@ -14,7 +14,7 @@ root.render(
         <ToastContainer
             style={{borderRadius: "16px"}}
             position="bottom-right"
-            autoClose={5000}
+            autoClose={3000}
             hideProgressBar
             newestOnTop={false}
             closeOnClick

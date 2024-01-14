@@ -1,7 +1,11 @@
 import {GetLevelTasksResponseDto} from "../dtos/learning/GetLevelTasksResponseDto";
 import {shuffleArray} from "./shuffleArray";
+import {GetLevelResponseDto} from "../dtos/learning/GetLevelResponseDto";
+import {learningLevel, theoryLevelTask} from "../models/LevelType";
+import {TheoryTaskTypeEnum} from "../models/learning/TheoryTaskTypeEnum";
+import {WordFormServer2} from "../models/Word";
 
-export default function generateLearningLevel(levelTasks: GetLevelTasksResponseDto) {
+export default function generateLearningLevel(levelMetadata: GetLevelResponseDto, levelTasks: GetLevelTasksResponseDto): learningLevel {
     const levelWords = [
         ...levelTasks.singleTasks.map(singleTask => singleTask.rightSelect),
         ...levelTasks.multiTasks.map(multiTask => {
@@ -11,16 +15,17 @@ export default function generateLearningLevel(levelTasks: GetLevelTasksResponseD
 
     const theoryCache: string[] = []
 
-    const levelTheoryTasks = shuffleArray(levelWords).map((word, index) => {
-        if(!theoryCache.includes(word.wordId)) {
-            theoryCache.push(word.wordId)
+    const levelTheoryTasks: theoryLevelTask[] = shuffleArray(levelWords).map((word, index) => {
+        if (!theoryCache.includes(word.id)) {
+            theoryCache.push(word.id)
             return {
-                id: index,
-                type: "theory",
+                id: theoryCache.length - 1,
+                type: TheoryTaskTypeEnum.Theory,
                 task: word
             }
         }
-    }).filter(task => task)
+        return {id: -2, type: TheoryTaskTypeEnum.Theory, task: word}
+    }).filter(task => task.id !== -2)
 
     const levelPracticeTasks = shuffleArray(
         [
@@ -34,7 +39,8 @@ export default function generateLearningLevel(levelTasks: GetLevelTasksResponseD
         }
     })
 
-    return {
+    return <learningLevel>{
+        name: levelMetadata.name || "",
         theoryCount: levelTheoryTasks.length,
         practiceCount: levelPracticeTasks.length,
         tasks: [

@@ -5,18 +5,17 @@ import styles from "./LearningHeader.module.css"
 import {Typography} from "../../../../components/Typography";
 import {ProgressBar} from "../../../../components/ProgressBar";
 
-type Props = Readonly <{
+type Props = Readonly<{
     type: string;
     name: string;
     currentStep: number;
     stepCount: number
 }>
 
-/*
-    Верхняя информационная панель для обучения
-*/
-export const LearningHeader: FC<Props> = typedMemo(function LearningHeader(props){
-    console.log(props.type)
+/**
+ * Верхняя информационная панель для обучения
+ */
+export const LearningHeader: FC<Props> = typedMemo(function LearningHeader(props) {
     return (
         <Card className={styles.learningHeader}>
             <div className={styles.learningHeader__info}>
@@ -27,18 +26,12 @@ export const LearningHeader: FC<Props> = typedMemo(function LearningHeader(props
                     >
                         {props.name}
                     </Typography>
-                    {/*<Typography*/}
-                    {/*    variant="p"*/}
-                    {/*    className={styles.learningHeader__wordsCount}*/}
-                    {/*>*/}
-                    {/*    {10} из {12} слов пройдено*/}
-                    {/*</Typography>*/}
                 </div>
                 <Typography
                     variant="p"
                     className={styles.learningHeader__type}
                 >
-                    {props.type === "theory" ? "Теория" : "Практика"}
+                    {props.type === "theory" ? "Теория" : props.type === "test" ? "Тест" : "Практика"}
                 </Typography>
             </div>
             <div className={styles.learningHeader__progressBarContainer}>

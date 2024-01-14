@@ -7,19 +7,20 @@ import {TheoryCard} from "../TheoryCard";
 import {Button} from "../../../../components/Button";
 import {PracticeCards} from "../PracticeCards";
 import {StepStatus} from "../../../../core/models/StepStatus";
-import {TaskFeedback} from "../../../../components/TaskFeedback";
 import {toast} from "react-toastify";
 
 type Props = ComponentProps & Readonly<{
-    task: any;
+    task: any; // TODO разобраться с условными типами
     currentStep: number;
     nextStep: () => void;
     prevStep: () => void;
+    rightWords: string[];
+    setRightWords: React.Dispatch<React.SetStateAction<string[]>>;
 }>
 
-/*
-    Общий контейнер для заданий в обучении: теория + практика + управляющие кнопки
-*/
+/**
+ * Общий контейнер для заданий в обучении: теория + практика + управляющие кнопки
+ */
 export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock(props) {
     const [taskCompleted, setTaskCompleted] = useState<boolean>(false)
     const [taskChecked, setTaskChecked] = useState<boolean>(false)
@@ -31,15 +32,32 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
         setCurrentStepStatus({status: "default"})
     }, [])
 
-    useEffect(() => {
-        console.log(taskCompleted, taskChecked, currentStepStatus)
-        if(taskCompleted && taskChecked) {
-            if(currentStepStatus.status === "success")
-                toast.success("Вы отлично справились!")
-            if(currentStepStatus.status === "error")
-                toast.error("Неверный ответ\nПравильный ответ:\n"+currentStepStatus.message)
+    const addRightWord =() => {
+        if (props.task.task.type === "MatchWordAndGif")
+            props.task.task.conditions.map((condition: { id: string; }) => {
+                if (!props.rightWords.includes(condition.id))
+                    props.setRightWords([...props.rightWords, condition.id])
+            })
+        else {
+            if (!props.rightWords.includes(props.task.task.rightSelect.id))
+                props.setRightWords([...props.rightWords, props.task.task.rightSelect.id])
         }
-    }, [taskChecked, taskCompleted, currentStepStatus]);
+    }
+
+    useEffect(() => {
+        if (taskCompleted && taskChecked)
+            if (currentStepStatus.status === "success")
+                addRightWord()
+    }, [taskChecked, taskCompleted, currentStepStatus, props.currentStep, props.rightWords]);
+
+    useEffect(() => {
+        if (currentStepStatus.status === "success") {
+            toast.success("Вы отлично справились!")
+        }
+
+        if (currentStepStatus.status === "error")
+            toast.error("Неверный ответ\nПравильный ответ:\n" + currentStepStatus.message)
+    }, [taskChecked, taskCompleted, currentStepStatus, props.currentStep]);
 
     return (
         <Card className={styles.learningTaskBlock}>
@@ -77,8 +95,8 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                     ) &&
                     <Button
                         onClick={() => {
-                            props.nextStep()
                             resetBlock()
+                            props.nextStep()
                         }}
                         size="lg"
                         variant="solid"
@@ -91,7 +109,9 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                 {
                     props.task.type !== "theory" && props.task.task.type !== "MatchWordAndGif" && !taskChecked &&
                     <Button
-                        onClick={() => setTaskChecked(true)}
+                        onClick={() => {
+                            setTaskChecked(true)
+                        }}
                         size="lg"
                         variant="solid"
                         color="primary"

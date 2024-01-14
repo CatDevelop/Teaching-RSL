@@ -1,13 +1,13 @@
-import { Card } from "components/Card";
-import { ScrollBox } from "components/ScrollBox";
-import { typedMemo } from "core/utils/typedMemo";
+import {Card} from "components/Card";
+import {ScrollBox} from "components/ScrollBox";
+import {typedMemo} from "core/utils/typedMemo";
 import React, {FC, useCallback} from "react";
 import styles from "./SelectFoundWord.module.css";
-import { Typography } from "components/Typography";
-import { ComponentProps } from "core/models/ComponentProps";
+import {Typography} from "components/Typography";
+import {ComponentProps} from "core/models/ComponentProps";
 import clsx from "clsx";
-import { NavLink, useParams } from "react-router-dom";
-import { Link } from "@nextui-org/react";
+import {NavLink, useParams} from "react-router-dom";
+import {Link} from "@nextui-org/react";
 import {useQuery} from "react-query";
 import {WordsService} from "../../../../../../api/services/words";
 
@@ -27,19 +27,19 @@ type Props = ComponentProps & Readonly<{
 /**
  * Выбрать слово из найденных
  */
-export const SelectFoundWord: FC<Props> = typedMemo(function SelectFoundWord(props){
+export const SelectFoundWord: FC<Props> = typedMemo(function SelectFoundWord(props) {
     const {data: words} = useQuery(['words/search', props.search], () => WordsService.getWordsBySearch(props.search))
-    const {themeId, sectionId} = useParams<{themeId: string, sectionId: string}>();
+    const {themeId, sectionId} = useParams<{ themeId: string, sectionId: string }>();
 
     const getWordLink = useCallback((wordId: string) => {
-        if(sectionId){
+        if (sectionId) {
             return `/dictionary/${themeId}/${sectionId}/word/${wordId}`
         }
-        if(themeId){
+        if (themeId) {
             return `/dictionary/${themeId}/word/${wordId}`
         }
         return `/dictionary/word/${wordId}`
-    },[themeId, sectionId])
+    }, [themeId, sectionId])
 
     return (
         <Card className={clsx(props.className, styles.selectFoundWord)}>
@@ -48,30 +48,38 @@ export const SelectFoundWord: FC<Props> = typedMemo(function SelectFoundWord(pro
             </div>
 
             <ScrollBox className={styles.selectFoundWord__scroll}>
-            <div className={styles.selectFoundWord__sectionWords}>
-                {words!.slice(0, Math.ceil(words!.length / 2)).map((word: any, i: number) => (
+                {
+                    words!.length === 0 &&
                     <Typography
                         variant='p'
-                        className={styles.selectFoundWord__word}
-                        onClick={() => props.selectWord(word.id)}
-                        key={i}
                     >
-                        {word.word}
+                        Ничего не найдено
                     </Typography>
-                ))}
-            </div>
-            <div className={styles.selectFoundWord__sectionWords}>
-                {words!.slice(Math.ceil(words!.length / 2)).map((word: any, i: number) => (
-                    <Typography
-                        variant='p'
-                        className={styles.selectFoundWord__word}
-                        onClick={() => props.selectWord(word.id)}
-                        key={i}
-                    >
-                        {word.word}
-                    </Typography>
-                ))}
-            </div>
+                }
+                <div className={styles.selectFoundWord__sectionWords}>
+                    {words!.slice(0, Math.ceil(words!.length / 2)).map((word: any, i: number) => (
+                        <Typography
+                            variant='p'
+                            className={styles.selectFoundWord__word}
+                            onClick={() => props.selectWord(word.id)}
+                            key={i}
+                        >
+                            {word.word}
+                        </Typography>
+                    ))}
+                </div>
+                <div className={styles.selectFoundWord__sectionWords}>
+                    {words!.slice(Math.ceil(words!.length / 2)).map((word: any, i: number) => (
+                        <Typography
+                            variant='p'
+                            className={styles.selectFoundWord__word}
+                            onClick={() => props.selectWord(word.id)}
+                            key={i}
+                        >
+                            {word.word}
+                        </Typography>
+                    ))}
+                </div>
             </ScrollBox>
         </Card>
     )

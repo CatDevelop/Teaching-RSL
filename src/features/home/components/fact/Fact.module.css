@@ -39,31 +39,31 @@
 
 
 .fact__blue {
-    background: #BFDBFE;
+    background: var(--fact-blue-background-color);
 }
 
 .fact__blue .fact__title,
 .fact__blue .fact__description,
 .fact__blue .fact__source {
-    color: #1E3A8A;
+    color: var(--fact-blue-text-color);
 }
 
 .fact__grape {
-    background: #EDE9FE;
+    background: var(--fact-grape-background-color);
 }
 
 .fact__grape .fact__title,
 .fact__grape .fact__description,
 .fact__grape .fact__source {
-    color: #581C87;
+    color: var(--fact-grape-text-color);
 }
 
 .fact__green {
-    background: #CCFBF1;
+    background:var(--fact-green-background-color);
 }
 
 .fact__green .fact__title,
 .fact__green .fact__description,
 .fact__green .fact__source {
-    color: #115E59;
+    color: var(--fact-green-text-color);
 }

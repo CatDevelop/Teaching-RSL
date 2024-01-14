@@ -23,7 +23,7 @@ export const SelectUserTestWords:FC<Props> = typedMemo(function SelectUserTestWo
             const word = await WordsService.getWordById(id);
             return new SelectItemType({label: word.word ?? '', value: word.id})
         })
-        
+
         setWords(await Promise.all(words))
     }, []);
 
@@ -45,7 +45,6 @@ export const SelectUserTestWords:FC<Props> = typedMemo(function SelectUserTestWo
         props.onChangeWordIds(words.map(word => word.value));
     }, [words, props])
 
-    //console.log(words, UserTestStorageService.getWords())
     return (
         <div className={clsx(styles.selectUserTestWords, 'shadow-sm border-default-200 border-medium rounded-medium py-2 px-3')}>
             <div className={styles.selectUserTestWords__header}>
@@ -54,10 +53,10 @@ export const SelectUserTestWords:FC<Props> = typedMemo(function SelectUserTestWo
                    <Typography variant="span" className={styles.selectUserTestWords__wordCount}>{words.length} слов</Typography>
                </div>
 
-               <Button 
+               <Button
                     color="primary"
-                    variant="light" 
-                    onClick={resetWords} 
+                    variant="light"
+                    onClick={resetWords}
                     className={styles.selectUserTestWords__resetButton}
                 >
                 Очистить список
@@ -66,10 +65,10 @@ export const SelectUserTestWords:FC<Props> = typedMemo(function SelectUserTestWo
             <div className={styles.selectUserTestWords__words}>
                 {
                     words.map(word => (
-                        <Chip 
+                        <Chip
                             key={word.value}
-                            onClose={() => deleteWord(word.value)} 
-                            variant="bordered" 
+                            onClose={() => deleteWord(word.value)}
+                            variant="bordered"
                             className={styles.selectUserTestWords__word}
                         >
                             {word.label}

@@ -7,7 +7,7 @@ import {ExitIcon} from "../../assets/images/ExitIcon"
 import {Card} from "../Card";
 import {useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import { RootState } from "store/store";
+import {RootState} from "store/store";
 
 import {LKIcon} from "../../assets/images/LKIcon"
 import {LearningIcon} from "../../assets/images/LearningIcon"
@@ -33,7 +33,7 @@ export const navigationItems = [
     },
     {
         id: 2,
-        label: "Тренировки",
+        label: "Практика",
         icon: TrainingIcon,
         link: "/training"
     },
@@ -51,6 +51,7 @@ export const navigationItems = [
 export const SideBar: FC = typedMemo(function SideBar() {
     const location = useLocation();
     const dispatch = useDispatch()
+
     const exitItem = {
         id: 4,
         label: "Выйти",
@@ -65,7 +66,12 @@ export const SideBar: FC = typedMemo(function SideBar() {
             <div>
                 {
                     navigationItems.map(item => {
-                        return <SideBarItem item={item} isActive={location.pathname === item.link}/>
+                        return (
+                            <SideBarItem
+                                item={item}
+                                isActive={location.pathname.split("/")[1] === item.link.split("/")[1]}
+                            />
+                        )
                     })
                 }
             </div>

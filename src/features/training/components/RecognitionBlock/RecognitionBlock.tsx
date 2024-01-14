@@ -1,6 +1,6 @@
 import {Card} from "../../../../components/Card";
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import React, {Dispatch, FC, ReactElement, SetStateAction, useCallback, useEffect} from "react";
+import React, {Dispatch, FC, ReactElement, SetStateAction, useCallback, useEffect, useState} from "react";
 import styles from "./RecognitionBlock.module.css";
 import {Typography} from "../../../../components/Typography";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
@@ -8,7 +8,7 @@ import clsx from "clsx";
 import {WebCamera} from "../WebCamera/WebCamera";
 import {Spinner} from "@nextui-org/react";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
-import { WordInTest } from "../../../../core/models/training/GetTestResponse";
+import {WordInTest} from "../../../../core/models/training/GetTestResponse";
 import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
 import {socket} from "../../../../core/utils/connectToModal";
 import {Button} from "../../../../components/Button";
@@ -27,6 +27,12 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     let videoElement: any;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
+    const [isWasSuccess, setIsWasSuccess] = useState(false)
+
+
+    useEffect(() => {
+        setIsWasSuccess(false)
+    }, [props.word]);
 
     const onConnectToModal = useCallback(() => {
         console.log("Connected to server");
@@ -34,11 +40,13 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     const onDisconnectFromModal = useCallback(() => {
         console.log("Disconnect");
+        socket.connect()
     }, [])
 
     const onReceiveText = useCallback((text: string) => {
-        console.log(text)
-        props.setSignRecognizeText([...props.signRecognizeText, text.toLowerCase()])
+        let results: string[] = Object.values(JSON.parse(text))
+        if(props.signRecognizeText.at(-1) !== results[0].toLowerCase())
+            props.setSignRecognizeText([...props.signRecognizeText, results[0].toLowerCase()])
     }, [props.setSignRecognizeText, props.signRecognizeText, props])
 
     useEffect(() => {
@@ -93,7 +101,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
         socket.on("connect", onConnectToModal);
         socket.on("disconnect", onDisconnectFromModal);
-        // socket.on("send_not_normalize_text", onReceiveText);
 
         videoElement = document.getElementById('webcam');
         if (videoElement)
@@ -102,7 +109,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
         return () => {
             socket.off("connect", onConnectToModal);
             socket.off("disconnect", onDisconnectFromModal);
-            // socket.off("send_not_normalize_text", onReceiveText);
             socket.disconnect();
             videoElement.removeEventListener('play', addFrameSender);
             stopAllTracks(videoElement.srcObject)
@@ -114,8 +120,12 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     }, [props.intervalID])
 
     useEffect(() => {
-        if (props.signRecognizeText.includes(props.word.recognitionText?.toLowerCase() ?? ''))
+        console.log(props.signRecognizeText, props)
+        if (!isWasSuccess && props.signRecognizeText.includes(props.word.word?.toLowerCase() ?? '') ) {
+            console.log("SUCCESS")
             props.onSuccess()
+            setIsWasSuccess(true)
+        }
     }, [props.signRecognizeText])
 
     if (!props)
@@ -123,44 +133,51 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
     return (
         <Card className={clsx(styles.recognitionBlock, props.className)}>
-            <div className={styles.recognitionBlock__header}>
-                <div className={styles.recognitionBlock__wordHeader}>
+            <div className={styles.recognitionBlock__wordHeader}>
+                <div className={styles.recognitionBlock__wordHeader__title}>
                     <Typography variant="h2" className={styles.recognitionBlock__gesture}>
                         {props.word.word}
                     </Typography>
                     <Typography variant="span" className={styles.recognitionBlock__title}>
                         Покажите жест в камеру
                     </Typography>
-                    <Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>
                 </div>
-                <Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>
+                <div className={styles.recognitionBlock__wordHeader__buttons}>
+                    <Button variant="light" className={styles.recognitionBlock__cameraSettingsButton}>Настроить камеру</Button>
+                    <Button variant="light" className={styles.recognitionBlock__errorButton}>Сообщить об ошибке</Button>
+                </div>
             </div>
 
-            <div className={styles.recognitionBlock__camera}>
-                <Spinner className={styles.recognitionBlock__cameraLoading}/>
-                <WebCamera/>
-            </div>
 
-            <div className={styles.recognitionBlock__recognizedContainer}>
-                <Typography variant="h3" className={styles.recognitionBlock__recognized}>
-                    Распознанные жесты
-                </Typography>
-                <div className={clsx(styles.recognitionBlock__recognizedWords)}>
-                    {
-                        props.signRecognizeText.slice(-6).map(word => {
-                            return (
-                                <Typography
-                                    variant="span"
-                                    className={clsx(
-                                        styles.recognitionBlock__recognizedWord,
-                                        word.toLowerCase() === props.word.recognitionText?.toLowerCase() && styles.recognitionBlock__rightWord
-                                    )}
-                                >
-                                    {word}
-                                </Typography>
-                            )
-                        })
-                    }
+            {/*</div>*/}
+
+            <div className={styles.recognitionBlock__cameraAndRec}>
+                <div className={styles.recognitionBlock__camera}>
+                    <Spinner className={styles.recognitionBlock__cameraLoading}/>
+                    <WebCamera/>
+                </div>
+
+                <div className={styles.recognitionBlock__recognizedContainer}>
+                    <Typography variant="h3" className={styles.recognitionBlock__recognized}>
+                        Распознанные жесты
+                    </Typography>
+                    <div className={clsx(styles.recognitionBlock__recognizedWords)}>
+                        {
+                            props.signRecognizeText.slice(-6).map(word => {
+                                return (
+                                    <Typography
+                                        variant="span"
+                                        className={clsx(
+                                            styles.recognitionBlock__recognizedWord,
+                                            word.toLowerCase() === props.word.word?.toLowerCase() && styles.recognitionBlock__rightWord
+                                        )}
+                                    >
+                                        {word}
+                                    </Typography>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>
 

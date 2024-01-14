@@ -7,10 +7,11 @@ import TheoryIconSVG from "../../../../assets/images/TheoryIcon.svg"
 import {Typography} from "../../../../components/Typography";
 import {SignVideo} from "../../../../components/SignVideo";
 import {LearningBlock} from "../LearningBlock";
-import {Word} from "../../../../core/models/Word";
+import {Word, WordFormServer2} from "../../../../core/models/Word";
+import {IllustrationWordResponseDto} from "../../../../core/dtos/words/IllustrationWordResponseDto";
 
 type Props = ComponentProps & Readonly<{
-    wordObject: any
+    wordObject: WordFormServer2
 }>
 
 /**
@@ -24,12 +25,12 @@ export const TheoryCard: FC<Props> = typedMemo(function TheoryCard(props) {
                     variant="h2"
                     className={styles.theoryCard__title}
                 >
-                    {props.wordObject.firstRepresentation}
+                    {props.wordObject.word}
                 </Typography>
                 <div className={styles.theoryCard__contentContainer}>
                     <div className={styles.theoryCard__images}>
                         <SignVideo
-                            src={props.wordObject.secondRepresentation}
+                            src={props.wordObject.illustrations[0].path}
                             className={styles.theoryCard__gif}
                         />
                     </div>

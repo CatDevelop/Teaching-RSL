@@ -14,10 +14,10 @@ import {PageContent} from "../../../../components/PageContent";
 import {SideBar} from "../../../../components/SideBar";
 import {Card} from "../../../../components/Card";
 import {Input, Spinner} from "@nextui-org/react";
-import { SelectWordBlock } from "./SelectWordBlock";
-import { DictionaryWordBlock } from "./DictionaryWordBlock";
+import {SelectWordBlock} from "./SelectWordBlock";
+import {DictionaryWordBlock} from "./DictionaryWordBlock";
 import {Button} from "../../../../components/Button";
-import { CreateUserTestForm } from "./CreateUserTestForm";
+import {CreateUserTestForm} from "./CreateUserTestForm";
 
 export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
     const [search, setSearch] = useState('');
@@ -35,53 +35,54 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
         <Page className={styles.dictionary}>
             <SideBar/>
             <PageContent className={styles.dictionary__pageContent}>
-                <Suspense fallback={<Spinner className={styles.dictionary__loading}/>}>
-                    <Card className={styles.dictionary__titleContainer}>
+
+                <Card className={styles.dictionary__titleContainer}>
+                    <Typography
+                        variant="h1"
+                        className={styles.dictionary__titleContainer__title}
+                    >
+                        Словарь
+                    </Typography>
+                    <div className={styles.dictionary__titleContainer__content}>
                         <Typography
-                            variant="h1"
-                            className={styles.dictionary__titleContainer__title}
+                            variant="p"
+                            className={styles.dictionary__titleContainer__description}
                         >
-                            Словарь
+                            Здесь можно найти абсолютно все жесты
                         </Typography>
-                        <div className={styles.dictionary__titleContainer__content}>
-                            <Typography
-                                variant="p"
-                                className={styles.dictionary__titleContainer__description}
-                            >
-                                Здесь можно найти абсолютно все жесты
-                            </Typography>
 
-                            <CreateUserTestForm
-                                triggerComponent={onOpen => <Button color="primary" variant="light" onClick={onOpen}>
-                                    Создать тест
-                                </Button>}
-                            />
-
-                        </div>
-                    </Card>
-
-                    <div className={styles.dictionary__chooseWordBlock}>
-                        <Input 
-                            placeholder="Поиск" 
-                            classNames={{
-                                inputWrapper: [styles.dictionary__wordSearch],
-                                input: [styles.dictionary__wordSearchInput],
-                            }}
-                            onChange={changeSearch}
-                            onBlur={blurSearch}
-                            variant="faded"
+                        <CreateUserTestForm
+                            triggerComponent={onOpen => <Button color="primary" variant="light" onClick={onOpen}>
+                                Создать тест
+                            </Button>}
                         />
-                        <DictionaryWordBlock selectedWordId={selectedWordId}/>
+
                     </div>
+                </Card>
 
-                    <Suspense fallback={<Spinner/>}>
-                        <SelectWordBlock
-                            selectWord={setSelectedWordId}
-                            search={search}
-                            className={styles.dictionary__selectDictionaryDisplay}
-                        />
+                <div className={styles.dictionary__chooseWordBlock}>
+                    <Input
+                        placeholder="Поиск"
+                        classNames={{
+                            inputWrapper: [styles.dictionary__wordSearch],
+                            input: [styles.dictionary__wordSearchInput],
+                        }}
+                        onChange={changeSearch}
+                        onBlur={blurSearch}
+                        variant="faded"
+                    />
+                    <Suspense fallback={<Spinner className={styles.dictionary__loading}/>}>
+                        <DictionaryWordBlock selectedWordId={selectedWordId}/>
                     </Suspense>
+                </div>
+                <Suspense fallback={<Spinner/>}>
+                    <SelectWordBlock
+                        selectWord={setSelectedWordId}
+                        search={search}
+                        className={styles.dictionary__selectDictionaryDisplay}
+                    />
                 </Suspense>
+
             </PageContent>
         </Page>
     )

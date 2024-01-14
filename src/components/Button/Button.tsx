@@ -6,9 +6,10 @@ import styles from "./Button.module.css";
 
 type Props = ButtonProps;
 
-/*
-    Кнопка
-*/
+
+/**
+ * Кнопка
+ */
 export const Button: FC<Props> = typedMemo(function Button(props) {
     return (
         <ButtonNextUI

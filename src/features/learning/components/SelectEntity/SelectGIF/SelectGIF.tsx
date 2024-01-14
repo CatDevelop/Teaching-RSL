@@ -9,7 +9,7 @@ import {SelectContainer, SelectContainerProps} from "../SelectContainer";
 export const SelectGIF: FC<SelectContainerProps> = typedMemo(function SelectGIF(props) {
     return (
         <SelectContainer {...props}>
-            <SignVideo src={props.gif || ""}/>
+            <SignVideo src={props.wordObject.illustrations[0].path || ""}/>
         </SelectContainer>
     );
 });

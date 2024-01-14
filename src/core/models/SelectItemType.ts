@@ -1,3 +1,6 @@
+/**
+ * Выбранный объект
+ */
 export class SelectItemType<TValue> {
     public readonly label: string;
     public readonly value: TValue;

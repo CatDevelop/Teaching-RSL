@@ -8,6 +8,7 @@
     font-size: var(--font-size-l);
     font-weight: var(--font-weight-l);
     color: var(--thirdly-text-color);
+    text-align: center;
 }
 
 .dictionaryWordBlock {
@@ -21,12 +22,13 @@
     flex: 1;
     border-radius: var(--border-radius-m);
     overflow: hidden;
+    width: fit-content;
 }
 
 .dictionaryWordBlock__image {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+    height: calc(100vh - 525px) !important;
+    aspect-ratio: 4 / 3;
 }
 
 .dictionaryWordBlock__actions {

@@ -26,9 +26,10 @@ export const DictionaryWordBlock: FC<Props> = typedMemo(function DictionaryWordB
         ['word', props.selectedWordId],
         () => WordsService.getWordById(props.selectedWordId ?? ''),
         {
-                onError: () => {},
-                useErrorBoundary: false,
-                retry: false,
+            onError: () => {},
+            useErrorBoundary: false,
+            retry: false,
+            refetchOnWindowFocus: false
         });
 
     const addWordToTest = useCallback(() => {
@@ -39,9 +40,8 @@ export const DictionaryWordBlock: FC<Props> = typedMemo(function DictionaryWordB
         return (
             <Card className={clsx(styles.dictionaryWordBlock_empty, props.className)}>
                 <Typography
-                    variant='p'
-                            className={styles.dictionaryWordBlock_empty__title}>
-                    Вы пока не выбрали слово
+                    variant='p' className={styles.dictionaryWordBlock_empty__title}>
+                    Вы пока не <br/> выбрали слово
                 </Typography>
             </Card>
         )
@@ -52,11 +52,13 @@ export const DictionaryWordBlock: FC<Props> = typedMemo(function DictionaryWordB
             <div className={styles.dictionaryWordBlock__imageContainer}>
                 {word.illustrations[0].fileType === 'Jpeg' ?
                     <img src={word.illustrations[0]?.path ?? ''} className={styles.dictionaryWordBlock__image}/> :
-                    <video src={word.illustrations[0]?.path ?? ''} className={styles.dictionaryWordBlock__image} autoPlay loop muted/>
+                    <video src={word.illustrations[0]?.path ?? ''} className={styles.dictionaryWordBlock__image}
+                           autoPlay loop muted/>
                 }
             </div>
             <div className={styles.dictionaryWordBlock__actions}>
-                <Button color="primary" variant="solid" onClick={() => navigate(`/dictionary/learning/${props.selectedWordId}`)}>Потренироваться</Button>
+                <Button color="primary" variant="solid"
+                        onClick={() => navigate(`/dictionary/learning/${props.selectedWordId}`)}>Потренироваться</Button>
                 <Button variant="bordered" color="primary" onClick={addWordToTest}>Добавить в тест</Button>
             </div>
         </Card>

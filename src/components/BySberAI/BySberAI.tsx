@@ -9,7 +9,9 @@ import clsx from "clsx";
 
 type Props = PropsWithChildren & ComponentProps;
 
-/** Модель разработана SberAI. */
+/**
+ * Модель разработана SberAI
+ */
 export const BySberAI: FC<Props> = typedMemo(function BySberAI(props){
     return (
         <Card className={clsx(styles.bySberAI, props.className)}>

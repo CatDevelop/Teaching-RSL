@@ -67,6 +67,9 @@
     max-width: 100%;
 }
 
+.learningTask__short {
+    height: unset !important;
+}
 
 .learningTask__progressBarContainer {
     width: 678px;
@@ -88,7 +91,7 @@
 .learningTask__taskContainer {
     grid-area: task;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 120px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,38 +192,38 @@
     animation: showDown 0.5s ease-in;
 }
 
-@media(max-width:1300px){
-    .learningTask{
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "header"
-            "task"
-            "buttons";
-        grid-template-rows: 95px calc(100vh - 165px - var(--page-padding-m) * 2 - var(--space-m) * 2) 70px;
-    }
+/*@media(max-width:1300px){*/
+/*    .learningTask{*/
+/*        grid-template-columns: 1fr;*/
+/*        grid-template-areas:*/
+/*            "header"*/
+/*            "task"*/
+/*            "buttons";*/
+/*        grid-template-rows: 95px calc(100vh - 165px - var(--page-padding-m) * 2 - var(--space-m) * 2) 70px;*/
+/*    }*/
 
-    .learningTaskPage__header {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-flow: dense;
-        gap: var(--space-l) var(--space-m);
-        width: 100%;
-    }
+/*    .learningTaskPage__header {*/
+/*        grid-template-columns: 1fr 1fr;*/
+/*        grid-auto-flow: dense;*/
+/*        gap: var(--space-l) var(--space-m);*/
+/*        width: 100%;*/
+/*    }*/
 
-    .learningTask__logoContainer {
-        justify-self: start;
-    }
+/*    .learningTask__logoContainer {*/
+/*        justify-self: start;*/
+/*    }*/
 
-    .learningTask__exitButtonContainer {
-        grid-column: auto;
-    }
+/*    .learningTask__exitButtonContainer {*/
+/*        grid-column: auto;*/
+/*    }*/
 
-    .learningTask__exitButtonContainer {
-        justify-self: end;
-    }
+/*    .learningTask__exitButtonContainer {*/
+/*        justify-self: end;*/
+/*    }*/
 
-    .learningTask__progressBarContainer {
-        grid-column: 1 / span 2;
-        max-width: var(--max-theory-card-width);
-        min-width: 0;
-    }
-}
+/*    .learningTask__progressBarContainer {*/
+/*        grid-column: 1 / span 2;*/
+/*        max-width: var(--max-theory-card-width);*/
+/*        min-width: 0;*/
+/*    }*/
+/*}*/

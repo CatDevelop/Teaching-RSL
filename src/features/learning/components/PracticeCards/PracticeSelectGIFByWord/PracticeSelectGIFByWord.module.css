@@ -43,15 +43,14 @@
 .practiceSelectGif__gifsContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50% 50%;
     gap: var(--space-s);
     height: calc(100% - 30px);
     margin-top: var(--space-s);
 }
 
 .practiceSelectGif__gif {
-    /*height: 100%;*/
-    /*max-width: 320px;*/
-    max-width: 320px;
+    width: max-content;
 }
 
 .practiceSelectGif__gif:nth-child(odd) {

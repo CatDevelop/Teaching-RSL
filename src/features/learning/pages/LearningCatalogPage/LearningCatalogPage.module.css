@@ -2,10 +2,13 @@
     display: grid;
     grid-template-areas: "level _" "themes _";
     grid-template-rows: var(--title-block-container-height) 1fr;
-    grid-template-columns: var(--accent-block-container-width) 1fr;
+    grid-template-columns: 1.5fr 1fr;
     justify-content: center;
     align-items: center;
     position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--content-max-width);
 }
 
 .learningCatalog__levelBlock {
