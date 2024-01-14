@@ -92,7 +92,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                                     setRightWords={setRightWords}
                                 />
                                 <div className={styles.learningTask__back}>
-                                    <Back to="/learning"/>
+                                    <Back to="/learning" type="icon"/>
                                 </div>
                             </div>
                         </div>
