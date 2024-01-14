@@ -25,7 +25,7 @@ export default function MyApp() {
                 <QueryClientProvider client={queryClient}>
                     <MantineProvider>
                         <BrowserRouter>
-                            <Suspense fallback={<Spinner/>}>
+                            <Suspense fallback={<Spinner className="mainSpinner"/>}>
                                 <RootRouter/>
                             </Suspense>
                         </BrowserRouter>

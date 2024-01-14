@@ -6,7 +6,6 @@ import Logo from "../../../../assets/images/Logo.svg"
 import {useNavigate, useParams} from "react-router-dom";
 import {clsx} from "clsx";
 import {PageContent} from "../../../../components/PageContent";
-import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {LearningHeader} from "../../components/LearningHeader";
 import {LearningTaskBlock} from "../../components/LearningTaskBlock";
@@ -17,6 +16,9 @@ import {useMutation} from "react-query";
 import {UserHistoryService} from "../../../../api/services/userHistory";
 
 
+/**
+ * Задания уровня обучения
+ */
 export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const {id} = useParams<{ id: string }>();
     const navigate = useNavigate()
@@ -45,7 +47,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
             navigate("result/?count=" + theoryCount)
         }
         setCurrentStep(currentStep + 1)
-    }, [currentStep, setCurrentStep])
+    }, [currentStep, setCurrentStep, theoryCount, practiceCount])
 
     const prevStep = useCallback(() => {
         setCurrentStep(currentStep - 1)
@@ -69,7 +71,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
                     <div className={styles.learningTask__contentContainer}>
                         <LearningHeader
                             type={tasks[currentStep].type}
-                            name={"Входное тестирование для абитуриентов"}
+                            name={levelController.level?.name}
                             currentStep={currentStep}
                             stepCount={tasks.length}
                         />

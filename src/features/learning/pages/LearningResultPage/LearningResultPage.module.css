@@ -1,11 +1,11 @@
 .learningResult {
-    display: grid !important;
+    display: grid;
     grid-template-columns: 218px 1fr 218px;
     grid-template-rows: 70px 1fr;
     grid-template-areas:
             "logo content a"
             "b content c";
-    align-items: center !important;
+    align-items: center;
     justify-items: center;
     gap: var(--space-m);
     max-height: 100vh;

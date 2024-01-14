@@ -5,7 +5,7 @@ import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
 import PracticeIconSVG from "../../../../../assets/images/PracticeIcon.svg"
 import {LearningBlock} from "../../LearningBlock";
-import {WordFormServer} from "../../../../../core/models/Word";
+import {WordFormServer, WordFormServer2} from "../../../../../core/models/Word";
 import {SignVideo} from "../../../../../components/SignVideo";
 import {SelectButton} from "../../SelectEntity/SelectButton";
 import {StepStatus} from "../../../../../core/models/StepStatus";
@@ -13,8 +13,8 @@ import {shuffleArray} from "../../../../../core/utils/shuffleArray";
 import {getSelectEntityStatus} from "../../SelectEntity/SelectContainer/SelectContainer";
 
 type Props = ComponentProps & Readonly<{
-    rightSelect: WordFormServer;
-    otherSelects: (string | null)[];
+    rightSelect: WordFormServer2;
+    otherSelects: WordFormServer2[];
 
     checked: boolean;
     setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
@@ -25,13 +25,13 @@ type Props = ComponentProps & Readonly<{
  * Практика "Выбери слово"
  */
 export const PracticeSelectWordByGIF: FC<Props> = typedMemo(function PracticeSelectWordByGIF(props) {
-    const [allVariants, setAllVariants] = useState<(string | null)[]>(
-        shuffleArray<(string | null)>([props.rightSelect.firstRepresentation, ...props.otherSelects])
+    const [allVariants, setAllVariants] = useState<WordFormServer2[]>(
+        shuffleArray<WordFormServer2>([props.rightSelect, ...props.otherSelects])
     )
-    const [currentSelect, setCurrentSelect] = useState<string | null>()
+    const [currentSelect, setCurrentSelect] = useState<WordFormServer2 | null>()
 
     useEffect(() => {
-        setAllVariants(shuffleArray<(string | null)>([props.rightSelect.firstRepresentation, ...props.otherSelects]))
+        setAllVariants(shuffleArray<WordFormServer2>([props.rightSelect, ...props.otherSelects]))
     }, [props.rightSelect, props.otherSelects]);
 
     useEffect(() => {
@@ -42,10 +42,10 @@ export const PracticeSelectWordByGIF: FC<Props> = typedMemo(function PracticeSel
 
     useEffect(() => {
         if (props.checked) {
-            if (currentSelect === props.rightSelect.firstRepresentation)
+            if (currentSelect?.id === props.rightSelect.id)
                 props.setStatus({status: "success"})
             else
-                props.setStatus({status: "error", message: props.rightSelect.firstRepresentation || ""})
+                props.setStatus({status: "error", message: props.rightSelect.word || ""})
         }
     }, [props, currentSelect])
 
@@ -57,15 +57,15 @@ export const PracticeSelectWordByGIF: FC<Props> = typedMemo(function PracticeSel
         <div className={clsx(styles.practiceSelectWord)}>
             <LearningBlock iconUrl={PracticeIconSVG} title={"Выберите верное слово"}>
                 <div className={styles.practiceSelectWord__contentContainer}>
-                    <SignVideo src={props.rightSelect.secondRepresentation} className={styles.practiceSelectWord__signVideo}/>
+                    <SignVideo src={props.rightSelect.illustrations[0].path} className={styles.practiceSelectWord__signVideo}/>
 
                     <div className={styles.practiceSelectWord__buttonsContainer}>
                         {
                             allVariants?.map(variant => (
                                 <SelectButton
-                                    text={variant}
+                                    wordObject={variant}
                                     setState={setCurrentSelect}
-                                    state={getSelectEntityStatus(props.checked, currentSelect, variant, props.rightSelect.firstRepresentation)}
+                                    state={getSelectEntityStatus(props.checked, currentSelect, variant, props.rightSelect)}
                                 />
                             ))
                         }

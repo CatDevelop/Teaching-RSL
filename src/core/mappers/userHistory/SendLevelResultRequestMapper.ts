@@ -4,7 +4,7 @@ import {SendLevelResultRequestDto} from "../../dtos/userHistory/SendLevelResultR
 export namespace SendLevelResultRequestMapper {
 	/**
 	 * Маппинг модели в DTO.
-	 * @param dto DTO.
+	 * @param model Модель.
 	 */
 	export function toDTO(model: SendLevelResultRequest): SendLevelResultRequestDto {
 		return {

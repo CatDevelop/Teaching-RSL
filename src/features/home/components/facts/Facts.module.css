@@ -1,13 +1,9 @@
 @keyframes moving {
-    /*0%   { transform: translate(100%, 0); }*/
-    /*100% { transform: translate(-100%, 0); }*/
     from   { left: 0; }
     to { left: -100% }
 }
 
 @keyframes moving2 {
-    /*0%   { transform: translate(100%, 0); }*/
-    /*100% { transform: translate(-100%, 0); }*/
     from   { left: 100% }
     to { left: 0; }
 }
@@ -34,8 +30,8 @@
     justify-content: center;
 
     position: absolute;
-    left: 0%;
-    top: 0%;
+    left: 0;
+    top: 0;
 
     width: 3280px;
     height: 100%;

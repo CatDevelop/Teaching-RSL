@@ -50,8 +50,8 @@ export const navigationItems = [
  */
 export const SideBar: FC = typedMemo(function SideBar() {
     const location = useLocation();
-    console.log(location.pathname.split("/"))
     const dispatch = useDispatch()
+
     const exitItem = {
         id: 4,
         label: "Выйти",

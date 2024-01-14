@@ -17,6 +17,12 @@
     --disabled-text-color: rgba(212, 212, 216, 1);
     --disabled-button-color: rgb(113, 113, 122, 1);
     --modal-blur: rgba(0, 0, 0, 0.65);
+    --fact-blue-background-color: rgb(191, 219, 254);
+    --fact-blue-text-color: rgb(30, 58, 138);
+    --fact-grape-background-color: rgb(237, 233, 254);
+    --fact-grape-text-color: rgb(88, 28, 135);
+    --fact-green-background-color: rgb(204, 251, 241);
+    --fact-green-text-color: rgb(17, 94, 89);
 
 
     /* Font */

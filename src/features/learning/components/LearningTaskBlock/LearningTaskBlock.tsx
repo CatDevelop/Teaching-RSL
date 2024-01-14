@@ -10,7 +10,7 @@ import {StepStatus} from "../../../../core/models/StepStatus";
 import {toast} from "react-toastify";
 
 type Props = ComponentProps & Readonly<{
-    task: any;
+    task: any; // TODO разобраться с условными типами
     currentStep: number;
     nextStep: () => void;
     prevStep: () => void;
@@ -18,7 +18,7 @@ type Props = ComponentProps & Readonly<{
     setRightWords: React.Dispatch<React.SetStateAction<string[]>>;
 }>
 
-/*
+/**
  * Общий контейнер для заданий в обучении: теория + практика + управляющие кнопки
  */
 export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock(props) {
@@ -32,29 +32,31 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
         setCurrentStepStatus({status: "default"})
     }, [])
 
-    const addRightWord = () => {
+    const addRightWord =() => {
         if (props.task.task.type === "MatchWordAndGif")
-            props.task.task.conditions.map((condition: { wordId: string; }) => {
-                if (!props.rightWords.includes(condition.wordId))
-                    props.setRightWords([...props.rightWords, condition.wordId])
+            props.task.task.conditions.map((condition: { id: string; }) => {
+                if (!props.rightWords.includes(condition.id))
+                    props.setRightWords([...props.rightWords, condition.id])
             })
         else {
-            if (!props.rightWords.includes(props.task.task.rightSelect.wordId))
-                props.setRightWords([...props.rightWords, props.task.task.rightSelect.wordId])
+            if (!props.rightWords.includes(props.task.task.rightSelect.id))
+                props.setRightWords([...props.rightWords, props.task.task.rightSelect.id])
         }
     }
 
     useEffect(() => {
-        console.log(taskCompleted, taskChecked, currentStepStatus, props.currentStep)
-        if (taskCompleted && taskChecked) {
-            if (currentStepStatus.status === "success") {
+        if (taskCompleted && taskChecked)
+            if (currentStepStatus.status === "success")
                 addRightWord()
-                toast.success("Вы отлично справились!")
-            }
+    }, [taskChecked, taskCompleted, currentStepStatus, props.currentStep, props.rightWords]);
 
-            if (currentStepStatus.status === "error")
-                toast.error("Неверный ответ\nПравильный ответ:\n" + currentStepStatus.message)
+    useEffect(() => {
+        if (currentStepStatus.status === "success") {
+            toast.success("Вы отлично справились!")
         }
+
+        if (currentStepStatus.status === "error")
+            toast.error("Неверный ответ\nПравильный ответ:\n" + currentStepStatus.message)
     }, [taskChecked, taskCompleted, currentStepStatus, props.currentStep]);
 
     return (
@@ -109,7 +111,6 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                     <Button
                         onClick={() => {
                             setTaskChecked(true)
-                            // checkTask()
                         }}
                         size="lg"
                         variant="solid"

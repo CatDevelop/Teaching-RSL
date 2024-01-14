@@ -50,9 +50,6 @@
 }
 
 .practiceSelectGif__gif {
-    /*height: 100%;*/
-    /*max-width: 270px;*/
-    /*max-width: 200px;*/
     width: max-content;
 }
 

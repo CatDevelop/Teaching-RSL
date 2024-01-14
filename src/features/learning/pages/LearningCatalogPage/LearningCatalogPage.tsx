@@ -9,6 +9,10 @@ import {LevelBlock} from "../../../../components/LevelBlock";
 import {Card} from "../../../../components/Card";
 import {Spinner} from "@nextui-org/react";
 
+
+/**
+ * Каталог уровней обучения
+ */
 export const LearningCatalogPage: FC = typedMemo(function LearningCatalogPage() {
     return (
         <Page>

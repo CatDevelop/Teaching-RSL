@@ -1,15 +1,15 @@
-import { ApiUrlsConfig } from "../apiUrlsConfig";
-import { http } from "../http";
-import { CreateTestRequest } from "../../core/models/training/CreateTestRequest";
-import { CreateTestRequestMapper } from "../../core/mappers/training/CreateTestRequestMapper";
-import { CreateTestResponse } from "../../core/models/training/CreateTestResponse";
-import { CreateTestResponseDto } from "../../core/dtos/training/CreateTestReaponseDto";
-import { CreateTestResponseMapper } from "../../core/mappers/training/CreateTestResponseMapper";
-import { GetTestResponse } from "../../core/models/training/GetTestResponse";
-import { GetTestResponseDto } from "../../core/dtos/training/GetTestResponseDto";
-import { GetTestResponseMapper } from "../../core/mappers/training/GetTestResponseMapper";
-import { CreateUserTestRequest } from "core/models/training/CreateUserTestRequest";
-import { CreateUserTestRequestMapper } from "core/mappers/training/CreateUserTestRequestMapper";
+import {ApiUrlsConfig} from "../apiUrlsConfig";
+import {http} from "../http";
+import {CreateTestRequest} from "../../core/models/training/CreateTestRequest";
+import {CreateTestRequestMapper} from "../../core/mappers/training/CreateTestRequestMapper";
+import {CreateTestResponse} from "../../core/models/training/CreateTestResponse";
+import {CreateTestResponseDto} from "../../core/dtos/training/CreateTestReaponseDto";
+import {CreateTestResponseMapper} from "../../core/mappers/training/CreateTestResponseMapper";
+import {GetTestResponse} from "../../core/models/training/GetTestResponse";
+import {GetTestResponseDto} from "../../core/dtos/training/GetTestResponseDto";
+import {GetTestResponseMapper} from "../../core/mappers/training/GetTestResponseMapper";
+import {CreateUserTestRequest} from "core/models/training/CreateUserTestRequest";
+import {CreateUserTestRequestMapper} from "core/mappers/training/CreateUserTestRequestMapper";
 import {GetUserTestsResponseDto} from "../../core/dtos/training/GetUserTestsResponseDto";
 import {GetUserTestsResponseMapper} from "../../core/mappers/training/GetUserTestsResponseMapper";
 import {GetUserTestsResponse} from "../../core/models/training/GetUserTestsResponse";
@@ -29,8 +29,7 @@ export namespace TrainingService {
         try {
             const {data} = await http.get<GetUserTestsResponseDto>(ApiUrlsConfig.training.allUserTest);
             return GetUserTestsResponseMapper.fromDto(data);
-
-        } catch (error) {
+        } catch {
             return GetUserTestsResponseMapper.fromDto({userTestList: []})
         }
     }

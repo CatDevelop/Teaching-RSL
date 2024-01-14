@@ -5,11 +5,6 @@ import { IllustrationWordResponseDto } from "./IllustrationWordResponseDto";
  */
 export type GetWordResponseDto = Readonly<{
     /**
-     * Ответ со словами
-     */
-    description: string;	
-
-    /**
      * Идентификатор слова
      */
     id: string;

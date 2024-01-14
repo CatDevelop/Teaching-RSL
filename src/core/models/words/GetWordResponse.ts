@@ -5,11 +5,6 @@ import { IllustrationWordResponse } from "./IllustrationWordResponse";
  */
 export class GetWordResponse {
     /**
-     * Ответ со словами
-     */
-    public readonly description: string;	
-
-    /**
      * Идентификатор слова
      */
     public readonly id: string;
@@ -25,7 +20,6 @@ export class GetWordResponse {
     public readonly illustrations: readonly IllustrationWordResponse[];
 
     public constructor(props: GetWordResponseProps){
-        this.description = props.description;
         this.id = props.id;
         this.word = props.word;
         this.illustrations = props.illustrations

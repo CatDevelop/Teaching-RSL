@@ -35,9 +35,8 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
         onSuccess: () => {
             dispatch(loginDispatch())
         },
-        onError: (error) => {
-            // @ts-ignore
-            if(error.response.data.error_description === "invalid_username_or_password")
+        onError: (error: {response: {data: Object}}) => {
+            if("error_description" in error.response.data && error.response.data.error_description === "invalid_username_or_password")
                 toast.error('Неверный логин или пароль!');
             else
                 toast.error('Ошибка!');

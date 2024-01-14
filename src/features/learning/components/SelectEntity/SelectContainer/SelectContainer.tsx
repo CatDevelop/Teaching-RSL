@@ -4,13 +4,12 @@ import styles from "./SelectContainer.module.css";
 import clsx from "clsx";
 import {motion} from "framer-motion"
 import {SelectState} from "../../../../../core/models/SelectState";
+import {WordFormServer2} from "../../../../../core/models/Word";
 
 export type SelectContainerProps = PropsWithChildren & Readonly<{
     state: SelectState;
     number: number;
-
-    gif?:string;
-    text: string;
+    wordObject: WordFormServer2;
     setState: React.Dispatch<React.SetStateAction<any>>;
 }>
 
@@ -28,7 +27,7 @@ const stylesByState = {
 export const SelectContainer: FC<SelectContainerProps> = typedMemo(function SelectContainer(props) {
     const handleClickOnSelectObject = useCallback(() => {
         if (props.state === "default" || props.state === "checked")
-            props.setState(props.state === "checked" ? null : props.text)
+            props.setState(props.state === "checked" ? null : props.wordObject)
     }, [props])
 
     return (
@@ -45,12 +44,13 @@ export const SelectContainer: FC<SelectContainerProps> = typedMemo(function Sele
     );
 });
 
-export const getSelectEntityStatus = (checked: boolean, selectEntity: string | undefined | null, currentVariant: string | null, rightVariant: string | null) => {
+export const getSelectEntityStatus = (checked: boolean, selectEntity: WordFormServer2 | undefined | null, currentVariant: WordFormServer2 | null, rightVariant: WordFormServer2 | null) => {
     let result: SelectState = "disabled";
+
     if (!checked) {
-        result = selectEntity === currentVariant ? "checked" : "default"
-    } else if (currentVariant === selectEntity) {
-        result = selectEntity === rightVariant ? "success" : "error"
+        result = selectEntity?.id === currentVariant?.id ? "checked" : "default"
+    } else if (currentVariant?.id === selectEntity?.id) {
+        result = selectEntity?.id === rightVariant?.id ? "success" : "error"
     }
     return result;
 }

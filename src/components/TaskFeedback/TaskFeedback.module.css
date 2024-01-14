@@ -1,6 +1,5 @@
 .taskFeedback__open {
     padding: var(--space-xs);
-    /*width: calc(16px + var(--space-s) * 2);*/
     min-width: 0;
     color: var(--thirdly-text-color);
     text-decoration: underline ;

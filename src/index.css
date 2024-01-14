@@ -53,3 +53,10 @@ p {
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-m);
 }
+
+.mainSpinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

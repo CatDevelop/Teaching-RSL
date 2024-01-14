@@ -12,7 +12,9 @@ import {Typography} from "../../../../components/Typography";
 import ResultLearning from "../../../../assets/images/ResultLearningImage.svg"
 import {normalizeCountForm} from "../../../../core/utils/normalizeCountForm";
 
-
+/**
+ * Результаты уровня
+ */
 export const LearningResultPage: FC = typedMemo(function LearningResultPage() {
     const queryParams = new URLSearchParams(window.location.search)
     const wordsCount = parseInt(queryParams.get("count") || "0")

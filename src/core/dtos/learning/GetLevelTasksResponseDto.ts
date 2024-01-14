@@ -1,4 +1,6 @@
-import {MultiLevelTaskTypeEnum, SingleLevelTaskTypeEnum} from "../../models/learning/LevelTaskTypeEnum";
+import {SingleLevelTaskTypeEnum} from "../../models/learning/SingleLevelTaskTypeEnum";
+import {MultiLevelTaskTypeEnum} from "../../models/learning/MultiLevelTaskTypeEnum";
+import {GetWordResponseDto} from "../words/GetWordResponseDto";
 
 /**
  * Полученные задания.
@@ -27,12 +29,12 @@ export type SingleLevelTaskDto = Readonly<{
     /**
      * Правильный ответ.
      */
-    rightSelect: WordRepresentationsDto;
+    rightSelect: GetWordResponseDto;
 
     /**
      * Другие варианты ответа.
      */
-    otherSelects: (string | undefined)[];
+    otherSelects: GetWordResponseDto[];
 }>
 
 /**
@@ -47,25 +49,5 @@ export type MultiLevelTaskDto = Readonly<{
     /**
      * Условия задания.
      */
-    conditions: WordRepresentationsDto[];
-}>
-
-/**
- * Представления слова.
- */
-export type WordRepresentationsDto = Readonly<{
-    /**
-     * Id слова.
-     */
-    wordId: string;
-
-    /**
-     * Первое представление.
-     */
-    firstRepresentation: string | null;
-
-    /**
-     * Второе представление
-     */
-    secondRepresentation: string | null;
+    conditions: GetWordResponseDto[];
 }>

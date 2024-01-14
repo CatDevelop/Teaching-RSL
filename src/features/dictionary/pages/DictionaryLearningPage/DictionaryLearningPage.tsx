@@ -15,6 +15,9 @@ import {socket} from "../../../../core/utils/connectToModal";
 
 type Props = Readonly<{}>
 
+/**
+ * Попробуй жест в словаре
+ */
 export const DictionaryLearningPage: FC<Props> = typedMemo(function DictionaryLearningPage(props) {
     const {wordId} = useParams<{ wordId: string }>()
     const {data: word} = useQuery(['word-by-id', wordId], () => WordsService.getWordById(wordId ?? ''))

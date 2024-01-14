@@ -14,7 +14,7 @@ type Props = ComponentProps & Readonly<{
 }>
 
 /**
- * Подтверждение выхода из задания.
+ * Подтверждение выхода из задания
  */
 export const ExitConfirmation: FC<Props> = typedMemo(function ExitConfirmation(props) {
     const navigate = useNavigate()

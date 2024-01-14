@@ -19,7 +19,7 @@ export namespace UserHistoryService {
         return GetUserLevelStatisticResponseMapper.fromDto(data);
     }
 
-    export async function sendLevelResult(formData: SendLevelResultRequest){
+    export async function sendLevelResult(formData: SendLevelResultRequest): Promise<void>{
         const {data} = await http.post<SendLevelResultRequestDto>(ApiUrlsConfig.userHistory.sendLevelResult, SendLevelResultRequestMapper.toDTO(formData));
         return;
     }

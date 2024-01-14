@@ -5,8 +5,7 @@ import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
 import PracticeIconSVG from "../../../../../assets/images/PracticeIcon.svg"
 import {LearningBlock} from "../../LearningBlock";
-import {WordFormServer} from "../../../../../core/models/Word";
-import {Typography} from "../../../../../components/Typography";
+import {WordFormServer, WordFormServer2} from "../../../../../core/models/Word";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
 import {SelectButton} from "../../SelectEntity/SelectButton";
 import {SelectObjectState, SelectState} from "../../../../../core/models/SelectState";
@@ -15,13 +14,13 @@ import {StepStatus} from "../../../../../core/models/StepStatus";
 import {getInitialSelectObjectsState} from "../../../../../core/utils/getInitialSelectObjectsState";
 
 type HandleClickOnSelectObject = (
-    clickWordObject: string,
+    clickWordObject: WordFormServer2,
     selectObjectState: SelectObjectState[],
     setSelectObjectState: React.Dispatch<React.SetStateAction<SelectObjectState[]>>
 ) => void
 
 type ToDefaultStateType = () => {
-    wordObject: Readonly<WordFormServer>;
+    wordObject: Readonly<WordFormServer2>;
     state: SelectState
 }[]
 
@@ -29,7 +28,7 @@ type OnWrongAnswer = (checkedWordIndex: number, checkedGIFIndex: number) => void
 type GetNewStatusMatchPractice = (checkedWordIndex: number, checkedGIFIndex: number) => SelectState
 
 type Props = ComponentProps & Readonly<{
-    variants: WordFormServer[];
+    variants: WordFormServer2[];
     setStatus: React.Dispatch<React.SetStateAction<StepStatus>>;
     setIsTaskReadyToCheck: React.Dispatch<React.SetStateAction<boolean>>;
     setTaskChecked: React.Dispatch<React.SetStateAction<boolean>>;
@@ -40,7 +39,7 @@ type Props = ComponentProps & Readonly<{
  * Практика "Подбери пару к словам"
  */
 export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMatchWordAndGIF(props) {
-    const [variantsInOtherOrder, setVariantsInOtherOrder] = useState(shuffleArray<WordFormServer>(props.variants))
+    const [variantsInOtherOrder, setVariantsInOtherOrder] = useState(shuffleArray<WordFormServer2>(props.variants))
 
     const [words, setWords] = useState<SelectObjectState[]>(getInitialSelectObjectsState(variantsInOtherOrder))
     const [gifs, setGifs] = useState<SelectObjectState[]>(getInitialSelectObjectsState(props.variants))
@@ -48,7 +47,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
     const [countOfCompleted, setCountOfCompleted] = useState(0)
 
     useEffect(() => {
-        setVariantsInOtherOrder(shuffleArray<WordFormServer>(props.variants))
+        setVariantsInOtherOrder(shuffleArray<WordFormServer2>(props.variants))
         setGifs(getInitialSelectObjectsState(props.variants))
     }, [props.variants]);
 
@@ -74,7 +73,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
 
         if (clickWordObject) {
             toDefaultState()
-            let objectIndexInState = selectObjectState.findIndex(word => word.wordObject.firstRepresentation === clickWordObject)
+            let objectIndexInState = selectObjectState.findIndex(word => word.wordObject.id === clickWordObject.id)
             if (selectObjectState[objectIndexInState].state === "default")
                 setSelectObjectState(toDefaultState().with(objectIndexInState, {
                     wordObject: selectObjectState[objectIndexInState].wordObject,
@@ -105,7 +104,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
 
     const getNewStatusMatchPractice: GetNewStatusMatchPractice = useCallback(
         (checkedWordIndex, checkedGIFIndex) => {
-            return words[checkedWordIndex].wordObject.wordId === gifs[checkedGIFIndex].wordObject.wordId
+            return words[checkedWordIndex].wordObject.id === gifs[checkedGIFIndex].wordObject.id
                 ? "success"
                 : "error"
         },
@@ -165,7 +164,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
                                     return <SelectButton
                                         className={styles.practiceMatchWordAndGIF__taskContainer__button}
                                         state={word.state}
-                                        text={word.wordObject.firstRepresentation || ""}
+                                        wordObject={word.wordObject}
                                         setState={(clickWordObject) => handleClickOnSelectObject(clickWordObject, words, setWords)}
                                     />
                                 })
@@ -175,8 +174,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
                             {
                                 gifs.map((gif, index) => {
                                     return <SelectGIF
-                                        text={gif.wordObject.firstRepresentation || ""}
-                                        gif={gif.wordObject.secondRepresentation || ""}
+                                        wordObject={gif.wordObject}
                                         state={gif.state}
                                         setState={(clickWordObject) => handleClickOnSelectObject(clickWordObject, gifs, setGifs)}
                                         number={index + 1}

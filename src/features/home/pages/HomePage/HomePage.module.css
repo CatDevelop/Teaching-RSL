@@ -1,10 +1,10 @@
-.afkPage {
+.homePage {
     display: grid;
     grid-template-rows: 1fr 250px 80px;
     grid-template-columns: calc(100vw - 2*var(--page-padding-m));
     gap: calc(var(--space-xl)*1.1);
-    color: #fff;
-    background: #69BBEC;
+    color: var(--on-surface-color);
+    background-color: var(--primary-color);
     overflow: hidden;
     width: 100vw;
     height: 100vh;
@@ -16,7 +16,7 @@
     cursor: pointer;
 }
 
-.afkPage__gradient {
+.homePage__gradient {
     position: absolute !important;
     top: 0;
     bottom: 0;
@@ -25,25 +25,25 @@
     z-index: 0;
 }
 
-.afkPage__logo {
+.homePage__logo {
     z-index: 100;
     width: 900px;
 }
 
-.afkPage__factsContainer {
+.homePage__factsContainer {
     position: relative;
     width: 100vw;
     height: 250px;
 }
 
-.afkPage__facts {
+.homePage__facts {
     width: 100vw;
     position: absolute;
     top: 0;
     left: 0;
 }
 
-.afkPage__tap {
+.homePage__tap {
     font-family: var(--main-font);
     font-weight: var(--font-weight-l);
     height: auto;
@@ -54,6 +54,6 @@
     display: flex;
 }
 
-.afkPage__tap__clicker {
+.homePage__tap__clicker {
     margin-left: var(--space-m);
 }

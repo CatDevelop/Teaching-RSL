@@ -40,7 +40,8 @@ export namespace ApiUrlsConfig {
 
 	/** API ссылки обучения. */
 	export const learning = {
-		getLevelTasks: (levelId: string) => toApi(`level/tasks/${levelId}`)
+		getLevelTasks: (levelId: string) => toApi(`level/tasks/${levelId}`),
+		getLevel: (levelId: string) => toApi(`level/${levelId}`)
 	};
 
 	/** API ссылки тренировок. */

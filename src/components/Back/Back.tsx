@@ -9,7 +9,7 @@ type Props = ComponentProps & Readonly<{
     to: string;
 }>
 
-/*
+/**
  * Ссылка назад
  */
 export const Back: FC<Props> = typedMemo(function Back(props) {
