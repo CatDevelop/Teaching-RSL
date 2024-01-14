@@ -5,7 +5,7 @@
     color: var(--text-color);
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-l);
-    background: var(--on-surface-color);
+    background-color: var(--on-surface-color);
 }
 
 .back__icon {
@@ -21,5 +21,5 @@
     height: 32px;
     border-radius: 100%;
     border: 1px solid var(--dark-on-surface-color);
-    background: var(--on-surface-color);
+    background-color: var(--on-surface-color);
 }
