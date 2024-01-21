@@ -5,12 +5,12 @@ export class ChangePasswordRequest {
     /**
      * Старый пароль
      */
-    public readonly oldPassword: string | null;
+    public readonly oldPassword?: string;
 
     /**
      * Новый пароль
      */
-    public readonly newPassword: string | null;
+    public readonly newPassword?: string;
 
     public constructor({oldPassword, newPassword}: ChangePasswordRequestProps){
         this.oldPassword = oldPassword;

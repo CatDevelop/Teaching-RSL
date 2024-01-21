@@ -8,8 +8,8 @@ export namespace ChangePasswordRequestMapper {
 	 */
 	export function toDto(model: ChangePasswordRequest): ChangePasswordRequestDto {
 		return {
-			oldPassword: model.oldPassword,
-			newPassword: model.newPassword,
+			oldPassword: model.oldPassword ?? null,
+			newPassword: model.newPassword ?? null,
 		};
 	}
 }
