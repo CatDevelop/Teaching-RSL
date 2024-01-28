@@ -17,6 +17,7 @@ import { UserService } from "api/services/user";
 import { ChangePasswordRequest } from "core/models/user/ChangePasswordRequest";
 import { ChangeUserEmailRequest } from "core/models/user/ChangeUserEmailRequest";
 import { ChangeUserFioRequest } from "core/models/user/ChangeUserFioRequest";
+import { toast } from "react-toastify";
 
 type Props = Readonly<{}>
 
@@ -46,7 +47,15 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
             }
         }
     )
-    const {mutate: changeEmail, isLoading: isEmailFetching} = useMutation(UserService.changeEmail)
+    const {mutate: changeEmail, isLoading: isEmailFetching} = useMutation(
+        UserService.changeEmail,
+        {
+            onSuccess: (_, variables) => {
+                if(variables.email !== initialFormData.email){
+                    toast.success('Почта изменена, отправлено подтверждение почты')}
+                }
+        }
+        )
     const {mutate: changePassword, isLoading: isPasswordFetching} = useMutation(UserService.changePassword)
 
     const {register, handleSubmit, formState: {errors}, watch} = useForm<FormState>({
@@ -59,11 +68,11 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
     const email = watch('email')
 
     const onSubmit = useCallback((form: FormState) => {
-        changeUsername(new ChangeUserFioRequest({firstName:form.firstName, lastName: form.lastName}))
-        changeEmail(new ChangeUserEmailRequest({email: form.email}))
+        changeUsername(new ChangeUserFioRequest({firstName: form.firstName.trim(), lastName: form.lastName.trim()}))
+        changeEmail(new ChangeUserEmailRequest({email: form.email.trim()}))
 
-        if(form.newPassword){
-            changePassword(new ChangePasswordRequest({oldPassword: form.oldPassword, newPassword: form.newPassword}))
+        if(form.newPassword && form.oldPassword){
+            changePassword(new ChangePasswordRequest({oldPassword: form.oldPassword.trim(), newPassword: form.newPassword.trim()}))
         }
     }, [changeEmail, changePassword, changeUsername])
 
