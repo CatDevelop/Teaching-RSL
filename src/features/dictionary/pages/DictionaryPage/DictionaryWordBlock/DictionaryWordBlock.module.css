@@ -20,15 +20,18 @@
 
 .dictionaryWordBlock__imageContainer {
     flex: 1;
+    width: 100%;  
     border-radius: var(--border-radius-m);
     overflow: hidden;
-    width: fit-content;
+    position: relative;
 }
 
 .dictionaryWordBlock__image {
+    position: absolute;
     object-fit: cover;
     height: calc(100vh - 525px) !important;
     aspect-ratio: 4 / 3;
+    width: 100%;  
 }
 
 .dictionaryWordBlock__actions {
