@@ -39,8 +39,6 @@ export namespace UserService {
         await http.patch(ApiUrlsConfig.user.changeName, ChangeNameRequestMapper.toDto(form));
     }
 
-
-
     export async function restorePassword(email: string): Promise<void> {
         await http.patch(ApiUrlsConfig.user.restorePassword(email));
     }
