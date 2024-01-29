@@ -11,7 +11,6 @@ type Props = UserThemeHistoryRecordResponse & Readonly<{}>
  * Прогресс по теме
  */
 export const ThemeProgress: FC<Props> = typedMemo(function ThemeProgress(props){
-    console.log(props.wordsCompletedCount, props.wordsCount)
     return (
         <div className={styles.themeProgress}>
             <div className={styles.themeProgress__text}>

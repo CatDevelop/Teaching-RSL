@@ -32,25 +32,22 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const [isNotStartModel, setIsNotStartModel] = useState(false)
     const [incorrectWords, setIncorrectWords] = useState<string[]>([])
 
-
     const clearRecognizeText = () => setSignRecognizeText([])
 
     const openExitModal = useCallback(() => setExitModalIsOpen(true), [setExitModalIsOpen])
     const toTrainingPage = useCallback(() => navigate("/training"), [navigate])
 
-    const sendResult = useMutation(
+    const {mutate: sendResult} = useMutation(
         ['userhistory/sendtestresult', id],
         (incorrectWords: string[]) => UserHistoryService.sendTestResult(
-            {
-                testId: id || "", incorrectWords: incorrectWords
-            }
+            {testId: id || "", incorrectWords: incorrectWords}
         )
     )
 
     const skip = useCallback(() => {
         data && setIncorrectWords([...incorrectWords, data.words[currentStep].id])
         if (currentStep + 1 === data?.words.length) {
-            sendResult.mutate([...incorrectWords, data.words[currentStep].id])
+            sendResult([...incorrectWords, data.words[currentStep].id])
             navigate("result/?skiped=" + (countSkippedWords + 1) + "&all=" + data.words.length)
         }
         setCurrentStep(currentStep => currentStep + 1)
@@ -60,7 +57,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
 
     const next = useCallback(() => {
         if (currentStep + 1 === data?.words.length) {
-            sendResult.mutate(incorrectWords)
+            sendResult(incorrectWords)
             navigate("result/?skiped=" + countSkippedWords + "&all=" + data.words.length)
         }
         setCurrentStep(currentStep => currentStep + 1)

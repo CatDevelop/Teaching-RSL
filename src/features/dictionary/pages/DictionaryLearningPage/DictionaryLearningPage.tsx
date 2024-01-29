@@ -25,7 +25,7 @@ export const DictionaryLearningPage: FC<Props> = typedMemo(function DictionaryLe
     const [intervalID, setIntervalID] = useState<TimeoutId>()
     const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
     const [isNotStartModel, setIsNotStartModel] = useState(false)
-    const [isHint, setIsHint] = useState(false)
+    const [isHintVisible, setIsHintVisible] = useState(false)
 
     useEffect(() => {
         socket.on('connect_error', () => setIsNotStartModel(true))
@@ -51,7 +51,7 @@ export const DictionaryLearningPage: FC<Props> = typedMemo(function DictionaryLe
                         buttons={
                             <div className={styles.dictionaryLearningPage__buttons}>
                                 {
-                                    isHint &&
+                                    isHintVisible &&
                                     <>
                                         <div className={styles.dictionaryLearningPage__hint}>
                                             <SignVideo src={word?.illustrations[0].path || ""}/>
@@ -59,18 +59,18 @@ export const DictionaryLearningPage: FC<Props> = typedMemo(function DictionaryLe
                                         <Button
                                             color="primary"
                                             variant="bordered"
-                                            onClick={() => setIsHint(false)}
+                                            onClick={() => setIsHintVisible(false)}
                                         >
                                             Спрятать жест
                                         </Button>
                                     </>
                                 }
                                 {
-                                    !isHint &&
+                                    !isHintVisible &&
                                     <Button
                                         color="primary"
                                         variant="bordered"
-                                        onClick={() => setIsHint(true)}
+                                        onClick={() => setIsHintVisible(true)}
                                     >
                                         Показать жест
                                     </Button>

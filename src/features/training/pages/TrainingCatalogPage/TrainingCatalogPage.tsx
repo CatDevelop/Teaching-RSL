@@ -17,50 +17,48 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
     let missingWordsCount = 0; // temp
 
     return (
-        <Suspense>
-            <Page className={styles.trainingCatalog}>
-                <SideBar/>
-                <PageContent className={styles.trainingCatalog__pageContent}>
-                    <Card className={styles.trainingCatalog__titleContainer}>
+        <Page className={styles.trainingCatalog}>
+            <SideBar/>
+            <PageContent className={styles.trainingCatalog__pageContent}>
+                <Card className={styles.trainingCatalog__titleContainer}>
+                    <Typography
+                        variant="h1"
+                        className={styles.trainingCatalog__titleContainer__title}
+                    >
+                        Практика
+                    </Typography>
+                    <div className={styles.trainingCatalog__titleContainer__content}>
                         <Typography
-                            variant="h1"
-                            className={styles.trainingCatalog__titleContainer__title}
+                            variant="p"
+                            className={styles.trainingCatalog__titleContainer__description}
                         >
-                            Практика
+                            Потренируйся в воспроизведении жестов, а мы поможем
                         </Typography>
-                        <div className={styles.trainingCatalog__titleContainer__content}>
-                            <Typography
-                                variant="p"
-                                className={styles.trainingCatalog__titleContainer__description}
-                            >
-                                Потренируйся в воспроизведении жестов, а мы поможем
-                            </Typography>
-                            <RandomTestButton/>
-                        </div>
-                    </Card>
-                    <Suspense fallback={<Spinner className={styles.trainingCatalog__loading}/>}>
-                        <div className={styles.trainingCatalog__systemTests}>
-                            <SystemTests/>
-                        </div>
+                        <RandomTestButton/>
+                    </div>
+                </Card>
+                <Suspense fallback={<Spinner className={styles.trainingCatalog__loading}/>}>
+                    <div className={styles.trainingCatalog__systemTests}>
+                        <SystemTests/>
+                    </div>
 
-                        <div className={styles.trainingCatalog__otherTests}>
-                            {
-                                missingWordsCount !== 0 &&
-                                <WorkOnMistakes
-                                    missingWordsCount={missingWordsCount}
-                                    className={styles.trainingCatalog__workOnMistakes}
-                                />
-                            }
-                            <div className={clsx(
-                                styles.trainingCatalog__userTests,
-                                missingWordsCount !== 0 && styles.trainingCatalog__userTestsWithMistakes
-                            )}>
-                                <UserTests/>
-                            </div>
+                    <div className={styles.trainingCatalog__otherTests}>
+                        {
+                            missingWordsCount !== 0 &&
+                            <WorkOnMistakes
+                                missingWordsCount={missingWordsCount}
+                                className={styles.trainingCatalog__workOnMistakes}
+                            />
+                        }
+                        <div className={clsx(
+                            styles.trainingCatalog__userTests,
+                            missingWordsCount !== 0 && styles.trainingCatalog__userTestsWithMistakes
+                        )}>
+                            <UserTests/>
                         </div>
-                    </Suspense>
-                </PageContent>
-            </Page>
-        </Suspense>
+                    </div>
+                </Suspense>ф
+            </PageContent>
+        </Page>
     )
 })

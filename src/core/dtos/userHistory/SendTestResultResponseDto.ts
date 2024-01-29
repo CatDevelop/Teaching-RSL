@@ -8,7 +8,7 @@ export type SendTestResultRequestDto = Readonly<{
     testId: string;
 
     /**
-     * ID пропущенных слов
+     * Id пропущенных слов
      */
-    incorrectWords: string[];
+    incorrectWords: readonly string[];
 }>

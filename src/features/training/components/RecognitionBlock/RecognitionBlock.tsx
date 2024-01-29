@@ -34,10 +34,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     const [defaultDevice, setDefaultDevice] = React.useState<string | null>();
 
     useEffect(() => {
-
-    }, []);
-
-    useEffect(() => {
         setIsWasSuccess(false)
     }, [props.word]);
 

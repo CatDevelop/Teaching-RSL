@@ -21,24 +21,18 @@ type Props = ComponentProps;
 /**
  * Настройки тренировки
  */
-export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(
-    {
-        className,
-    }
-) {
+export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [devices, setDevices] = React.useState<MediaDeviceInfo[]>([]);
     const [defaultDevice, setDefaultDevice] = React.useState<string | null>();
 
-    const handleDevices = React.useCallback((mediaDevices: MediaDeviceInfo[]) => {
+    const handleDevices = useCallback((mediaDevices: MediaDeviceInfo[]) => {
         setDevices(mediaDevices.filter(({kind, label}) => kind === "videoinput" && label))
     }, [setDevices]);
 
-    React.useEffect(
-        () => {
+    React.useEffect(() => {
             navigator.mediaDevices.enumerateDevices().then(handleDevices);
-        },
-        [handleDevices]
+        }, [handleDevices]
     );
 
     const selectDevice: ChangeEventHandler<HTMLSelectElement> = useCallback((e) => {
@@ -55,7 +49,7 @@ export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(
     return (
         <>
             <Button
-                className={clsx(styles.taskSetting__openBtn, className)}
+                className={clsx(styles.taskSetting__openBtn, props.className)}
                 variant="light"
                 onClick={onOpen}
             >
@@ -73,12 +67,13 @@ export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(
                                     defaultSelectedKeys={[defaultDevice || devices[0].deviceId]}
                                     onChange={selectDevice}
                                 >
-                                    {devices.map((device, i) => {
-                                        console.log(device)
-                                        return <SelectItem key={device.deviceId} value={device.deviceId}>
-                                            {device.label}
-                                        </SelectItem>
-                                    })}
+                                    {
+                                        devices.map(device => {
+                                            return <SelectItem key={device.deviceId} value={device.deviceId}>
+                                                {device.label}
+                                            </SelectItem>
+                                        })
+                                    }
                                 </Select>
                             </ModalBody>
                             <ModalFooter className={styles.taskFeedback__actions}>

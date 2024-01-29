@@ -19,13 +19,7 @@ type Props = ComponentProps & Readonly<{}>
  */
 export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(props) {
     const {data: testHistory} = useQuery('user-test-history', UserService.getTestHistory)
-    // const {data: themesHistory} = useQuery('user-themes-history', UserService.getThemesHistory)
-
-    // TODO временно
-    const themesHistory: UserThemeHistoryRecordResponse[] = [
-        {themeId: "1", themeName: "Начальные слова", wordsCount: 50, wordsCompletedCount: 10},
-        {themeId: "2", themeName: "Части речи", wordsCount: 30, wordsCompletedCount: 1}
-    ]
+    const {data: themesHistory} = useQuery('user-themes-history', UserService.getThemesHistory)
 
     return (
         <Card className={clsx([styles.learningProgress, props.className])}>

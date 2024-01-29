@@ -10,7 +10,7 @@ export class SendTestResultRequest {
     /**
      * ID пропущенных слов
      */
-    public readonly incorrectWords: string[];
+    public readonly incorrectWords: readonly string[];
 
     public constructor({testId, incorrectWords}: SendTestResultRequestProps){
         this.testId = testId;
