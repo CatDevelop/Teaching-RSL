@@ -28,14 +28,20 @@ export const UserTests: FC<Props> = typedMemo(function UserTests(props) {
                 <Typography variant="h2" className={styles.userTests__title}>Твои тесты</Typography>
             </div>
 
-            <ScrollBox className={clsx(styles.userTests__container)}>
-                <CreateUserTestForm
-                    triggerComponent={onOpen => <div className={styles.userTests__createNewContainer} onClick={onOpen}>
-                        <img src={Plus} alt=""/>
-                        <p className={styles.userTests__createNew}>Создать новый тест</p>
-                    </div>}
-                />
+            <CreateUserTestForm
+                triggerComponent={onOpen => 
+                    <Button 
+                        variant="light" 
+                        onClick={onOpen}
+                        startContent={<img src={Plus} alt=""/>}
+                        className={styles.userTests__createNewContainer}
+                    >
+                        Создать новый тест
+                    </Button>
+                }
+            />
 
+            <ScrollBox className={clsx(styles.userTests__container)}>
                 {userTests.data?.userTestList.map(test => <UserTestPreview
                     // @ts-ignore
                     name={test.testName}
