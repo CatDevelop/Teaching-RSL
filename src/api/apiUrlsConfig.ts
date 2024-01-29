@@ -9,6 +9,8 @@ export namespace ApiUrlsConfig {
 	export const user = {
 		register: toUserApi('user/register'),
 		changePassword: toUserApi('user/password'),
+		changeEmail: toUserApi('user/change-email'),
+		changeUsername: toUserApi('user/change-name'),
 		restorePassword: (email: string) => toUserApi(`user/password/${email}`),
 		getWelcomeUserInfo: toUserApi('user'),
 	}
