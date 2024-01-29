@@ -12,12 +12,12 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {validationSchema} from "./ProfileSettingsPage.config";
 import {Input} from "../../../../components/Input";
 import {Button} from "../../../../components/Button";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { UserService } from "api/services/user";
-import { ChangePasswordRequest } from "core/models/user/ChangePasswordRequest";
-import { ChangeUserEmailRequest } from "core/models/user/ChangeUserEmailRequest";
-import { ChangeUserFioRequest } from "core/models/user/ChangeUserFioRequest";
-import { toast } from "react-toastify";
+import {useMutation, useQuery, useQueryClient} from "react-query";
+import {UserService} from "api/services/user";
+import {ChangePasswordRequest} from "core/models/user/ChangePasswordRequest";
+import {ChangeUserEmailRequest} from "core/models/user/ChangeUserEmailRequest";
+import {ChangeUserFioRequest} from "core/models/user/ChangeUserFioRequest";
+import {toast} from "react-toastify";
 
 type Props = Readonly<{}>
 
@@ -28,7 +28,7 @@ type FormState = ChangePasswordRequest & ChangeUserEmailRequest & ChangeUserFioR
 /**
  * Настройки пользователя
  */
-export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettingsPage(props){
+export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettingsPage(props) {
     const queryClient = useQueryClient()
     const {data: user} = useQuery('user-welcome-info', UserService.getWelcomeUserInfo)
     const initialFormData: FormState = useMemo(() => {
@@ -47,15 +47,18 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
             }
         }
     )
+
     const {mutate: changeEmail, isLoading: isEmailFetching} = useMutation(
         UserService.changeEmail,
         {
             onSuccess: (_, variables) => {
-                if(variables.email !== initialFormData.email){
-                    toast.success('Почта изменена, отправлено подтверждение почты')}
+                if (variables.email !== initialFormData.email) {
+                    toast.success('Почта изменена, отправлено подтверждение почты')
                 }
+            }
         }
-        )
+    )
+
     const {mutate: changePassword, isLoading: isPasswordFetching} = useMutation(UserService.changePassword)
 
     const {register, handleSubmit, formState: {errors}, watch} = useForm<FormState>({
@@ -71,8 +74,11 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
         changeUsername(new ChangeUserFioRequest({firstName: form.firstName.trim(), lastName: form.lastName.trim()}))
         changeEmail(new ChangeUserEmailRequest({email: form.email.trim()}))
 
-        if(form.newPassword && form.oldPassword){
-            changePassword(new ChangePasswordRequest({oldPassword: form.oldPassword.trim(), newPassword: form.newPassword.trim()}))
+        if (form.newPassword && form.oldPassword) {
+            changePassword(new ChangePasswordRequest({
+                oldPassword: form.oldPassword.trim(),
+                newPassword: form.newPassword.trim()
+            }))
         }
     }, [changeEmail, changePassword, changeUsername])
 

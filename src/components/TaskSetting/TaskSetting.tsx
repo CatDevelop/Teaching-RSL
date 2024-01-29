@@ -46,6 +46,7 @@ export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(props) {
 
     if (devices.length === 0)
         return;
+
     return (
         <>
             <Button

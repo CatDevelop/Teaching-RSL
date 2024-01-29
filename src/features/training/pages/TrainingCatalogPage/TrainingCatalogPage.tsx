@@ -57,7 +57,7 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
                             <UserTests/>
                         </div>
                     </div>
-                </Suspense>ф
+                </Suspense>
             </PageContent>
         </Page>
     )
