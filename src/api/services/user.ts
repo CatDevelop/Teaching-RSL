@@ -14,8 +14,10 @@ import { GetWelcomeBackInfoResponseMapper } from "core/mappers/user/GetWelcomeBa
 import { UserThemeHistoryRecordResponse } from "core/models/userHistory/UserThemeHistoryRecordResponse";
 import { UserThemeHistoryRecordResponseMapper } from "core/mappers/userHistory/UserThemeHistoryRecordResponseMapper";
 import { UserThemeHistoryRecordResponseDto } from "core/dtos/userHistory/UserThemeHistoryRecordResponseDto";
-import {ChangeNameRequestMapper} from "../../core/mappers/user/ChangeNameRequestMapper";
-import {ChangeNameRequest} from "../../core/models/user/ChangeNameRequest";
+import { ChangeUserEmailRequest } from "core/models/user/ChangeUserEmailRequest";
+import { ChangeUserEmailRequestMapper } from "core/mappers/user/ChangeUserEmailRequestMapper";
+import { ChangeUserFioRequest } from "core/models/user/ChangeUserFioRequest";
+import { ChangeUserFioRequestMapper } from "core/mappers/user/ChangeUserFioRequestMapper";
 
 export namespace UserService {
     export async function register(form: RegisterUserRequest): Promise<void> {
@@ -35,8 +37,12 @@ export namespace UserService {
         await http.patch(ApiUrlsConfig.user.changePassword, ChangePasswordRequestMapper.toDto(form));
     }
 
-    export async function changeName(form: ChangeNameRequest): Promise<void> {
-        await http.patch(ApiUrlsConfig.user.changeName, ChangeNameRequestMapper.toDto(form));
+    export async function changeEmail(form: ChangeUserEmailRequest): Promise<void> {
+        await http.patch(ApiUrlsConfig.user.changeEmail, ChangeUserEmailRequestMapper.toDto(form));
+    }
+
+    export async function changeUsername(form: ChangeUserFioRequest): Promise<void> {
+        await http.patch(ApiUrlsConfig.user.changeUsername, ChangeUserFioRequestMapper.toDto(form));
     }
 
     export async function restorePassword(email: string): Promise<void> {

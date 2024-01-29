@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useState} from "react";
+import React, {FC, useCallback, useMemo} from "react";
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import {Page} from "../../../../components/Page";
 import {PageContent} from "../../../../components/PageContent";
@@ -12,44 +12,71 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {validationSchema} from "./ProfileSettingsPage.config";
 import {Input} from "../../../../components/Input";
 import {Button} from "../../../../components/Button";
-import {useMutation, useQuery} from "react-query";
-import {UserService} from "../../../../api/services/user";
-import {login as loginDispatch} from "../../../../store/auth/authSlice";
-import {toast} from "react-toastify";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { UserService } from "api/services/user";
+import { ChangePasswordRequest } from "core/models/user/ChangePasswordRequest";
+import { ChangeUserEmailRequest } from "core/models/user/ChangeUserEmailRequest";
+import { ChangeUserFioRequest } from "core/models/user/ChangeUserFioRequest";
+import { toast } from "react-toastify";
 
 type Props = Readonly<{}>
 
-type TempSettings = {
-   name: string;
-   surname: string;
-   email: string;
-   oldPassword?: string;
-   newPassword?: string;
-   repeatedNewPassword?: string;
-}
+type FormState = ChangePasswordRequest & ChangeUserEmailRequest & ChangeUserFioRequest & {
+    repeatedNewPassword?: string;
+};
 
 /**
  * Настройки пользователя
  */
 export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettingsPage(props){
-    const { mutate: changeName} = useMutation('user/changename', UserService.changeName, {
-        onSuccess: () => {
-            toast.success("Вы успешно сменили имя и фамилию")
-        }
-    })
-
-    const {data: user} = useQuery(['user-welcome-info', changeName], UserService.getWelcomeUserInfo)
-
-    const {register, handleSubmit, formState: {errors}} = useForm<TempSettings>({
-        resolver: yupResolver(validationSchema),
-        mode: 'onChange'
-    })
-
-    const onSubmit = useCallback((payload: TempSettings) => {
-        if(payload.name !== user?.firstName || payload.surname !== user?.lastName) {
-            changeName({name: payload.name, surname: payload.surname})
+    const queryClient = useQueryClient()
+    const {data: user} = useQuery('user-welcome-info', UserService.getWelcomeUserInfo)
+    const initialFormData: FormState = useMemo(() => {
+        return {
+            firstName: user!.firstName ?? '',
+            lastName: user!.lastName ?? '',
+            email: user!.email ?? ''
         }
     }, [user])
+
+    const {mutate: changeUsername, isLoading: isUsernameFetching} = useMutation(
+        UserService.changeUsername,
+        {
+            onSuccess: () => {
+                queryClient.resetQueries('user-welcome-info')
+            }
+        }
+    )
+    const {mutate: changeEmail, isLoading: isEmailFetching} = useMutation(
+        UserService.changeEmail,
+        {
+            onSuccess: (_, variables) => {
+                if(variables.email !== initialFormData.email){
+                    toast.success('Почта изменена, отправлено подтверждение почты')}
+                }
+        }
+        )
+    const {mutate: changePassword, isLoading: isPasswordFetching} = useMutation(UserService.changePassword)
+
+    const {register, handleSubmit, formState: {errors}, watch} = useForm<FormState>({
+        resolver: yupResolver(validationSchema),
+        mode: 'onChange',
+        values: initialFormData,
+    })
+    const firstName = watch('firstName')
+    const lastName = watch('lastName')
+    const email = watch('email')
+
+    const onSubmit = useCallback((form: FormState) => {
+        changeUsername(new ChangeUserFioRequest({firstName: form.firstName.trim(), lastName: form.lastName.trim()}))
+        changeEmail(new ChangeUserEmailRequest({email: form.email.trim()}))
+
+        if(form.newPassword && form.oldPassword){
+            changePassword(new ChangePasswordRequest({oldPassword: form.oldPassword.trim(), newPassword: form.newPassword.trim()}))
+        }
+    }, [changeEmail, changePassword, changeUsername])
+
+    const isActionActive = !(isUsernameFetching || isEmailFetching || isPasswordFetching)
 
     return (
         <Page>
@@ -60,23 +87,24 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                         <Back to={'/profile'}/>
                         <Typography variant='h2'>Настройки</Typography>
                     </div>
-
                     <form className={styles.profileSettingsPage__formScroll} onSubmit={handleSubmit(onSubmit)}>
                         <div className={styles.profileSettingsPage__formGroup}>
                             <Typography variant="h3">Личная информация</Typography>
                             <Input
-                                isInvalid={errors.name !== undefined}
-                                color={errors.name !== undefined ? "danger" : "default"}
-                                errorMessage={errors.name?.message}
-                                {...register('name')}
+                                isInvalid={errors.firstName !== undefined}
+                                color={errors.firstName !== undefined ? "danger" : "default"}
+                                errorMessage={errors.firstName?.message}
+                                {...register('firstName')}
+                                value={firstName}
                                 label="Имя"
                                 defaultValue={user?.firstName || ""}
                             />
                             <Input
-                                {...register('surname')}
-                                isInvalid={errors.surname !== undefined}
-                                color={errors.surname !== undefined ? "danger" : "default"}
-                                errorMessage={errors.surname?.message}
+                                {...register('lastName')}
+                                isInvalid={errors.lastName !== undefined}
+                                color={errors.lastName !== undefined ? "danger" : "default"}
+                                errorMessage={errors.lastName?.message}
+                                value={lastName}
                                 label="Фамилия"
                                 defaultValue={user?.lastName || ""}
                             />
@@ -85,6 +113,7 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                                 isInvalid={errors.email !== undefined}
                                 color={errors.email !== undefined ? "danger" : "default"}
                                 errorMessage={errors.email?.message}
+                                value={email}
                                 label="Почта"
                                 defaultValue={user?.email || ""}
                             />
@@ -117,6 +146,8 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                         <Button
                             type="submit"
                             color="primary"
+                            disabled={!isActionActive}
+                            isLoading={!isActionActive}
                             className={styles.profileSettingsPage__submitButton}>
                             Сохранить
                         </Button>

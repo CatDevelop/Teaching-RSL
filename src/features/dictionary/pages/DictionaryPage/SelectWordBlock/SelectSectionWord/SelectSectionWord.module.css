@@ -15,16 +15,18 @@
     align-items: start;
     justify-content: space-between;
     width: 100%;
-    gap: var(--space-l);
+    gap: var(--space-s) var(--space-l);
+    flex-wrap: wrap;
+    height: auto;
 }
 
 .selectSectionWord__sectionWords {
     display: flex;
-    width: calc((100% - var(--space-s))/2);
+    width: calc((100% - var(--space-s))/2 - var(--space-s));
     overflow: hidden;
     flex-direction: column;
     font-size:var(--font-size-xs);
-    gap: calc(var(--space-m) * 0.75);
+    gap: var(--space-s);
 }
 
 .selectSectionWord__word {
@@ -37,4 +39,10 @@
 
 .selectSectionWord__word:hover {
     color: var(--primary-color);
+}
+
+@media(max-width: 1250px) {
+    .selectSectionWord__sectionWords {
+        width: 100%;
+    }
 }

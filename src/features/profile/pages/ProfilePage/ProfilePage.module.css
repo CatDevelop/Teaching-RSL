@@ -1,7 +1,7 @@
 .profile__pageContent {
     display: grid;
     grid-template-areas: "level level" "progress stats" "progress trophies";
-    grid-template-rows: var(--title-block-container-height) 240px 1fr;
+    grid-template-rows: var(--title-block-container-height) 260px 1fr;
     grid-template-columns: 1.5fr 1fr;
     justify-content: center;
     align-items: center;

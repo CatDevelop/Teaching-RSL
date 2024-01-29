@@ -15,14 +15,17 @@
     align-items: start;
     justify-content: space-between;
     width: 100%;
-    gap: var(--space-l);
+    gap: var(--space-s) var(--space-l);
+    flex-wrap: wrap;
+    height: auto;
 }
 
 .selectFoundWord__sectionWords {
     display: flex;
     flex-direction: column;
+    width: calc((100% - var(--space-s))/2 - var(--space-s));
     font-size:var(--font-size-xs);
-    gap: calc(var(--space-m) * 0.75);
+    gap: var(--space-s);
 }
 
 .selectFoundWord__word {
@@ -32,4 +35,11 @@
 
 .selectFoundWord__word:hover {
     color: var(--primary-color);
+}
+
+
+@media(max-width: 1250px) {
+    .selectFoundWord__sectionWords {
+        width: 100%;
+    }
 }

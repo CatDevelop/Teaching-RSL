@@ -1,6 +1,6 @@
 .userTestPreview {
-    /*border-radius: var(--border-radius-xs);*/
-    /*padding: var(--space-m);*/
+    border-radius: var(--border-radius-xs);
+    padding: var(--space-m);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,12 +9,12 @@
     width: 100%;
     background-color: var(--on-surface-color);
     border: 2px solid transparent;
-    /*transition: all 0.1s ease;*/
+    transition: all 0.1s ease;
 }
 
-/*.userTestPreview:hover {*/
-/*    border: 2px solid var(--dark-on-surface-color);*/
-/*}*/
+.userTestPreview:hover {
+    border: 2px solid var(--dark-on-surface-color);
+}
 
 .userTestPreview__name {
     color: var(--text-color);

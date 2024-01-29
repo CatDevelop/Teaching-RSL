@@ -53,3 +53,9 @@
 .selectThemeWord__word:hover {
     color: var(--primary-color);
 }
+
+@media(max-width: 1250px) {
+    .selectThemeWord__sectionWords {
+        width: 100%;
+    }
+}
