@@ -43,7 +43,6 @@ export const UserTests: FC<Props> = typedMemo(function UserTests(props) {
 
             <ScrollBox className={clsx(styles.userTests__container)}>
                 {userTests.data?.userTestList.map(test => <UserTestPreview
-                    // @ts-ignore
                     name={test.testName}
                     wordsCount={test.words.length}
                     id={test.id}

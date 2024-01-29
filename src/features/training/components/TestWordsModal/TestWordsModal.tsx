@@ -14,7 +14,7 @@ type Props = ComponentProps & Readonly<{
 
 const MIN_WORDS_COUNT = 5;
 
-export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal(props){
+export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [wordsCount, setWordsCount] = useState(MIN_WORDS_COUNT);
 
@@ -37,18 +37,21 @@ export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal(props
                 <ModalContent>
                     {(onClose) => (
                         <>
-                        <ModalHeader className="flex flex-col gap-1">Выберите количество слов</ModalHeader>
-                        <ModalBody>
-                            <Range min={MIN_WORDS_COUNT} max={props.maxWordsCount} value={wordsCount} onChange={handleWordsChange} />
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button variant="faded" onPress={onClose}>
-                                Назад
-                            </Button>
-                            <Button color="primary" onPress={() => props.start(wordsCount)}>
-                                Начать тест
-                            </Button>
-                        </ModalFooter>
+                            <ModalHeader className="flex flex-col gap-1">Выберите количество слов</ModalHeader>
+                            <ModalBody>
+                                <Range min={MIN_WORDS_COUNT} max={props.maxWordsCount} value={wordsCount}
+                                       onChange={handleWordsChange}/>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button variant="faded" onPress={onClose}>
+                                    Назад
+                                </Button>
+                                <Button color="primary" onPress={() => {
+                                    props.start(wordsCount)
+                                }}>
+                                    Начать тест
+                                </Button>
+                            </ModalFooter>
                         </>
                     )}
                 </ModalContent>

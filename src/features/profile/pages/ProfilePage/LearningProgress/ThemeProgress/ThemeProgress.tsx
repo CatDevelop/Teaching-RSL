@@ -19,7 +19,7 @@ export const ThemeProgress: FC<Props> = typedMemo(function ThemeProgress(props){
 
             <CircularProgress
                 size="md"
-                value={(props.wordsCompletedCount/props.wordsCompletedCount) * 100}
+                value={(props.wordsCompletedCount/props.wordsCount) * 100}
                 color="secondary"
                 showValueLabel
                 classNames={{

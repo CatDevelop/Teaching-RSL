@@ -10,6 +10,7 @@ import {ScrollBox} from "../../../../../components/ScrollBox";
 import {TestProgress} from "./TestProgress";
 import {useQuery} from "react-query";
 import {UserService} from "api/services/user";
+import {UserThemeHistoryRecordResponse} from "../../../../../core/models/userHistory/UserThemeHistoryRecordResponse";
 
 type Props = ComponentProps & Readonly<{}>
 
@@ -36,11 +37,14 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                     </ScrollBox>
                 </Tab>
                 <Tab key="training" title="Практики">
-                    <div className={styles.learningProgress__themes}>
-                        {testHistory!.map((item, i) => (
-                            <TestProgress {...item} key={i}/>
-                        ))}
-                    </div>
+                    <ScrollBox>
+                        <div className={styles.learningProgress__themes}>
+                            {/* TODO не забыть, что здесь поворачиваем массив*/}
+                            {testHistory!.toReversed().map((item, i) => (
+                                <TestProgress {...item} key={i}/>
+                            ))}
+                        </div>
+                    </ScrollBox>
                 </Tab>
             </Tabs>
         </Card>

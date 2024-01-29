@@ -11,7 +11,7 @@ import {SideBar} from "../../../../components/SideBar";
 import {Card} from "../../../../components/Card";
 import {Spinner} from "@nextui-org/react";
 import {clsx} from "clsx";
-import { RandomTestButton } from "features/training/components/RandomTestButton";
+import {RandomTestButton} from "features/training/components/RandomTestButton";
 
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() {
     let missingWordsCount = 0; // temp
@@ -20,7 +20,6 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
         <Page className={styles.trainingCatalog}>
             <SideBar/>
             <PageContent className={styles.trainingCatalog__pageContent}>
-
                 <Card className={styles.trainingCatalog__titleContainer}>
                     <Typography
                         variant="h1"
@@ -58,7 +57,7 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
                             <UserTests/>
                         </div>
                     </div>
-                </Suspense>
+                </Suspense>ф
             </PageContent>
         </Page>
     )

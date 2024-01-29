@@ -10,10 +10,12 @@ import {GetThemeListWithUnitsResponse} from "../../../../core/models/themes/GetT
 import {ThemesService} from "../../../../api/services/themes";
 import {useQuery} from "react-query";
 import {Card} from "../../../../components/Card";
+import {TestTypeEnum} from "../../../../core/models/themes/TestTypeEnum";
+import {GetUnitResponse} from "../../../../core/models/unit/GetUnitResponse";
 
 type Props = ComponentProps;
 
-/** 
+/**
  * System tests
  */
 export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
@@ -30,9 +32,14 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
             <ScrollBox className={clsx(styles.systemTests__container, props.className)}>
                 {data.themeList.map(theme => (
                     <div className={styles.systemTests__theme} key={theme.id}>
-                        <Typography variant="h3" className={styles.systemTests__theme_title}>{theme.name}</Typography>
+                        <SystemTestPreview
+                            id={theme.id}
+                            name={theme.name}
+                            type={TestTypeEnum.TestByTheme}
+                            wordsCount={theme.wordsCount}
+                        />
                         {theme.units.map(unit => (
-                            <SystemTestPreview {...unit}/>
+                            <SystemTestPreview {...unit} type={TestTypeEnum.TestByUnit}/>
                         ))}
                     </div>
                 ))}

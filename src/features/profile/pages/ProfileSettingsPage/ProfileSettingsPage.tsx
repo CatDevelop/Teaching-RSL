@@ -97,6 +97,7 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                                 {...register('firstName')}
                                 value={firstName}
                                 label="Имя"
+                                defaultValue={user?.firstName || ""}
                             />
                             <Input
                                 {...register('lastName')}
@@ -105,6 +106,7 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                                 errorMessage={errors.lastName?.message}
                                 value={lastName}
                                 label="Фамилия"
+                                defaultValue={user?.lastName || ""}
                             />
                             <Input
                                 {...register('email')}
@@ -113,6 +115,7 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                                 errorMessage={errors.email?.message}
                                 value={email}
                                 label="Почта"
+                                defaultValue={user?.email || ""}
                             />
                         </div>
 

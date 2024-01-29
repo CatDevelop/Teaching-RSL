@@ -9,13 +9,14 @@ import {PageContent} from "../../../../components/PageContent";
 import {RecognitionBlock} from "../../components/RecognitionBlock";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
-import {useQuery} from "react-query";
+import {useMutation, useQuery} from "react-query";
 import {TrainingService} from "../../../../api/services/training";
 import {ModelWarning} from "../../components/ModelWarning/ModelWarning";
 import {socket} from "../../../../core/utils/connectToModal";
 import {LearningHeader} from "../../../learning/components/LearningHeader";
 import {toast} from "react-toastify";
 import {Back} from "../../../../components/Back";
+import {UserHistoryService} from "../../../../api/services/userHistory";
 
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
@@ -29,23 +30,34 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const [intervalID, setIntervalID] = useState<TimeoutId>()
     const [currentStep, setCurrentStep] = useState(0)
     const [isNotStartModel, setIsNotStartModel] = useState(false)
+    const [incorrectWords, setIncorrectWords] = useState<string[]>([])
 
     const clearRecognizeText = () => setSignRecognizeText([])
 
     const openExitModal = useCallback(() => setExitModalIsOpen(true), [setExitModalIsOpen])
     const toTrainingPage = useCallback(() => navigate("/training"), [navigate])
 
+    const {mutate: sendResult} = useMutation(
+        ['userhistory/sendtestresult', id],
+        (incorrectWords: string[]) => UserHistoryService.sendTestResult(
+            {testId: id || "", incorrectWords: incorrectWords}
+        )
+    )
+
     const skip = useCallback(() => {
+        data && setIncorrectWords([...incorrectWords, data.words[currentStep].id])
         if (currentStep + 1 === data?.words.length) {
-            navigate("result/?skiped=" + countSkippedWords+1 + "&all=" + data.words.length)
+            sendResult([...incorrectWords, data.words[currentStep].id])
+            navigate("result/?skiped=" + (countSkippedWords + 1) + "&all=" + data.words.length)
         }
         setCurrentStep(currentStep => currentStep + 1)
         setCountSkippedWords(count => count + 1);
         clearRecognizeText()
-    }, [setCountSkippedWords, setCurrentStep, currentStep, data, countSkippedWords]);
+    }, [setCountSkippedWords, setCurrentStep, currentStep, data, countSkippedWords, incorrectWords]);
 
     const next = useCallback(() => {
         if (currentStep + 1 === data?.words.length) {
+            sendResult(incorrectWords)
             navigate("result/?skiped=" + countSkippedWords + "&all=" + data.words.length)
         }
         setCurrentStep(currentStep => currentStep + 1)

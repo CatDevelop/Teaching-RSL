@@ -53,7 +53,7 @@ export namespace UserService {
         return http.get<UserTestHistoryRecordResponseDto[]>(ApiUrlsConfig.userHistory.getTestHistory)
             .then(({data}) => data.map(item => UserTestHistoryRecordResponseMapper.fromDto(item)));
     }
-    
+
     export async function getThemesHistory(): Promise<UserThemeHistoryRecordResponse[]> {
         return http.get<UserThemeHistoryRecordResponseDto[]>(ApiUrlsConfig.userHistory.getThemes)
             .then(({data}) => data.map(item => UserThemeHistoryRecordResponseMapper.fromDto(item)));
@@ -63,6 +63,4 @@ export namespace UserService {
         return http.get<GetWelcomeBackInfoResponse>(ApiUrlsConfig.user.getWelcomeUserInfo)
             .then(({data}) => GetWelcomeBackInfoResponseMapper.fromDto(data));
     }
-
-
 }

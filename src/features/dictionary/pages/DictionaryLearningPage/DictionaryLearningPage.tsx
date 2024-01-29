@@ -12,6 +12,7 @@ import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types"
 import {Button} from "../../../../components/Button";
 import {ModelWarning} from "../../../training/components/ModelWarning/ModelWarning";
 import {socket} from "../../../../core/utils/connectToModal";
+import {SignVideo} from "../../../../components/SignVideo";
 
 type Props = Readonly<{}>
 
@@ -24,6 +25,7 @@ export const DictionaryLearningPage: FC<Props> = typedMemo(function DictionaryLe
     const [intervalID, setIntervalID] = useState<TimeoutId>()
     const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
     const [isNotStartModel, setIsNotStartModel] = useState(false)
+    const [isHintVisible, setIsHintVisible] = useState(false)
 
     useEffect(() => {
         socket.on('connect_error', () => setIsNotStartModel(true))
@@ -48,7 +50,31 @@ export const DictionaryLearningPage: FC<Props> = typedMemo(function DictionaryLe
                         setSignRecognizeText={setSignRecognizeText}
                         buttons={
                             <div className={styles.dictionaryLearningPage__buttons}>
-                                <Button color="primary" variant="bordered">Посмотреть жест</Button>
+                                {
+                                    isHintVisible &&
+                                    <>
+                                        <div className={styles.dictionaryLearningPage__hint}>
+                                            <SignVideo src={word?.illustrations[0].path || ""}/>
+                                        </div>
+                                        <Button
+                                            color="primary"
+                                            variant="bordered"
+                                            onClick={() => setIsHintVisible(false)}
+                                        >
+                                            Спрятать жест
+                                        </Button>
+                                    </>
+                                }
+                                {
+                                    !isHintVisible &&
+                                    <Button
+                                        color="primary"
+                                        variant="bordered"
+                                        onClick={() => setIsHintVisible(true)}
+                                    >
+                                        Показать жест
+                                    </Button>
+                                }
                             </div>
                         }
                     />
