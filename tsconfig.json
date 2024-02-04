@@ -23,6 +23,6 @@
     },
     "include": [
       "src"
-    ],
+, "craco.config.ts"    ],
     "files": ["src/index.d.ts"]
   }

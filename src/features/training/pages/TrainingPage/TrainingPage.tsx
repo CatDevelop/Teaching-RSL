@@ -2,7 +2,7 @@ import {typedMemo} from "../../../../core/utils/typedMemo";
 import React, {FC, useCallback, useEffect, useState} from "react";
 import styles from "./TrainingPage.module.css";
 import {Page} from "../../../../components/Page";
-import Logo from "../../../../assets/images/Logo.svg"
+import {ReactComponent as Logo} from "../../../../assets/images/Logo.svg"
 import {Button} from "../../../../components/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {PageContent} from "../../../../components/PageContent";
@@ -86,7 +86,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen} onExit={toTrainingPage}/>
             <PageContent className={styles.trainingTask}>
                 <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
-                    <img src={Logo} rel="preload" alt={"Логотип"} width={218}/>
+                    <Logo width={218} className={styles.trainingTask__logoIcon}/>
                 </div>
                 <div className={styles.trainingTask__contentContainer}>
                     {

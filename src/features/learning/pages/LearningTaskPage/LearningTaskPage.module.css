@@ -40,6 +40,10 @@
     overflow: hidden;
 }
 
+.learningTask__logoIcon {
+    fill: var(--primary-color)
+}
+
 .learningTaskPage__header {
     display: grid;
     align-items: center;

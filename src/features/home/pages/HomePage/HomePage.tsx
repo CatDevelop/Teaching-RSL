@@ -3,7 +3,7 @@ import styles from "./HomePage.module.css";
 import {useNavigate} from "react-router-dom";
 import {Typography} from "../../../../components/Typography";
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import LogoStand from '../../../../assets/images/LogoMonochrome.svg'
+import {ReactComponent as LogoStand} from '../../../../assets/images/LogoMonochrome.svg'
 import {Facts} from "../../components/facts";
 import {Gradient} from "../../../../components/Gradient/Gradient";
 
@@ -20,7 +20,7 @@ export const HomePage: FC = typedMemo(function HomePage() {
         <div className={styles.homePage} onClick={toProfile}>
             <Gradient className={styles.homePage__gradient}/>
 
-            <img className={styles.homePage__logo} src={LogoStand} alt="Логотип"/>
+            <LogoStand className={styles.homePage__logo}/>
             <div className={styles.homePage__factsContainer}>
                 <Facts className={styles.homePage__facts}/>
             </div>

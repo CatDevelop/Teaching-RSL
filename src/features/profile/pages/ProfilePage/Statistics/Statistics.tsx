@@ -4,10 +4,10 @@ import {Card, CardHeader} from "components/Card";
 import {ComponentProps} from "core/models/ComponentProps";
 import clsx from "clsx";
 import styles from "./Statistics.module.css";
-import TargetSrc from "assets/images/Target.svg";
-import TrophySrc from "assets/images/Trophy.svg";
-import CalendarSrc from "assets/images/Calendar.svg";
-import DictionarySrc from "assets/images/Dictionary.svg";
+import {ReactComponent as TargetIcon} from "assets/images/Target.svg";
+import {ReactComponent as TrophyIcon} from "assets/images/Trophy.svg";
+import {ReactComponent as CalendarIcon} from "assets/images/Calendar.svg";
+import {ReactComponent as DictionaryIcon} from "assets/images/Dictionary.svg";
 import { StatisticsItem } from "./StatisticsItem";
 import { useQuery } from "react-query";
 import { UserHistoryService } from "api/services/userHistory";
@@ -27,10 +27,10 @@ export const Statistics: FC<Props> = typedMemo(function Statistics(props){
             <CardHeader>Статистика</CardHeader>
 
             <div className={styles.statistics__blocks}>
-                <StatisticsItem iconUrl={TargetSrc} iconAlt="Количество пройденных уроков" value={statistics!.completedLevelsCount} descriptionValue="уроков пройдено"/>
-                <StatisticsItem iconUrl={TrophySrc} iconAlt="Количество трофеев" value={statistics!.trophiesCount} descriptionValue="трофеев получено"/>
-                <StatisticsItem iconUrl={CalendarSrc} iconAlt="Количество дней обучения" value="1" descriptionValue="дней обучения"/>
-                <StatisticsItem iconUrl={DictionarySrc} iconAlt="Количество изученных слов" value={statistics!.completedWordsCount} descriptionValue="слов изучено"/>
+                <StatisticsItem icon={TargetIcon} iconAlt="Количество пройденных уроков" value={statistics!.completedLevelsCount} descriptionValue="уроков пройдено"/>
+                <StatisticsItem icon={TrophyIcon} iconAlt="Количество трофеев" value={statistics!.trophiesCount} descriptionValue="трофеев получено"/>
+                <StatisticsItem icon={CalendarIcon} iconAlt="Количество дней обучения" value="1" descriptionValue="дней обучения"/>
+                <StatisticsItem icon={DictionaryIcon} iconAlt="Количество изученных слов" value={statistics!.completedWordsCount} descriptionValue="слов изучено"/>
             </div>
         </Card>
     )
