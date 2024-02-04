@@ -1,5 +1,5 @@
 .levelLink {
-    border: 2px solid var(--thirdly-text-color);
+    border: 1px solid var(--thirdly-text-color);
     display: flex;
     cursor: pointer;
     border-radius: 100%;
@@ -9,10 +9,8 @@
     height: 32px;
 }
 
-.levelBlock__number {
-    color: var(--thirdly-text-color);
-    font-weight: var(--font-weight-l);
-    line-height: var(--font-size-s);
+.levelLink .levelIcon {
+    fill: var(--thirdly-text-color);
 }
 
 .levelLink_completed {
@@ -21,8 +19,8 @@
     cursor: default;
 }
 
-.levelLink_completed .levelBlock__number {
-    color: var(--on-surface-color);
+.levelLink_completed .levelIcon {
+    fill: var(--on-surface-color);
 }
 
 .levelLink_disabled {
@@ -30,6 +28,6 @@
     cursor: default;
 }
 
-.levelLink_disabled .levelBlock__number {
-    color: var(--disabled-text-color);
+.levelLink_disabled .levelIcon {
+    fill: var(--disabled-text-color);
 }
