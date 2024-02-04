@@ -40,10 +40,7 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
                     className={styles.systemTestPreview__name}>
                     {props.name}
                 </Typography>
-                {
-                    props.type === TestTypeEnum.TestByUnit &&
-                    <Typography className={styles.systemTestPreview__description}>0 / {props.wordsCount}</Typography>
-                }
+                <Typography className={styles.systemTestPreview__description}>0 / {props.wordsCount}</Typography>
             </div>
         )
     }, [props])
