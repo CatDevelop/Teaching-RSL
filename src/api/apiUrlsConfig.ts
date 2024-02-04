@@ -18,6 +18,7 @@ export namespace ApiUrlsConfig {
 	/** API ссылки пользователя. */
 	export const userHistory = {
 		getThemes: toUserApi('userhistory/themes'),
+		getThemesWithUnits: toUserApi('userhistory/theme-with-units'),
 		getStatistics: toUserApi('userhistory/levels'),
 		getTestHistory: toUserApi('testhistory'),
 		sendLevelResult: toUserApi('userhistory/send-level-result'),

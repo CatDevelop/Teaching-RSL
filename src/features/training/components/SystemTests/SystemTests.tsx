@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useEffect, useState} from "react";
 import clsx from "clsx";
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import {Typography} from "../../../../components/Typography";
@@ -11,7 +11,8 @@ import {ThemesService} from "../../../../api/services/themes";
 import {useQuery} from "react-query";
 import {Card} from "../../../../components/Card";
 import {TestTypeEnum} from "../../../../core/models/themes/TestTypeEnum";
-import {GetUnitResponse} from "../../../../core/models/unit/GetUnitResponse";
+import { UserService } from "api/services/user";
+import { UserFullHistoryRecordResponse } from "core/models/userHistory/UserFullHistoryRecordResponse";
 
 type Props = ComponentProps;
 
@@ -20,8 +21,35 @@ type Props = ComponentProps;
  */
 export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
     const {data} = useQuery<GetThemeListWithUnitsResponse>("systemtests/get", ThemesService.getListWithUnits)
+    const {data: userHistory} = useQuery<UserFullHistoryRecordResponse[]>("userthemeshistory/get", UserService.getThemesWithUnitsHistory)
+    const [parsedData, setParsedData] = useState<GetThemeListWithUnitsResponse | null>(null);
 
-    if (!data) {
+    useEffect(() => {
+        if(!data || !userHistory){
+            return
+        }
+
+        const parsedData: GetThemeListWithUnitsResponse = {
+            themeList: data?.themeList.map(themeItem => {
+                const findedTheme = userHistory?.find(themeHistory => themeHistory.themeId === themeItem.id);
+                return {
+                    ...themeItem,
+                    completedWordsCount: findedTheme ? findedTheme.wordsCompletedCount : 0,
+                    units: themeItem.units.map(unitItem => {
+                        const findedUnit = findedTheme?.unitsHistory.find(unitHistory => unitHistory.unitId === unitItem.id)
+                        return {
+                            ...unitItem,
+                            completedWordsCount: findedUnit ? findedUnit.unitWordsCount : 0,
+                        }
+                    })
+                }
+            })
+        }
+
+        setParsedData(parsedData);
+    }, [data, userHistory])
+
+    if(!parsedData) {
         return null;
     }
     return (
@@ -30,7 +58,7 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
                 Темы
             </Typography>
             <ScrollBox className={clsx(styles.systemTests__container, props.className)}>
-                {data.themeList.map(theme => (
+                {parsedData.themeList.map(theme => (
                     <div className={styles.systemTests__theme} key={theme.id}>
                         <SystemTestPreview
                             id={theme.id}

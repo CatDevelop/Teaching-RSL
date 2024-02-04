@@ -17,10 +17,16 @@ export class GetUnitResponse {
      */
     public readonly wordsCount: number;
 
-    public constructor({id, name, wordsCount}: GetUnitResponseProps){
+    /**
+     * Пройденное количество слов в разделе.
+     */
+    public readonly completedWordsCount?: number;
+
+    public constructor({id, name, wordsCount, completedWordsCount}: GetUnitResponseProps){
         this.id = id;
         this.name = name;
         this.wordsCount = wordsCount;
+        this.completedWordsCount = completedWordsCount;
     }
 }
 

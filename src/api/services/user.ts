@@ -18,6 +18,9 @@ import { ChangeUserEmailRequest } from "core/models/user/ChangeUserEmailRequest"
 import { ChangeUserEmailRequestMapper } from "core/mappers/user/ChangeUserEmailRequestMapper";
 import { ChangeUserFioRequest } from "core/models/user/ChangeUserFioRequest";
 import { ChangeUserFioRequestMapper } from "core/mappers/user/ChangeUserFioRequestMapper";
+import { UserFullHistoryRecordResponse } from "core/models/userHistory/UserFullHistoryRecordResponse";
+import { UserFullHistoryRecordResponseDto } from "core/dtos/userHistory/UserFullHistoryRecordResponseDto";
+import { UserFullHistoryRecordResponseMapper } from "core/mappers/userHistory/UserFullHistoryRecordResponseMapper";
 
 export namespace UserService {
     export async function register(form: RegisterUserRequest): Promise<void> {
@@ -57,6 +60,11 @@ export namespace UserService {
     export async function getThemesHistory(): Promise<UserThemeHistoryRecordResponse[]> {
         return http.get<UserThemeHistoryRecordResponseDto[]>(ApiUrlsConfig.userHistory.getThemes)
             .then(({data}) => data.map(item => UserThemeHistoryRecordResponseMapper.fromDto(item)));
+    }
+
+    export async function getThemesWithUnitsHistory(): Promise<UserFullHistoryRecordResponse[]> {
+        return http.get<UserFullHistoryRecordResponseDto[]>(ApiUrlsConfig.userHistory.getThemesWithUnits)
+            .then(({data}) => data.map(item => UserFullHistoryRecordResponseMapper.fromDto(item)));
     }
 
     export async function getWelcomeUserInfo(): Promise<GetWelcomeBackInfoResponse> {
