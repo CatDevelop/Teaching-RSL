@@ -15,6 +15,7 @@ export const ThemeProgress: FC<Props> = typedMemo(function ThemeProgress(props){
         <div className={styles.themeProgress}>
             <div className={styles.themeProgress__text}>
                 <Typography variant='p' className={styles.themeProgress__title}>{props.themeName}</Typography>
+                <Typography variant='span' className={styles.themeProgress__description}>{props.description}</Typography>
             </div>
 
             <CircularProgress
