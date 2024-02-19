@@ -38,4 +38,9 @@ export namespace TrainingService {
         const {data} = await http.post<CreateTestResponseDto>(ApiUrlsConfig.training.postUserTestCreate, CreateUserTestRequestMapper.toDto(formData));
         return CreateTestResponseMapper.fromDto(data);
     }
+
+    export async function getUserTestReflection(): Promise<GetTestResponse> {
+        const {data} = await http.get<GetTestResponseDto>(ApiUrlsConfig.training.getTestReflection);
+        return GetTestResponseMapper.fromDto(data);
+    }
 }

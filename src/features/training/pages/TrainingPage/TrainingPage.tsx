@@ -21,7 +21,10 @@ import {UserHistoryService} from "../../../../api/services/userHistory";
 export const TrainingPage: FC = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
     const {id} = useParams<{ id: string }>();
-    const {data} = useQuery(['training/gettest', id], () => TrainingService.getTraining(id ?? ''));
+    const {data: training} = useQuery(['training/gettest', id], () => id === 'reflection' ?
+        TrainingService.getUserTestReflection() :
+        TrainingService.getTraining(id ?? '')
+    );
 
     const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
@@ -45,25 +48,25 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
     )
 
     const skip = useCallback(() => {
-        data && setIncorrectWords([...incorrectWords, data.words[currentStep].id])
-        if (currentStep + 1 === data?.words.length) {
-            sendResult([...incorrectWords, data.words[currentStep].id])
-            navigate("result/?skiped=" + (countSkippedWords + 1) + "&all=" + data.words.length)
+        training && setIncorrectWords([...incorrectWords, training.words[currentStep].id])
+        if (currentStep + 1 === training?.words.length) {
+            sendResult([...incorrectWords, training.words[currentStep].id])
+            navigate("result/?skiped=" + (countSkippedWords + 1) + "&all=" + training.words.length)
         }
         setCurrentStep(currentStep => currentStep + 1)
         setCountSkippedWords(count => count + 1);
         clearRecognizeText()
-    }, [setCountSkippedWords, setCurrentStep, currentStep, data, countSkippedWords, incorrectWords]);
+    }, [setCountSkippedWords, setCurrentStep, currentStep, training, countSkippedWords, incorrectWords]);
 
     const next = useCallback(() => {
-        if (currentStep + 1 === data?.words.length) {
+        if (currentStep + 1 === training?.words.length) {
             sendResult(incorrectWords)
-            navigate("result/?skiped=" + countSkippedWords + "&all=" + data.words.length)
+            navigate("result/?skiped=" + countSkippedWords + "&all=" + training.words.length)
         }
         setCurrentStep(currentStep => currentStep + 1)
         setIsDoneTask(false);
         clearRecognizeText()
-    }, [setCurrentStep, setIsDoneTask, currentStep, data, countSkippedWords])
+    }, [setCurrentStep, setIsDoneTask, currentStep, training, countSkippedWords])
 
     useEffect(() => {
         socket.on('connect_error', () => setIsNotStartModel(true))
@@ -71,16 +74,9 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
         socket.on('connect', () => setIsNotStartModel(false))
     }, []);
 
-    useEffect(() => {
-        if (!data) {
-            return;
-        }
-    }, [data]);
-
-    if (!data) {
+    if (!training) {
         return null
     }
-
     return (
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen} onExit={toTrainingPage}/>
@@ -93,9 +89,9 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                         !isNotStartModel &&
                         <LearningHeader
                             type="test"
-                            name={data.testName}
+                            name={training.testName}
                             currentStep={currentStep}
-                            stepCount={data.words.length}
+                            stepCount={training.words.length}
                         />
                     }
                     {
@@ -105,7 +101,7 @@ export const TrainingPage: FC = typedMemo(function TrainingPage() {
                                 <Back to="/training" type="icon"/>
                             </div>
                             <RecognitionBlock
-                                word={data.words[currentStep]}
+                                word={training.words[currentStep]}
                                 className={styles.trainingTask__recognition}
                                 onSuccess={() => {
                                     setIsDoneTask(true)

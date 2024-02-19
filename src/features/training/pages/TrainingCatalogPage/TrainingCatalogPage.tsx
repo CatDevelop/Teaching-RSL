@@ -12,9 +12,11 @@ import {Card} from "../../../../components/Card";
 import {Spinner} from "@nextui-org/react";
 import {clsx} from "clsx";
 import {RandomTestButton} from "features/training/components/RandomTestButton";
+import { useQuery } from "react-query";
+import { TrainingService } from "api/services/training";
 
 export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() {
-    let missingWordsCount = 0; // temp
+    const {data: reflectionTest} = useQuery('user-rest-reflection', TrainingService.getUserTestReflection);
 
     return (
         <Page className={styles.trainingCatalog}>
@@ -44,15 +46,15 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
 
                     <div className={styles.trainingCatalog__otherTests}>
                         {
-                            missingWordsCount !== 0 &&
+                            reflectionTest?.words.length !== 0 &&
                             <WorkOnMistakes
-                                missingWordsCount={missingWordsCount}
+                                missingWordsCount={reflectionTest?.words.length ?? 0}
                                 className={styles.trainingCatalog__workOnMistakes}
                             />
                         }
                         <div className={clsx(
                             styles.trainingCatalog__userTests,
-                            missingWordsCount !== 0 && styles.trainingCatalog__userTestsWithMistakes
+                            reflectionTest?.words.length !== 0 && styles.trainingCatalog__userTestsWithMistakes
                         )}>
                             <UserTests/>
                         </div>
