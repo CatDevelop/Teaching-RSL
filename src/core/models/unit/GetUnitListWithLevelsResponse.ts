@@ -38,6 +38,11 @@ export class GetUnitWithLevelsResponse {
      */
     public readonly levels: readonly LevelInUnit[];
 
+    /**
+     * Пройденное количество слов в теме.
+     */
+    public completedWordsCount?: number;
+
     public constructor({id, name, wordsCount, levels}: GetUnitWithLevelsResponseProps){
         this.id = id;
         this.name = name;

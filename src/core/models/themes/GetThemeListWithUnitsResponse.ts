@@ -43,7 +43,7 @@ export class GetThemeWithUnitsResponse {
     /**
      * Пройденное количество слов в теме.
      */
-    public readonly completedWordsCount?: number;
+    public completedWordsCount?: number;
 
     /**
      * Разделы.

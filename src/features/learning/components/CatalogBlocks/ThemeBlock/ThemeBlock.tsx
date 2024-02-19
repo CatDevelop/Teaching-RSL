@@ -36,7 +36,7 @@ export const ThemeBlock: FC<Props> = typedMemo(function ThemeBlock(props) {
                                 <UnitBlock
                                     id={unit.id}
                                     name={unit.name}
-                                    completeWordsCount={0}
+                                    completeWordsCount={unit.completedWordsCount ?? 0}
                                     allWordsCount={unit.wordsCount}
                                     levels={unit.levels}
                                 />
