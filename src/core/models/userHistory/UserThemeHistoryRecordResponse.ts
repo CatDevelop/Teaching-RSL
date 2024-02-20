@@ -10,6 +10,11 @@ export class UserThemeHistoryRecordResponse {
     public readonly themeName: string | null;
 
     /**
+     * Описание темы
+     */
+    public readonly description: string | null;
+
+    /**
      * Количество слов в теме
      */
     public readonly wordsCount :number;
@@ -19,11 +24,12 @@ export class UserThemeHistoryRecordResponse {
      */
     public readonly wordsCompletedCount: number;
 
-    public constructor({themeId, themeName, wordsCount,wordsCompletedCount}: UserThemeHistoryRecordResponseProps){
+    public constructor({themeId, themeName, wordsCount,wordsCompletedCount, description}: UserThemeHistoryRecordResponseProps){
         this.themeId = themeId;
         this.themeName = themeName;
         this.wordsCompletedCount = wordsCompletedCount;
         this.wordsCount = wordsCount;
+        this.description = description
     }
 }
 

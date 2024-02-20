@@ -10,6 +10,11 @@ export type UserThemeHistoryRecordResponseDto = Readonly<{
     themeName: string | null;
 
     /**
+     * Описание темы
+     */
+    description: string | null;
+
+    /**
      * Количество слов в теме
      */
     wordsCount :number;

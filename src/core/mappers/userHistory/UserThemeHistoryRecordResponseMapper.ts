@@ -12,6 +12,7 @@ export namespace UserThemeHistoryRecordResponseMapper {
             themeName: dto.themeName,
             wordsCompletedCount: dto.wordsCompletedCount,
             wordsCount: dto.wordsCount,
+			description: dto.description,
 		});
 	}
 }

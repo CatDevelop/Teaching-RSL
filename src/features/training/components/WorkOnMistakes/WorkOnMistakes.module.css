@@ -1,6 +1,7 @@
 .workOnMistakes {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: var(--space-s);
 }
 
@@ -10,7 +11,6 @@
     flex-direction: column;
     align-items: center;
 }
-
 
 .workOnMistakes__wordsName {
     font-size: var(--font-size-s);
