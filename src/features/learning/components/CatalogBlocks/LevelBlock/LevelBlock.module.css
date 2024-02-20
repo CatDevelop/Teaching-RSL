@@ -15,10 +15,17 @@
 
 .levelLink_completed {
     border-color: transparent;
-    background: var(--success-color);
+    background-color: var(--success-color);
     cursor: default;
 }
 
+.levelLink_partCompleted {
+    border-color: transparent;
+    background-color: var(--warning-color);
+    cursor: default;
+}
+
+.levelLink_partCompleted .levelIcon,
 .levelLink_completed .levelIcon {
     fill: var(--on-surface-color);
 }

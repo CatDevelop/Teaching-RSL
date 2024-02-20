@@ -72,6 +72,11 @@ export class LevelInUnit {
      */
     public readonly wordsCount: number;
 
+    /**
+     * Количество пройденных слов в уровне.
+     */
+    public completedWordsCount?: number;
+
     public constructor({id, name, wordsCount}: LevelInUnitProps) {
         this.id = id;
         this.name = name;

@@ -24,7 +24,7 @@ export const ThemeBlock: FC<Props> = typedMemo(function ThemeBlock(props) {
                     {props.name}
                 </Typography>
                 <Typography variant="p" className={styles.themeBlock__titleContainer__wordCount}>
-                    0 / {props.allWordsCount}
+                    {props.completeWordsCount} / {props.allWordsCount}
                 </Typography>
             </div>
 
