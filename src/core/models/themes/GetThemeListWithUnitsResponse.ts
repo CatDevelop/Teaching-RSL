@@ -41,16 +41,22 @@ export class GetThemeWithUnitsResponse {
     public readonly wordsCount: number;
 
     /**
+     * Пройденное количество слов в теме.
+     */
+    public completedWordsCount?: number;
+
+    /**
      * Разделы.
      */
     public readonly units: readonly GetUnitResponse[];
 
-    public constructor({id, name, description, wordsCount, units}: GetThemeWithUnitsResponseProps){
+    public constructor({id, name, description, wordsCount, units, completedWordsCount}: GetThemeWithUnitsResponseProps){
         this.id = id;
         this.description = description;
         this.name = name;
         this.units = units;
         this.wordsCount = wordsCount;
+        this.completedWordsCount = completedWordsCount;
     }
 }
 

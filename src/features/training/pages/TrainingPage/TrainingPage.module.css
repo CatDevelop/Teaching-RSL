@@ -41,6 +41,10 @@
     overflow: hidden;
 }
 
+.trainingTask__logoIcon {
+    fill: var(--primary-color)
+}
+
 .trainingTask__header {
     display: grid ;
     grid-area: header;

@@ -3,7 +3,7 @@ import {typedMemo} from "../../../../../core/utils/typedMemo";
 import {NavLink} from "react-router-dom";
 import styles from "./LevelBlock.module.css"
 import {clsx} from "clsx";
-import {Typography} from "../../../../../components/Typography";
+import {ReactComponent as Star} from 'assets/images/Star.svg';
 
 type Props = {
     id: string,
@@ -29,9 +29,7 @@ export const LevelBlock: FC<Props> = typedMemo(function LevelBlock(props) {
 
     return (
         <NavLink to={"/learning/" + props.id} className={clsx(styles.levelLink, getLevelClass())}>
-            <Typography variant='p' className={styles.levelBlock__number}>
-                {props.number}
-            </Typography>
+            <Star className={clsx(styles.levelIcon, getLevelClass())}/>
         </NavLink>
     )
 })

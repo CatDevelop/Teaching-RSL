@@ -7,7 +7,7 @@ type Props = Readonly<{
     /**
      * Ссылка на иконку параметра
      */
-    iconUrl: string;
+    icon: any;
 
     /**
      * Описание иконки параметра
@@ -31,7 +31,7 @@ type Props = Readonly<{
 export const StatisticsItem: FC<Props> = typedMemo(function StatisticsItem(props){
     return (
         <div className={styles.statisticsItem}>
-            <img src={props.iconUrl} alt={props.iconAlt} className={styles.statisticsItem__icon}/>
+            <props.icon className={styles.statisticsItem__icon}/>
             <Typography variant="p" className={styles.statisticsItem__value}>{props.value}</Typography>
             <Typography variant="span" className={styles.statisticsItem__description}>{props.descriptionValue}</Typography>
         </div>

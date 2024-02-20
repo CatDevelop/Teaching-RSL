@@ -1,14 +1,12 @@
-import React, {FC, useMemo} from "react";
+import React, {FC} from "react";
 import {typedMemo} from "../../core/utils/typedMemo";
 import styles from "./SideBar.module.css"
-import Logo from "../../assets/images/Logo.svg";
+import {ReactComponent as Logo} from "../../assets/images/LogoMonochrome.svg";
 import {SideBarItem} from "../SideBarItem";
 import {ExitIcon} from "../../assets/images/ExitIcon"
 import {Card} from "../Card";
 import {Link, useLocation} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "store/store";
-
+import {useDispatch} from "react-redux";
 import {LKIcon} from "../../assets/images/LKIcon"
 import {LearningIcon} from "../../assets/images/LearningIcon"
 import {TrainingIcon} from "../../assets/images/TrainingIcon"
@@ -67,7 +65,7 @@ export const SideBar: FC = typedMemo(function SideBar() {
 
     return (
         <Card className={styles.sidebar__container}>
-            <img src={Logo} width={218} alt={"Логотип"} className={styles.sidebar__logo}/>
+            <Logo width={218} className={styles.sidebar__logo}/>
             <div>
                 {
                     navigationItems.map(item => {
