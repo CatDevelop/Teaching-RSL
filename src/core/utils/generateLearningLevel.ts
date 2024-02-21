@@ -7,11 +7,12 @@ import {WordFormServer2} from "../models/Word";
 
 export default function generateLearningLevel(levelMetadata: GetLevelResponseDto, levelTasks: GetLevelTasksResponseDto): learningLevel {
     const levelWords = [
-        ...levelTasks.singleTasks.map(singleTask => singleTask.rightSelect),
+        ...levelTasks.singleTasks.map(singleTask => [singleTask.rightSelect, ...singleTask.otherSelects]).flat(),
         ...levelTasks.multiTasks.map(multiTask => {
             return multiTask.conditions.map(condition => condition)
         }).flat()
     ]
+    console.log(levelWords)
 
     const theoryCache: string[] = []
 
