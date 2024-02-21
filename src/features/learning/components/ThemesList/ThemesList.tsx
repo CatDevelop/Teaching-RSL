@@ -52,8 +52,6 @@ export const ThemesList: FC = typedMemo(function ThemesList() {
                             return
                         }
 
-                        // TODO переименовать c comletedWordsCount на completedWordsCount
-                        // @ts-ignore
                         level.completedWordsCount = findedLevelHistory.completedWordsCount
                     })
                 })
