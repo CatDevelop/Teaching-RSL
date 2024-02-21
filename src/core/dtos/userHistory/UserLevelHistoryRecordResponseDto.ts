@@ -12,5 +12,5 @@ export type UserLevelHistoryRecordResponseDto = Readonly<{
     /**
      * Кол-во пройденных слов
      */
-    comletedWordsCount: number;
+    completedWordsCount: number;
 }>

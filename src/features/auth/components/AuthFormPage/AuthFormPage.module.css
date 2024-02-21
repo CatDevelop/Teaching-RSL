@@ -13,6 +13,7 @@
     top: var(--page-padding-m);
     left: var(--page-padding-m);
     max-width: var(--logo-width);
+    fill: var(--primary-color);
     justify-self: flex-start;
     width: 100%;
     align-self: flex-start;

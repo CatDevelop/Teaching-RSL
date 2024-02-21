@@ -10,7 +10,7 @@ import styles from "./UserTests.module.css";
 import {Card} from "../../../../components/Card";
 import {useQuery} from "react-query";
 import {TrainingService} from "../../../../api/services/training";
-import Plus from "../../../../assets/images/Plus.svg"
+import {ReactComponent as Plus} from "../../../../assets/images/Plus.svg"
 import {Button} from "../../../../components/Button";
 import {CreateUserTestForm} from "../../../dictionary/pages/DictionaryPage/CreateUserTestForm";
 
@@ -29,11 +29,11 @@ export const UserTests: FC<Props> = typedMemo(function UserTests(props) {
             </div>
 
             <CreateUserTestForm
-                triggerComponent={onOpen => 
+                triggerComponent={onOpen =>
                     <Button 
-                        variant="light" 
+                        variant="light"
                         onClick={onOpen}
-                        startContent={<img src={Plus} alt=""/>}
+                        startContent={<Plus/>}
                         className={styles.userTests__createNewContainer}
                     >
                         Создать новый тест

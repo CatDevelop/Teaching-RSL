@@ -51,4 +51,9 @@ export type GetLevelResponseDto = Readonly<{
      * Количество слов в уровне.
      */
     wordsCount: number;
+
+    /**
+     * Количество пройденных слов в уровне.
+     */
+    completedWordsCount?: number;
 }>

@@ -24,7 +24,7 @@ export const UnitBlock: FC<Props> = typedMemo(function UnitBlock(props) {
                     {props.name}
                 </Typography>
                 <Typography variant="p" className={styles.unitBlock__titleContainer__wordCount}>
-                    0 / {props.allWordsCount}
+                    {props.completeWordsCount} / {props.allWordsCount}
                 </Typography>
             </div>
             <div className={styles.unitBlock__levels}>
@@ -34,7 +34,7 @@ export const UnitBlock: FC<Props> = typedMemo(function UnitBlock(props) {
                             <LevelBlock
                                 id={level.id}
                                 number={index + 1}
-                                completeWordsCount={10}
+                                completeWordsCount={level.completedWordsCount ?? 0}
                                 disabled={false}
                                 allWordsCount={level.wordsCount}
                             />

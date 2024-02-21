@@ -20,6 +20,8 @@ export const LevelBlock: FC<Props> = typedMemo(function LevelBlock(props) {
     const getLevelClass = useCallback(() => {
             if (props.completeWordsCount === props.allWordsCount)
                 return styles.levelLink_completed
+            if (props.completeWordsCount !== props.allWordsCount && props.completeWordsCount !== 0)
+                return styles.levelLink_partCompleted
             if (props.disabled)
                 return styles.levelLink_disabled
             return;

@@ -12,16 +12,16 @@ export class UserLevelHistoryRecordResponse {
     /**
      * Кол-во пройденных слов
      */
-    public readonly comletedWordsCount: number;
+    public readonly completedWordsCount: number;
 
     public constructor({
         levelId, 
         levelWordsCount, 
-        comletedWordsCount
+        completedWordsCount
     }: UserLevelHistoryRecordResponseProps) {
         this.levelId = levelId;
         this.levelWordsCount = levelWordsCount;
-        this.comletedWordsCount = comletedWordsCount;
+        this.completedWordsCount = completedWordsCount;
     }
 }
 

@@ -10,7 +10,7 @@ export namespace UserLevelHistoryRecordResponseMapper {
 		return new UserLevelHistoryRecordResponse({
 			levelId: dto.levelId,
             levelWordsCount: dto.levelWordsCount,
-            comletedWordsCount: dto.comletedWordsCount,
+            completedWordsCount: dto.completedWordsCount,
 		});
 	}
 }
