@@ -1,7 +1,7 @@
 import React, {FC, useCallback} from "react";
 import {useNavigate} from "react-router-dom";
 import styles from "./NotFoundPage.module.css";
-import Logo from "../../../assets/images/Logo.svg";
+import {ReactComponent as Logo} from "../../../assets/images/Logo.svg";
 import {Typography} from "../../../components/Typography";
 import {Button} from "../../../components/Button";
 import {typedMemo} from "../../../core/utils/typedMemo";
@@ -13,7 +13,7 @@ export const NotFoundPage: FC = typedMemo(function NotFoundPage() {
 
     return (
         <div className={styles.notFoundPage}>
-            <img src={Logo} width={400} alt={"Логотип сервиса \"Изучение русского жестового языка\""}/>
+            <Logo width={400}/>
             <div className={styles.notFoundPage__contentContainer}>
                 <Typography variant="h1" className={styles.notFoundPage__header}>404</Typography>
                 <Typography variant="p" className={styles.notFoundPage__description}>
