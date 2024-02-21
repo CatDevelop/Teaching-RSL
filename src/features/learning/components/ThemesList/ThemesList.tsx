@@ -44,8 +44,7 @@ export const ThemesList: FC = typedMemo(function ThemesList() {
                         return
                     }
 
-                    findedUnit.completedWordsCount = unitHistory.unitWordsCount
-
+                    let unitCompletedWordsCount = 0;
                     findedUnit.levels.forEach(level => {
                         const findedLevelHistory = unitHistory.levelsHistory.find(levelHistory => level.id === levelHistory.levelId)
                         if (!findedLevelHistory) {
@@ -53,7 +52,9 @@ export const ThemesList: FC = typedMemo(function ThemesList() {
                         }
 
                         level.completedWordsCount = findedLevelHistory.completedWordsCount
+                        unitCompletedWordsCount += findedLevelHistory.completedWordsCount;
                     })
+                    findedUnit.completedWordsCount = unitCompletedWordsCount
                 })
             })
 
