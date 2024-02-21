@@ -13,6 +13,7 @@ import {CreateUserTestRequestMapper} from "core/mappers/training/CreateUserTestR
 import {GetUserTestsResponseDto} from "../../core/dtos/training/GetUserTestsResponseDto";
 import {GetUserTestsResponseMapper} from "../../core/mappers/training/GetUserTestsResponseMapper";
 import {GetUserTestsResponse} from "../../core/models/training/GetUserTestsResponse";
+import {TestTypeEnum} from "../../core/models/themes/TestTypeEnum";
 
 export namespace TrainingService {
     export async function postTrainingCreate(body: CreateTestRequest): Promise<CreateTestResponse> {
@@ -40,7 +41,11 @@ export namespace TrainingService {
     }
 
     export async function getUserTestReflection(): Promise<GetTestResponse> {
-        const {data} = await http.get<GetTestResponseDto>(ApiUrlsConfig.training.getTestReflection);
-        return GetTestResponseMapper.fromDto(data);
+        try {
+            const {data} = await http.get<GetTestResponseDto>(ApiUrlsConfig.training.getTestReflection);
+            return GetTestResponseMapper.fromDto(data);
+        } catch {
+            return GetTestResponseMapper.fromDto({id: "", words: [], testName: "", testType: TestTypeEnum.CustomTest})
+        }
     }
 }
