@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, Outlet, To, useLocation } from 'react-router-dom';
 import { RootState } from 'store/store';
 
-/** 
+/**
  * Гуард неавторизованного пользователя
  */
 export const NotAuthGuard: FC = () => {
@@ -12,7 +12,7 @@ export const NotAuthGuard: FC = () => {
 
 	if (isAuth) {
 		const redirect: To = {
-			pathname: location.search.slice(1) ?? '/',
+			pathname: location.search.slice(1) ?? '/profile',
 		};
 
 		return <Navigate to={redirect} replace />;
