@@ -41,7 +41,7 @@ export default function generateLearningLevel(levelMetadata: GetLevelResponseDto
     })
 
     return <learningLevel>{
-        name: levelMetadata.name || "",
+        name: levelMetadata.unitName + " - " + levelMetadata.levelName || "",
         theoryCount: levelTheoryTasks.length,
         practiceCount: levelPracticeTasks.length,
         tasks: [

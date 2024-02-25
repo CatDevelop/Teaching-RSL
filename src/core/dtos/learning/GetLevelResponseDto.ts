@@ -5,7 +5,17 @@ export type GetLevelResponseDto = Readonly<{
     /**
      * Название уровня.
      */
-    name: string | null;
+    levelName: string | null;
+
+    /**
+     * Название юнита.
+     */
+    unitName: string | null;
+
+    /**
+     * Название темы.
+     */
+    themeName: string | null;
 
     /**
      * Количество слов в уровне

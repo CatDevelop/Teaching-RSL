@@ -5,7 +5,17 @@ export class GetLevelResponse {
     /**
      * Название уровня.
      */
-    public readonly name: string | null;
+    public readonly levelName: string | null;
+
+    /**
+     * Название юнита.
+     */
+    public readonly unitName: string | null;
+
+    /**
+     * Название темы.
+     */
+    public readonly themeName: string | null;
 
     /**
      * Количество слов в уровне
@@ -17,8 +27,10 @@ export class GetLevelResponse {
      */
     public readonly wordsIdList: string[];
 
-    public constructor({name, wordsCount, wordsIdList}: GetLevelResponseProps) {
-        this.name = name;
+    public constructor({levelName, unitName, themeName,  wordsCount, wordsIdList}: GetLevelResponseProps) {
+        this.levelName = levelName;
+        this.unitName = unitName;
+        this.themeName = themeName;
         this.wordsCount = wordsCount;
         this.wordsIdList = wordsIdList;
     }

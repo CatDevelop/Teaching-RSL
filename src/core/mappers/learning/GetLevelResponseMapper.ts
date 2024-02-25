@@ -8,7 +8,9 @@ export namespace GetLevelResponseMapper {
 	 */
 	export function fromDto(dto: GetLevelResponseDto): GetLevelResponse {
 		return new GetLevelResponse({
-			name: dto.name,
+			levelName: dto.levelName,
+			unitName: dto.unitName,
+			themeName: dto.themeName,
 			wordsCount: dto.wordsCount,
 			wordsIdList: dto.wordsIdList
 		});

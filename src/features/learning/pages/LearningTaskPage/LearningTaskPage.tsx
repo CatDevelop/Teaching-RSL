@@ -23,6 +23,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
     const navigate = useNavigate()
 
     const levelController = useLearningLevel(id || '')
+    console.log(levelController)
 
     const [currentStep, setCurrentStep] = useState(0)
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
