@@ -3,10 +3,8 @@ import {typedMemo} from "../../../../core/utils/typedMemo";
 import {Card} from "../../../../components/Card";
 import styles from "./ModelWarning.module.css";
 import {Typography} from "../../../../components/Typography";
-import GitHubLogo from "../../../../assets/images/GitHubLogo.svg";
 import {clsx} from "clsx";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
-import {Spinner} from "@nextui-org/react";
 
 export const ModelWarning: FC<ComponentProps> = typedMemo(function ModelWarning(props) {
     return (

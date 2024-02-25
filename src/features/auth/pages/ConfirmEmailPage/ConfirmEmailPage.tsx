@@ -2,7 +2,7 @@ import { Page } from "components/Page";
 import { PageContent } from "components/PageContent";
 import { typedMemo } from "core/utils/typedMemo";
 import React, { FC, useCallback, useEffect } from "react";
-import Logo from "../../../../assets/images/Logo.svg";
+import {ReactComponent as Logo} from "../../../../assets/images/Logo.svg";
 
 import styles from "./ConfirmEmailPage.module.css";
 import { Card, CardHeader } from "components/Card";
@@ -30,10 +30,8 @@ export const ConfirmEmailPage: FC<Props> = typedMemo(function ConfirmEmailPage(p
     return (
         <Page>
             <PageContent className={styles.confirmPage}>
-                <img
+                <Logo
                     className={styles.confirmPage__logo}
-                    src={Logo}
-                    alt={"Логотип сервиса \"Изучение русского жестового языка\""}
                     onClick={toMainPage}
                 />
                 <Typography variant="h2" className={styles.confirmPage__header}>Почта подтверждена</Typography>
