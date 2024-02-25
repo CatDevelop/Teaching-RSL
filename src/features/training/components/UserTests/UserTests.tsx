@@ -1,10 +1,9 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import {clsx} from "clsx";
 import {typedMemo} from "../../../../core/utils/typedMemo";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
 import {ScrollBox} from "../../../../components/ScrollBox";
 import {Typography} from "../../../../components/Typography";
-import {userTests} from "../../../../core/data";
 import {UserTestPreview} from "../UserTestPreview";
 import styles from "./UserTests.module.css";
 import {Card} from "../../../../components/Card";

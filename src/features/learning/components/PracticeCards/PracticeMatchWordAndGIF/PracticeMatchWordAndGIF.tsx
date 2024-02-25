@@ -3,9 +3,8 @@ import React, {FC, useCallback, useEffect, useState} from "react";
 import styles from "./PracticeMatchWordAndGIF.module.css";
 import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
-import PracticeIconSVG from "../../../../../assets/images/PracticeIcon.svg"
 import {LearningBlock} from "../../LearningBlock";
-import {WordFormServer, WordFormServer2} from "../../../../../core/models/Word";
+import {WordFormServer2} from "../../../../../core/models/Word";
 import {SelectGIF} from "../../SelectEntity/SelectGIF";
 import {SelectButton} from "../../SelectEntity/SelectButton";
 import {SelectObjectState, SelectState} from "../../../../../core/models/SelectState";
@@ -155,7 +154,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
 
     return (
         <div className={clsx(styles.practiceMatchWordAndGIF)}>
-            <LearningBlock iconUrl={PracticeIconSVG} title={"Соотнесите слова и жесты"} className={styles.practiceMatchWordAndGIF__card}>
+            <LearningBlock title={"Соотнесите слова и жесты"} className={styles.practiceMatchWordAndGIF__card}>
                 <div className={styles.practiceMatchWordAndGIF__contentContainer}>
                     <div className={styles.practiceMatchWordAndGIF__taskContainer}>
                         <div className={styles.practiceMatchWordAndGIF__taskContainer_buttons}>

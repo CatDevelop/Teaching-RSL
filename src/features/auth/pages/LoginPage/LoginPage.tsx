@@ -9,8 +9,8 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {schema} from "./LoginPage.settings";
 import {Button} from "../../../../components/Button";
 import {FormLink} from "../../components/FormLink";
-import VK from "../../../../assets/images/VK.svg"
-import Yandex from "../../../../assets/images/Yandex.svg"
+import {ReactComponent as VK} from "../../../../assets/images/VK.svg"
+import {ReactComponent as Yandex} from "../../../../assets/images/Yandex.svg"
 import {useDispatch} from "react-redux";
 import {useMutation} from "react-query";
 import {UserService} from "api/services/user";

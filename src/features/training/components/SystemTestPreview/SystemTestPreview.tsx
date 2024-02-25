@@ -1,7 +1,6 @@
 import React, {FC, useCallback} from "react";
 import clsx from "clsx";
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import Arrow from "../../../../assets/images/Arrow.svg";
 import {Typography} from "../../../../components/Typography";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
 import {TestWordsModal} from "../TestWordsModal";

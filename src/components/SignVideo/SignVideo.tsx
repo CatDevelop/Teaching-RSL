@@ -4,7 +4,6 @@ import {ComponentProps} from "../../core/models/ComponentProps";
 import styles from "./SignVideo.module.css";
 import clsx from "clsx";
 import {Spinner} from "@nextui-org/react";
-import {defaultVideoSrc} from "../../core/data";
 
 type Props = ComponentProps & Readonly<{
     src: string | null;
@@ -23,6 +22,9 @@ export const SignVideo: FC<Props> = typedMemo(function SignVideo(props) {
 
     const handleLoadVideo = useCallback(() => setIsLoading(false), [])
 
+    if(!props.src){
+        return null
+    }
     return (
         <div className={clsx(styles.signVideo, props.className)}>
             {
@@ -31,7 +33,7 @@ export const SignVideo: FC<Props> = typedMemo(function SignVideo(props) {
             }
             <video
                 className={clsx(styles.signVideo__video, isLoading && styles.signVideo__video_hide)}
-                src={props.src || defaultVideoSrc}
+                src={props.src}
                 autoPlay
                 loop
                 muted

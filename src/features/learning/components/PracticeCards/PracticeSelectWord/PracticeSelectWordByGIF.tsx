@@ -5,7 +5,7 @@ import clsx from "clsx";
 import {ComponentProps} from "../../../../../core/models/ComponentProps";
 import PracticeIconSVG from "../../../../../assets/images/PracticeIcon.svg"
 import {LearningBlock} from "../../LearningBlock";
-import {WordFormServer, WordFormServer2} from "../../../../../core/models/Word";
+import {WordFormServer2} from "../../../../../core/models/Word";
 import {SignVideo} from "../../../../../components/SignVideo";
 import {SelectButton} from "../../SelectEntity/SelectButton";
 import {StepStatus} from "../../../../../core/models/StepStatus";
@@ -51,11 +51,11 @@ export const PracticeSelectWordByGIF: FC<Props> = typedMemo(function PracticeSel
 
     useEffect(() => {
         props.setIsTaskReadyToCheck(!!currentSelect)
-    }, [currentSelect, props.setIsTaskReadyToCheck])
+    }, [currentSelect, props.setIsTaskReadyToCheck]) 
 
     return (
         <div className={clsx(styles.practiceSelectWord)}>
-            <LearningBlock iconUrl={PracticeIconSVG} title={"Выберите верное слово"}>
+            <LearningBlock title={"Выберите верное слово"}>
                 <div className={styles.practiceSelectWord__contentContainer}>
                     <SignVideo src={props.rightSelect.illustrations[0].path} className={styles.practiceSelectWord__signVideo}/>
 

@@ -1,13 +1,12 @@
 import React, { FC, useCallback } from "react";
 import clsx from "clsx";
 import { typedMemo } from "../../../../core/utils/typedMemo";
-import Setting from "../../../../assets/images/Settings.svg";
 import { Button } from "../../../../components/Button";
 import { Typography } from "../../../../components/Typography";
 import { ComponentProps } from "../../../../core/models/ComponentProps";
 import { TestWordsModal } from "../TestWordsModal";
 import styles from "./UserTestPreview.module.css";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {normalizeCountForm} from "../../../../core/utils/normalizeCountForm";
 import {toast} from "react-toastify";
 

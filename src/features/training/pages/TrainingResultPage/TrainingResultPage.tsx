@@ -2,7 +2,7 @@ import {typedMemo} from "../../../../core/utils/typedMemo";
 import React, {FC, useCallback, useEffect, useState} from "react";
 import styles from "./TrainingResultPage.module.css";
 import {Page} from "../../../../components/Page";
-import Logo from "../../../../assets/images/Logo.svg"
+import {ReactComponent as Logo} from "../../../../assets/images/Logo.svg"
 import {Button} from "../../../../components/Button";
 import {Typography} from "../../../../components/Typography";
 import {useNavigate} from "react-router-dom";
@@ -10,7 +10,7 @@ import {PageContent} from "../../../../components/PageContent";
 import {getFireworks} from "../../../../core/utils/explodeFireworks";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {BySberAI} from "../../../../components/BySberAI";
-import ResultImage from "../../../../assets/images/ResultTrainingImage.svg"
+import {ReactComponent as ResultImage} from "../../../../assets/images/ResultTrainingImage.svg"
 import {Card} from "../../../../components/Card";
 import {normalizeCountForm} from "../../../../core/utils/normalizeCountForm";
 
@@ -39,16 +39,11 @@ export const TrainingResultPage: FC = typedMemo(function TrainingPage() {
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen} onExit={toTrainingPage}/>
             <PageContent className={styles.trainingResult}>
                 <div className={styles.trainingTask__logoContainer} onClick={openExitModal}>
-                    <img src={Logo} rel="preload" alt={"Логотип"} width={218}/>
+                    <Logo width={218}/>
                 </div>
                 <Card className={styles.trainingResult__contentContainer}>
                     <div className={styles.trainingResult__result}>
-                        <img
-                            src={ResultImage}
-                            rel="preload"
-                            className={styles.trainingResult__resultImage}
-                            alt="Иконка результата"
-                        />
+                        <ResultImage className={styles.trainingResult__resultImage}/>
                         <Typography variant="h2" className={styles.trainingResult__resultTitle}>
                             Конец тренировки
                         </Typography>
