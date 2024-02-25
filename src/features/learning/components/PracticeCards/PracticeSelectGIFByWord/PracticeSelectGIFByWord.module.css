@@ -50,7 +50,8 @@
 }
 
 .practiceSelectGif__gif {
-    width: max-content;
+    height: 100%;
+    aspect-ratio: 4 / 3;
 }
 
 .practiceSelectGif__gif:nth-child(odd) {
