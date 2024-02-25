@@ -51,7 +51,7 @@ export const PracticeSelectWordByGIF: FC<Props> = typedMemo(function PracticeSel
 
     useEffect(() => {
         props.setIsTaskReadyToCheck(!!currentSelect)
-    }, [currentSelect, props.setIsTaskReadyToCheck])
+    }, [currentSelect, props.setIsTaskReadyToCheck]) 
 
     return (
         <div className={clsx(styles.practiceSelectWord)}>
