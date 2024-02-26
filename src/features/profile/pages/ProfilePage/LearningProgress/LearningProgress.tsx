@@ -40,7 +40,7 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                     <ScrollBox>
                         <div className={styles.learningProgress__themes}>
                             {/* TODO не забыть, что здесь поворачиваем массив*/}
-                            {testHistory!.toReversed().map((item, i) => (
+                            {testHistory!.slice(0).reverse().map((item, i) => (
                                 <TestProgress {...item} key={i}/>
                             ))}
                         </div>
