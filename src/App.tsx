@@ -2,21 +2,14 @@ import React, {Suspense} from "react";
 import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import {RootRouter} from "./routes/RootRouter";
-import {QueryClientProvider, QueryClient} from "react-query";
+import {QueryClientProvider} from "react-query";
 import {MantineProvider} from "@mantine/core";
 import '@mantine/core/styles.css';
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import {Spinner} from "@nextui-org/react";
 import 'react-toastify/dist/ReactToastify.css';
-
-const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            suspense: true,
-        },
-    },
-})
+import { queryClient } from "core/config/queryClient";
 
 export default function MyApp() {
     return (
