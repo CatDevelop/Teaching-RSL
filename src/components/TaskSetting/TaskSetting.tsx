@@ -31,7 +31,10 @@ export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(props) {
     }, [setDevices]);
 
     React.useEffect(() => {
-            navigator.mediaDevices.enumerateDevices().then(handleDevices);
+        if(!navigator.mediaDevices){
+            return
+        }
+         navigator.mediaDevices.enumerateDevices().then(handleDevices);
         }, [handleDevices]
     );
 

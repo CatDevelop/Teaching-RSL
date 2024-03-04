@@ -18,14 +18,15 @@ import {toast} from "react-toastify";
 import {Back} from "../../../../components/Back";
 import {UserHistoryService} from "../../../../api/services/userHistory";
 
-export const TrainingPage: FC = typedMemo(function TrainingPage() {
+export type Props = {}
+
+export const TrainingPage: FC<Props> = typedMemo(function TrainingPage() {
     const navigate = useNavigate()
     const {id} = useParams<{ id: string }>();
     const {data: training} = useQuery(['training/gettest', id], () => id === 'reflection' ?
         TrainingService.getUserTestReflection() :
         TrainingService.getTraining(id ?? '')
     );
-
     const [signRecognizeText, setSignRecognizeText] = useState<string[]>([])
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
     const [countSkippedWords, setCountSkippedWords] = useState(0);
