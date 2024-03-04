@@ -16,6 +16,9 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    loki: {
+      fetchFailIgnore: /https:\/\/pincode-dev\.ru\/socket\.io\/(.)*/
+    }
   },
   decorators: [
     NextUIDecorator,
