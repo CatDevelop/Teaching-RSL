@@ -14,9 +14,7 @@ export const MemoryRouterDecorator: (routePath: string, initialEntries?: H.Locat
             return (
                 <MemoryRouter initialEntries={initialEntries}>
                     <Routes>
-                        <Route path={routePath}>
-                            <Story/>
-                        </Route>
+                        <Route path={routePath} element={<Story/>}/>
                     </Routes>
                 </MemoryRouter>
             );
