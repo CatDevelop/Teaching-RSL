@@ -8,7 +8,7 @@ import { AxiosMockResetDecorator } from './AxiosMockResetDecorator';
 type WrapperOptions = Partial<{
     axiosMocks: AxiosMockOptions<unknown>[];
     route: string;
-    routerEntries: H.LocationDescriptor[];
+    routerEntries: H.InitialEntry[];
     additionalWrappers: Decorator[];
 }>;
 

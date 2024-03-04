@@ -8,7 +8,7 @@ import * as H from 'history';
  * @param routePath
  * @param initialEntries
  */
-export const MemoryRouterDecorator: (routePath: string, initialEntries?: H.LocationDescriptor[]) => Decorator =
+export const MemoryRouterDecorator: (routePath: string, initialEntries?: H.InitialEntry[]) => Decorator =
     (routePath, initialEntries) => {
         return (function MemoryRouterWrapper(Story) {
             return (
