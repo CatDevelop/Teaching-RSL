@@ -7,6 +7,10 @@ import styles from './SelectUserTestWords.module.css';
 import {Typography} from "../../../../../../components/Typography";
 import {Button, Chip} from "@nextui-org/react";
 import clsx from "clsx";
+import {useQuery} from "react-query";
+import {OnChangeValue} from "react-select";
+import {Select} from "../../../../../../components/Select";
+import {normalizeCountForm} from "../../../../../../core/utils/normalizeCountForm";
 
 type Props = Readonly<{
     onChangeWordIds: (ids: string[]) => void;
@@ -15,8 +19,21 @@ type Props = Readonly<{
 /**
  * Выбор слов для теста
  */
-export const SelectUserTestWords:FC<Props> = typedMemo(function SelectUserTestWords(props){
-    const [words, setWords] = useState<SelectItemType<string>[]>([]);
+export const SelectUserTestWords: FC<Props> = typedMemo(function SelectUserTestWords(props) {
+    const [search, setSearch] = useState('')
+    const [words, setWords] = useState<SelectItemType<string>[]>([])
+    const rawWordsQuery = useQuery(
+        ['get-words-in-test', search],
+        () => WordsService.getWordsBySearch(search),
+        {
+            onSuccess: (words) => {
+                setWords(words.map(word => new SelectItemType({label: word.word ?? '', value: word.id})))
+            },
+            suspense: false,
+            enabled: search.length > 0
+        })
+
+    const [selectedWords, setSelectedWords] = useState<SelectItemType<string>[]>([])
 
     const setInitialWords = useCallback(async () => {
         const words = UserTestStorageService.getWords().map(async id => {
@@ -24,58 +41,59 @@ export const SelectUserTestWords:FC<Props> = typedMemo(function SelectUserTestWo
             return new SelectItemType({label: word.word ?? '', value: word.id})
         })
 
-        setWords(await Promise.all(words))
+        setSelectedWords(await Promise.all(words))
     }, []);
 
-    const deleteWord = useCallback((id: string) => {
-        UserTestStorageService.deleteWord(id);
-        setWords(words => words.filter(word => word.value !== id))
-    }, [])
+    const onChange = useCallback((selectedOptions: OnChangeValue<SelectItemType<string>, true>) => {
+        UserTestStorageService.resetWords()
 
-    const resetWords = useCallback(() => {
-        setWords([])
-        words.forEach(word => UserTestStorageService.deleteWord(word.value))
-    }, [words])
+        selectedOptions.forEach(word => {
+            UserTestStorageService.addWord(word.value)
+        })
+
+        setSelectedWords(selectedOptions as SelectItemType<string>[])
+    }, []);
 
     useEffect(() => {
         setInitialWords()
-    }, [setInitialWords])
+    }, []);
 
     useEffect(() => {
-        props.onChangeWordIds(words.map(word => word.value));
-    }, [words, props])
+        if (search.length === 0) {
+            setWords([])
+        }
+    }, [search])
+
+    useEffect(() => {
+        props.onChangeWordIds(selectedWords.map(word => word.value))
+    }, [selectedWords]);
 
     return (
-        <div className={clsx(styles.selectUserTestWords, 'shadow-sm border-default-200 border-medium rounded-medium py-2 px-3')}>
+        <div className={styles.selectUserTestWords}>
             <div className={styles.selectUserTestWords__header}>
-               <div className={styles.selectUserTestWords__title}>
-                   <Typography variant="span" className={styles.selectUserTestWords__listTitle}>Список слов</Typography>
-                   <Typography variant="span" className={styles.selectUserTestWords__wordCount}>{words.length} слов</Typography>
-               </div>
-
-               <Button
-                    color="primary"
-                    variant="light"
-                    onClick={resetWords}
-                    className={styles.selectUserTestWords__resetButton}
+                <Typography
+                    variant="span"
+                    className={styles.selectUserTestWords__title}
                 >
-                Очистить список
-                </Button>
+                    Список слов
+                </Typography>
+                <Typography
+                    variant="span"
+                    className={styles.selectUserTestWords__wordCount}
+                >
+                    {selectedWords.length} {normalizeCountForm(selectedWords.length, ["слово", "слова", "слов"])}
+                </Typography>
             </div>
-            <div className={styles.selectUserTestWords__words}>
-                {
-                    words.map(word => (
-                        <Chip
-                            key={word.value}
-                            onClose={() => deleteWord(word.value)}
-                            variant="bordered"
-                            className={styles.selectUserTestWords__word}
-                        >
-                            {word.label}
-                        </Chip>
-                    ))
-                }
-            </div>
+
+            <Select<SelectItemType<string>, true>
+                inputValue={search}
+                onInputChange={setSearch}
+                options={words}
+                onChange={onChange}
+                value={selectedWords}
+                isMulti
+                isSearchable
+            />
         </div>
     )
 })
