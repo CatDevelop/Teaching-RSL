@@ -4,6 +4,7 @@ import {ComponentProps} from "../../core/models/ComponentProps";
 import {typedMemo} from "../../core/utils/typedMemo";
 import styles from './Select.module.css'
 import {ActionMeta, OnChangeValue} from "react-select/dist/declarations/src/types";
+import clsx from "clsx";
 
 export type Props<Option, IsMulti extends boolean> = ComponentProps &
     Omit<SelectProps<Option, IsMulti>, 'onChange'> &
@@ -38,7 +39,7 @@ export const Select = typedMemo(function Select<Option, IsMulti extends boolean 
                 multiValueLabel: state => styles.multiValueLabel,
                 multiValueRemove: state => styles.multiValueRemove,
                 noOptionsMessage: state => styles.noOptionsMessage,
-                option: state => `${styles.option} ${state.isSelected ? styles.option_selected : ''}`,
+                option: state => clsx(styles.option, state.isSelected && styles.option_selected),
                 placeholder: state => styles.placeholder,
                 singleValue: state => styles.singleValue,
                 valueContainer: state => styles.valueContainer,

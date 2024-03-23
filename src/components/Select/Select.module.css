@@ -1,10 +1,7 @@
-.clearIndicator {
-
-}
-
-.container {
-
-}
+/**
+    Стили react-select нужно перебивать из-за внутренностей библиотеки,
+    потому используются !import
+ */
 
 .control {
     transition-duration: 150ms !important;
@@ -24,22 +21,6 @@
     border-color: #A1A1AA !important;
 }
 
-.dropdownIndicator {
-
-}
-
-.group {
-
-}
-
-.groupHeading {
-
-}
-
-.indicatorsContainer {
-
-}
-
 .indicatorSeparator {
     width: 2px !important;
     background-color: #E4E4E7 !important;
@@ -47,14 +28,6 @@
 
 .input {
     font-weight: 400;
-}
-
-.loadingIndicator {
-
-}
-
-.loadingMessage {
-
 }
 
 .menu {
@@ -143,10 +116,6 @@
     line-height: 1.25rem;
     text-overflow: ellipsis;
     cursor: text;
-}
-
-.singleValue {
-
 }
 
 .valueContainer {

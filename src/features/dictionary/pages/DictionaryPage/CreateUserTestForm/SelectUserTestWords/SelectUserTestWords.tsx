@@ -1,16 +1,14 @@
 import React, {FC, useCallback, useEffect, useState} from "react";
-import {typedMemo} from "../../../../../../core/utils/typedMemo";
-import {UserTestStorageService} from "../../../../../../api/services/userTestStorageService";
-import {SelectItemType} from "../../../../../../core/models/SelectItemType";
-import {WordsService} from "../../../../../../api/services/words";
+import {typedMemo} from "core/utils/typedMemo";
+import {UserTestStorageService} from "api/services/userTestStorageService";
+import {SelectItemType} from "core/models/SelectItemType";
+import {WordsService} from "api/services/words";
 import styles from './SelectUserTestWords.module.css';
-import {Typography} from "../../../../../../components/Typography";
-import {Button, Chip} from "@nextui-org/react";
-import clsx from "clsx";
+import {Typography} from "components/Typography";
 import {useQuery} from "react-query";
 import {OnChangeValue} from "react-select";
-import {Select} from "../../../../../../components/Select";
-import {normalizeCountForm} from "../../../../../../core/utils/normalizeCountForm";
+import {Select} from "components/Select";
+import {normalizeCountForm} from "core/utils/normalizeCountForm";
 
 type Props = Readonly<{
     onChangeWordIds: (ids: string[]) => void;
