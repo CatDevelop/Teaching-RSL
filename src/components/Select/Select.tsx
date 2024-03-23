@@ -19,6 +19,8 @@ export type Props<Option, IsMulti extends boolean> = ComponentProps &
 export const Select = typedMemo(function Select<Option, IsMulti extends boolean = false>(props: Props<Option, IsMulti>) {
     return (
         <ReactSelect
+            placeholder="Выберите"
+            noOptionsMessage={() => "Нет доступных элементов"}
             {...props}
             classNames={{
                 clearIndicator: state => styles.clearIndicator,

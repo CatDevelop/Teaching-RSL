@@ -4,26 +4,32 @@
  */
 
 .control {
+    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
+
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--nextui-default-200) / var(--nextui-default-200-opacity, var(--tw-border-opacity))) !important;
+
     transition-duration: 150ms !important;
     outline: 2px solid transparent !important;
     outline-offset: 2px;
-    box-shadow: 0 0 #0000,
-    0 0 #0000,
-    0 1px 2px 0 rgb(0 0 0/0.05) !important;
     padding: 0.5rem 0.5rem 0.5rem 0.75rem;
-    border-radius: 12px !important;
-    border-width: 2px !important;
-    border-color: #E4E4E7 !important;
+    border-radius: var(--nextui-radius-medium) !important;
+    border-width: var(--nextui-border-width-medium) !important;
     cursor: pointer !important;
 }
 
 .control:hover {
-    border-color: #A1A1AA !important;
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--nextui-default-400) / var(--nextui-default-400-opacity, var(--tw-border-opacity))) !important;
 }
 
 .indicatorSeparator {
-    width: 2px !important;
-    background-color: #E4E4E7 !important;
+    width: var(--nextui-border-width-medium) !important;
+    background-color:  hsl(var(--nextui-default-200) / var(--nextui-default-200-opacity, var(--tw-border-opacity))) !important;
 }
 
 .input {
@@ -31,21 +37,31 @@
 }
 
 .menu {
+    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
+
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--nextui-default-200) / var(--nextui-default-200-opacity, var(--tw-border-opacity))) !important;
+
     z-index: var(--z-index-select) !important;
     transition-duration: 150ms !important;
-    box-shadow: 0 0 #0000,
-    0 0 #0000,
-    0 1px 2px 0 rgb(0 0 0/0.05) !important;
     padding: 0.25rem;
-    border-radius: 12px !important;
-    border-width: 2px !important;
-    border-color: #E4E4E7 !important;
+    border-radius: var(--nextui-radius-medium) !important;
+    border-width: var(--nextui-border-width-medium) !important;
+
     margin-bottom: 30px !important;
 }
 
 .multiValue {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--nextui-default-200) / var(--nextui-default-200-opacity, var(--tw-border-opacity))) !important;
+
     border-radius: 30px !important;
-    border: 2px solid #E4E4E7;
+    border-width: var(--nextui-border-width-medium) !important;
+
     padding: 0.05rem 0.3rem !important;
     background-color: transparent !important;
     align-items: center;
@@ -60,15 +76,16 @@
     width: 15px;
     border-radius: 100% !important;
     padding: 0 !important;
-    background-color: #585D60;
+    opacity: 0.7;
+    background-color: #000 !important;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.multiValueRemove:hover{
-    background-color: #000 !important;
+.multiValueRemove:hover {
+    opacity: 1;
 }
 
 .multiValueRemove svg {
@@ -91,7 +108,7 @@
 
 .option {
     padding: 0.375rem 0.5rem 0.375rem 0.5rem !important;
-    border-radius: 8px;
+    border-radius: var(--nextui-radius-small);
     background-color: transparent !important;
     font-size: 0.875rem !important;
     line-height: 1.25rem !important;
@@ -103,15 +120,17 @@
 }
 
 .option_selected {
-    background-color: #338EF7FF !important;
+    background-color: var(--primary-color) !important;
 }
 
 .option_selected:hover {
-    background-color: #166fd6 !important;
+    background-color: var(--disabled-primary-color) !important;
 }
 
 .placeholder {
-    color: #71717A;
+    --tw-text-opacity: 1;
+    color: hsl(var(--nextui-foreground-500) / var(--nextui-foreground-500-opacity, var(--tw-text-opacity))) !important;
+
     font-size: 0.875rem;
     line-height: 1.25rem;
     text-overflow: ellipsis;
