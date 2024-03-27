@@ -9,6 +9,8 @@ import {SendLevelResultRequest} from "../../core/models/userHistory/SendLevelRes
 import {SendLevelResultRequestDto} from "../../core/dtos/userHistory/SendLevelResultResponseDto";
 import {SendTestResultRequest} from "../../core/models/userHistory/SendTestResultRequest";
 import {SendTestResultRequestMapper} from "../../core/mappers/userHistory/SendTestResultRequestMapper";
+import {GetTrainingHistoryResponse} from "../../core/models/userHistory/GetTrainingHistoryResponse";
+import {GetTrainingHistoryResponseMapper} from "../../core/mappers/userHistory/GetTrainingHistoryResponseMapper";
 
 export namespace UserHistoryService {
     export async function getThemes() {
@@ -17,8 +19,16 @@ export namespace UserHistoryService {
     }
 
     export async function getStatistics() {
-        const {data} = await http.get<GetUserLevelStatisticResponse>(ApiUrlsConfig.userHistory.getStatistics);
-        return GetUserLevelStatisticResponseMapper.fromDto(data);
+        try {
+            const {data} = await http.get<GetUserLevelStatisticResponse>(ApiUrlsConfig.userHistory.getStatistics);
+            return GetUserLevelStatisticResponseMapper.fromDto(data);
+        } catch {
+            return GetUserLevelStatisticResponseMapper.fromDto({
+                completedLevelsCount: 0,
+                completedWordsCount: 0,
+                trophiesCount: 0,
+            });
+        }
     }
 
     export async function sendLevelResult(formData: SendLevelResultRequest): Promise<void> {
@@ -33,5 +43,14 @@ export namespace UserHistoryService {
             ApiUrlsConfig.userHistory.sendTestResult,
             SendTestResultRequestMapper.toDTO(formData)
         )
+    }
+
+    export async function getTrainingHistory() {
+        try {
+            const {data} = await http.get<GetTrainingHistoryResponse>(ApiUrlsConfig.userHistory.getTrainingHistory);
+            return GetTrainingHistoryResponseMapper.fromDto(data);
+        } catch {
+            return GetTrainingHistoryResponseMapper.fromDto({themeInfoDalList: []});
+        }
     }
 }

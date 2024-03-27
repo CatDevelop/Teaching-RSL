@@ -11,7 +11,6 @@ import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types"
 import {WordInTest} from "../../../../core/models/training/GetTestResponse";
 import {stopAllTracks} from "../../../../core/utils/stopAllTracks";
 import {socket} from "../../../../core/utils/connectToModal";
-import {Button} from "../../../../components/Button";
 import {TaskSetting} from "components/TaskSetting";
 import {TaskFeedback} from "../../../../components/TaskFeedback";
 import {LocalStorageService} from "../../../../api/services/localStorageService";
@@ -31,7 +30,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     const [isWasSuccess, setIsWasSuccess] = useState(false)
-    const [defaultDevice, setDefaultDevice] = React.useState<string | null>();
+    const [defaultDevice] = React.useState<string | null>();
 
     useEffect(() => {
         setIsWasSuccess(false)
@@ -121,7 +120,6 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
     }, [props.intervalID])
 
     useEffect(() => {
-        console.log(props.signRecognizeText, props)
         if (!isWasSuccess && props.signRecognizeText.includes(props.word.word?.toLowerCase() ?? '') ) {
             console.log("SUCCESS")
             props.onSuccess()

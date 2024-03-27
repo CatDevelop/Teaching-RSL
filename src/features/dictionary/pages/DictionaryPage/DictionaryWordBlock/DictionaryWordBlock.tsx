@@ -1,6 +1,6 @@
 import {Card} from "components/Card";
 import {typedMemo} from "core/utils/typedMemo";
-import React, {FC, useCallback, useEffect, useState} from "react";
+import React, {FC, useCallback, useEffect} from "react";
 import styles from "./DictionaryWordBlock.module.css";
 import {Typography} from "components/Typography";
 import {ComponentProps} from "core/models/ComponentProps";

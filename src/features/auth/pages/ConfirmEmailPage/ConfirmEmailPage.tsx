@@ -1,16 +1,15 @@
-import { Page } from "components/Page";
-import { PageContent } from "components/PageContent";
-import { typedMemo } from "core/utils/typedMemo";
-import React, { FC, useCallback, useEffect } from "react";
+import {Page} from "components/Page";
+import {PageContent} from "components/PageContent";
+import {typedMemo} from "core/utils/typedMemo";
+import React, {FC, useCallback, useEffect} from "react";
 import {ReactComponent as Logo} from "../../../../assets/images/Logo.svg";
 
 import styles from "./ConfirmEmailPage.module.css";
-import { Card, CardHeader } from "components/Card";
-import { Button } from "components/Button";
-import { useNavigate, useParams } from "react-router";
-import { Typography } from "components/Typography";
-import { useMutation } from "react-query";
-import { AuthService } from "api/services/auth";
+import {Button} from "components/Button";
+import {useNavigate, useParams} from "react-router";
+import {Typography} from "components/Typography";
+import {useMutation} from "react-query";
+import {AuthService} from "api/services/auth";
 
 type Props = Readonly<{}>
 

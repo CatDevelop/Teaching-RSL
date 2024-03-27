@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-m);
+    align-items: center;
+}
+
+.title {
+    line-height: var(--font-size-m);
+}
+
+.wordCount {
+    line-height: var(--font-size-m);
+    color: var(--thirdly-text-color);
+    font-weight: var(--font-weight-m);
+}

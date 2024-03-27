@@ -72,6 +72,7 @@ export const SideBar: FC = typedMemo(function SideBar() {
                         return (
                             <SideBarItem
                                 item={item}
+                                key={item.id}
                                 isActive={location.pathname.split("/")[1] === item.link.split("/")[1]}
                             />
                         )
@@ -80,16 +81,16 @@ export const SideBar: FC = typedMemo(function SideBar() {
             </div>
 
             <div className={styles.sidebar__footer}>
-                <Typography 
-                    variant="p" 
+                <Typography
+                    variant="p"
                     className={styles.sidebar__username}
                 >
                     {user!.lastName} {user!.firstName}
                     </Typography>
-                <Button 
-                    variant="light" 
-                    as={Link} 
-                    to="/profile/settings" 
+                <Button
+                    variant="light"
+                    as={Link}
+                    to="/profile/settings"
                     className={styles.sidebar__toSettingsBtn}
                 >
                     Редактировать профиль

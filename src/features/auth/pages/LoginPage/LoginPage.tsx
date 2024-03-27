@@ -9,8 +9,6 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {schema} from "./LoginPage.settings";
 import {Button} from "../../../../components/Button";
 import {FormLink} from "../../components/FormLink";
-import {ReactComponent as VK} from "../../../../assets/images/VK.svg"
-import {ReactComponent as Yandex} from "../../../../assets/images/Yandex.svg"
 import {useDispatch} from "react-redux";
 import {useMutation} from "react-query";
 import {UserService} from "api/services/user";
@@ -21,11 +19,11 @@ import {toast} from "react-toastify";
 /**
  * Страница входа
  */
-export const LoginPage: FC = typedMemo(function LoginPage(){
+export const LoginPage: FC = typedMemo(function LoginPage() {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: {errors},
     } = useForm<LoginUserRequest>({resolver: yupResolver(schema)})
 
     const dispatch = useDispatch();
@@ -34,8 +32,8 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
         onSuccess: () => {
             dispatch(loginDispatch())
         },
-        onError: (error: {response: {data: Object}}) => {
-            if("error_description" in error.response.data && error.response.data.error_description === "invalid_username_or_password")
+        onError: (error: { response: { data: Object } }) => {
+            if ("error_description" in error.response.data && error.response.data.error_description === "invalid_username_or_password")
                 toast.error('Неверный логин или пароль!');
             else
                 toast.error('Ошибка!');
@@ -45,19 +43,6 @@ export const LoginPage: FC = typedMemo(function LoginPage(){
     const onSubmit = (form: LoginUserRequest) => {
         login(form);
     }
-
-    const socialLinks = [
-        {
-            label: "Вконтакте",
-            icon: VK,
-            onClick: () => {}
-        },
-        {
-            label: "Яндекс",
-            icon: Yandex,
-            onClick: () => {}
-        }
-    ]
 
     return (
         <AuthFormPage>

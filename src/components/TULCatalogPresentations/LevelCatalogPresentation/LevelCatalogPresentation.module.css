@@ -1,0 +1,40 @@
+.levelLink {
+    border: 2px solid var(--disabled-text-color);
+    display: flex;
+    cursor: pointer;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+}
+
+.levelLink .levelIcon {
+    fill: var(--thirdly-text-color);
+}
+
+.levelLink_completed {
+    border-color: transparent;
+    background-color: var(--success-color);
+    cursor: default;
+}
+
+.levelLink_partCompleted {
+    border-color: transparent;
+    background-color: var(--warning-color);
+    cursor: default;
+}
+
+.levelLink_partCompleted .levelIcon,
+.levelLink_completed .levelIcon {
+    fill: var(--on-surface-color);
+}
+
+.levelLink_disabled {
+    border-color: var(--disabled-text-color);
+    cursor: default;
+}
+
+.levelLink_disabled .levelIcon {
+    fill: var(--disabled-text-color);
+}

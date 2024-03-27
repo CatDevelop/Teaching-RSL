@@ -12,7 +12,7 @@ const colors = [
 const TextureMesh = () => {
     const mesh = useRef(null)
     useFrame(state => {
-        const {clock, mouse, gl, scene, camera} = state
+        const {clock, mouse} = state
         if (mesh.current) {
             mesh.current.material.uniforms.u_mouse.value = [mouse.x, mouse.y]
             mesh.current.material.uniforms.u_time.value = clock.getElapsedTime()

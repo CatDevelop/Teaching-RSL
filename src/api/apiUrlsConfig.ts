@@ -1,4 +1,4 @@
-import { CONFIG } from "./config";
+import {CONFIG} from "./config";
 import {BlockType} from "../core/models/words/BlockType";
 
 /** API ссылки приложения. */
@@ -23,6 +23,7 @@ export namespace ApiUrlsConfig {
 		getTestHistory: toUserApi('testhistory'),
 		sendLevelResult: toUserApi('userhistory/send-level-result'),
 		sendTestResult: toUserApi('testhistory/send-result/'),
+		getTrainingHistory: toUserApi('testhistory/user/progress'),
 	}
 
 	/** API ссылки авторизации (sso) */

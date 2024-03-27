@@ -1,6 +1,7 @@
 export enum TestTypeEnum {
-    TestByTheme = 'TestByTheme', 
-    TestByUnit = 'TestByUnit', 
-    RandomTest = 'RandomTest', 
+    TestByTheme = 'TestByTheme',
+    TestByUnit = 'TestByUnit',
+    TestByLevel = 'TestByLevel',
+    RandomTest = 'RandomTest',
     CustomTest = 'CustomTest',
 }
