@@ -79,6 +79,8 @@
     --content-max-width: 1100px;
 
     --max-theory-card-width: 1080px;
+
+    --z-index-select: 100;
 }
 
 @media(max-width: 1300px){
