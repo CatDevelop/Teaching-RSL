@@ -14,7 +14,7 @@ import {LevelCatalogPresentation} from "../../../../components/TULCatalogPresent
 
 type Props = ComponentProps & GetUnitResponse & {
     type: TestTypeEnum;
-    disabled?: boolean ;
+    disabled?: boolean;
     number?: number;
 };
 
@@ -33,23 +33,36 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
         navigate(test.id)
     }, [navigate, props])
 
-    console.log(props.name, props.id)
-
     return (
         <div className={clsx(styles.systemTestPreview, props.className)} onClick={() => start(props.wordsCount)}>
             {
                 props.type === TestTypeEnum.TestByTheme &&
-                <ThemeCatalogPresentation id={props.id} name={props.name} completeWordsCount={props.completedWordsCount || 0} allWordsCount={props.wordsCount}/>
+                <ThemeCatalogPresentation
+                    id={props.id}
+                    name={props.name}
+                    completeWordsCount={props.completedWordsCount || 0}
+                    allWordsCount={props.wordsCount}
+                />
             }
 
             {
                 props.type === TestTypeEnum.TestByUnit &&
-                <UnitCatalogPresentation id={props.id} name={props.name} completeWordsCount={props.completedWordsCount || 0} allWordsCount={props.wordsCount}/>
+                <UnitCatalogPresentation
+                    id={props.id}
+                    name={props.name}
+                    completeWordsCount={props.completedWordsCount || 0}
+                    allWordsCount={props.wordsCount}
+                />
             }
 
             {
                 props.type === TestTypeEnum.TestByLevel &&
-                <LevelCatalogPresentation id={props.id} completeWordsCount={0} allWordsCount={props.wordsCount} disabled={props.disabled || false} number={props.number || 0}/>
+                <LevelCatalogPresentation
+                    id={props.id}
+                    completeWordsCount={0}
+                    allWordsCount={props.wordsCount}
+                    disabled={props.disabled || false}
+                    number={props.number || 0}/>
             }
         </div>
     );

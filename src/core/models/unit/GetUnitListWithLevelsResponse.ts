@@ -38,7 +38,6 @@ export class GetUnitWithLevelsResponse {
      */
     public readonly levels: readonly LevelInUnit[];
 
-    // TODO приходит не в этом ресте
     /**
      * Пройденное количество слов в теме.
      */
@@ -73,7 +72,6 @@ export class LevelInUnit {
      */
     public readonly wordsCount: number;
 
-    // TODO приходит не в этом ресте
     /**
      * Количество пройденных слов в уровне.
      */

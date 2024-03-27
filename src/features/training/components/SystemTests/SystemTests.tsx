@@ -18,6 +18,22 @@ import {UserHistoryService} from "../../../../api/services/userHistory";
 
 type Props = ComponentProps;
 
+type SystemTestsCatalogBlock = {
+    id: string;
+    name: string
+    wordsCount: number;
+    completedWordsCount: number;
+}
+
+type SystemTestsCatalog = {
+    themeList: (SystemTestsCatalogBlock & {
+        description: string;
+        units: (SystemTestsCatalogBlock & {
+            levels: SystemTestsCatalogBlock[]
+        })[]
+    })[]
+}
+
 /**
  * Каталог системных тестов в тренировках
  */
@@ -25,14 +41,14 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
     const {data: themeListWithUnits} = useQuery<GetThemeListWithUnitsResponse>("systemtests/themes/with-units/get", ThemesService.getListWithUnits)
     const {data: unitListWithLevels} = useQuery<GetUnitListWithLevelsResponse>("systemtests/units/with-levels/get", UnitService.getListWithLevels)
     const {data: trainingHistory} = useQuery<GetTrainingHistoryResponse>("traininghistory/get", UserHistoryService.getTrainingHistory)
-    const [parsedData, setParsedData] = useState<GetThemeListWithUnitsResponse | null>(null);
+    const [systemTestsCatalog, setSystemTestsCatalog] = useState<SystemTestsCatalog | null>(null);
 
     useEffect(() => {
-        if(!themeListWithUnits || !unitListWithLevels || !trainingHistory){
+        if (!themeListWithUnits || !unitListWithLevels || !trainingHistory) {
             return
         }
 
-        const parsedData: GetThemeListWithUnitsResponse = {
+        const systemTestsCatalog: SystemTestsCatalog = {
             themeList: themeListWithUnits.themeList.map(themeItem => {
                 const foundTheme = trainingHistory.themeInfoDalList?.find(themeHistory => themeHistory.themeId === themeItem.id);
                 return {
@@ -43,21 +59,19 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
                         return {
                             ...unitItem,
                             completedWordsCount: foundUnit ? foundUnit.completedWordCount : 0,
-                            levels: unitListWithLevels.units.find(unit => unit.id === unitItem.id)?.levels
+                            levels: unitListWithLevels.units.find(unit => unit.id === unitItem.id)?.levels as SystemTestsCatalogBlock[]
                         }
                     })
                 }
             })
         }
 
-        setParsedData(parsedData);
+        setSystemTestsCatalog(systemTestsCatalog);
     }, [themeListWithUnits, unitListWithLevels, trainingHistory])
 
-    if(!parsedData) {
+    if (!systemTestsCatalog) {
         return null;
     }
-
-    console.log("parsedData", parsedData)
 
     return (
         <Card className={styles.systemTests}>
@@ -65,41 +79,44 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
                 Темы
             </Typography>
             <ScrollBox className={clsx(styles.systemTests__container, props.className)}>
-                {parsedData.themeList.map(theme => (
-                    <div className={styles.systemTests__theme} key={theme.id}>
-                        <SystemTestPreview
-                            {...theme}
-                            key={`SystemTestPreviewByTheme${theme.id}`}
-                            type={TestTypeEnum.TestByTheme}
-                        />
-                        {theme.units.map(unit => (
-                            <div className={styles.units}>
-                                <SystemTestPreview
-                                    {...unit}
-                                    key={`SystemTestPreviewByUnit${unit.id}`}
-                                    type={TestTypeEnum.TestByUnit}
-                                />
-                                <div className={styles.levels}>
-                                    {
-                                        // @ts-ignore
-                                        unit?.levels.map((level, index) => (
-                                            <>
-                                                <SystemTestPreview
-                                                    {...level}
-                                                    key={`SystemTestPreviewByLevel${level.id}`}
-                                                    type={TestTypeEnum.TestByLevel}
-                                                    number={index}
-                                                />
-                                                <p className={styles.levels__delimiter}/>
-                                            </>
-                                        ))
-                                    }
-                                </div>
-                            </div>
-
-                        ))}
-                    </div>
-                ))}
+                {
+                    systemTestsCatalog.themeList.map(theme => (
+                        <div className={styles.systemTests__theme}>
+                            <SystemTestPreview
+                                {...theme}
+                                key={`SystemTestPreviewByTheme${theme.id}`}
+                                type={TestTypeEnum.TestByTheme}
+                            />
+                            {
+                                theme.units.map(unit => (
+                                    <div className={styles.units}>
+                                        <SystemTestPreview
+                                            {...unit}
+                                            key={`SystemTestPreviewByUnit${unit.id}`}
+                                            type={TestTypeEnum.TestByUnit}
+                                        />
+                                        <div className={styles.levels}>
+                                            {
+                                                unit?.levels.map((level, index) => (
+                                                    <>
+                                                        <SystemTestPreview
+                                                            {...level}
+                                                            key={`SystemTestPreviewByLevel${level.id}`}
+                                                            type={TestTypeEnum.TestByLevel}
+                                                            number={index}
+                                                        />
+                                                        <p key={`delimiter${level.id}`}
+                                                           className={styles.levels__delimiter}/>
+                                                    </>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    ))
+                }
             </ScrollBox>
         </Card>
     );
