@@ -9,6 +9,8 @@ import {SendLevelResultRequest} from "../../core/models/userHistory/SendLevelRes
 import {SendLevelResultRequestDto} from "../../core/dtos/userHistory/SendLevelResultResponseDto";
 import {SendTestResultRequest} from "../../core/models/userHistory/SendTestResultRequest";
 import {SendTestResultRequestMapper} from "../../core/mappers/userHistory/SendTestResultRequestMapper";
+import {GetTrainingHistoryResponse} from "../../core/models/userHistory/GetTrainingHistoryResponse";
+import {GetTrainingHistoryResponseMapper} from "../../core/mappers/userHistory/GetTrainingHistoryResponseMapper";
 
 export namespace UserHistoryService {
     export async function getThemes() {
@@ -33,5 +35,10 @@ export namespace UserHistoryService {
             ApiUrlsConfig.userHistory.sendTestResult,
             SendTestResultRequestMapper.toDTO(formData)
         )
+    }
+
+    export async function getTrainingHistory() {
+        const {data} = await http.get<GetTrainingHistoryResponse>(ApiUrlsConfig.userHistory.getTrainingHistory);
+        return GetTrainingHistoryResponseMapper.fromDto(data);
     }
 }

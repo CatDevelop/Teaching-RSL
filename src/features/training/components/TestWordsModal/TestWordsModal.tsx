@@ -13,7 +13,7 @@ type Props = ComponentProps & Readonly<{
 }>;
 
 const MIN_WORDS_COUNT = 5;
-
+// TODO убрать этот компонент
 export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal(props) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [wordsCount, setWordsCount] = useState(MIN_WORDS_COUNT);
@@ -23,11 +23,8 @@ export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal(props
     }, [setWordsCount]);
 
     const openModal = useCallback(() => {
-        if(props.maxWordsCount <= MIN_WORDS_COUNT){
-            props.start(props.maxWordsCount)
-        } else {
-            onOpen();
-        }
+        props.start(props.maxWordsCount)
+
     }, [onOpen, props.maxWordsCount, props.start])
 
     return (

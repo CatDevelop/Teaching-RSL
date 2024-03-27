@@ -4,6 +4,7 @@ import {Typography} from "../../../../../components/Typography";
 import {UnitBlock} from "../UnitBlock/UnitBlock";
 import {GetUnitWithLevelsResponse} from "../../../../../core/models/unit/GetUnitListWithLevelsResponse";
 import styles from "./ThemeBlock.module.css"
+import {ThemeCatalogPresentation} from "../../../../../components/TULCatalogPresentations/ThemeCatalogPresentation";
 
 type Props = {
     id: string,
@@ -19,14 +20,8 @@ type Props = {
 export const ThemeBlock: FC<Props> = typedMemo(function ThemeBlock(props) {
     return (
         <div key={"themeBlock" + props.id} className={styles.themeBlock}>
-            <div className={styles.themeBlock__titleContainer}>
-                <Typography variant="h3" className={styles.themeBlock__titleContainer__title}>
-                    {props.name}
-                </Typography>
-                <Typography variant="p" className={styles.themeBlock__titleContainer__wordCount}>
-                    {Math.min(props.completeWordsCount, props.allWordsCount)} / {props.allWordsCount}
-                </Typography>
-            </div>
+
+            <ThemeCatalogPresentation id={props.id} name={props.name} completeWordsCount={props.completeWordsCount} allWordsCount={props.allWordsCount}/>
 
             <div className={styles.themeBlock__units}>
                 {
