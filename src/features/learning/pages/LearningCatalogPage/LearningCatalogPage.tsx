@@ -29,7 +29,6 @@ export const LearningCatalogPage: FC = typedMemo(function LearningCatalogPage() 
                     <div className={styles.learningCatalog__themes}>
                         <ThemesList />
                     </div>
-                    <div></div>
                 </Suspense>
             </PageContent>
         </Page>

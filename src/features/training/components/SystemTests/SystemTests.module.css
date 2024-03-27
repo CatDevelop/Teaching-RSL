@@ -9,15 +9,42 @@
 .systemTests__container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-l);
+    gap: var(--space-xxl);
 }
 
 .systemTests__theme {
     display: flex;
     flex-direction: column;
-    gap: var(--space-m);
+    gap: var(--space-l);
 }
 
 .systemTests__theme_title {
     line-height: var(--font-size-m);
+}
+
+.units {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+
+
+.levels {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-s);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.levels__delimiter {
+    width: 20px;
+    height: 3px;
+    background: var(--dark-on-surface-color);
+    border-radius: 4px;
+}
+
+.levels__delimiter:last-child {
+    display: none;
 }
