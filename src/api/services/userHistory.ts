@@ -11,6 +11,9 @@ import {SendTestResultRequest} from "../../core/models/userHistory/SendTestResul
 import {SendTestResultRequestMapper} from "../../core/mappers/userHistory/SendTestResultRequestMapper";
 import {GetTrainingHistoryResponse} from "../../core/models/userHistory/GetTrainingHistoryResponse";
 import {GetTrainingHistoryResponseMapper} from "../../core/mappers/userHistory/GetTrainingHistoryResponseMapper";
+import {GetTestResponseDto} from "../../core/dtos/training/GetTestResponseDto";
+import {GetTestResponseMapper} from "../../core/mappers/training/GetTestResponseMapper";
+import {TestTypeEnum} from "../../core/models/themes/TestTypeEnum";
 
 export namespace UserHistoryService {
     export async function getThemes() {
@@ -38,7 +41,11 @@ export namespace UserHistoryService {
     }
 
     export async function getTrainingHistory() {
-        const {data} = await http.get<GetTrainingHistoryResponse>(ApiUrlsConfig.userHistory.getTrainingHistory);
-        return GetTrainingHistoryResponseMapper.fromDto(data);
+        try {
+            const {data} = await http.get<GetTrainingHistoryResponse>(ApiUrlsConfig.userHistory.getTrainingHistory);
+            return GetTrainingHistoryResponseMapper.fromDto(data);
+        } catch {
+            return GetTrainingHistoryResponseMapper.fromDto({themeInfoDalList: []});
+        }
     }
 }

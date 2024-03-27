@@ -37,7 +37,6 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
     console.log(props.name, props.id)
 
     return (
-
         <div className={clsx(styles.systemTestPreview, props.className)} onClick={() => start(props.wordsCount)}>
             {
                 props.type === TestTypeEnum.TestByTheme &&
