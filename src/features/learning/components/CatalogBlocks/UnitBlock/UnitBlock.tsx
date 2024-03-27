@@ -1,7 +1,5 @@
 import React, {FC} from "react";
 import {typedMemo} from "../../../../../core/utils/typedMemo";
-import {Typography} from "../../../../../components/Typography";
-import {LevelBlock} from "../LevelBlock/LevelBlock";
 import {GetLevelResponseDto} from "../../../../../core/dtos/unit/GetUnitListWithLevelsResponseDto";
 import styles from "./UnitBlock.module.css"
 import {UnitCatalogPresentation} from "../../../../../components/TULCatalogPresentations/UnitCatalogPresentation";

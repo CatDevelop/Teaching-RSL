@@ -11,9 +11,6 @@ import {SendTestResultRequest} from "../../core/models/userHistory/SendTestResul
 import {SendTestResultRequestMapper} from "../../core/mappers/userHistory/SendTestResultRequestMapper";
 import {GetTrainingHistoryResponse} from "../../core/models/userHistory/GetTrainingHistoryResponse";
 import {GetTrainingHistoryResponseMapper} from "../../core/mappers/userHistory/GetTrainingHistoryResponseMapper";
-import {GetTestResponseDto} from "../../core/dtos/training/GetTestResponseDto";
-import {GetTestResponseMapper} from "../../core/mappers/training/GetTestResponseMapper";
-import {TestTypeEnum} from "../../core/models/themes/TestTypeEnum";
 
 export namespace UserHistoryService {
     export async function getThemes() {
@@ -22,8 +19,16 @@ export namespace UserHistoryService {
     }
 
     export async function getStatistics() {
-        const {data} = await http.get<GetUserLevelStatisticResponse>(ApiUrlsConfig.userHistory.getStatistics);
-        return GetUserLevelStatisticResponseMapper.fromDto(data);
+        try {
+            const {data} = await http.get<GetUserLevelStatisticResponse>(ApiUrlsConfig.userHistory.getStatistics);
+            return GetUserLevelStatisticResponseMapper.fromDto(data);
+        } catch {
+            return GetUserLevelStatisticResponseMapper.fromDto({
+                completedLevelsCount: 0,
+                completedWordsCount: 0,
+                trophiesCount: 0,
+            });
+        }
     }
 
     export async function sendLevelResult(formData: SendLevelResultRequest): Promise<void> {

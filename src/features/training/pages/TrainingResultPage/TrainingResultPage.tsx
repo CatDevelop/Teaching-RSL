@@ -30,10 +30,6 @@ export const TrainingResultPage: FC = typedMemo(function TrainingPage() {
         fireworks()
     }, [fireworks]);
 
-    const getTaskResult = useCallback((countAllWords: number, countSkippedWords: number) => {
-        return 100 - Math.floor((countSkippedWords) / countSkippedWords * 100)
-    }, [])
-
     return (
         <Page>
             <ExitConfirmation isOpen={exitModalIsOpen} setIsOpen={setExitModalIsOpen} onExit={toTrainingPage}/>

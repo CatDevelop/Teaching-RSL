@@ -1,5 +1,3 @@
-import { UserThemeHistoryRecordResponseDto } from "core/dtos/userHistory/UserThemeHistoryRecordResponseDto";
-import { UserThemeHistoryRecordResponse } from "core/models/userHistory/UserThemeHistoryRecordResponse";
 import {GetTrainingHistoryResponse} from "../../models/userHistory/GetTrainingHistoryResponse";
 
 export namespace GetTrainingHistoryResponseMapper {

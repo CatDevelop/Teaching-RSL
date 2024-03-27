@@ -19,7 +19,7 @@ import {UserHistoryService} from "../../../../api/services/userHistory";
 type Props = ComponentProps;
 
 /**
- * System tests
+ * Каталог системных тестов в тренировках
  */
 export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
     const {data: themeListWithUnits} = useQuery<GetThemeListWithUnitsResponse>("systemtests/themes/with-units/get", ThemesService.getListWithUnits)
@@ -49,6 +49,7 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
                 }
             })
         }
+
         setParsedData(parsedData);
     }, [themeListWithUnits, unitListWithLevels, trainingHistory])
 

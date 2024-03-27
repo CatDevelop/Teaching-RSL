@@ -1,7 +1,6 @@
 import React, {FC, useCallback} from "react";
 import clsx from "clsx";
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import {Typography} from "../../../../components/Typography";
 import {ComponentProps} from "../../../../core/models/ComponentProps";
 import styles from "./SystemTestPreview.module.css";
 import {GetUnitResponse} from "../../../../core/models/unit/GetUnitResponse";

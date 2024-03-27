@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {default as ReactSelect, Props as SelectProps} from "react-select";
 import {ComponentProps} from "../../core/models/ComponentProps";
 import {typedMemo} from "../../core/utils/typedMemo";
