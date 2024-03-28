@@ -20,7 +20,6 @@ export const Select = typedMemo(function Select<Option, IsMulti extends boolean 
     return (
         <ReactSelect
             placeholder="Выберите"
-            menuIsOpen
             noOptionsMessage={() => "Нет доступных элементов"}
             {...props}
             classNames={{
