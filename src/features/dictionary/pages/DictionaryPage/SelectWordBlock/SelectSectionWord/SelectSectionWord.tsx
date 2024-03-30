@@ -1,13 +1,11 @@
-import { Card } from "components/Card";
-import { ScrollBox } from "components/ScrollBox";
-import { typedMemo } from "core/utils/typedMemo";
+import {ScrollBox} from "components/ScrollBox";
+import {typedMemo} from "core/utils/typedMemo";
 import React, {FC, useMemo} from "react";
 import styles from "./SelectSectionWord.module.css";
-import { Typography } from "components/Typography";
-import { ComponentProps } from "core/models/ComponentProps";
-import clsx from "clsx";
-import { NavLink, useParams } from "react-router-dom";
-import { ArrowIcon } from "components/Icons";
+import {Typography} from "components/Typography";
+import {ComponentProps} from "core/models/ComponentProps";
+import {NavLink, useParams} from "react-router-dom";
+import {ArrowIcon} from "components/Icons";
 import {useQuery} from "react-query";
 import {WordsService} from "../../../../../../api/services/words";
 import {BlockType} from "../../../../../../core/models/words/BlockType";
@@ -34,7 +32,7 @@ export const SelectSectionWord: FC<Props> = typedMemo(function SelectSectionWord
                 <NavLink to={`/dictionary/${themeId}`}>
                     <ArrowIcon className={styles.selectSectionWord__backIcon}/>
                 </NavLink>
-                
+
                 <Typography variant='h2'>{unit.name}</Typography>
             </div>
 

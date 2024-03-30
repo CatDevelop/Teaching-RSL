@@ -1,11 +1,9 @@
-import {Card} from "components/Card";
 import {ScrollBox} from "components/ScrollBox";
 import {typedMemo} from "core/utils/typedMemo";
 import React, {FC} from "react";
 import styles from "./SelectThemeWord.module.css";
 import {Typography} from "components/Typography";
 import {ComponentProps} from "core/models/ComponentProps";
-import clsx from "clsx";
 import {NavLink, useParams} from "react-router-dom";
 import {Link} from "@nextui-org/react";
 import {ArrowIcon} from "components/Icons";
@@ -34,15 +32,15 @@ export const SelectThemeWord: FC<Props> = typedMemo(function SelectThemeWord(pro
                 <NavLink to={`/dictionary`}>
                     <ArrowIcon className={styles.selectThemeWord__backIcon}/>
                 </NavLink>
-                
+
                 <Typography variant='h2'>{themes![0].name}</Typography>
             </div>
-            
+
             <ScrollBox className={styles.selectThemeWord__scroll}>
                 {
                     themes![0].units.map((unit, i) => (
                         <div key={i} className={styles.selectThemeWord__theme}>
-                            <Link 
+                            <Link
                                 as={NavLink}
                                 to={`/dictionary/${themeId}/${unit.id}`}
                                 className={styles.selectThemeWord__sectionName}>

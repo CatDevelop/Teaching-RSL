@@ -57,7 +57,7 @@ export const TrainingPage: FC<Props> = typedMemo(function TrainingPage() {
         setCurrentStep(currentStep => currentStep + 1)
         setCountSkippedWords(count => count + 1);
         clearRecognizeText()
-    }, [setCountSkippedWords, setCurrentStep, currentStep, training, countSkippedWords, incorrectWords]);
+    }, [setCountSkippedWords, setCurrentStep, sendResult, currentStep, training, countSkippedWords, incorrectWords]);
 
     const next = useCallback(() => {
         if (currentStep + 1 === training?.words.length) {

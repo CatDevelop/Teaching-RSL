@@ -9,6 +9,7 @@ import {useQuery} from "react-query";
 import {OnChangeValue} from "react-select";
 import {Select} from "components/Select";
 import {normalizeCountForm} from "core/utils/normalizeCountForm";
+import {useDebouncedState} from "../../../../../../core/hooks/useDebouncedState";
 
 type Props = Readonly<{
     onChangeWordIds: (ids: string[]) => void;
@@ -19,16 +20,17 @@ type Props = Readonly<{
  */
 export const SelectUserTestWords: FC<Props> = typedMemo(function SelectUserTestWords(props) {
     const [search, setSearch] = useState('')
+    const [debouncedSearch] = useDebouncedState(search)
     const [words, setWords] = useState<SelectItemType<string>[]>([])
     const rawWordsQuery = useQuery(
-        ['get-words-in-test', search],
-        () => WordsService.getWordsBySearch(search),
+        ['get-words-in-test', debouncedSearch.trim()],
+        () => WordsService.getWordsBySearch(debouncedSearch.trim()),
         {
             onSuccess: (words) => {
                 setWords(words.map(word => new SelectItemType({label: word.word ?? '', value: word.id})))
             },
             suspense: false,
-            enabled: search.length > 0
+            enabled: debouncedSearch.trim().length > 0
         })
 
     const [selectedWords, setSelectedWords] = useState<SelectItemType<string>[]>([])
@@ -89,6 +91,7 @@ export const SelectUserTestWords: FC<Props> = typedMemo(function SelectUserTestW
                 options={words}
                 onChange={onChange}
                 value={selectedWords}
+                placeholder="Слова для теста"
                 isMulti
                 isSearchable
             />

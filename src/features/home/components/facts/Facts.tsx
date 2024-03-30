@@ -1,5 +1,5 @@
 import {typedMemo} from "../../../../core/utils/typedMemo";
-import React, {FC, useRef} from "react";
+import React, {FC} from "react";
 import styles from "./Facts.module.css";
 import {facts} from './utils/data'
 import {Fact} from "../fact";
@@ -13,7 +13,8 @@ import clsx from "clsx";
 export const Facts: FC<ComponentProps> = typedMemo(function Facts(props) {
     return (
         <div className={clsx(styles.facts, props.className)}>
-            <ScrollShadow orientation="horizontal" size={100} offset={-10} hideScrollBar className={styles.facts__shadow}>
+            <ScrollShadow orientation="horizontal" size={100} offset={-10} hideScrollBar
+                          className={styles.facts__shadow}>
                 <div className={styles.facts__contentContainer}>
                     <div className={clsx(styles.facts__contentContainer, styles.facts__firstContent)}>
                         {

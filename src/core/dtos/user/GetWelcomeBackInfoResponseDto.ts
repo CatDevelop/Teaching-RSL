@@ -6,24 +6,44 @@ export type GetWelcomeBackInfoResponseDto = Readonly<{
      * Имя
      */
     firstName: string | null;
-    
+
     /**
      * Фамилия
      */
     lastName: string | null;
-    
+
     /**
      * Почта
      */
     email: string | null;
-    
+
     /**
      * Текущий уровень
      */
     level: number;
-    
+
     /**
-     * Количество опыта
+     * Прогресс по практикам
      */
-    scoresCount: number;
+    progressCountTraining: number;
+
+    /**
+     * Прогресс по обучению
+     */
+    progressCountLearning: number;
+
+    /**
+     * Общий прогресс
+     */
+    progressCountAll: number;
+
+    /**
+     * Максимальный опыт в текущем уровне
+     */
+    maxLevelExperience: number;
+
+    /**
+     * Опыт пользователя
+     */
+    userExperience: number;
 }>

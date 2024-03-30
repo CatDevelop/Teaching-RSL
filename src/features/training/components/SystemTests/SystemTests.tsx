@@ -11,66 +11,112 @@ import {ThemesService} from "../../../../api/services/themes";
 import {useQuery} from "react-query";
 import {Card} from "../../../../components/Card";
 import {TestTypeEnum} from "../../../../core/models/themes/TestTypeEnum";
-import { UserService } from "api/services/user";
-import { UserFullHistoryRecordResponse } from "core/models/userHistory/UserFullHistoryRecordResponse";
+import {GetUnitListWithLevelsResponse} from "../../../../core/models/unit/GetUnitListWithLevelsResponse";
+import {UnitService} from "../../../../api/services/unit";
+import {GetTrainingHistoryResponse} from "../../../../core/models/userHistory/GetTrainingHistoryResponse";
+import {UserHistoryService} from "../../../../api/services/userHistory";
 
 type Props = ComponentProps;
 
+type SystemTestsCatalogBlock = {
+    id: string;
+    name: string
+    wordsCount: number;
+    completedWordsCount: number;
+}
+
+type SystemTestsCatalog = {
+    themeList: (SystemTestsCatalogBlock & {
+        description: string;
+        units: (SystemTestsCatalogBlock & {
+            levels: SystemTestsCatalogBlock[]
+        })[]
+    })[]
+}
+
 /**
- * System tests
+ * Каталог системных тестов в тренировках
  */
 export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
-    const {data} = useQuery<GetThemeListWithUnitsResponse>("systemtests/get", ThemesService.getListWithUnits)
-    const {data: userHistory} = useQuery<UserFullHistoryRecordResponse[]>("userthemeshistory/get", UserService.getThemesWithUnitsHistory)
-    const [parsedData, setParsedData] = useState<GetThemeListWithUnitsResponse | null>(null);
+    const {data: themeListWithUnits} = useQuery<GetThemeListWithUnitsResponse>("systemtests/themes/with-units/get", ThemesService.getListWithUnits)
+    const {data: unitListWithLevels} = useQuery<GetUnitListWithLevelsResponse>("systemtests/units/with-levels/get", UnitService.getListWithLevels)
+    const {data: trainingHistory} = useQuery<GetTrainingHistoryResponse>("traininghistory/get", UserHistoryService.getTrainingHistory)
+    const [systemTestsCatalog, setSystemTestsCatalog] = useState<SystemTestsCatalog | null>(null);
 
     useEffect(() => {
-        if(!data || !userHistory){
+        if (!themeListWithUnits || !unitListWithLevels || !trainingHistory) {
             return
         }
 
-        const parsedData: GetThemeListWithUnitsResponse = {
-            themeList: data?.themeList.map(themeItem => {
-                const findedTheme = userHistory?.find(themeHistory => themeHistory.themeId === themeItem.id);
+        const systemTestsCatalog: SystemTestsCatalog = {
+            themeList: themeListWithUnits.themeList.map(themeItem => {
+                const foundTheme = trainingHistory.themeInfoDalList?.find(themeHistory => themeHistory.themeId === themeItem.id);
                 return {
                     ...themeItem,
-                    completedWordsCount: findedTheme ? findedTheme.wordsCompletedCount : 0,
+                    completedWordsCount: foundTheme ? foundTheme.completedWordCount : 0,
                     units: themeItem.units.map(unitItem => {
-                        const findedUnit = findedTheme?.unitsHistory.find(unitHistory => unitHistory.unitId === unitItem.id)
+                        const foundUnit = foundTheme?.unitInfoList.find((unitHistory: any) => unitHistory.unitId === unitItem.id)
                         return {
                             ...unitItem,
-                            completedWordsCount: findedUnit ? findedUnit.unitWordsCount : 0,
+                            completedWordsCount: foundUnit ? foundUnit.completedWordCount : 0,
+                            levels: unitListWithLevels.units.find(unit => unit.id === unitItem.id)?.levels as SystemTestsCatalogBlock[]
                         }
                     })
                 }
             })
         }
 
-        setParsedData(parsedData);
-    }, [data, userHistory])
+        setSystemTestsCatalog(systemTestsCatalog);
+    }, [themeListWithUnits, unitListWithLevels, trainingHistory])
 
-    if(!parsedData) {
+    if (!systemTestsCatalog) {
         return null;
     }
+
     return (
         <Card className={styles.systemTests}>
             <Typography variant='h2'>
                 Темы
             </Typography>
             <ScrollBox className={clsx(styles.systemTests__container, props.className)}>
-                {parsedData.themeList.map(theme => (
-                    <div className={styles.systemTests__theme} key={theme.id}>
-                        <SystemTestPreview
-                            id={theme.id}
-                            name={theme.name}
-                            type={TestTypeEnum.TestByTheme}
-                            wordsCount={theme.wordsCount}
-                        />
-                        {theme.units.map(unit => (
-                            <SystemTestPreview {...unit} type={TestTypeEnum.TestByUnit}/>
-                        ))}
-                    </div>
-                ))}
+                {
+                    systemTestsCatalog.themeList.map(theme => (
+                        <div className={styles.systemTests__theme}>
+                            <SystemTestPreview
+                                {...theme}
+                                key={`SystemTestPreviewByTheme${theme.id}`}
+                                type={TestTypeEnum.TestByTheme}
+                            />
+                            {
+                                theme.units.map(unit => (
+                                    <div className={styles.units}>
+                                        <SystemTestPreview
+                                            {...unit}
+                                            key={`SystemTestPreviewByUnit${unit.id}`}
+                                            type={TestTypeEnum.TestByUnit}
+                                        />
+                                        <div className={styles.levels}>
+                                            {
+                                                unit?.levels.map((level, index) => (
+                                                    <>
+                                                        <SystemTestPreview
+                                                            {...level}
+                                                            key={`SystemTestPreviewByLevel${level.id}`}
+                                                            type={TestTypeEnum.TestByLevel}
+                                                            number={index}
+                                                        />
+                                                        <Typography variant="p" key={`delimiter${level.id}`}
+                                                           className={styles.levels__delimiter}/>
+                                                    </>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    ))
+                }
             </ScrollBox>
         </Card>
     );
