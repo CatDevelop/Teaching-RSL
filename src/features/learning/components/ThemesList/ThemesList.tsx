@@ -67,7 +67,6 @@ export const ThemesList: FC = typedMemo(function ThemesList() {
     if (!themeListWithUnits || !unitListWithLevels)
         return null;
 
-    console.log(themes, units)
     return (
         <Card className={styles.themeList}>
             <Typography variant='h2'>

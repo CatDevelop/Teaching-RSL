@@ -28,8 +28,6 @@
     gap: var(--space-m);
 }
 
-
-
 .levels {
     display: flex;
     flex-direction: row;

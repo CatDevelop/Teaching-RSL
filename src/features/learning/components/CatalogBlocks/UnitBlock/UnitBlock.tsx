@@ -5,6 +5,7 @@ import styles from "./UnitBlock.module.css"
 import {UnitCatalogPresentation} from "../../../../../components/TULCatalogPresentations/UnitCatalogPresentation";
 import {LevelCatalogPresentation} from "../../../../../components/TULCatalogPresentations/LevelCatalogPresentation";
 import {useNavigate} from "react-router-dom";
+import {Typography} from "../../../../../components/Typography";
 
 type Props = {
     id: string,
@@ -34,7 +35,7 @@ export const UnitBlock: FC<Props> = typedMemo(function UnitBlock(props) {
                                 allWordsCount={level.wordsCount}
                                 onClick={() => navigate("/learning/" + level.id)}
                             />
-                            <p className={styles.unitBlock__levels__delimiter}/>
+                            <Typography variant="p" className={styles.unitBlock__levels__delimiter}/>
                         </>
                     })
                 }

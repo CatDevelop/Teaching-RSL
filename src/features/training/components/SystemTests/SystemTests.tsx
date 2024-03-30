@@ -105,7 +105,7 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
                                                             type={TestTypeEnum.TestByLevel}
                                                             number={index}
                                                         />
-                                                        <p key={`delimiter${level.id}`}
+                                                        <Typography variant="p" key={`delimiter${level.id}`}
                                                            className={styles.levels__delimiter}/>
                                                     </>
                                                 ))
