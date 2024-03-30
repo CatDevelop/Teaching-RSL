@@ -1,23 +1,18 @@
 import React, {useCallback, useRef} from 'react';
-import {typedMemo} from "../../../core/utils/typedMemo";
+import {typedMemo} from "../../../../core/utils/typedMemo";
 import {useQuery} from "react-query";
-import {UserService} from "../../../api/services/user";
+import {UserService} from "../../../../api/services/user";
 import {
-    LearningScoreAchievement,
-    PracticeScoreAchievement,
-    TotalScoreAchievement
+    LearningAchievementScores,
+    PracticeAchievementScores,
+    TotalAchievementScores
 } from './achievementValues'
 import {AchievementConfigItem} from "./AchievementConfigItem";
 import {achievementConfig} from "./achievementConfig";
-import {enumToArray} from "../../../core/utils/enumToArray";
 import {toast} from "react-toastify";
 import {AchievementToast} from "./AchievementToast/AchievementToast";
-import {GetWelcomeBackInfoResponse} from "../../../core/models/user/GetWelcomeBackInfoResponse";
+import {GetWelcomeBackInfoResponse} from "../../../../core/models/user/GetWelcomeBackInfoResponse";
 import {achievementQueryKey} from "./achievementQueryKey";
-
-const LearningAchievementScores = enumToArray(LearningScoreAchievement)
-const PracticeAchievementScores = enumToArray(PracticeScoreAchievement)
-const TotalAchievementScores = enumToArray(TotalScoreAchievement)
 
 /**
  * Наблюдатель достижений

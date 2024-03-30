@@ -83,7 +83,7 @@
     --z-index-select: 100;
 }
 
-@media(max-width: 1300px){
+@media(max-width: 1600px){
     :root{
         --font-size-m: 16px;
     }

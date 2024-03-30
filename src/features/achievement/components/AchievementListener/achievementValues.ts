@@ -1,3 +1,5 @@
+import {enumToArray} from "../../../../core/utils/enumToArray";
+
 export enum LearningScoreAchievement {
     Bronze = 10,
     Silver = 35,
@@ -18,3 +20,7 @@ export enum TotalScoreAchievement {
     Gold = 100,
     Diamond = 200,
 }
+
+export const LearningAchievementScores = enumToArray(LearningScoreAchievement)
+export const PracticeAchievementScores = enumToArray(PracticeScoreAchievement)
+export const TotalAchievementScores = enumToArray(TotalScoreAchievement)
