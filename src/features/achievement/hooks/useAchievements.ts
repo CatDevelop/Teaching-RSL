@@ -1,7 +1,7 @@
 import {AchievementConfigItem} from "../components/AchievementListener/AchievementConfigItem";
 import {useQuery} from "react-query";
 import {achievementQueryKey} from "../components/AchievementListener/achievementQueryKey";
-import {UserService} from "../../../api/services/user";
+import {UserService} from "api/services/user";
 import {achievementConfig} from "../components/AchievementListener/achievementConfig";
 import {useCallback, useMemo} from "react";
 import {
@@ -30,12 +30,10 @@ export function useAchievements(): AchievementConfigItem[] {
     ): AchievementConfigItem => {
         let currentScoreLevel: number = 0
         for (let i = 0; i < scores.length; i++) {
-            const score = scores[i]
-            if (score <= currentScore) {
-                currentScoreLevel = score
-            } else {
+            if (scores[i] > currentScore) {
                 break
             }
+            currentScoreLevel = scores[i]
         }
 
         return achievements[currentScoreLevel]
