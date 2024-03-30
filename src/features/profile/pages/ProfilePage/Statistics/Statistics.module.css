@@ -6,6 +6,6 @@
 .statistics__blocks {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-xl);
+    gap: var(--space-m);
     flex:1;
 }

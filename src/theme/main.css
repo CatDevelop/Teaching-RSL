@@ -5,6 +5,7 @@
 
 .Toastify__toast-container {
     width: 1000px !important;
+    overflow: visible;
     display: flex;
     flex-direction: column;
     align-items: end;

@@ -10,6 +10,11 @@ export type AchievementConfigItem = {
     name: string;
 
     /**
+     * Описание достижения
+     */
+    description: string;
+
+    /**
      * Иконка достижения
      */
     image: ReactElement;
@@ -17,5 +22,5 @@ export type AchievementConfigItem = {
     /**
      * Класс всплывающей подсказки
      */
-    toastClassName: string;
+    toastClassName?: string;
 }

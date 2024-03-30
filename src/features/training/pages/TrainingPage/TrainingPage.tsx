@@ -17,7 +17,7 @@ import {LearningHeader} from "../../../learning/components/LearningHeader";
 import {toast} from "react-toastify";
 import {Back} from "../../../../components/Back";
 import {UserHistoryService} from "../../../../api/services/userHistory";
-import {achievementQueryKey} from "../../../achievement/AchievementListener/achievementQueryKey";
+import {achievementQueryKey} from "../../../achievement/components/AchievementListener/achievementQueryKey";
 
 export type Props = {}
 
