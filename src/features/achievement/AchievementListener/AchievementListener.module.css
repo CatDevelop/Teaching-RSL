@@ -1,0 +1,27 @@
+.bronzeAchievementToast,
+.silverAchievementToast,
+.goldAchievementToast,
+.diamondAchievementToast {
+    max-width: none;
+    overflow: visible;
+    padding: var(--space-xs) var(--space-s) !important;
+    border: 1px solid transparent;
+}
+
+.bronzeAchievementToast {
+    border-color: #DCA16A;
+}
+
+.silverAchievementToast {
+    border-color: #BCCCD2;
+}
+
+.goldAchievementToast {
+    border-color: #FFBB0D;
+}
+
+.diamondAchievementToast {
+    border-color: #5ACAED;
+}
+
+
