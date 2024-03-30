@@ -1,10 +1,9 @@
-import {LearningScoreAchievement} from "./achievementValues";
-
-export {LearningScoreAchievement, TotalScoreAchievement, PracticeScoreAchievement} from './achievementValues'
-export type {AchievementConfigItem} from './AchievementConfigItem'
+import React from 'react';
+import {LearningScoreAchievement, TotalScoreAchievement, PracticeScoreAchievement} from './achievementValues'
+import type {AchievementConfigItem} from './AchievementConfigItem'
 import {ReactComponent as BronzeAchievementIcon} from 'assets/images/BronzeAchievementIcon.svg'
-import {ReactComponent as SilverAchievementIcon} from 'assets/images/SilverAchievementIcon.svg.svg'
-import {ReactComponent as GoldAchievementIcon} from 'assets/images/GoldAchievementIcon.svg.svg'
+import {ReactComponent as SilverAchievementIcon} from 'assets/images/SilverAchievementIcon.svg'
+import {ReactComponent as GoldAchievementIcon} from 'assets/images/GoldAchievementIcon.svg'
 import {ReactComponent as DiamondAchievementIcon} from 'assets/images/DiamondAchievementIcon.svg'
 import classes from './AchievementListener.module.css'
 
@@ -13,7 +12,7 @@ type AchievementConfig = {
         [key in LearningScoreAchievement]: AchievementConfigItem;
     },
     practice: {
-        [key in PracticeAchievement]: AchievementConfigItem;
+        [key in PracticeScoreAchievement]: AchievementConfigItem;
     }
     total: {
         [key in TotalScoreAchievement]: AchievementConfigItem;
@@ -24,66 +23,66 @@ export const achievementConfig: AchievementConfig = {
     learning: {
         [LearningScoreAchievement.Bronze]: {
             name: 'Взрывной словарный запас',
-            image: BronzeAchievementIcon,
+            image: <BronzeAchievementIcon/>,
             toastClassName: classes.bronzeAchievementToast
         },
         [LearningScoreAchievement.Silver]: {
             name: 'Мастер словесного искусства',
-            image: SilverAchievementIcon,
+            image: <SilverAchievementIcon/>,
             toastClassName: classes.silverAchievementToast
         },
         [LearningScoreAchievement.Gold]: {
             name: 'Суперпловец в океане жестов',
-            image: GoldAchievementIcon,
+            image: <GoldAchievementIcon/>,
             toastClassName: classes.goldAchievementToast
         },
         [LearningScoreAchievement.Diamond]: {
             name: 'Легионер словесной революции',
-            image: DiamondAchievementIcon,
+            image: <DiamondAchievementIcon/>,
             toastClassName: classes.diamondAchievementToast
         },
     },
     practice: {
         [LearningScoreAchievement.Bronze]: {
             name: 'Неуязвимый практикант',
-            image: BronzeAchievementIcon,
+            image: <BronzeAchievementIcon/>,
             toastClassName: classes.bronzeAchievementToast
         },
         [LearningScoreAchievement.Silver]: {
             name: 'Бац, и почти эксперт',
-            image: SilverAchievementIcon,
+            image: <SilverAchievementIcon/>,
             toastClassName: classes.silverAchievementToast
         },
         [LearningScoreAchievement.Gold]: {
             name: 'Легенда продвижения',
-            image: GoldAchievementIcon,
+            image: <GoldAchievementIcon/>,
             toastClassName: classes.goldAchievementToast
         },
         [LearningScoreAchievement.Diamond]: {
             name: 'Жестоман',
-            image: DiamondAchievementIcon,
+            image: <DiamondAchievementIcon/>,
             toastClassName: classes.diamondAchievementToast
         },
     },
     total: {
-        [LearningScoreAchievement.Bronze]: {
+        [TotalScoreAchievement.Bronze]: {
             name: 'Хайповый пользователь',
-            image: BronzeAchievementIcon,
+            image: <BronzeAchievementIcon/>,
             toastClassName: classes.bronzeAchievementToast
         },
-        [LearningScoreAchievement.Silver]: {
+        [TotalScoreAchievement.Silver]: {
             name: 'Энергичный мозговой тренажер',
-            image: SilverAchievementIcon,
+            image: <SilverAchievementIcon/>,
             toastClassName: classes.silverAchievementToast
         },
-        [LearningScoreAchievement.Gold]: {
+        [TotalScoreAchievement.Gold]: {
             name: 'Жестовая зависимость',
-            image: GoldAchievementIcon,
+            image: <GoldAchievementIcon/>,
             toastClassName: classes.goldAchievementToast
         },
-        [LearningScoreAchievement.Diamond]: {
+        [TotalScoreAchievement.Diamond]: {
             name: 'Прогрессомания',
-            image: DiamondAchievementIcon,
+            image: <DiamondAchievementIcon/>,
             toastClassName: classes.diamondAchievementToast
         },
     },

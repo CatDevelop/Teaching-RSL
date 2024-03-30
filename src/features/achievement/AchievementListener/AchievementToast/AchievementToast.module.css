@@ -1,0 +1,55 @@
+.toast {
+    display: grid;
+    grid-template-columns: 17px 1fr;
+    gap: 0 12px;
+    position: relative;
+    padding-right: 90px;
+    align-items: center;
+}
+
+.badge {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: #FFCE3E;
+    box-shadow: 0 0 0 2.5px #fff, 0 0 0 3.5px #FFE7A0;
+    animation: badge-change-color 1.2s ease-in-out infinite;
+}
+
+@keyframes badge-change-color {
+    from {
+        box-shadow: 0 0 0 2.5px #fff, 0 0 0 3.5px #FFE7A0;
+    }
+    50% {
+        box-shadow: 0 0 0 2.5px #fff, 0 0 0 3.5px #fff;
+    }
+    to {
+        box-shadow: 0 0 0 2.5px #fff, 0 0 0 3.5px #FFE7A0;
+    }
+}
+
+.description {
+    color: var(--disabled-button-color);
+    font-size: 14px;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: var(--font-weight-xl);
+    grid-column: 2;
+}
+
+.imageContainer {
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 75px;
+    height: 75px;
+}
+
+.imageContainer > * {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}

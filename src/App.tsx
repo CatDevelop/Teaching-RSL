@@ -10,6 +10,8 @@ import { store } from "./store/store";
 import {Spinner} from "@nextui-org/react";
 import 'react-toastify/dist/ReactToastify.css';
 import { queryClient } from "core/config/queryClient";
+import {AchievementListener} from "./features/achievement/AchievementListener/AchievementListener";
+import {ToastContainer} from "react-toastify";
 
 export default function MyApp() {
     return (
@@ -21,6 +23,19 @@ export default function MyApp() {
                             <Suspense fallback={<Spinner className="mainSpinner"/>}>
                                 <RootRouter/>
                             </Suspense>
+                            <ToastContainer
+                                style={{borderRadius: "16px"}}
+                                position="bottom-right"
+                                autoClose={3000}
+                                hideProgressBar
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss={false}
+                                pauseOnHover
+                                theme="light"
+                            />
+                            <AchievementListener/>
                         </BrowserRouter>
                     </MantineProvider>
                 </QueryClientProvider>

@@ -1,43 +1,88 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useRef} from 'react';
 import {typedMemo} from "../../../core/utils/typedMemo";
 import {useQuery} from "react-query";
 import {UserService} from "../../../api/services/user";
 import {
-    achievementConfig, AchievementConfigItem,
     LearningScoreAchievement,
     PracticeScoreAchievement,
     TotalScoreAchievement
-} from './achievementConfig'
+} from './achievementValues'
+import {AchievementConfigItem} from "./AchievementConfigItem";
+import {achievementConfig} from "./achievementConfig";
 import {enumToArray} from "../../../core/utils/enumToArray";
+import {toast} from "react-toastify";
+import {AchievementToast} from "./AchievementToast/AchievementToast";
+import {GetWelcomeBackInfoResponse} from "../../../core/models/user/GetWelcomeBackInfoResponse";
+import {achievementQueryKey} from "./achievementQueryKey";
 
 const LearningAchievementScores = enumToArray(LearningScoreAchievement)
 const PracticeAchievementScores = enumToArray(PracticeScoreAchievement)
 const TotalAchievementScores = enumToArray(TotalScoreAchievement)
 
+/**
+ * Наблюдатель достижений
+ */
 export const AchievementListener = typedMemo(function AchievementListener() {
-    const {data: scores} = useQuery(
-        ['user-scores'],
+    const checkAchievement = useCallback(
+        <TAchievement extends number, >(
+            achievements: { [key: number]: AchievementConfigItem },
+            scores: TAchievement[],
+            currentScore: number,
+            prevScore: number,
+        ) => {
+            for(let i = 0; i < scores.length; i++){
+                let score = scores[i];
+
+                if (score <= currentScore && score > prevScore) {
+                    toast(
+                        <AchievementToast
+                            image={achievements[score].image}
+                            name={achievements[score].name}
+                        />,
+                        {
+                            className: achievements[score].toastClassName,
+                            autoClose: false,
+                            position: 'top-right',
+                        })
+                    break
+                }
+            }
+        }, [])
+
+    const previousScores = useRef<GetWelcomeBackInfoResponse | null>(null);
+
+    const _ = useQuery(
+        achievementQueryKey,
         UserService.getWelcomeUserInfo,
         {
+            suspense: false,
+            refetchOnWindowFocus: false,
             onSuccess: data => {
+                checkAchievement(
+                    achievementConfig.learning,
+                    LearningAchievementScores,
+                    data.progressCountLearning,
+                    previousScores.current?.progressCountLearning ?? data.progressCountLearning
+                )
 
+                checkAchievement(
+                    achievementConfig.practice,
+                    PracticeAchievementScores,
+                    data.progressCountTraining,
+                    previousScores.current?.progressCountTraining ?? data.progressCountTraining
+                )
+
+                checkAchievement(
+                    achievementConfig.total,
+                    TotalAchievementScores,
+                    data.progressCountAll,
+                    previousScores.current?.progressCountAll ?? data.progressCountAll
+                )
+
+                previousScores.current = data;
             }
         }
     )
-    const previousScores = useMemo(() => scores, [scores])
 
-    const checkAchievement = useCallback<TAchievement>(
-        (
-            achievements: { [key in TAchievement]: AchievementConfigItem },
-            scores: TAchievement[]) => {
-            scores.forEach(score => {
-                if(score)
-            })
-        }, [])
-
-    return (
-        <div>
-
-        </div>
-    );
-};
+    return null;
+});

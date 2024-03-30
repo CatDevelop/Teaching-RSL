@@ -1,6 +1,6 @@
 import { Decorator } from '@storybook/react';
 import * as H from 'history';
-import { AxiosMockOptions } from '../mockAxios'; 
+import { AxiosMockOptions } from '../mockAxios';
 import { AxiosDecorator } from './AxiosDecorator';
 import { MemoryRouterDecorator } from './MemoryRouterDecorator';
 import { AxiosMockResetDecorator } from './AxiosMockResetDecorator';
@@ -21,8 +21,8 @@ type WrapperOptions = Partial<{
  */
 export function createDecorators({
     axiosMocks = [],
-    route = ' ',
-    routerEntries = [' '],
+    route = '',
+    routerEntries = [''],
     additionalWrappers = [],
 }: WrapperOptions): Decorator[] {
     return [
