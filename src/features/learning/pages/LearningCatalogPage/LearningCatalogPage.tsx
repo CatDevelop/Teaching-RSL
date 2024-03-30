@@ -24,7 +24,7 @@ export const LearningCatalogPage: FC = typedMemo(function LearningCatalogPage() 
             <PageContent className={styles.learningCatalog__pageContent}>
                 <Suspense fallback={<Spinner className={styles.learningCatalog__loading}/>}>
                     <Card className={styles.learningCatalog__levelBlock}>
-                        <LevelBlock level={user!.level} experience={user!.scoresCount} experienceForNextLevel={(user!.level+1) * 100}/>
+                        <LevelBlock level={user!.level} experience={user!.userExperience} experienceForNextLevel={user!.maxLevelExperience}/>
                     </Card>
                     <div className={styles.learningCatalog__themes}>
                         <ThemesList />

@@ -25,7 +25,7 @@ export const ProfilePage: FC = typedMemo(function LearningCatalogPage() {
             <PageContent className={styles.profile__pageContent}>
                 <Suspense fallback={<Spinner/>}>
                     <Card className={styles.profile__levelBlock}>
-                        <LevelBlock level={user!.level} experience={user!.scoresCount} experienceForNextLevel={(user!.level+1) * 100}/>
+                        <LevelBlock level={user!.level} experience={user!.userExperience} experienceForNextLevel={user!.maxLevelExperience}/>
                     </Card>
 
                     <LearningProgress className={styles.profile__learningProgress}/>
