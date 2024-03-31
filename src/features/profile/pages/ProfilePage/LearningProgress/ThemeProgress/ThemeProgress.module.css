@@ -32,7 +32,7 @@
 }
 
 .themeProgress__chartSvg {
-    --chart-size: 60px;
+    --chart-size: 70px;
 
     width: var(--chart-size);
     height: var(--chart-size)

@@ -31,18 +31,6 @@ export const TestProgress: FC<Props> = typedMemo(function TestProgress(props) {
                                 className={styles.testProgress__date}>{completedDate.format('DD.MM.YYYY')}</Typography>
                 </div>
             </div>
-
-            <CircularProgress
-                size="md"
-                value={(props.wordsCompletedCount / props.wordsCount) * 100}
-                color="secondary"
-                showValueLabel
-                classNames={{
-                    svg: styles.testProgress__chartSvg,
-                    indicator: styles.testProgress__chartIndicator,
-                    value: styles.testProgress__chartValue,
-                }}
-            />
         </div>
     )
 })
