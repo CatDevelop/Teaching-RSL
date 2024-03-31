@@ -3,9 +3,9 @@
 .goldAchievementToast,
 .diamondAchievementToast {
     max-width: none;
-    overflow: visible;
     padding: var(--space-xs) var(--space-s) !important;
     border: 1px solid transparent;
+    overflow: visible !important;
 }
 
 .bronzeAchievementToast {

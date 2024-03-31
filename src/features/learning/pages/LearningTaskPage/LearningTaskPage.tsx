@@ -14,7 +14,7 @@ import {Back} from "../../../../components/Back";
 import useLearningLevel from "../../../../core/hooks/use-learning-level";
 import {useMutation, useQueryClient} from "react-query";
 import {UserHistoryService} from "../../../../api/services/userHistory";
-import {achievementQueryKey} from "../../../achievement/AchievementListener/achievementQueryKey";
+import {achievementQueryKey} from "features/achievement";
 
 /**
  * Задания уровня обучения

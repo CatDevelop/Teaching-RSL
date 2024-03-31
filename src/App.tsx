@@ -5,12 +5,12 @@ import {RootRouter} from "./routes/RootRouter";
 import {QueryClientProvider} from "react-query";
 import {MantineProvider} from "@mantine/core";
 import '@mantine/core/styles.css';
-import { Provider } from "react-redux";
-import { store } from "./store/store";
+import {Provider} from "react-redux";
+import {store} from "./store/store";
 import {Spinner} from "@nextui-org/react";
 import 'react-toastify/dist/ReactToastify.css';
-import { queryClient } from "core/config/queryClient";
-import {AchievementListener} from "./features/achievement/AchievementListener/AchievementListener";
+import {queryClient} from "core/config/queryClient";
+import {AchievementListener} from "./features/achievement";
 import {ToastContainer} from "react-toastify";
 
 export default function MyApp() {

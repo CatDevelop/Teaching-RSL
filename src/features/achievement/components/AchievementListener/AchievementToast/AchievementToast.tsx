@@ -1,10 +1,10 @@
 import React, {FC, ReactElement} from 'react';
 
-import {typedMemo} from "../../../../core/utils/typedMemo";
-import {ComponentProps} from "../../../../core/models/ComponentProps";
+import {typedMemo} from "../../../../../core/utils/typedMemo";
+import {ComponentProps} from "../../../../../core/models/ComponentProps";
 
 import styles from './AchievementToast.module.css';
-import {Typography} from "../../../../components/Typography";
+import {Typography} from "../../../../../components/Typography";
 import {Link} from "react-router-dom";
 
 export type Props = ComponentProps & Readonly<{
