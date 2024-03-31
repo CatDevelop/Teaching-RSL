@@ -2,6 +2,7 @@ import React, {FC} from "react";
 import {typedMemo} from "../../../core/utils/typedMemo";
 import {Typography} from "../../Typography";
 import styles from "./UnitCatalogPresentation.module.css"
+import {ReactComponent as DoneIcon} from "../../../assets/images/DoneIcon.svg"
 
 type Props = {
     id: string,
@@ -23,6 +24,10 @@ export const UnitCatalogPresentation: FC<Props> = typedMemo(function ThemeCatalo
             <Typography variant="p" className={styles.wordCount}>
                 {Math.min(props.completeWordsCount, props.allWordsCount)} / {props.allWordsCount}
             </Typography>
+            {
+                props.allWordsCount === props.completeWordsCount &&
+                <DoneIcon/>
+            }
         </div>
     )
 })
