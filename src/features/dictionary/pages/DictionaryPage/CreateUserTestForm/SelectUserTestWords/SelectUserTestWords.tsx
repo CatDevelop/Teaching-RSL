@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useEffect, useState} from "react";
+import React, {FC, KeyboardEvent, KeyboardEventHandler, useCallback, useEffect, useState} from "react";
 import {typedMemo} from "core/utils/typedMemo";
 import {UserTestStorageService} from "api/services/userTestStorageService";
 import {SelectItemType} from "core/models/SelectItemType";
@@ -30,7 +30,7 @@ export const SelectUserTestWords: FC<Props> = typedMemo(function SelectUserTestW
                 setWords(words.map(word => new SelectItemType({label: word.word ?? '', value: word.id})))
             },
             suspense: false,
-            enabled: debouncedSearch.trim().length > 0
+            enabled: debouncedSearch.length === 0 || debouncedSearch.trim().length > 0
         })
 
     const [selectedWords, setSelectedWords] = useState<SelectItemType<string>[]>([])
@@ -68,6 +68,12 @@ export const SelectUserTestWords: FC<Props> = typedMemo(function SelectUserTestW
         props.onChangeWordIds(selectedWords.map(word => word.value))
     }, [selectedWords]);
 
+    const onKeyDown: KeyboardEventHandler<HTMLElement> = useCallback((event) => {
+        if (event.code === 'Space' && !search.trim()) {
+            event.preventDefault();
+        }
+    }, [])
+
     return (
         <div className={styles.selectUserTestWords}>
             <div className={styles.selectUserTestWords__header}>
@@ -89,6 +95,7 @@ export const SelectUserTestWords: FC<Props> = typedMemo(function SelectUserTestW
                 inputValue={search}
                 onInputChange={setSearch}
                 options={words}
+                onKeyDown={onKeyDown}
                 onChange={onChange}
                 value={selectedWords}
                 placeholder="Слова для теста"
