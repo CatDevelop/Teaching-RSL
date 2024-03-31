@@ -10,7 +10,7 @@ import {ScrollBox} from "../../../../../components/ScrollBox";
 import {TestProgress} from "./TestProgress";
 import {useQuery} from "react-query";
 import {UserService} from "api/services/user";
-import {UserThemeHistoryRecordResponse} from "../../../../../core/models/userHistory/UserThemeHistoryRecordResponse";
+import {Typography} from "../../../../../components/Typography";
 
 type Props = ComponentProps & Readonly<{}>
 
@@ -39,11 +39,35 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                 <Tab key="training" title="Практики">
                     <ScrollBox>
                         <div className={styles.learningProgress__themes}>
-                            {/* TODO не забыть, что здесь поворачиваем массив*/}
                             {testHistory!.slice(0).reverse().map((item, i) => (
                                 <TestProgress {...item} key={i}/>
                             ))}
                         </div>
+                    </ScrollBox>
+                </Tab>
+                <Tab key="customtests" title="Тесты">
+                    <ScrollBox>
+                        {
+                            testHistory!.filter(test => test.isUserTest).length > 0 &&
+                            <div className={styles.learningProgress__customTests}>
+                                {
+                                    testHistory!
+                                        .slice(0)
+                                        .reverse()
+                                        .filter(test => test.isUserTest)
+                                        .map((item, i) => (
+                                            <TestProgress {...item} key={i}/>
+                                        ))
+                                }
+                            </div>
+                        }
+
+                        {
+                            testHistory!.filter(test => test.isUserTest).length <= 0 &&
+                            <Typography variant="h1" className={styles.learningProgress__empty}>
+                                Вы пока не проходили тесты
+                            </Typography>
+                        }
                     </ScrollBox>
                 </Tab>
             </Tabs>

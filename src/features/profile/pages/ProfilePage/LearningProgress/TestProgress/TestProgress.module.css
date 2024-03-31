@@ -35,21 +35,3 @@
     align-items: center;
     gap: var(--space-s);
 }
-
-.testProgress__chartSvg {
-    --chart-size: 60px;
-
-    width: var(--chart-size);
-    height: var(--chart-size)
-}
-
-.testProgress__chartValue {
-    font-size: var(--font-size-s);
-    font-family: Montserrat, sans-serif;
-    font-weight: var(--font-weight-l);
-    color: var(--disabled-button-color);
-}
-
-.testProgress__chartIndicator {
-    stroke: var(--accent-color);
-}

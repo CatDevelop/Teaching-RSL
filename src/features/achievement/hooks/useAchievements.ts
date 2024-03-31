@@ -1,6 +1,6 @@
 import {AchievementConfigItem} from "../components/AchievementListener/AchievementConfigItem";
 import {useQuery} from "react-query";
-import {achievementQueryKey} from "../components/AchievementListener/achievementQueryKey";
+import {achievementQueryKey} from "../components/AchievementListener";
 import {UserService} from "api/services/user";
 import {achievementConfig} from "../components/AchievementListener/achievementConfig";
 import {useCallback, useMemo} from "react";
@@ -39,12 +39,29 @@ export function useAchievements(): AchievementConfigItem[] {
         return achievements[currentScoreLevel]
     }, [])
 
+
+    const getAchievements = useCallback((
+        achievements: { [key: number]: AchievementConfigItem },
+        scores: number[],
+        currentScore: number
+    ): AchievementConfigItem[] => {
+        const result: AchievementConfigItem[] = []
+        for (let i = 0; i < scores.length; i++) {
+            if (scores[i] > currentScore) {
+                break
+            }
+            result.push(achievements[scores[i]])
+        }
+
+        return result
+    }, [])
+
     return useMemo(() => (
         user ?
             [
-                getAchievement(achievementConfig.total, TotalAchievementScores, user!.progressCountAll),
-                getAchievement(achievementConfig.learning, LearningAchievementScores, user!.progressCountLearning),
-                getAchievement(achievementConfig.practice, PracticeAchievementScores, user!.progressCountTraining),
+                ...getAchievements(achievementConfig.total, TotalAchievementScores, user!.progressCountAll),
+                ...getAchievements(achievementConfig.learning, LearningAchievementScores, user!.progressCountLearning),
+                ...getAchievements(achievementConfig.practice, PracticeAchievementScores, user!.progressCountTraining),
             ].filter(Boolean) :
             []
     ), [user])
