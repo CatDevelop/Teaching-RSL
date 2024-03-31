@@ -11,9 +11,10 @@ import {ReactComponent as DictionaryIcon} from "assets/images/Dictionary.svg";
 import { StatisticsItem } from "./StatisticsItem";
 import { useQuery } from "react-query";
 import { UserHistoryService } from "api/services/userHistory";
+import {GetWelcomeBackInfoResponse} from "../../../../../core/models/user/GetWelcomeBackInfoResponse";
 
 type Props = ComponentProps & Readonly<{
-
+    user: GetWelcomeBackInfoResponse;
 }>
 
 /**
@@ -28,7 +29,7 @@ export const Statistics: FC<Props> = typedMemo(function Statistics(props){
 
             <div className={styles.statistics__blocks}>
                 <StatisticsItem icon={TargetIcon} iconAlt="Количество пройденных уроков" value={statistics!.completedLevelsCount} descriptionValue="уроков пройдено"/>
-                <StatisticsItem icon={TrophyIcon} iconAlt="Количество трофеев" value={statistics!.trophiesCount} descriptionValue="трофеев получено"/>
+                <StatisticsItem icon={TrophyIcon} iconAlt="Прогресс" value={props.user.progressCountAll} descriptionValue="очков общего прогресса"/>
                 <StatisticsItem icon={CalendarIcon} iconAlt="Количество дней обучения" value="1" descriptionValue="дней обучения"/>
                 <StatisticsItem icon={DictionaryIcon} iconAlt="Количество изученных слов" value={statistics!.completedWordsCount} descriptionValue="слов изучено"/>
             </div>

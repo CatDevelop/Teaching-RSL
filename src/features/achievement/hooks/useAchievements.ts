@@ -45,7 +45,7 @@ export function useAchievements(): AchievementConfigItem[] {
                 getAchievement(achievementConfig.total, TotalAchievementScores, user!.progressCountAll),
                 getAchievement(achievementConfig.learning, LearningAchievementScores, user!.progressCountLearning),
                 getAchievement(achievementConfig.practice, PracticeAchievementScores, user!.progressCountTraining),
-            ] :
+            ].filter(Boolean) :
             []
     ), [user])
 }

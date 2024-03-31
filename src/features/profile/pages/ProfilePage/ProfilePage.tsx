@@ -29,7 +29,7 @@ export const ProfilePage: FC = typedMemo(function LearningCatalogPage() {
                     </Card>
 
                     <LearningProgress className={styles.profile__learningProgress}/>
-                    <Statistics/>
+                    <Statistics user={user!}/>
                     <Trophies/>
                 </Suspense>
             </PageContent>
