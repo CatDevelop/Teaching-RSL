@@ -11,6 +11,9 @@ import {TestProgress} from "./TestProgress";
 import {useQuery} from "react-query";
 import {UserService} from "api/services/user";
 import {Typography} from "../../../../../components/Typography";
+import {GetTrainingHistoryResponse} from "../../../../../core/models/userHistory/GetTrainingHistoryResponse";
+import {UserHistoryService} from "../../../../../api/services/userHistory";
+import {TrainingProgress} from "./TrainingProgress";
 
 type Props = ComponentProps & Readonly<{}>
 
@@ -20,6 +23,7 @@ type Props = ComponentProps & Readonly<{}>
 export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(props) {
     const {data: testHistory} = useQuery('user-test-history', UserService.getTestHistory)
     const {data: themesHistory} = useQuery('user-themes-history', UserService.getThemesHistory)
+    const {data: trainingHistory} = useQuery<GetTrainingHistoryResponse>("traininghistory/get", UserHistoryService.getTrainingHistory)
 
     return (
         <Card className={clsx([styles.learningProgress, props.className])}>
@@ -39,9 +43,13 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                 <Tab key="training" title="Практики">
                     <ScrollBox>
                         <div className={styles.learningProgress__themes}>
-                            {testHistory!.slice(0).reverse().map((item, i) => (
-                                <TestProgress {...item} key={i}/>
-                            ))}
+                            {
+                                trainingHistory!.themeInfoDalList
+                                    .sort((a, b) => a.themeName.localeCompare(b.themeName))
+                                    .map((item, i) => (
+                                        <TrainingProgress {...item} key={i}/>
+                                    ))
+                            }
                         </div>
                     </ScrollBox>
                 </Tab>
@@ -55,6 +63,7 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                                         .slice(0)
                                         .reverse()
                                         .filter(test => test.isUserTest)
+                                        .sort((a, b) => a.name!.localeCompare(b.name || ""))
                                         .map((item, i) => (
                                             <TestProgress {...item} key={i}/>
                                         ))
@@ -63,7 +72,7 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                         }
 
                         {
-                            testHistory!.filter(test => test.isUserTest).length <= 0 &&
+                            testHistory!.filter(test => !test.isUserTest).length <= 0 &&
                             <Typography variant="h1" className={styles.learningProgress__empty}>
                                 Вы пока не проходили тесты
                             </Typography>

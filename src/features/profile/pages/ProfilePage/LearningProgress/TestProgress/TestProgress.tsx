@@ -4,7 +4,6 @@ import styles from "./TestProgress.module.css";
 import {Typography} from "components/Typography";
 import {UserTestHistoryRecordResponse} from "core/models/user/UserTestHistoryRecordResponse";
 import dayjs from 'dayjs'
-import {CircularProgress} from "@nextui-org/react";
 
 type Props = UserTestHistoryRecordResponse
 
@@ -25,10 +24,12 @@ export const TestProgress: FC<Props> = typedMemo(function TestProgress(props) {
                     </Typography>
                 </Typography>
                 <div className={styles.testProgress__dates}>
-                    <Typography variant="span"
-                                className={styles.testProgress__time}>{completedDate.format('HH:mm')}</Typography>
-                    <Typography variant="span"
-                                className={styles.testProgress__date}>{completedDate.format('DD.MM.YYYY')}</Typography>
+                    <Typography variant="span" className={styles.testProgress__time}>
+                        {completedDate.format('HH:mm')}
+                    </Typography>
+                    <Typography variant="span" className={styles.testProgress__date}>
+                        {completedDate.format('DD.MM.YYYY')}
+                    </Typography>
                 </div>
             </div>
         </div>
