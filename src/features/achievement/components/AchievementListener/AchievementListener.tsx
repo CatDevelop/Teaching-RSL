@@ -4,7 +4,7 @@ import {useQuery} from "react-query";
 import {UserService} from "../../../../api/services/user";
 import {
     LearningAchievementScores,
-    PracticeAchievementScores,
+    PracticeAchievementScores, PracticeScoreAchievement,
     TotalAchievementScores
 } from './achievementValues'
 import {AchievementConfigItem} from "./AchievementConfigItem";
@@ -36,7 +36,7 @@ export const AchievementListener = typedMemo(function AchievementListener() {
                         />,
                         {
                             className: achievements[score].toastClassName,
-                            autoClose: false,
+                            autoClose: 15000,
                             position: 'top-right',
                         })
                     break
