@@ -56,8 +56,7 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
                     completedWordsCount: foundTheme ? foundTheme.completedWordCount : 0,
                     units: themeItem.units.map(unitItem => {
                         const foundUnit = foundTheme?.unitInfoList.find((unitHistory: any) => unitHistory.unitId === unitItem.id)
-                        const unitWithLevels = unitListWithLevels.units.find(unit => unit.id === foundUnit?.unitId)
-
+                        const unitWithLevels = unitListWithLevels.units.find(unit => unit.id === unitItem?.id)
                         return {
                             ...unitItem,
                             completedWordsCount: foundUnit ? foundUnit.completedWordCount : 0,
