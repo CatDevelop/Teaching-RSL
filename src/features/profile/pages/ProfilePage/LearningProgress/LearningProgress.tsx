@@ -72,7 +72,7 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                         }
 
                         {
-                            testHistory!.filter(test => !test.isUserTest).length <= 0 &&
+                            testHistory!.filter(test => test.isUserTest).length <= 0 &&
                             <Typography variant="h1" className={styles.learningProgress__empty}>
                                 Вы пока не проходили тесты
                             </Typography>
