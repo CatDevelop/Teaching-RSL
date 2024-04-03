@@ -56,13 +56,15 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                 <Tab key="customtests" title="Тесты">
                     <ScrollBox>
                         {
-                            testHistory!.filter(test => test.isUserTest).length > 0 &&
+                            testHistory.length > 0
+                            // !.filter(test => !test.isUserTest).length > 0
+                            &&
                             <div className={styles.learningProgress__customTests}>
                                 {
                                     testHistory!
                                         .slice(0)
                                         .reverse()
-                                        .filter(test => test.isUserTest)
+                                        // .filter(test => !test.isUserTest)
                                         .sort((a, b) => a.name!.localeCompare(b.name || ""))
                                         .map((item, i) => (
                                             <TestProgress {...item} key={i}/>
@@ -72,7 +74,8 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                         }
 
                         {
-                            testHistory!.filter(test => !test.isUserTest).length <= 0 &&
+                            testHistory.length <= 0 &&
+                            // !.filter(test => !test.isUserTest).length <= 0 &&
                             <Typography variant="h1" className={styles.learningProgress__empty}>
                                 Вы пока не проходили тесты
                             </Typography>
