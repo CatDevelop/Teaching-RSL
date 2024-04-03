@@ -56,7 +56,7 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                 <Tab key="customtests" title="Тесты">
                     <ScrollBox>
                         {
-                            testHistory.length > 0
+                            testHistory!.length > 0
                             // !.filter(test => !test.isUserTest).length > 0
                             &&
                             <div className={styles.learningProgress__customTests}>
@@ -74,7 +74,7 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                         }
 
                         {
-                            testHistory.length <= 0 &&
+                            testHistory!.length <= 0 &&
                             // !.filter(test => !test.isUserTest).length <= 0 &&
                             <Typography variant="h1" className={styles.learningProgress__empty}>
                                 Вы пока не проходили тесты
