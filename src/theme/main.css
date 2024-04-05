@@ -2,3 +2,15 @@
     font-weight: var(--font-weight-m);
     box-sizing: border-box;
 }
+
+.Toastify__toast-container {
+    width: 1000px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.Toastify__toast {
+    max-width: var(--toastify-toast-width);
+}
+

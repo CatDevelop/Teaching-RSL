@@ -12,7 +12,7 @@ import {LearningIcon} from "../../assets/images/LearningIcon"
 import {TrainingIcon} from "../../assets/images/TrainingIcon"
 import {DictionaryIcon} from "../../assets/images/DictionaryIcon"
 import {logout} from "../../store/auth/authSlice";
-import { useQuery } from "react-query";
+import {useQuery, useQueryClient} from "react-query";
 import { UserService } from "api/services/user";
 import { Typography } from "components/Typography";
 import { Button } from "components/Button";
@@ -51,6 +51,7 @@ export const navigationItems = [
  * Боковое меню
  */
 export const SideBar: FC = typedMemo(function SideBar() {
+    const queryClient = useQueryClient();
     const location = useLocation();
     const dispatch = useDispatch()
     const {data: user} = useQuery('user-welcome-info', UserService.getWelcomeUserInfo)
@@ -60,7 +61,10 @@ export const SideBar: FC = typedMemo(function SideBar() {
         label: "Выйти",
         icon: ExitIcon,
         link: "/",
-        onClick: () => dispatch(logout())
+        onClick: () => {
+            dispatch(logout())
+            queryClient.clear();
+        }
     }
 
     return (

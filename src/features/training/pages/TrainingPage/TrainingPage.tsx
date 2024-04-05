@@ -9,7 +9,7 @@ import {PageContent} from "../../../../components/PageContent";
 import {RecognitionBlock} from "../../components/RecognitionBlock";
 import {ExitConfirmation} from "../../../../components/ExitConfirmation";
 import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
-import {useMutation, useQuery} from "react-query";
+import {useMutation, useQuery, useQueryClient} from "react-query";
 import {TrainingService} from "../../../../api/services/training";
 import {ModelWarning} from "../../components/ModelWarning/ModelWarning";
 import {socket} from "../../../../core/utils/connectToModal";
@@ -17,10 +17,12 @@ import {LearningHeader} from "../../../learning/components/LearningHeader";
 import {toast} from "react-toastify";
 import {Back} from "../../../../components/Back";
 import {UserHistoryService} from "../../../../api/services/userHistory";
+import {achievementQueryKey} from "features/achievement";
 
 export type Props = {}
 
 export const TrainingPage: FC<Props> = typedMemo(function TrainingPage() {
+    const queryClient = useQueryClient();
     const navigate = useNavigate()
     const {id} = useParams<{ id: string }>();
     const {data: training} = useQuery(['training/gettest', id], () => id === 'reflection' ?
@@ -45,7 +47,12 @@ export const TrainingPage: FC<Props> = typedMemo(function TrainingPage() {
         ['userhistory/sendtestresult', id],
         (incorrectWords: string[]) => UserHistoryService.sendTestResult(
             {testId: id || "", incorrectWords: incorrectWords}
-        )
+        ),
+        {
+            onSuccess: () => {
+                queryClient.resetQueries(achievementQueryKey)
+            }
+        }
     )
 
     const skip = useCallback(() => {

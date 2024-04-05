@@ -42,6 +42,10 @@ p {
 }
 
 
+.Toastify__toast-container {
+    width: fit-content !important;
+}
+
 .Toastify__toast {
     border-radius: var(--border-radius-m) !important;
     padding: var(--space-s) !important;

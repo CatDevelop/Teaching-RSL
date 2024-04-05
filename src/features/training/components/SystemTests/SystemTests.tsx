@@ -56,10 +56,17 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
                     completedWordsCount: foundTheme ? foundTheme.completedWordCount : 0,
                     units: themeItem.units.map(unitItem => {
                         const foundUnit = foundTheme?.unitInfoList.find((unitHistory: any) => unitHistory.unitId === unitItem.id)
+                        const unitWithLevels = unitListWithLevels.units.find(unit => unit.id === unitItem?.id)
                         return {
                             ...unitItem,
                             completedWordsCount: foundUnit ? foundUnit.completedWordCount : 0,
-                            levels: unitListWithLevels.units.find(unit => unit.id === unitItem.id)?.levels as SystemTestsCatalogBlock[]
+                            levels: unitWithLevels?.levels.map(levelItem => {
+                                const foundLevel = foundUnit?.levelInfoList.find(themeLevel => themeLevel.levelId === levelItem.id)
+                                return {
+                                    ...levelItem,
+                                    completedWordsCount: foundLevel ? foundLevel.completedWordCount : 0
+                                }
+                            }) || []
                         }
                     })
                 }
@@ -104,6 +111,7 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
                                                             key={`SystemTestPreviewByLevel${level.id}`}
                                                             type={TestTypeEnum.TestByLevel}
                                                             number={index}
+                                                            completedWordsCount={level.completedWordsCount}
                                                         />
                                                         <Typography variant="p" key={`delimiter${level.id}`}
                                                            className={styles.levels__delimiter}/>

@@ -1,3 +1,5 @@
+import {TrainingHistoryLevel} from "./TrainingHistoryLevel";
+
 /**
  * Юнит в истории прохождения тренировок
  */
@@ -22,11 +24,17 @@ export class TrainingHistoryUnit {
      */
     public readonly completedWordCount: number;
 
-    public constructor({unitId, unitName, wordCount, completedWordCount}: TrainingHistoryUnitProps) {
+    /**
+     * Количество выученных слов в теме
+     */
+    public readonly levelInfoList: TrainingHistoryLevel[];
+
+    public constructor({unitId, unitName, wordCount, completedWordCount, levelInfoList}: TrainingHistoryUnitProps) {
         this.unitId = unitId;
         this.unitName = unitName;
         this.wordCount = wordCount;
         this.completedWordCount = completedWordCount;
+        this.levelInfoList = levelInfoList;
     }
 }
 

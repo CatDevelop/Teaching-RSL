@@ -12,18 +12,19 @@ import {LearningTaskBlock} from "../../components/LearningTaskBlock";
 import {Spinner} from "@nextui-org/react";
 import {Back} from "../../../../components/Back";
 import useLearningLevel from "../../../../core/hooks/use-learning-level";
-import {useMutation} from "react-query";
+import {useMutation, useQueryClient} from "react-query";
 import {UserHistoryService} from "../../../../api/services/userHistory";
+import {achievementQueryKey} from "features/achievement";
 
 /**
  * Задания уровня обучения
  */
 export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
+    const queryClient = useQueryClient();
     const {id} = useParams<{ id: string }>();
     const navigate = useNavigate()
 
     const levelController = useLearningLevel(id || '')
-    console.log(levelController)
 
     const [currentStep, setCurrentStep] = useState(0)
     const [exitModalIsOpen, setExitModalIsOpen] = useState(false)
@@ -37,8 +38,12 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
         () => UserHistoryService.sendLevelResult(
             {
                 levelId: id || "", completedWords: rightWords
+            }),
+        {
+            onSuccess: () => {
+                queryClient.resetQueries(achievementQueryKey)
             }
-        )
+        }
     )
 
     const nextStep = useCallback(() => {

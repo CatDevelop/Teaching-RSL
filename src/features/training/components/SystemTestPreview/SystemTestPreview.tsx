@@ -59,7 +59,7 @@ export const SystemTestPreview: FC<Props> = typedMemo(function SystemTestPreview
                 props.type === TestTypeEnum.TestByLevel &&
                 <LevelCatalogPresentation
                     id={props.id}
-                    completeWordsCount={0}
+                    completeWordsCount={props.completedWordsCount || 0}
                     allWordsCount={props.wordsCount}
                     disabled={props.disabled || false}
                     number={props.number || 0}/>
