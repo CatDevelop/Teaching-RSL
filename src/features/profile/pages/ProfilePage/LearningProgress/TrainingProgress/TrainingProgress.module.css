@@ -6,8 +6,8 @@
 }
 
 .themeProgress__title {
-    font-size:var(--font-size-s);
-    font-weight:var(--font-weight-l);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-l);
 }
 
 .themeProgress__text {
@@ -19,7 +19,7 @@
 }
 
 .themeProgress__title,
-.themeProgress__description{
+.themeProgress__description {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
