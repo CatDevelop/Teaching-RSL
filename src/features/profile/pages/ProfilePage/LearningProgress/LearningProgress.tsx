@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useMemo} from "react";
 import {typedMemo} from "../../../../../core/utils/typedMemo";
 import {Card, CardHeader} from "../../../../../components/Card";
 import {ThemeProgress} from "./ThemeProgress";
@@ -25,6 +25,21 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
     const {data: themesHistory} = useQuery('user-themes-history', UserService.getThemesHistory)
     const {data: trainingHistory} = useQuery<GetTrainingHistoryResponse>("traininghistory/get", UserHistoryService.getTrainingHistory)
 
+    const userLearningHistory = useMemo(() => (
+        themesHistory!.sort((a, b) => a.themeName!.localeCompare(b.themeName || ""))
+    ), [themesHistory])
+
+    const userTrainingHistory = useMemo(() => (
+        trainingHistory!.themeInfoDalList.sort((a, b) => a.themeName.localeCompare(b.themeName))
+    ), [trainingHistory])
+
+
+    const userTestsHistory = useMemo(
+        () => (
+            testHistory!.slice(0).reverse().filter(test => test.isUserTest)
+                .sort((a, b) => a.name!.localeCompare(b.name || ""))
+        ), [testHistory])
+
     return (
         <Card className={clsx([styles.learningProgress, props.className])}>
             <CardHeader>Прогресс прохождения</CardHeader>
@@ -33,22 +48,36 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
             }}>
                 <Tab key="learning" title="Обучение">
                     <ScrollBox>
-                        <div className={styles.learningProgress__themes}>
-                            {themesHistory!.map(theme => (
-                                <ThemeProgress key={theme.themeId} {...theme}/>
-                            ))}
-                        </div>
+                        {
+                            userLearningHistory.length > 0 &&
+                            <div className={styles.learningProgress__themes}>
+                                {themesHistory!.map(theme => (
+                                    <ThemeProgress key={theme.themeId} {...theme}/>
+                                ))}
+                            </div>
+                        }
+                        {
+                            userLearningHistory!.length <= 0 &&
+                            <Typography variant="h1" className={styles.learningProgress__empty}>
+                                Вы пока не изучили жесты
+                            </Typography>
+                        }
                     </ScrollBox>
                 </Tab>
                 <Tab key="training" title="Практики">
                     <ScrollBox>
                         <div className={styles.learningProgress__themes}>
                             {
-                                trainingHistory!.themeInfoDalList
-                                    .sort((a, b) => a.themeName.localeCompare(b.themeName))
-                                    .map((item, i) => (
+                                userTrainingHistory.length > 0 &&
+                                userTrainingHistory.map((item, i) => (
                                         <TrainingProgress {...item} key={i}/>
                                     ))
+                            }
+                            {
+                                userTrainingHistory.length <= 0 &&
+                                <Typography variant="h1" className={styles.learningProgress__empty}>
+                                    Вы пока не проходили практики
+                                </Typography>
                             }
                         </div>
                     </ScrollBox>
@@ -56,23 +85,18 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                 <Tab key="customtests" title="Тесты">
                     <ScrollBox>
                         {
-                            testHistory!.filter(test => test.isUserTest).length > 0 &&
+                            userTestsHistory.length > 0 &&
                             <div className={styles.learningProgress__customTests}>
                                 {
-                                    testHistory!
-                                        .slice(0)
-                                        .reverse()
-                                        .filter(test => test.isUserTest)
-                                        .sort((a, b) => a.name!.localeCompare(b.name || ""))
-                                        .map((item, i) => (
-                                            <TestProgress {...item} key={i}/>
-                                        ))
+                                    userTestsHistory.map((item, i) => (
+                                        <TestProgress {...item} key={i}/>
+                                    ))
                                 }
                             </div>
                         }
 
                         {
-                            testHistory!.filter(test => !test.isUserTest).length <= 0 &&
+                            userTestsHistory!.length <= 0 &&
                             <Typography variant="h1" className={styles.learningProgress__empty}>
                                 Вы пока не проходили тесты
                             </Typography>
