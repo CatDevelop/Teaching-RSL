@@ -41,6 +41,11 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
         else {
             if (!props.rightWords.includes(props.task.task.rightSelect.id))
                 props.setRightWords([...props.rightWords, props.task.task.rightSelect.id])
+
+            props.task.task.otherSelects.map((condition: { id: string; }) => {
+                if (!props.rightWords.includes(condition.id))
+                    props.setRightWords([...props.rightWords, condition.id])
+            })
         }
     }
 
