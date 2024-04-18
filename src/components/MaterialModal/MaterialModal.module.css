@@ -1,0 +1,47 @@
+.material {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.material > * {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
+}
+
+.modal {
+    width: calc(100vw - var(--space-xl) * 2);
+    height: calc(100vh - var(--space-m) * 2);
+    overflow: hidden;
+}
+
+.expandButton {
+    position: absolute;
+    bottom: var(--space-s);
+    right: var(--space-s);
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.material:hover .expandButton {
+    visibility: visible;
+    opacity: 1;
+}
+
+.expandButtonIcon {
+    width: 16px;
+    height: 16px;
+    fill: var(--on-surface-color);
+}
