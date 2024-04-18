@@ -1,0 +1,42 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    visibility: hidden;
+    background-color: rgba(0,0,0,0.6);
+    padding: var(--space-l);
+    overflow: auto;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+.overlay.isOpen {
+    visibility: visible;
+    z-index: var(--z-index-modal)
+}
+
+.modal {
+    background-color: var(--on-surface-color);
+    padding: var(--space-xl) var(--space-xl);
+    border-radius: var(--border-radius-m);
+    min-width: 400px;
+    max-width: 700px;
+    position: relative;
+    margin: auto 0;
+}
+
+.closeButton {
+    position: absolute;
+    top: var(--space-m);
+    right: var(--space-m);
+}
+
+.closeButtonIcon {
+    width: 14px;
+    height: 14px;
+}
+
+.closeButton:hover .closeButtonIcon,
+.closeButton:focus .closeButtonIcon{
+    stroke: var(--danger-color) !important;
+}

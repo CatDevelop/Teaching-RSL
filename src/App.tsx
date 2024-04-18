@@ -35,6 +35,7 @@ export default function MyApp() {
                                 pauseOnHover
                                 theme="light"
                             />
+                            <div id="modal-portal"/>
                             <AchievementListener/>
                         </BrowserRouter>
                     </MantineProvider>
