@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .expandButtonIcon {
@@ -40,15 +40,15 @@
 }
 
 .modalCloseButton {
-    top: var(--space-s);
-    right: var(--space-s);
-    width: 24px;
-    height: 24px;
+    top: var(--space-s) !important;
+    right: var(--space-s) !important;
+    width: 30px;
+    height: 30px;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .modalCloseButton > svg {

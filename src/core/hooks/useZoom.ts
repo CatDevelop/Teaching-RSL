@@ -44,12 +44,12 @@ export function useZoomWithDragging(zoomedElement: HTMLElement | null) {
 
         zoomedElement?.addEventListener('mousedown', handleMouseDown)
         zoomedElement?.addEventListener('mousemove', handleMouseMove)
-        zoomedElement?.addEventListener('mouseup', handleMouseUp)
+        document?.addEventListener('mouseup', handleMouseUp)
 
         return () => {
             zoomedElement?.removeEventListener('mousedown', handleMouseDown)
             zoomedElement?.removeEventListener('mousemove', handleMouseMove)
-            zoomedElement?.removeEventListener('mouseup', handleMouseUp)
+            document?.removeEventListener('mouseup', handleMouseUp)
         }
     }, [scale]);
 
@@ -58,7 +58,6 @@ export function useZoomWithDragging(zoomedElement: HTMLElement | null) {
     }, [scale])
 
     const onScaleDown = useCallback(() => {
-        console.log('down', scale)
         if (scale <= 1) {
             return
         }
