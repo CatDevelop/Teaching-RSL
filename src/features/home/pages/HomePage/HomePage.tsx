@@ -12,6 +12,7 @@ import {RootState} from "../../../../store/store";
 import {ReactComponent as Test1} from "../../../../assets/images/Test1.svg";
 import { useWindowScroll } from '@mantine/hooks';
 import {useRive, useStateMachineInput} from "@rive-app/react-canvas";
+import clsx from "clsx";
 
 /**
  * Главная страница (Лендинг)
@@ -128,7 +129,7 @@ export const HomePage: FC = typedMemo(function HomePage() {
                         </div>
                         <div className={styles.homePage__features__item__image}>
                             <div className={styles.homePage__features__item__imageRive}>
-                                <RiveComponent />
+                                <RiveComponent className={clsx(styles.homePage__features__rive, isFixed && styles.homePage__features__rive_fixed)}/>
                             </div>
                             {/*<Test1 width={900} style={{*/}
                             {/*    position: isFixed ? "fixed" : undefined, top: "50px", right: "118px"}}/>*/}

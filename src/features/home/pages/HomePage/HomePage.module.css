@@ -137,6 +137,17 @@
     max-width: var(--landing-width);
 }
 
+.homePage__features__rive {
+    top: calc(var( --header-height) + 20px);
+    right: calc((100wv - var(--landing-width)) / 2);
+    height: 100%;
+    width: 100%;
+}
+
+.homePage__features__rive_fixed {
+    position: fixed;
+}
+
 .homePage__features__item {
     display: flex;
     gap: var(--space-l);
@@ -148,6 +159,9 @@
 .homePage__features__item__text {
     width: calc((var(--landing-width) - 900px));
     height: 625px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .homePage__features__item__text__title {
