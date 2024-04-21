@@ -80,7 +80,7 @@ export const Video: FC<Props> = typedMemo(function Video({
                 onPlay={onPlay}
                 style={{
                     transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)`,
-                    cursor: 'move'
+                    cursor: controls ? 'move' : ''
                 }}
                 onPause={onPause}
             />
