@@ -46,6 +46,11 @@ export type Props = ComponentProps & PropsWithChildren & Readonly<{
      * Класс для overlay
      */
     overlayClassName?: string;
+
+    /**
+     * Класс для closeButton
+     */
+    closeButtonClassName?: string;
 }>;
 
 /**
@@ -61,6 +66,7 @@ export const Modal: FC<Props> = typedMemo(function Modal({
                                                              className,
                                                              children,
                                                              overlayClassName,
+                                                             closeButtonClassName,
                                                          }) {
     const onContentClick: MouseEventHandler<HTMLDivElement> = event => {
         event.stopPropagation();
@@ -96,7 +102,7 @@ export const Modal: FC<Props> = typedMemo(function Modal({
                     onClick={onContentClick}
                 >
                     {showClosingCross
-                        ? <button onClick={onClose} className={clsx(styles.closeButton)}>
+                        ? <button onClick={onClose} className={clsx(styles.closeButton, closeButtonClassName)}>
                             <CloseIcon className={clsx(styles.closeButtonIcon)} />
                         </button>
                         : null}

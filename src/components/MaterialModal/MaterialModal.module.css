@@ -14,10 +14,10 @@
 }
 
 .modal {
-    width: calc(100vw - var(--space-xl) * 2);
+    max-width: calc(100vw - var(--space-xl) * 2) !important;
     height: calc(100vh - var(--space-l) * 2);
     overflow: hidden;
-    padding: 0 calc(var(--space-m) * 2 + var(--font-size-m)) !important;
+    padding: 0 !important;
 }
 
 .expandButton {
@@ -30,11 +30,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(255,255,255,0.7);
 }
 
 .expandButtonIcon {
     width: 16px;
     height: 16px;
-    fill: var(--on-surface-color);
+    fill: var(--primary-color);
+}
+
+.modalCloseButton {
+    top: var(--space-s);
+    right: var(--space-s);
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.7);
+}
+
+.modalCloseButton > svg {
+    width: 10px;
+    height: 10px;
+    stroke: var(--primary-color);
 }
