@@ -15,8 +15,9 @@
 
 .modal {
     width: calc(100vw - var(--space-xl) * 2);
-    height: calc(100vh - var(--space-m) * 2);
+    height: calc(100vh - var(--space-l) * 2);
     overflow: hidden;
+    padding: 0 calc(var(--space-m) * 2 + var(--font-size-m)) !important;
 }
 
 .expandButton {
@@ -30,14 +31,6 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0,0,0,0.6);
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.material:hover .expandButton {
-    visibility: visible;
-    opacity: 1;
 }
 
 .expandButtonIcon {
