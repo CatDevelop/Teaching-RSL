@@ -14,7 +14,7 @@
 }
 .facts {
     width: 100%;
-    height: 250px;
+    height: 200px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,7 +33,7 @@
     left: 0;
     top: 0;
 
-    width: 3280px;
+    width: 3090px;
     height: 100%;
 }
 
@@ -44,6 +44,7 @@
 .facts__secondContent {
     animation: moving2 70s linear infinite;
 }
+
 .facts__slide {
     width: 350px;
 }

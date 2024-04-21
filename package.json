@@ -10,6 +10,7 @@
     "@nextui-org/theme": "^2.1.18",
     "@react-three/fiber": "^8.15.12",
     "@reduxjs/toolkit": "^1.9.7",
+    "@rive-app/react-canvas": "^4.8.9",
     "axios": "^1.5.1",
     "canvas-confetti": "^1.8.0",
     "classnames": "^2.3.2",
