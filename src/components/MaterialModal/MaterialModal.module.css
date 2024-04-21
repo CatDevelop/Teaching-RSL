@@ -24,13 +24,13 @@
     position: absolute;
     bottom: var(--space-s);
     right: var(--space-s);
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .expandButtonIcon {
