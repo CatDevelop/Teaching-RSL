@@ -1,4 +1,4 @@
-import {ReactNode, useCallback, useEffect, useState, MouseEvent} from "react";
+import {useCallback, useEffect, useState} from "react";
 
 /**
  * Хук для добавления зума и перетаскивания элементу
@@ -12,9 +12,9 @@ export function useZoomWithDragging(zoomedElement: HTMLElement | null) {
         let isDragging = false
         let prevPosition = {x: 0, y: 0};
 
-        const handleMouseDown = (event: MouseEvent) => {
+        const handleMouseDown = (ev: MouseEvent) => {
             isDragging = true
-            prevPosition = {x: event.clientX, y: event.clientY}
+            prevPosition = {x: ev.clientX, y: ev.clientY}
         }
 
         const handleMouseMove = (event: MouseEvent) => {
