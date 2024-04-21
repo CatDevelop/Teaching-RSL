@@ -1,4 +1,13 @@
-import React, {DetailedHTMLProps, FC, MediaHTMLAttributes, ReactNode, useCallback, useRef, useState} from 'react';
+import React, {
+    DetailedHTMLProps,
+    FC,
+    MediaHTMLAttributes,
+    ReactNode,
+    useCallback,
+    useEffect,
+    useRef,
+    useState
+} from 'react';
 import {typedMemo} from "../../core/utils/typedMemo";
 import {ComponentProps} from "../../core/models/ComponentProps";
 import clsx from "clsx";
@@ -6,6 +15,7 @@ import styles from "./Video.module.css";
 import {ReactComponent as Play} from 'assets/images/Play.svg';
 import {ReactComponent as Pause} from 'assets/images/Pause.svg';
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
+import {useZoomWithDragging} from "../../core/hooks/useZoom";
 
 export type Props =
     ComponentProps &
@@ -43,6 +53,7 @@ export const Video: FC<Props> = typedMemo(function Video({
     const videoRef = useRef<HTMLVideoElement>(null)
     const [isPlayed, setIsPlayed] = useState(false)
     const [rate, setRate] = useState(1)
+    const {scale, onScaleUp, onScaleDown, position} = useZoomWithDragging(videoRef.current)
 
     const onPlay = useCallback(() => {
         videoRef.current?.play();
@@ -67,6 +78,10 @@ export const Video: FC<Props> = typedMemo(function Video({
                 {...videoProps}
                 ref={videoRef}
                 onPlay={onPlay}
+                style={{
+                    transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)`,
+                    cursor: 'move'
+                }}
                 onPause={onPause}
             />
 
@@ -107,6 +122,12 @@ export const Video: FC<Props> = typedMemo(function Video({
                     </div>
 
                     <div className={styles.controlsRight}>
+                        <button className={styles.controlButton} onClick={onScaleUp}>
+                            +
+                        </button>
+                        <button className={styles.controlButton} onClick={onScaleDown}>
+                            -
+                        </button>
                         {controlsRight}
                     </div>
                 </div>
