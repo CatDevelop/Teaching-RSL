@@ -17,6 +17,7 @@
     right: var(--space-s);
     display: flex;
     align-items: center;
+    gap: var(--space-xs);
 }
 
 .controlsLeft,
