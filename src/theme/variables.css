@@ -81,6 +81,8 @@
     --max-theory-card-width: 1080px;
 
     --z-index-select: 100;
+    --z-index-dropdown: var(--z-index-select);
+    --z-index-modal: calc(var(--z-index-select) + 1)
 }
 
 @media(max-width: 1600px){
