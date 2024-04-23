@@ -5,6 +5,7 @@
     --on-surface-opacity-color: rgba(255, 255, 255, 0.85);
     --dark-on-surface-color: rgba(228, 228, 231, 1);
     --primary-color: rgb(51, 142, 247, 1);
+    --fluent-primary-color: rgb(51, 142, 247, 0.8);
     --disabled-primary-color: rgb(51, 142, 247, 0.6);
     --accent-color: rgba(174, 126, 222, 1);
     --light-primary-color: rgba(82, 133, 242, 0.2);
