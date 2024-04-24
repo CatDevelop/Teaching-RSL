@@ -13,9 +13,9 @@ import {TrainingIcon} from "../../assets/images/TrainingIcon"
 import {DictionaryIcon} from "../../assets/images/DictionaryIcon"
 import {logout} from "../../store/auth/authSlice";
 import {useQuery, useQueryClient} from "react-query";
-import { UserService } from "api/services/user";
-import { Typography } from "components/Typography";
-import { Button } from "components/Button";
+import {UserService} from "api/services/user";
+import {Typography} from "components/Typography";
+import {Button} from "components/Button";
 
 /**
  * Навигационные ссылки

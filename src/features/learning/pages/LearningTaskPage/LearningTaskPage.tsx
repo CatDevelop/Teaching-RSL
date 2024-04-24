@@ -42,6 +42,7 @@ export const LearningTaskPage: FC = typedMemo(function LearningTaskPage() {
         {
             onSuccess: () => {
                 queryClient.resetQueries(achievementQueryKey)
+                queryClient.resetQueries('user-welcome-info')
             }
         }
     )

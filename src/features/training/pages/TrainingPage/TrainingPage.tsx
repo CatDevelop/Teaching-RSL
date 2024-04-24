@@ -51,6 +51,7 @@ export const TrainingPage: FC<Props> = typedMemo(function TrainingPage() {
         {
             onSuccess: () => {
                 queryClient.resetQueries(achievementQueryKey)
+                queryClient.resetQueries('user-welcome-info')
             }
         }
     )
