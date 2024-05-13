@@ -61,7 +61,7 @@ export const DictionaryLearningPage: FC<Props> = typedMemo(function DictionaryLe
                                             variant="bordered"
                                             onClick={() => setIsHintVisible(false)}
                                         >
-                                            Спрятать жест
+                                            Hide sign
                                         </Button>
                                     </>
                                 }
@@ -72,7 +72,7 @@ export const DictionaryLearningPage: FC<Props> = typedMemo(function DictionaryLe
                                         variant="bordered"
                                         onClick={() => setIsHintVisible(true)}
                                     >
-                                        Показать жест
+                                        Show sign
                                     </Button>
                                 }
                             </div>

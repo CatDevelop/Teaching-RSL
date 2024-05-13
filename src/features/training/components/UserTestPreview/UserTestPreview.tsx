@@ -37,7 +37,7 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
                     </Typography>
                     <div className={styles.userTestPreview__info}>
                         <Typography className={styles.userTestPreview__description}>
-                            {props.wordsCount} {normalizeCountForm(props.wordsCount, ["слово", "слова", "слов"])}
+                            {props.wordsCount} words
                         </Typography>
                         <Button
                             color="primary"
@@ -45,11 +45,11 @@ export const UserTestPreview: FC<Props> = typedMemo(function UserTestPreview(pro
                             className={styles.userTestPreview__button}
                             onClick={() => {
                                 navigator.clipboard.writeText("http://изучение-ржя.рф/training/"+props.id).then(() => {
-                                    toast.success("Ссылка успешно скопирована!")
+                                    toast.success("Link successfully copied!")
                                 })
                             }}
                         >
-                            Скопировать ссылку
+                            Copy link
                         </Button>
                     </div>
                 </div>

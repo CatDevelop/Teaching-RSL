@@ -34,9 +34,9 @@ export const LoginPage: FC = typedMemo(function LoginPage() {
         },
         onError: (error: { response: { data: Object } }) => {
             if ("error_description" in error.response.data && error.response.data.error_description === "invalid_username_or_password")
-                toast.error('Неверный логин или пароль!');
+                toast.error('Wrong email or password!');
             else
-                toast.error('Ошибка!');
+                toast.error('Error!');
         }
     })
 
@@ -46,17 +46,17 @@ export const LoginPage: FC = typedMemo(function LoginPage() {
 
     return (
         <AuthFormPage>
-            <Typography variant="h3">Вход</Typography>
+            <Typography variant="h3">Sign in</Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Input
-                    label="Почта"
+                    label="Email"
                     isInvalid={errors.email !== undefined}
                     color={errors.email !== undefined ? "danger" : "default"}
                     errorMessage={errors.email?.message}
                     {...register('email')}
                 />
                 <Input
-                    label="Пароль"
+                    label="Password"
                     type="password"
                     isInvalid={errors.password !== undefined}
                     color={errors.password !== undefined ? "danger" : "default"}
@@ -70,7 +70,7 @@ export const LoginPage: FC = typedMemo(function LoginPage() {
                     isLoading={isFetching}
                     isDisabled={isFetching}
                 >
-                    Войти
+                    Sign in
                 </Button>
             </form>
             {/*<SocialBlock*/}
@@ -79,13 +79,13 @@ export const LoginPage: FC = typedMemo(function LoginPage() {
             {/*/>*/}
             <div className={styles.loginPage__links}>
                 <FormLink
-                    label="Забыли пароль?"
-                    linkText="Восстановить"
+                    label="Forgot your password?"
+                    linkText="Restore"
                     linkUrl="/restorepassword"
                 />
                 <FormLink
-                    label="У вас еще нет аккаунта?"
-                    linkText="Зарегистрироваться"
+                    label="Don't have an account yet?"
+                    linkText="Register"
                     linkUrl="/signup"
                 />
             </div>

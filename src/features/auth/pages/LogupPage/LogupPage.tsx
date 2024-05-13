@@ -55,31 +55,31 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
 
     return (
         <AuthFormPage>
-            <Typography variant="h3">Новый аккаунт</Typography>
+            <Typography variant="h3">New account</Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Input
-                    label="Имя"
+                    label="Name"
                     isInvalid={errors.name !== undefined}
                     color={errors.name !== undefined ? "danger" : "default"}
                     errorMessage={errors.name?.message}
                     {...register('name')}
                 />
                 <Input
-                    label="Фамилия"
+                    label="Surname"
                     isInvalid={errors.surname !== undefined}
                     color={errors.surname !== undefined ? "danger" : "default"}
                     errorMessage={errors.surname?.message}
                     {...register('surname')}
                 />
                 <Input
-                    label="Почта"
+                    label="Email"
                     isInvalid={errors.email !== undefined}
                     color={errors.email !== undefined ? "danger" : "default"}
                     errorMessage={errors.email?.message}
                     {...register('email')}
                 />
                 <Input
-                    label="Пароль"
+                    label="Password"
                     type="password"
                     isInvalid={errors.password !== undefined}
                     color={errors.password !== undefined ? "danger" : "default"}
@@ -87,7 +87,7 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
                     {...register('password')}
                 />
                 <Input
-                    label="Повторите пароль"
+                    label="Repeat password"
                     type="password"
                     isInvalid={errors.confirmPassword !== undefined}
                     color={errors.confirmPassword !== undefined ? "danger" : "default"}
@@ -95,7 +95,7 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
                     {...register('confirmPassword')}
                 />
                 <Button color="primary" type="submit" isLoading={isFetching} isDisabled={isFetching}>
-                    Создать аккаунт
+                    Create an account
                 </Button>
             </form>
             {/*<SocialBlock*/}
@@ -104,8 +104,8 @@ export const LogupPage: FC = typedMemo(function LogupPage(){
             {/*/>*/}
             <FormLink
                 className={styles.logupPage__link}
-                label="У вас уже есть аккаунт?"
-                linkText="Войти"
+                label="Already have an account?"
+                linkText="Sign in"
                 linkUrl="/signin"
             />
         </AuthFormPage>

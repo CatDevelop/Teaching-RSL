@@ -29,14 +29,14 @@ export const SelectFoundWord: FC<Props> = typedMemo(function SelectFoundWord(pro
     return (
         <>
             <div className={styles.selectFoundWord__header}>
-                <Typography variant='h2'>Подходящие слова</Typography>
+                <Typography variant='h2'>Found words</Typography>
             </div>
 
             <ScrollBox className={styles.selectFoundWord__scroll}>
                 {
                     words!.length === 0 &&
                     <Typography variant='p'>
-                        Ничего не найдено
+                        Nothing found
                     </Typography>
                 }
                 { words!.length !== 0 && 

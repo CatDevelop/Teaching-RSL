@@ -28,22 +28,22 @@ export const RestorePasswordPage: FC = typedMemo(function RestorePasswordPage(){
 
     return (
         <AuthFormPage>
-            <Typography variant="h3">Восстановление пароля</Typography>
+            <Typography variant="h3">Password restore</Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Input 
-                    label="Почта"
+                    label="Email"
                     isInvalid={errors.email !== undefined}
                     color={errors.email !== undefined ? "danger" : "default"}
                     errorMessage={errors.email?.message}
                     {...register('email')}
                 />
                 <Button color="primary" type="submit">
-                    Отправить письмо
+                    Send a letter
                 </Button>
             </form>
             <FormLink 
                 className={styles.resetPasswordPage__link}
-                linkText="Войти в аккаунт"
+                linkText="Login to account"
                 linkUrl="/signin"
             />
         </AuthFormPage>
