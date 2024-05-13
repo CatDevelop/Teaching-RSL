@@ -59,7 +59,7 @@ export const DictionaryWordBlock: FC<Props> = typedMemo(function DictionaryWordB
             <Card className={clsx(styles.dictionaryWordBlock_empty, props.className)}>
                 <Typography
                     variant='p' className={styles.dictionaryWordBlock_empty__title}>
-                    Вы пока не <br/> выбрали слово
+                    You haven't <br/> chosen a word yet
                 </Typography>
             </Card>
         )
@@ -80,13 +80,13 @@ export const DictionaryWordBlock: FC<Props> = typedMemo(function DictionaryWordB
                     variant="solid"
                     onClick={() => navigate(`/dictionary/learning/${props.selectedWordId}`)}
                 >
-                    Потренироваться
+                    Practice
                 </Button>
 
                 {
                     !props.isWordInTest ?
-                        <Button variant="bordered" color="primary" onClick={addWordToTest}>Добавить в тест</Button> :
-                        <Button variant="bordered" color="danger" onClick={removeWordFromTest}>Удалить из теста</Button>
+                        <Button variant="bordered" color="primary" onClick={addWordToTest}>Add to test</Button> :
+                        <Button variant="bordered" color="danger" onClick={removeWordFromTest}>Remove from test</Button>
                 }
             </div>
         </Card>

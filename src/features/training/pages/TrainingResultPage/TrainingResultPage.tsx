@@ -41,11 +41,10 @@ export const TrainingResultPage: FC = typedMemo(function TrainingPage() {
                     <div className={styles.trainingResult__result}>
                         <ResultImage className={styles.trainingResult__resultImage}/>
                         <Typography variant="h2" className={styles.trainingResult__resultTitle}>
-                            Конец тренировки
+                            End of training
                         </Typography>
                         <Typography variant="p" className={styles.trainingResult__resultTitle}>
-                            Ваш
-                            результат {allWordsCount - skipWordsCount} из {allWordsCount} {normalizeCountForm(allWordsCount, ["жеста", 'жестов', 'жестов'])}
+                            Your result is {allWordsCount - skipWordsCount} of {allWordsCount} signs
                         </Typography>
 
                     </div>
@@ -55,7 +54,7 @@ export const TrainingResultPage: FC = typedMemo(function TrainingPage() {
                         color="primary"
                         onClick={toTrainingPage}
                     >
-                        В меню
+                        Go to menu
                     </Button>
 
                     <div className={styles.trainingResult__result__container}>

@@ -24,24 +24,24 @@ export const LearningBlock: FC<Props> = typedMemo(function LearningBlock(props){
 
                 <TaskFeedback
                     className={styles.learningBlock__taskFeedback}
-                    text="Сообщить об ошибке"
+                    text="Report"
                     items={
                         [
                             {
                                 id: "0",
-                                label: "Мой ответ следовало принять"
+                                label: "My answer should have been accepted"
                             },
                             {
                                 id: "1",
-                                label: "Изображение отсутствует"
+                                label: "No image available"
                             },
                             {
                                 id: "2",
-                                label: "Задание некорректное"
+                                label: "The task is incorrect"
                             },
                             {
                                 id: "3",
-                                label: "Что-то ещё пошло не так"
+                                label: "Something else went wrong"
                             }
                         ]
                     }/>

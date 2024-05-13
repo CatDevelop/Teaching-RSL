@@ -24,11 +24,11 @@ export const TrainingCatalogPage: FC = typedMemo(function TrainingCatalogPage() 
             <PageContent className={styles.trainingCatalog__pageContent}>
                 <Card className={styles.trainingCatalog__titleContainer}>
                     <Typography variant="h1" className={styles.trainingCatalog__titleContainer__title}>
-                        Практика
+                        Training
                     </Typography>
                     <div className={styles.trainingCatalog__titleContainer__content}>
                         <Typography variant="p" className={styles.trainingCatalog__titleContainer__description}>
-                            Потренируйся в воспроизведении жестов, а мы поможем
+                            Practice reproducing signs, and we will help
                         </Typography>
                         <RandomTestButton/>
                     </div>

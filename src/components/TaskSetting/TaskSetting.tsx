@@ -57,17 +57,17 @@ export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(props) {
                 variant="light"
                 onClick={onOpen}
             >
-                Настройки камеры
+                Camera settings
             </Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Настройка камеры</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">Camera settings</ModalHeader>
                             <ModalBody>
                                 <div className={styles.taskSetting__camera}></div>
                                 <Select
-                                    label="Камера"
+                                    label="Camera"
                                     defaultSelectedKeys={[defaultDevice || devices[0].deviceId]}
                                     onChange={selectDevice}
                                 >
@@ -82,7 +82,7 @@ export const TaskSetting: FC<Props> = typedMemo(function TaskSetting(props) {
                             </ModalBody>
                             <ModalFooter className={styles.taskFeedback__actions}>
                                 <Button variant="faded" onPress={onClose}>
-                                    Назад
+                                    Back
                                 </Button>
                             </ModalFooter>
                         </>

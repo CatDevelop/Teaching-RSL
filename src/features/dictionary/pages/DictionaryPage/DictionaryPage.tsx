@@ -43,19 +43,19 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
                         variant="h1"
                         className={styles.dictionary__titleContainer__title}
                     >
-                        Словарь
+                        Dictionary
                     </Typography>
                     <div className={styles.dictionary__titleContainer__content}>
                         <Typography
                             variant="p"
                             className={styles.dictionary__titleContainer__description}
                         >
-                            Здесь можно найти абсолютно все жесты
+                            Here you can find absolutely all signs
                         </Typography>
 
                         <CreateUserTestForm
                             triggerComponent={onOpen => <Button color="primary" variant="light" onClick={onOpen}>
-                                Создать тест
+                                Create a test
                             </Button>}
                             onChangeWords={() => {
                                 setIsWordInTest(UserTestStorageService.checkWordIdInStorage(selectedWordId || ""))
@@ -67,7 +67,7 @@ export const DictionaryPage: FC = typedMemo(function DictionaryPage() {
 
                 <div className={styles.dictionary__chooseWordBlock}>
                     <Input
-                        placeholder="Поиск"
+                        placeholder="Search"
                         classNames={{
                             inputWrapper: [styles.dictionary__wordSearch],
                             input: [styles.dictionary__wordSearchInput],

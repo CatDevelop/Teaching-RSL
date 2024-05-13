@@ -22,78 +22,78 @@ type AchievementConfig = {
 export const achievementConfig: AchievementConfig = {
     learning: {
         [LearningScoreAchievement.Bronze]: {
-            name: 'Взрывной словарный запас',
-            description: 'Вы заработали 10 очков в обучении!',
+            name: 'Explosive vocabulary',
+            description: 'You earned 10 points in learning!',
             image: <BronzeAchievementIcon/>,
             toastClassName: classes.bronzeAchievementToast
         },
         [LearningScoreAchievement.Silver]: {
-            name: 'Мастер словесного искусства',
-            description: 'Вы заработали 35 очков в обучении!',
+            name: 'Master of Verbal Arts',
+            description: 'You earned 35 points in learning!',
             image: <SilverAchievementIcon/>,
             toastClassName: classes.silverAchievementToast
         },
         [LearningScoreAchievement.Gold]: {
-            name: 'Суперпловец в океане жестов',
-            description: 'Вы заработали 75 очков в обучении!',
+            name: 'Super swimmer in an ocean of sings',
+            description: 'You earned 75 points in learning!',
             image: <GoldAchievementIcon/>,
             toastClassName: classes.goldAchievementToast
         },
         [LearningScoreAchievement.Diamond]: {
-            name: 'Легионер словесной революции',
-            description: 'Вы заработали 150 очков в обучении!',
+            name: 'Legionnaire of the verbal revolution',
+            description: 'You earned 150 points in learning!',
             image: <DiamondAchievementIcon/>,
             toastClassName: classes.diamondAchievementToast
         },
     },
     practice: {
         [PracticeScoreAchievement.Bronze]: {
-            name: 'Неуязвимый практикант',
-            description: 'Вы заработали 10 очков в практиках!',
+            name: 'Invulnerable Trainee',
+            description: 'You earned 10 points in training!',
             image: <BronzeAchievementIcon/>,
             toastClassName: classes.bronzeAchievementToast
         },
         [PracticeScoreAchievement.Silver]: {
-            name: 'Бац, и почти эксперт',
-            description: 'Вы заработали 35 очков в практиках!',
+            name: 'Bam, and almost an expert',
+            description: 'You earned 35 points in training!',
             image: <SilverAchievementIcon/>,
             toastClassName: classes.silverAchievementToast
         },
         [PracticeScoreAchievement.Gold]: {
-            name: 'Легенда продвижения',
-            description: 'Вы заработали 75 очков в практиках!',
+            name: 'Promotion Legend',
+            description: 'You earned 75 points in training!',
             image: <GoldAchievementIcon/>,
             toastClassName: classes.goldAchievementToast
         },
         [PracticeScoreAchievement.Diamond]: {
-            name: 'Жестоман',
-            description: 'Вы заработали 150 очков в практиках!',
+            name: 'Signoman',
+            description: 'You earned 150 points in training!',
             image: <DiamondAchievementIcon/>,
             toastClassName: classes.diamondAchievementToast
         },
     },
     total: {
         [TotalScoreAchievement.Bronze]: {
-            name: 'Хайповый пользователь',
-            description: 'Вы заработали 20 очков общего прогресса!',
+            name: 'Hype user',
+            description: 'You earned 20 total progress points!',
             image: <BronzeAchievementIcon/>,
             toastClassName: classes.bronzeAchievementToast
         },
         [TotalScoreAchievement.Silver]: {
-            name: 'Энергичный мозговой тренажер',
-            description: 'Вы заработали 50 очков общего прогресса!',
+            name: 'Energetic Brain Trainer',
+            description: 'You earned 50 total progress points!',
             image: <SilverAchievementIcon/>,
             toastClassName: classes.silverAchievementToast
         },
         [TotalScoreAchievement.Gold]: {
-            name: 'Жестовая зависимость',
-            description: 'Вы заработали 100 очков общего прогресса!',
+            name: 'Signs addiction',
+            description: 'You earned 100 total progress points!',
             image: <GoldAchievementIcon/>,
             toastClassName: classes.goldAchievementToast
         },
         [TotalScoreAchievement.Diamond]: {
-            name: 'Прогрессомания',
-            description: 'Вы заработали 200 очков общего прогресса!',
+            name: 'Progressomania',
+            description: 'You earned 200 total progress points!',
             image: <DiamondAchievementIcon/>,
             toastClassName: classes.diamondAchievementToast
         },

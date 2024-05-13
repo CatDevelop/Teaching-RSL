@@ -81,13 +81,13 @@ export const SelectUserTestWords: FC<Props> = typedMemo(function SelectUserTestW
                     variant="span"
                     className={styles.selectUserTestWords__title}
                 >
-                    Список слов
+                    List of words
                 </Typography>
                 <Typography
                     variant="span"
                     className={styles.selectUserTestWords__wordCount}
                 >
-                    {selectedWords.length} {normalizeCountForm(selectedWords.length, ["слово", "слова", "слов"])}
+                    {selectedWords.length} {"words"}
                 </Typography>
             </div>
 
@@ -98,7 +98,7 @@ export const SelectUserTestWords: FC<Props> = typedMemo(function SelectUserTestW
                 onKeyDown={onKeyDown}
                 onChange={onChange}
                 value={selectedWords}
-                placeholder="Слова для теста"
+                placeholder="Words for the test"
                 isMulti
                 isSearchable
             />

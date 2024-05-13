@@ -14,12 +14,12 @@ export const StartTraining: FC<Props> = typedMemo(function StartTraining(props) 
     return (
         <Card className={clsx(styles.trainingTask__startCard, styles.trainingTask__startAnimation)}>
             <Typography variant={"h2"}>
-                Начало тренировки
+                Start training
             </Typography>
             <Typography variant={"p"} className={styles.trainingTask__startCardDescription}>
-                Вам будут предложены слова, которые вы должны показать в камеру.
-                Наша система распознает ваш жест и отобразит слово зелёным цветом.
-                После успешного выполнения перейдите к следующему слову.
+                You will be prompted with words that you must show to the camera.
+                Our system will recognize your sign and display the word in green.
+                Once successful, move on to the next word.
             </Typography>
             <Button
                 variant={"solid"}
@@ -27,7 +27,7 @@ export const StartTraining: FC<Props> = typedMemo(function StartTraining(props) 
                 onClick={props.onStart}
                 size={"lg"}
             >
-                Начать прохождение
+                Start execution
             </Button>
         </Card>
     )

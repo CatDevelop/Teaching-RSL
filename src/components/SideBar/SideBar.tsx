@@ -23,25 +23,25 @@ import {Button} from "components/Button";
 export const navigationItems = [
     {
         id: 0,
-        label: "Личный кабинет",
+        label: "Profile",
         icon: LKIcon,
         link: "/profile"
     },
     {
         id: 1,
-        label: "Обучение",
+        label: "Learning",
         icon: LearningIcon,
         link: "/learning"
     },
     {
         id: 2,
-        label: "Практика",
+        label: "Training",
         icon: TrainingIcon,
         link: "/training"
     },
     {
         id: 3,
-        label: "Словарь",
+        label: "Dictionary",
         icon: DictionaryIcon,
         link: "/dictionary"
     },
@@ -58,7 +58,7 @@ export const SideBar: FC = typedMemo(function SideBar() {
 
     const exitItem = {
         id: 4,
-        label: "Выйти",
+        label: "Logout",
         icon: ExitIcon,
         link: "/",
         onClick: () => {
@@ -97,7 +97,7 @@ export const SideBar: FC = typedMemo(function SideBar() {
                     to="/profile/settings"
                     className={styles.sidebar__toSettingsBtn}
                 >
-                    Редактировать профиль
+                    Settings
                     </Button>
                 <SideBarItem item={exitItem} isActive={false}/>
             </div>

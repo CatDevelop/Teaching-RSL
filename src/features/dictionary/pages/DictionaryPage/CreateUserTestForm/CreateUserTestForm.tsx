@@ -27,8 +27,8 @@ type Props = Readonly<{
 }>
 
 const validationSchema = Yup.object({
-    testName: Yup.string().trim().required('Введите название теста'),
-    wordIdList: Yup.array().min(1, 'Выберите слова')
+    testName: Yup.string().trim().required('Enter test name'),
+    wordIdList: Yup.array().min(1, 'Сhoose words')
 })
 
 /**
@@ -76,11 +76,11 @@ export const CreateUserTestForm: FC<Props> = typedMemo(function CreateUserTestFo
                     <ModalContent className={styles.modalContent}>
                         {(onClose) => (
                             <>
-                                <ModalHeader className="flex flex-col gap-1">Создание теста</ModalHeader>
+                                <ModalHeader className="flex flex-col gap-1">Creating a test</ModalHeader>
                                 <ModalBody>
                                     <SelectUserTestWords onChangeWordIds={onChangeWordIds}/>
                                     <Input
-                                        label="Название теста"
+                                        label="Test name"
                                         isInvalid={errors.testName !== undefined}
                                         color={errors.testName !== undefined ? "danger" : "default"}
                                         errorMessage={errors.testName?.message}
@@ -89,10 +89,10 @@ export const CreateUserTestForm: FC<Props> = typedMemo(function CreateUserTestFo
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button variant="faded" onPress={onClose}>
-                                        Назад
+                                        Back
                                     </Button>
                                     <Button color="primary" onClick={handleSubmit(onSubmit)} type="submit">
-                                        Создать тест
+                                        Create a test
                                     </Button>
                                 </ModalFooter>
                             </>

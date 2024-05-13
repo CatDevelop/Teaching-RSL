@@ -138,31 +138,31 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                         {props.word.word}
                     </Typography>
                     <Typography variant="span" className={styles.recognitionBlock__title}>
-                        Покажите жест в камеру
+                        Make a sign to the camera
                     </Typography>
                 </div>
                 <div className={styles.recognitionBlock__wordHeader__buttons}>
                     <TaskSetting className={styles.recognitionBlock__cameraSettingsButton}/>
                     <TaskFeedback
                         className={styles.recognitionBlock__errorButton}
-                        text="Сообщить об ошибке"
+                        text="Report"
                         items={
                             [
                                 {
                                     id: "0",
-                                    label: "Мой ответ следовало принять"
+                                    label: "My answer should have been accepted"
                                 },
                                 {
                                     id: "1",
-                                    label: "Слова не распознаются"
+                                    label: "Words are not recognized"
                                 },
                                 {
                                     id: "2",
-                                    label: "Задание некорректное"
+                                    label: "The task is incorrect"
                                 },
                                 {
                                     id: "3",
-                                    label: "Что-то ещё пошло не так"
+                                    label: "Something else went wrong"
                                 }
                             ]
                         }/>
@@ -177,7 +177,7 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
 
                 <div className={styles.recognitionBlock__recognizedContainer}>
                     <Typography variant="h3" className={styles.recognitionBlock__recognized}>
-                        Распознанные жесты
+                        Recognized signs
                     </Typography>
                     <div className={clsx(styles.recognitionBlock__recognizedWords)}>
                         {

@@ -57,11 +57,11 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
 
     useEffect(() => {
         if (currentStepStatus.status === "success") {
-            toast.success("Вы отлично справились!")
+            toast.success("You did great!")
         }
 
         if (currentStepStatus.status === "error")
-            toast.error("Неверный ответ\nПравильный ответ:\n" + currentStepStatus.message)
+            toast.error("Incorrect answer \n Correct answer:\n" + currentStepStatus.message)
     }, [taskChecked, taskCompleted, currentStepStatus, props.currentStep]);
 
     return (
@@ -89,7 +89,7 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                         variant="faded"
                         color="primary"
                     >
-                        Назад
+                        Back
                     </Button>
                 }
                 {
@@ -108,7 +108,7 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                         color="primary"
                         disabled={!taskChecked && props.task.type !== "theory"}
                     >
-                        Далее
+                        Next
                     </Button>
                 }
                 {
@@ -122,7 +122,7 @@ export const LearningTaskBlock: FC<Props> = typedMemo(function LearningTaskBlock
                         color="primary"
                         disabled={!taskCompleted}
                     >
-                        Проверить
+                        Check
                     </Button>
                 }
             </div>

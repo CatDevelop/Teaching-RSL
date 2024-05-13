@@ -55,7 +55,7 @@ export const PracticeSelectWordByGIF: FC<Props> = typedMemo(function PracticeSel
 
     return (
         <div className={clsx(styles.practiceSelectWord)}>
-            <LearningBlock title={"Выберите верное слово"}>
+            <LearningBlock title={"Choose the right word"}>
                 <div className={styles.practiceSelectWord__contentContainer}>
                     <SignVideo src={props.rightSelect.illustrations[0].path} className={styles.practiceSelectWord__signVideo}/>
 

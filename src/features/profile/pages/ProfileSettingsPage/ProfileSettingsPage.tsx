@@ -91,18 +91,18 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                 <Card className={styles.profileSettingsPage__form}>
                     <div className={styles.profileSettingsPage__formHeader}>
                         <Back to={'/profile'}/>
-                        <Typography variant='h2'>Настройки</Typography>
+                        <Typography variant='h2'>Settings</Typography>
                     </div>
                     <form className={styles.profileSettingsPage__formScroll} onSubmit={handleSubmit(onSubmit)}>
                         <div className={styles.profileSettingsPage__formGroup}>
-                            <Typography variant="h3">Личная информация</Typography>
+                            <Typography variant="h3">Personal info</Typography>
                             <Input
                                 isInvalid={errors.firstName !== undefined}
                                 color={errors.firstName !== undefined ? "danger" : "default"}
                                 errorMessage={errors.firstName?.message}
                                 {...register('firstName')}
                                 value={firstName}
-                                label="Имя"
+                                label="Name"
                                 defaultValue={user?.firstName || ""}
                             />
                             <Input
@@ -111,7 +111,7 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                                 color={errors.lastName !== undefined ? "danger" : "default"}
                                 errorMessage={errors.lastName?.message}
                                 value={lastName}
-                                label="Фамилия"
+                                label="Surname"
                                 defaultValue={user?.lastName || ""}
                             />
                             <Input
@@ -120,33 +120,33 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                                 color={errors.email !== undefined ? "danger" : "default"}
                                 errorMessage={errors.email?.message}
                                 value={email}
-                                label="Почта"
+                                label="Email"
                                 defaultValue={user?.email || ""}
                             />
                         </div>
 
                         <div className={styles.profileSettingsPage__formGroup}>
-                            <Typography variant="h3">Смена пароля</Typography>
+                            <Typography variant="h3">Change Password</Typography>
                             <Input
                                 {...register('oldPassword')}
                                 isInvalid={errors.oldPassword !== undefined}
                                 color={errors.oldPassword !== undefined ? "danger" : "default"}
                                 errorMessage={errors.oldPassword?.message}
-                                label="Старый пароль"
+                                label="Old password"
                             />
                             <Input
                                 {...register('newPassword')}
                                 isInvalid={errors.newPassword !== undefined}
                                 color={errors.newPassword !== undefined ? "danger" : "default"}
                                 errorMessage={errors.newPassword?.message}
-                                label="Новый пароль"
+                                label="New password"
                             />
                             <Input
                                 {...register('repeatedNewPassword')}
                                 isInvalid={errors.repeatedNewPassword !== undefined}
                                 color={errors.repeatedNewPassword !== undefined ? "danger" : "default"}
                                 errorMessage={errors.repeatedNewPassword?.message}
-                                label="Повторите новый пароль"
+                                label="Repeat new password"
                             />
                         </div>
                         <Button

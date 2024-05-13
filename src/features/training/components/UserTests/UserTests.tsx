@@ -24,7 +24,7 @@ export const UserTests: FC<Props> = typedMemo(function UserTests(props) {
     return (
         <Card className={styles.userTests}>
             <div className={styles.userTests__header}>
-                <Typography variant="h2" className={styles.userTests__title}>Твои тесты</Typography>
+                <Typography variant="h2" className={styles.userTests__title}>Your tests</Typography>
             </div>
 
             <CreateUserTestForm
@@ -35,7 +35,7 @@ export const UserTests: FC<Props> = typedMemo(function UserTests(props) {
                         startContent={<Plus/>}
                         className={styles.userTests__createNewContainer}
                     >
-                        Создать новый тест
+                        Create a new test
                     </Button>
                 }
             />

@@ -42,11 +42,11 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
 
     return (
         <Card className={clsx([styles.learningProgress, props.className])}>
-            <CardHeader>Прогресс прохождения</CardHeader>
+            <CardHeader>Progress</CardHeader>
             <Tabs className={styles.learningProgress__tabs} classNames={{
                 panel: styles.learningProgress__tabsPanel
             }}>
-                <Tab key="learning" title="Обучение">
+                <Tab key="learning" title="Learning">
                     <ScrollBox>
                         {
                             userLearningHistory.length > 0 &&
@@ -59,12 +59,12 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                         {
                             userLearningHistory!.length <= 0 &&
                             <Typography variant="h1" className={styles.learningProgress__empty}>
-                                Вы пока не изучили жесты
+                                You haven't completed any learning yet
                             </Typography>
                         }
                     </ScrollBox>
                 </Tab>
-                <Tab key="training" title="Практики">
+                <Tab key="training" title="Training">
                     <ScrollBox>
                         <div className={styles.learningProgress__themes}>
                             {
@@ -76,13 +76,13 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                             {
                                 userTrainingHistory.length <= 0 &&
                                 <Typography variant="h1" className={styles.learningProgress__empty}>
-                                    Вы пока не проходили практики
+                                    You haven't completed any training yet
                                 </Typography>
                             }
                         </div>
                     </ScrollBox>
                 </Tab>
-                <Tab key="customtests" title="Тесты">
+                <Tab key="customtests" title="Tests">
                     <ScrollBox>
                         {
                             userTestsHistory.length > 0 &&
@@ -98,7 +98,7 @@ export const LearningProgress: FC<Props> = typedMemo(function LearningProgress(p
                         {
                             userTestsHistory!.length <= 0 &&
                             <Typography variant="h1" className={styles.learningProgress__empty}>
-                                Вы пока не проходили тесты
+                                You haven't taken any tests yet
                             </Typography>
                         }
                     </ScrollBox>

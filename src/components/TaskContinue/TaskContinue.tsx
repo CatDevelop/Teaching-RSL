@@ -31,20 +31,20 @@ export const TaskContinue: FC<Props> = typedMemo(function TaskContinue(props){
                         <Typography
                             variant="h3"
                             className={styles.taskContinue__textBlock}>
-                            Вы отлично справились!
+                            You did great!
                         </Typography>
                     </div>
-                    <Button color="primary" onClick={props.next}>Далее</Button>
+                    <Button color="primary" onClick={props.next}>Next</Button>
                 </> :
                 <>
                     <div className={styles.taskContinue__result}>
                         <img src={CloseCircle} rel="preload" alt="Иконка крестика" className={styles.taskContinue__icon} />
                         <div className={styles.taskContinue__textBlock}>
-                            <Typography variant="h3">Правильный ответ: </Typography>
+                            <Typography variant="h3">Correct answer: </Typography>
                             <Typography className={styles.taskContinue__description}>{props.rightAnswer}</Typography>
                         </div>
                     </div>
-                    <Button color="danger" onClick={props.next}>Далее</Button>
+                    <Button color="danger" onClick={props.next}>Next</Button>
                 </>
         }
         </div>

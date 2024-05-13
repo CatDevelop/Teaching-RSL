@@ -154,7 +154,7 @@ export const PracticeMatchWordAndGIF: FC<Props> = typedMemo(function PracticeMat
 
     return (
         <div className={clsx(styles.practiceMatchWordAndGIF)}>
-            <LearningBlock title={"Соотнесите слова и жесты"} className={styles.practiceMatchWordAndGIF__card}>
+            <LearningBlock title={"Match words and signs"} className={styles.practiceMatchWordAndGIF__card}>
                 <div className={styles.practiceMatchWordAndGIF__contentContainer}>
                     <div className={styles.practiceMatchWordAndGIF__taskContainer}>
                         <div className={styles.practiceMatchWordAndGIF__taskContainer_buttons}>

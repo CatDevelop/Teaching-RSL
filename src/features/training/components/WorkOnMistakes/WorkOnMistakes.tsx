@@ -22,14 +22,14 @@ export const WorkOnMistakes: FC<Props> = typedMemo(function WorkOnMistakes(props
     return (
         <Card className={clsx(styles.workOnMistakes, props.className)}>
             <Typography variant='h2'>
-                Слов пропущено: {props.missingWordsCount}
+                Missing words: {props.missingWordsCount}
             </Typography>
             <Button
                 variant="light"
                 onClick={onOpen}
                 className={styles.workOnMistakes__beginButton}
             >
-                Начать работу над ошибками
+                Start working on mistakes
             </Button>
         </Card>
     )

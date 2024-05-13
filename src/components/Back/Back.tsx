@@ -30,7 +30,7 @@ export const Back: FC<Props> = typedMemo(function Back(
     return (
         <Link to={props.to} className={styles.back}>
             <ArrowIcon className={styles.back__icon}/>
-            Назад
+            Back
         </Link>
     )
 })

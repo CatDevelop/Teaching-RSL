@@ -45,13 +45,12 @@ export const LearningResultPage: FC = typedMemo(function LearningResultPage() {
                         <div className={styles.learningResult__result}>
                             <ResultLearning className={styles.learningResult__resultImage}/>
                             <Typography variant="p" className={styles.learningResult__resultDescription}>
-                                Вы
-                                выучили {wordsCount} {normalizeCountForm(wordsCount, ["жест", 'жеста', 'жестов'])}.<br/>
-                                Теперь можно перейти к следующему этапу<br/>
-                                и попробовать их на практике.
+                                You have learned {wordsCount} signs.<br/>
+                                Now you can move on to the next step <br/>
+                                and try them in practice.
                             </Typography>
                             <Button variant={"solid"} color={"primary"} onClick={toLearningPage}>
-                                В меню
+                               Go to menu
                             </Button>
                         </div>
                     </div>

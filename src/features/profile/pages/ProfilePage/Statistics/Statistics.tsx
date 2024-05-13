@@ -27,13 +27,13 @@ export const Statistics: FC<Props> = typedMemo(function Statistics(props){
 
     return (
         <Card className={clsx(props.className, styles.statistics)}>
-            <CardHeader>Статистика</CardHeader>
+            <CardHeader>Statistics</CardHeader>
 
             <div className={styles.statistics__blocks}>
-                <StatisticsItem icon={TargetIcon} iconAlt="Количество пройденных уроков" value={statistics!.completedLevelsCount} descriptionValue="уроков пройдено"/>
-                <StatisticsItem icon={TrophyIcon} iconAlt="Прогресс" value={achievements.length} descriptionValue="трофеев получено"/>
-                <StatisticsItem icon={CalendarIcon} iconAlt="Количество дней обучения" value="1" descriptionValue="дней обучения"/>
-                <StatisticsItem icon={DictionaryIcon} iconAlt="Количество изученных слов" value={statistics!.completedWordsCount} descriptionValue="слов изучено"/>
+                <StatisticsItem icon={TargetIcon} iconAlt="Количество пройденных уроков" value={statistics!.completedLevelsCount} descriptionValue="lessons completed"/>
+                <StatisticsItem icon={TrophyIcon} iconAlt="Прогресс" value={achievements.length} descriptionValue="trophies received"/>
+                <StatisticsItem icon={CalendarIcon} iconAlt="Количество дней обучения" value="1" descriptionValue="days of training"/>
+                <StatisticsItem icon={DictionaryIcon} iconAlt="Количество изученных слов" value={statistics!.completedWordsCount} descriptionValue="signs learned"/>
             </div>
         </Card>
     )

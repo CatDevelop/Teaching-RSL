@@ -114,7 +114,7 @@ export const TrainingPage: FC<Props> = typedMemo(function TrainingPage() {
                                 className={styles.trainingTask__recognition}
                                 onSuccess={() => {
                                     setIsDoneTask(true)
-                                    toast.success("Вы отлично справились!")
+                                    toast.success("You did great!")
                                 }}
                                 setIntervalID={setIntervalID}
                                 intervalID={intervalID}
@@ -129,14 +129,14 @@ export const TrainingPage: FC<Props> = typedMemo(function TrainingPage() {
                                                 color="primary"
                                                 onClick={next}
                                             >
-                                                Далее
+                                                Next
                                             </Button> :
                                             <Button
                                                 size={"lg"}
                                                 variant="faded"
                                                 onClick={skip}
                                             >
-                                                Пропустить
+                                                Skip
                                             </Button>
                                     }
                                 </div>}

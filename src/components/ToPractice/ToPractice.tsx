@@ -17,7 +17,7 @@ type Props = ComponentProps & Readonly<{
 export const ToPractice: FC<Props> = typedMemo(function ToPractice(props) {
     return (
         <div className={clsx(styles.toPractice, props.className)}>
-            <Button color="primary" onClick={props.next}>Далее</Button>
+            <Button color="primary" onClick={props.next}>Next</Button>
         </div>
     )
 });

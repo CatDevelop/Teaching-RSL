@@ -18,7 +18,7 @@ export const Trophies: FC<Props> = typedMemo(function Trophies(props) {
 
     return (
         <Card className={clsx([props.className, styles.trophies])}>
-            <CardHeader>Трофеи</CardHeader>
+            <CardHeader>Trophies</CardHeader>
             <ScrollBox>
                 <div className={styles.trophies__block}>
                     {

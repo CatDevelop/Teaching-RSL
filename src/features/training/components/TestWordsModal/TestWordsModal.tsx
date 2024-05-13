@@ -34,19 +34,19 @@ export const TestWordsModal: FC<Props> = typedMemo(function TestWordsModal(props
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Выберите количество слов</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">Select word count</ModalHeader>
                             <ModalBody>
                                 <Range min={MIN_WORDS_COUNT} max={props.maxWordsCount} value={wordsCount}
                                        onChange={handleWordsChange}/>
                             </ModalBody>
                             <ModalFooter>
                                 <Button variant="faded" onPress={onClose}>
-                                    Назад
+                                    Back
                                 </Button>
                                 <Button color="primary" onPress={() => {
                                     props.start(wordsCount)
                                 }}>
-                                    Начать тест
+                                    Start test
                                 </Button>
                             </ModalFooter>
                         </>

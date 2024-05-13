@@ -23,7 +23,7 @@ export const RandomTestButton: FC<Props> = typedMemo(function RecognitionBlock(p
 
     const renderTestPreview = useCallback((onOpen: () => void) => {
         return (
-            <Button color="primary" variant="light" onClick={onOpen}>Создать случайный тест</Button>
+            <Button color="primary" variant="light" onClick={onOpen}>Create a random test</Button>
         )
     }, []);
 

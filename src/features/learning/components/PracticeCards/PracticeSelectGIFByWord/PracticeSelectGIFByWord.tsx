@@ -47,7 +47,7 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
         <div className={styles.practiceSelectGif}>
             <div className={styles.practiceSelectGif__titleContainer}>
                 <Typography variant="h2" className={styles.practiceSelectGif__title}>
-                    Выбери жест
+                    Choose a sign
                 </Typography>
                 <Typography
                     variant="h2"

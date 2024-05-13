@@ -108,16 +108,16 @@ export const HomePage: FC = typedMemo(function HomePage() {
                     <div className={styles.header__buttons}>
                         {isAuth &&
                             <Button variant="solid" color="primary" onClick={toLearning}>
-                                Перейти в сервис
+                                Go to service
                             </Button>
                         }
                         {!isAuth && <>
                             <Button variant="light" color="primary" className={styles.header__buttons__registration}
                                     onClick={toSignup}>
-                                Зарегистрироваться
+                                Register
                             </Button>
                             <Button variant="solid" color="primary" onClick={toSignin}>
-                                Войти
+                                Sign in
                             </Button>
                         </>}
                     </div>
@@ -130,14 +130,14 @@ export const HomePage: FC = typedMemo(function HomePage() {
                 </div>
                 <div className={styles.homePage__hero__contentContainer}>
                     <Typography variant="h1" className={styles.homePage__hero__title}>
-                        Добро пожаловать<br/> в мир жестового языка!
+                        Welcome to the <br/> world of sign language!
                     </Typography>
                     <Typography variant="h3" className={styles.homePage__hero__description}>
-                        Изучайте, закрепляете и практикуйтесь <br/>с нашим самоучителем
+                        Study, consolidate and practice <br/>with our tutorial
                     </Typography>
 
                     <Button color="primary" className={styles.homePage__hero__button} onClick={toLearning}>
-                        Начать изучение
+                        Start studying
                     </Button>
                 </div>
             </div>
@@ -147,7 +147,7 @@ export const HomePage: FC = typedMemo(function HomePage() {
             </div>
 
             <Typography variant="h1" className={styles.homePage__features__title}>
-                Наши возможности
+                Our capabilities
             </Typography>
             <div className={styles.homePage__featuresContainer}>
                 <div className={styles.homePage__features__items}>
@@ -155,10 +155,10 @@ export const HomePage: FC = typedMemo(function HomePage() {
                         <div className={styles.homePage__features__item__text}>
                             <Typography variant="h2" className={styles.homePage__features__item__text__title}
                                         ref={featureTitleRef1}>
-                                Изучай теорию
+                                Study theory
                             </Typography>
                             <Typography variant="p" className={styles.homePage__features__item__text__description}>
-                                Смотри, как показывают жесты профессиональные сурдопереводчики и запоминай их
+                                Watch how professional sign language interpreters demonstrate gestures and memorize them
                             </Typography>
                         </div>
                     </div>
@@ -167,10 +167,10 @@ export const HomePage: FC = typedMemo(function HomePage() {
                         <div className={styles.homePage__features__item__text}>
                             <Typography variant="h2" className={styles.homePage__features__item__text__title}
                                         ref={featureTitleRef2}>
-                                Закрепляй
+                                Consolidate
                             </Typography>
                             <Typography variant="p" className={styles.homePage__features__item__text__description}>
-                                Проходи тесты разных типов для закрепления материала
+                                Take different types of tests to reinforce the material
                             </Typography>
                         </div>
                     </div>
@@ -178,10 +178,10 @@ export const HomePage: FC = typedMemo(function HomePage() {
                         <div className={styles.homePage__features__item__text}>
                             <Typography variant="h2" className={styles.homePage__features__item__text__title}
                                         ref={featureTitleRef3}>
-                                Практикуйся
+                                Practice
                             </Typography>
                             <Typography variant="p" className={styles.homePage__features__item__text__description}>
-                                Показывай жесты в камеру - наша система распознает их и даст обратную связь
+                                Show sings to the camera - our system will recognize them and give feedback
                             </Typography>
                         </div>
                     </div>
@@ -197,11 +197,11 @@ export const HomePage: FC = typedMemo(function HomePage() {
             <div className={styles.end}>
                 <LogoShort width={100} className={styles.end__logo}/>
                 <Typography variant="p" className={styles.end__description}>
-                    Дарим свободу выражения <br/> в каждом жесте
+                    We give freedom of expression <br/> in every sign
                 </Typography>
 
                 <Button color="primary" className={styles.end__button} onClick={toLearning}>
-                    Начать изучение
+                    Start studying
                 </Button>
             </div>
         </div>

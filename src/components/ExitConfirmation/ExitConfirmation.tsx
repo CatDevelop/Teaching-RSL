@@ -31,9 +31,9 @@ export const ExitConfirmation: FC<Props> = typedMemo(function ExitConfirmation(p
             <div className={clsx(styles.exitConfirmation__container, props.className)}>
                 <div className={styles.exitConfirmation__contentContainer}>
                     <div>
-                        <Typography variant='h2'>Действительно хотите выйти?</Typography>
+                        <Typography variant='h2'>Do you really want to exit?</Typography>
                         <Typography variant='p' className={styles.exitConfirmation__description}>
-                            Ваш результат не сохранится
+                            Your results will not be saved
                         </Typography>
                     </div>
                     <div className={styles.exitConfirmation__buttons}>
@@ -42,14 +42,14 @@ export const ExitConfirmation: FC<Props> = typedMemo(function ExitConfirmation(p
                             variant="faded"
                             onClick={closeModal}
                         >
-                            Остаться
+                            Stay
                         </Button>
                         <Button
                             size="lg"
                             color="primary"
                             onClick={props.onExit}
                         >
-                            Выйти
+                            Exit
                         </Button>
                     </div>
                 </div>
