@@ -16,7 +16,7 @@ export const BySberAI: FC<Props> = typedMemo(function BySberAI(props){
     return (
         <Card className={clsx(styles.bySberAI, props.className)}>
             <Typography className={styles.bySberAI__title}>
-                The Russian sign language recognition model was developed by the team
+                The Russian sign language recognition model developed by
             </Typography>
             <img src={SberAI} alt={"Логотип"} className={styles.bySberAI__logo}/>
         </Card>

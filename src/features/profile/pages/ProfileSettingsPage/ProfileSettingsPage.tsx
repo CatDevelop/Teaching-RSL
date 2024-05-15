@@ -155,7 +155,7 @@ export const ProfileSettingsPage: FC<Props> = typedMemo(function ProfileSettings
                             disabled={!isActionActive}
                             isLoading={!isActionActive}
                             className={styles.profileSettingsPage__submitButton}>
-                            Сохранить
+                            Save
                         </Button>
                     </form>
                 </Card>

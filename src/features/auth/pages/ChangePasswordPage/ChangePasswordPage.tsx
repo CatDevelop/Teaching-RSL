@@ -29,29 +29,29 @@ export const ChangePasswordPage: FC = typedMemo(function ChangePasswordPage(){
 
     return (
         <AuthFormPage>
-            <Typography variant="h3">Смена пароля</Typography>
+            <Typography variant="h3">Change password</Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
             <Input 
-                    label="Пароль"
+                    label="Password"
                     isInvalid={errors.password !== undefined}
                     color={errors.password !== undefined ? "danger" : "default"}
                     errorMessage={errors.password?.message}
                     {...register('password')}
                 />
                 <Input 
-                    label="Повторите пароль"
+                    label="Repeat password"
                     isInvalid={errors.repeatPassword !== undefined}
                     color={errors.repeatPassword !== undefined ? "danger" : "default"}
                     errorMessage={errors.repeatPassword?.message}
                     {...register('repeatPassword')}
                 />
                 <Button color="primary" type="submit">
-                    Сохранить
+                    Save
                 </Button>
             </form>
             <FormLink 
                 className={styles.changePasswordPage__link}
-                linkText="Войти в аккаунт"
+                linkText="Sign in"
                 linkUrl="/signin"
             />
         </AuthFormPage>

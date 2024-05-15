@@ -38,7 +38,7 @@ export const RestorePasswordPage: FC = typedMemo(function RestorePasswordPage(){
                     {...register('email')}
                 />
                 <Button color="primary" type="submit">
-                    Send a letter
+                    Send email
                 </Button>
             </form>
             <FormLink 

@@ -83,7 +83,7 @@ export const SystemTests: FC<Props> = typedMemo(function SystemTests(props) {
     return (
         <Card className={styles.systemTests}>
             <Typography variant='h2'>
-                Themes
+                Topics
             </Typography>
             <ScrollBox className={clsx(styles.systemTests__container, props.className)}>
                 {

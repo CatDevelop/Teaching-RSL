@@ -70,7 +70,7 @@ export const ThemesList: FC = typedMemo(function ThemesList() {
     return (
         <Card className={styles.themeList}>
             <Typography variant='h2'>
-                Themes
+                Topics
             </Typography>
             <ScrollBox className={styles.themeList__contentContainer}>
                 {

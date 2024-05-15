@@ -28,19 +28,19 @@ export const achievementConfig: AchievementConfig = {
             toastClassName: classes.bronzeAchievementToast
         },
         [LearningScoreAchievement.Silver]: {
-            name: 'Master of Verbal Arts',
+            name: 'You`ve master of Verbal Arts',
             description: 'You earned 35 points in learning!',
             image: <SilverAchievementIcon/>,
             toastClassName: classes.silverAchievementToast
         },
         [LearningScoreAchievement.Gold]: {
-            name: 'Super swimmer in an ocean of sings',
+            name: 'You`ve super swimmer in an ocean of sings',
             description: 'You earned 75 points in learning!',
             image: <GoldAchievementIcon/>,
             toastClassName: classes.goldAchievementToast
         },
         [LearningScoreAchievement.Diamond]: {
-            name: 'Legionnaire of the verbal revolution',
+            name: 'You`ve legionnaire of the verbal revolution',
             description: 'You earned 150 points in learning!',
             image: <DiamondAchievementIcon/>,
             toastClassName: classes.diamondAchievementToast
@@ -48,7 +48,7 @@ export const achievementConfig: AchievementConfig = {
     },
     practice: {
         [PracticeScoreAchievement.Bronze]: {
-            name: 'Invulnerable Trainee',
+            name: 'You`ve invulnerable Trainee',
             description: 'You earned 10 points in training!',
             image: <BronzeAchievementIcon/>,
             toastClassName: classes.bronzeAchievementToast
@@ -60,13 +60,13 @@ export const achievementConfig: AchievementConfig = {
             toastClassName: classes.silverAchievementToast
         },
         [PracticeScoreAchievement.Gold]: {
-            name: 'Promotion Legend',
+            name: 'You`ve promotion Legend',
             description: 'You earned 75 points in training!',
             image: <GoldAchievementIcon/>,
             toastClassName: classes.goldAchievementToast
         },
         [PracticeScoreAchievement.Diamond]: {
-            name: 'Signoman',
+            name: 'You`ve signoman',
             description: 'You earned 150 points in training!',
             image: <DiamondAchievementIcon/>,
             toastClassName: classes.diamondAchievementToast
@@ -74,19 +74,19 @@ export const achievementConfig: AchievementConfig = {
     },
     total: {
         [TotalScoreAchievement.Bronze]: {
-            name: 'Hype user',
+            name: 'Hyped-up',
             description: 'You earned 20 total progress points!',
             image: <BronzeAchievementIcon/>,
             toastClassName: classes.bronzeAchievementToast
         },
         [TotalScoreAchievement.Silver]: {
-            name: 'Energetic Brain Trainer',
+            name: 'You`ve energetic Brain Trainer',
             description: 'You earned 50 total progress points!',
             image: <SilverAchievementIcon/>,
             toastClassName: classes.silverAchievementToast
         },
         [TotalScoreAchievement.Gold]: {
-            name: 'Signs addiction',
+            name: 'You`ve signs addiction',
             description: 'You earned 100 total progress points!',
             image: <GoldAchievementIcon/>,
             toastClassName: classes.goldAchievementToast

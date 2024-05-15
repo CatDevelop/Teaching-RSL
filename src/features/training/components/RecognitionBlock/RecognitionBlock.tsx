@@ -138,14 +138,14 @@ export const RecognitionBlock: FC<Props> = typedMemo(function RecognitionBlock(p
                         {props.word.word}
                     </Typography>
                     <Typography variant="span" className={styles.recognitionBlock__title}>
-                        Make a sign to the camera
+                        Make this sign on camera
                     </Typography>
                 </div>
                 <div className={styles.recognitionBlock__wordHeader__buttons}>
                     <TaskSetting className={styles.recognitionBlock__cameraSettingsButton}/>
                     <TaskFeedback
                         className={styles.recognitionBlock__errorButton}
-                        text="Report"
+                        text="Report an error"
                         items={
                             [
                                 {

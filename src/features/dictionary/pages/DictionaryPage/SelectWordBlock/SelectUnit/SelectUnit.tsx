@@ -16,7 +16,7 @@ export const SelectUnit: FC<Props> = typedMemo(function SelectUnit(props){
 
     return (
         <>
-            <Typography variant='h2' className={styles.selectUnit__title}>Themes</Typography>
+            <Typography variant='h2' className={styles.selectUnit__title}>Topics</Typography>
             <ScrollBox className={styles.selectUnit__themesScroll}>
                 {themes?.themeList.map((theme, i) => (
                     <div className={styles.selectUnit__theme} key={i }>

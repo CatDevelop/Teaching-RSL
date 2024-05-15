@@ -98,7 +98,7 @@ export const SelectUserTestWords: FC<Props> = typedMemo(function SelectUserTestW
                 onKeyDown={onKeyDown}
                 onChange={onChange}
                 value={selectedWords}
-                placeholder="Words for the test"
+                placeholder="Words to be tested"
                 isMulti
                 isSearchable
             />

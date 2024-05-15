@@ -47,13 +47,16 @@ export const PracticeSelectGIFByWord: FC<Props> = typedMemo(function PracticeSel
         <div className={styles.practiceSelectGif}>
             <div className={styles.practiceSelectGif__titleContainer}>
                 <Typography variant="h2" className={styles.practiceSelectGif__title}>
-                    Choose a sign
+                    Choose the
                 </Typography>
                 <Typography
                     variant="h2"
                     className={clsx(styles.practiceSelectGif__title, styles.practiceSelectGif__titleSignText)}
                 >
                     {props.wordObject.word}
+                </Typography>
+                <Typography variant="h2" className={styles.practiceSelectGif__title}>
+                    sign
                 </Typography>
             </div>
 

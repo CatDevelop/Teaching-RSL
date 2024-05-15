@@ -19,7 +19,7 @@ export const LevelBlock: FC<Props> = typedMemo(function LevelBlock(props) {
         <div className={styles.levelBlock}>
             <div className={styles.levelBlock__titleContainer}>
                 <Typography variant='h1' className={styles.levelBlock__level}>
-                    {props.level} level
+                    Level {props.level}
                 </Typography>
                 <Typography variant='p' className={styles.levelBlock__experienceCount}>
                     {props.experience} / {props.experienceForNextLevel}
