@@ -1,3 +1,3 @@
 export const CONFIG = {
-	apiUrl: 'https://2016927-kgolunov.twc1.net/',
+	apiUrl: 'https://pincode-dev.ru/',
 };
